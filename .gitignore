@@ -1,0 +1,10 @@
+.env
+node_modules/
+preview*.json
+*.csv
+curate.html
+*.bak
+*-missed.txt
+compare-*.txt
+tourapi-*.txt
+.DS_Store

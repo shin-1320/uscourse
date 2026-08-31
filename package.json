@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.110.7",
+    "aromanize": "^0.1.5",
+    "dotenv": "^17.4.2",
+    "es-hangul": "^2.4.0"
+  }
+}
