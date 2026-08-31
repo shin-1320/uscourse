@@ -52,6 +52,21 @@
   .where{font-size:12.5px;color:var(--muted);white-space:nowrap}
   .where b{color:var(--brand);font-weight:700}
 
+  /* 위치 상태 — 눌러서 다시 요청할 수 있게 버튼으로 */
+  .where{font-family:inherit;border:none;background:none;cursor:pointer;padding:0}
+  .where.off{color:var(--no-fg)}
+  .where.off b{color:var(--no-fg);text-decoration:underline}
+
+  /* 검색 — 주소·지역으로도 찾을 수 있다 */
+  .sbar{display:flex;align-items:center;gap:9px;background:#f4f5fa;
+    border-radius:12px;padding:11px 13px;margin-bottom:11px}
+  .sic{color:var(--faint);font-size:16px;line-height:1}
+  .sbar input{flex:1;border:none;outline:none;background:none;font:inherit;
+    font-size:15px;color:var(--ink);min-width:0}
+  .sbar input::placeholder{color:var(--faint)}
+  .sx{border:none;background:none;font-size:20px;color:var(--faint);
+    cursor:pointer;line-height:1;padding:0 2px;font-family:inherit}
+
   .chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:12px;
     scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .chips::-webkit-scrollbar{display:none}
@@ -78,7 +93,9 @@
   .ko{font-size:12.5px;color:var(--faint);margin-top:2px;
     font-family:'Noto Sans KR',sans-serif}
   .dist{font-size:14.5px;font-weight:700;color:var(--brand);flex-shrink:0;
-    font-variant-numeric:tabular-nums;white-space:nowrap}
+    font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+  .dist small{display:block;font-size:11px;font-weight:600;color:var(--faint);margin-top:1px}
+  .addr{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
 
   .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
   .t{font-size:12.5px;font-weight:600;padding:4px 9px;border-radius:8px}
@@ -119,7 +136,12 @@
   <div class="wrap">
     <div class="htop">
       <h1>Near me</h1>
-      <div class="where" id="where">locating…</div>
+      <button class="where" id="where">locating…</button>
+    </div>
+    <div class="sbar">
+      <span class="sic">⌕</span>
+      <input id="q" placeholder="Search a place, street or area…" autocomplete="off">
+      <button class="sx" id="qx" style="display:none">×</button>
     </div>
     <div class="chips" id="chips"></div>
   </div>
@@ -142,6 +164,16 @@ const BUSAN = { lat: 35.1379, lng: 129.0556 };   // 위치를 못 받을 때 기
 
 const CAT_FACE = { restaurant:'🍜', cafe:'☕', attraction:'🏛️', nature:'🏔️', shopping:'🛍️' };
 
+/* 구 이름을 여행자가 아는 지명으로 */
+const AREA_LABEL = {
+  '해운대구':'Haeundae', '수영구':'Gwangalli', '부산진구':'Seomyeon',
+  '중구':'Nampo', '동구':'Choryang', '서구':'Songdo', '남구':'Gwangan',
+  '사하구':'Gamcheon', '영도구':'Yeongdo', '금정구':'Geumjeong',
+  '동래구':'Dongnae', '북구':'Buk', '연제구':'Yeonje', '사상구':'Sasang',
+  '강서구':'Gangseo', '기장군':'Gijang',
+};
+const areaLabel = a => AREA_LABEL[a] || a || '';
+
 const FILTERS = [
   { key:'all',  label:'All',          test: () => true },
   { key:'solo', label:'Eat alone',    test: p => p.solo_ok === true },
@@ -153,6 +185,7 @@ const FILTERS = [
 ];
 
 let PLACES = [], GUIDES = {}, me = null, cur = 'all', shown = 25, openId = null;
+let query = '', located = false;
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -206,15 +239,27 @@ function stepsOf(p){
   };
 }
 
+/* 이름·한글명·주소·지역 어느 것으로도 찾을 수 있게 한다.
+   길에서 "여기가 어디지" 할 때 지역명으로 찾는 경우가 많다. */
+function matchQuery(p){
+  if (!query) return true;
+  const hay = [p.name_en, p.name_ko, p.address, p.area, areaLabel(p.area)]
+    .filter(Boolean).join(' ').toLowerCase();
+  return hay.includes(query);
+}
+
 function render(){
   const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
-  const all = PLACES.filter(f.test);
+  const all = PLACES.filter(p => f.test(p) && matchQuery(p));
   const list = all.slice(0, shown);
   const box = document.getElementById('list');
 
   if (!all.length){
-    box.innerHTML = `<div class="msg"><b>Nothing checked for this yet.</b>
-      Only places actually confirmed appear here.</div>`;
+    box.innerHTML = query
+      ? `<div class="msg"><b>No match for "${esc(query)}".</b>
+           Try a place name, a street, or an area like Haeundae.</div>`
+      : `<div class="msg"><b>Nothing checked for this yet.</b>
+           Only places actually confirmed appear here.</div>`;
     return;
   }
 
@@ -236,7 +281,8 @@ function render(){
         <div class="mid">
           <div class="nmrow">
             <div class="en">${esc(p.name_en || p.name_ko)}</div>
-            <div class="dist">${p._d != null ? fmtDist(p._d) : ''}</div>
+            <div class="dist">${p._d != null ? fmtDist(p._d) : ''}
+              ${p.area ? `<small>${esc(areaLabel(p.area))}</small>` : ''}</div>
           </div>
           ${p.name_ko ? `<div class="ko">${esc(p.name_ko)}</div>` : ''}
           ${tags ? `<div class="tags">${tags}</div>` : ''}
@@ -248,6 +294,7 @@ function render(){
             `<span class="sp"><b>${i+1}</b>${esc(s)}</span>`).join('')}</div>` : ''}
         ${g && g.tip ? `<div class="warn">${esc(g.tip)}</div>` : ''}
         ${menu ? `<div class="mn">${esc(menu)}</div>` : ''}
+        ${p.address ? `<div class="addr">📍 ${esc(p.address)}</div>` : ''}
         <a class="go" href="${naver}" target="_blank" rel="noopener">Open in Naver Map</a>
       </div>
     </div>`;
@@ -272,7 +319,7 @@ function sortByDistance(){
 async function load(){
   const [pl, gd] = await Promise.all([
     sb.from('places')
-      .select('id, name_en, name_ko, category, subcategory, image_url, lat, lng, solo_ok, foreign_card, english_menu, spice_level, food_guide_key')
+      .select('id, name_en, name_ko, category, subcategory, image_url, address, area, lat, lng, solo_ok, foreign_card, english_menu, spice_level, food_guide_key')
       .not('lat','is',null).not('lng','is',null),
     sb.from('food_guides').select('key, title_en, steps, pro_tip'),
   ]);
@@ -287,21 +334,59 @@ async function load(){
   askLocation();
 }
 
-function askLocation(){
+/* 위치 — 허용 여부를 화면에 분명히 드러낸다.
+   거부됐는데 조용히 부산 중심으로 정렬하면
+   "왜 내 주변이 아니지" 하고 혼란스럽기 때문이다. */
+function askLocation(silent){
   const where = document.getElementById('where');
-  const done = (label) => { sortByDistance(); renderChips(); render(); where.innerHTML = label; };
 
-  if (!navigator.geolocation){ me = BUSAN; return done('from <b>Busan</b>'); }
+  const done = (ok, label) => {
+    located = ok;
+    where.className = 'where' + (ok ? '' : ' off');
+    where.innerHTML = label;
+    sortByDistance(); renderChips(); render();
+  };
+
+  if (!navigator.geolocation){
+    me = BUSAN;
+    return done(false, 'from <b>Busan centre</b>');
+  }
+
+  if (!silent) where.textContent = 'locating…';
 
   navigator.geolocation.getCurrentPosition(
-    pos => { me = { lat:pos.coords.latitude, lng:pos.coords.longitude };
-             done('from <b>where you are</b>'); },
-    () => { me = BUSAN; done('from <b>Busan</b>'); },
-    { enableHighAccuracy:true, timeout:8000, maximumAge:60000 }
+    pos => {
+      me = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+      done(true, '📍 from <b>where you are</b>');
+    },
+    () => {
+      me = BUSAN;
+      done(false, 'from Busan centre · <b>use my location</b>');
+    },
+    { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
   );
 }
 
+/* 검색 */
+const qInput = document.getElementById('q');
+qInput.addEventListener('input', () => {
+  query = qInput.value.trim().toLowerCase();
+  document.getElementById('qx').style.display = query ? 'block' : 'none';
+  shown = 25; openId = null;
+  render();
+});
+
 document.addEventListener('click', e => {
+  // 위치 다시 요청
+  if (e.target.closest('#where')){ askLocation(); return; }
+
+  // 검색어 지우기
+  if (e.target.closest('#qx')){
+    qInput.value = ''; query = ''; 
+    document.getElementById('qx').style.display = 'none';
+    shown = 25; render(); return;
+  }
+
   const chip = e.target.closest('.chip');
   if (chip){ cur = chip.dataset.f; shown = 25; openId = null; renderChips(); render();
              window.scrollTo({ top:0, behavior:'smooth' }); return; }
