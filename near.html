@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Near me — Haeundae</title>
+
+<!--
+  ═══════════════════════════════════════════════════════
+  해운대 · 지금 내 주변
+
+  사이트와 다른 물건입니다. 앉아서 찾아보는 게 아니라
+  가게 앞에 서서 3초 안에 판단하는 화면입니다.
+
+  그래서 뺐습니다: 검색창, 사진, 설명, 리뷰, 카테고리.
+  남긴 것: 이름, 거리, 확인된 조건, 확인 안 된 것.
+
+  · 위치 권한을 허용하면 가까운 순으로 정렬됩니다.
+  · 거부하면 해운대 중심 기준으로 보여줍니다.
+  · 데이터는 Supabase에서 실시간으로 가져오므로,
+    큐레이션을 하면 이 화면에도 바로 반영됩니다.
+  ═══════════════════════════════════════════════════════
+-->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --brand:#0300b2;
+    --ink:#0b0d14;
+    --text:#31364a;
+    --muted:#6b7185;
+    --faint:#9ba1b2;
+    --line:#e6e8f0;
+    --bg:#ffffff;
+    --ok-bg:#e6f5ec;  --ok-fg:#17663a;
+    --no-bg:#ffeceb;  --no-fg:#c4322a;
+    --hot-bg:#fff1e6; --hot-fg:#a85a12;
+    --tip-bg:#edecfb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:var(--bg);color:var(--text);
+    font-family:'Inter','Noto Sans KR',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:env(safe-area-inset-bottom)}
+  .wrap{max-width:520px;margin:0 auto;padding:0 16px}
+
+  /* ── 상단 ─────────────────────────────────────────── */
+  header{position:sticky;top:0;background:rgba(255,255,255,.97);
+    backdrop-filter:blur(8px);z-index:10;border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top)}
+  .htop{display:flex;align-items:baseline;justify-content:space-between;
+    padding:16px 0 12px;gap:12px}
+  h1{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.5px}
+  .where{font-size:12.5px;color:var(--muted);white-space:nowrap}
+  .where b{color:var(--brand);font-weight:700}
+
+  /* 조건 칩 — 손가락으로 누르기 쉬운 크기 */
+  .chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:12px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex-shrink:0;font-size:14px;font-weight:600;padding:9px 15px;
+    border-radius:99px;border:1.5px solid var(--line);background:#fff;
+    color:var(--text);cursor:pointer;white-space:nowrap;font-family:inherit}
+  .chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+
+  /* ── 목록 ─────────────────────────────────────────── */
+  .list{padding:4px 0 28px}
+  .row{border-bottom:1px solid var(--line);padding:15px 2px;cursor:pointer}
+  .row:last-child{border-bottom:none}
+  .rtop{display:flex;align-items:baseline;gap:12px}
+  .nm{flex:1;min-width:0}
+  .nm .en{font-size:17.5px;font-weight:700;color:var(--ink);line-height:1.25;
+    letter-spacing:-.3px}
+  .nm .ko{font-size:12.5px;color:var(--faint);margin-top:2px;
+    font-family:'Noto Sans KR',sans-serif}
+  .dist{font-size:15px;font-weight:700;color:var(--brand);flex-shrink:0;
+    font-variant-numeric:tabular-nums}
+  .dist small{font-size:11.5px;font-weight:600;color:var(--faint);display:block;
+    text-align:right;margin-top:1px}
+
+  .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .t{font-size:13px;font-weight:600;padding:5px 10px;border-radius:8px}
+  .t-ok{background:var(--ok-bg);color:var(--ok-fg)}
+  .t-no{background:var(--no-bg);color:var(--no-fg)}
+  .t-hot{background:var(--hot-bg);color:var(--hot-fg)}
+  .t-tip{background:var(--tip-bg);color:var(--brand)}
+  .unk{font-size:12px;color:var(--faint);margin-top:7px;line-height:1.45}
+
+  /* 펼침 */
+  .open{display:none;margin-top:13px;padding:13px 14px;background:#f7f8fc;
+    border-radius:12px}
+  .row.on .open{display:block}
+  .open .mn{font-size:13px;color:var(--text);line-height:1.55;margin-bottom:11px}
+  .open .gd{font-size:13px;color:var(--brand);line-height:1.55;margin-bottom:11px;
+    font-weight:600}
+  .go{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    background:var(--brand);color:#fff;border:none;border-radius:11px;padding:14px;
+    font:inherit;font-size:15px;font-weight:700;text-decoration:none}
+
+  /* ── 상태 ─────────────────────────────────────────── */
+  .msg{padding:52px 20px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  .msg b{color:var(--ink);display:block;font-size:16px;margin-bottom:6px}
+  .askloc{margin-top:16px;background:var(--brand);color:#fff;border:none;
+    border-radius:11px;padding:13px 26px;font:inherit;font-size:14.5px;font-weight:700;cursor:pointer}
+  .foot{padding:18px 0 34px;text-align:center;font-size:11.5px;
+    color:var(--faint);line-height:1.7;border-top:1px solid var(--line)}
+  .foot a{color:var(--brand);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="htop">
+      <h1>Near me</h1>
+      <div class="where" id="where">Haeundae</div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="list" id="list">
+    <div class="msg">Loading…</div>
+  </div>
+  <div class="foot">
+    Only what's been checked is shown. Blank means not yet confirmed.<br>
+    <a href="https://uscourse.vercel.app" target="_blank" rel="noopener">UsCourse</a> · Haeundae, Busan
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://zygumrggzjwbkihlmpfy.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5Z3Vtcmdnemp3YmtpaGxtcGZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQwMjY2OTIsImV4cCI6MjA5OTYwMjY5Mn0.9d8i1_W5y008VNtikdejIKA8jvnfay1TZRvdX13DkFE";
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const HAEUNDAE = { lat: 35.1587, lng: 129.1604 };   // 해운대해수욕장 부근
+
+/* 조건 — 확인된 것만 걸러낸다. 미확인은 통과시키지 않는다. */
+const FILTERS = [
+  { key:'all',  label:'All',        test: () => true },
+  { key:'solo', label:'Eat alone',  test: p => p.solo_ok === true },
+  { key:'card', label:'Card OK',    test: p => p.foreign_card === true },
+  { key:'menu', label:'Menu I read',test: p => p.english_menu === true },
+  { key:'mild', label:'Not spicy',  test: p => /mild/i.test(p.spice_level || '') },
+  { key:'how',  label:'How to eat', test: p => !!p.food_guide_key },
+];
+
+let PLACES = [], me = null, cur = 'all', shown = 20, openId = null;
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function distM(a, b){
+  const R = 6371000, d = Math.PI / 180;
+  const x = Math.sin((b.lat-a.lat)*d/2)**2
+    + Math.cos(a.lat*d) * Math.cos(b.lat*d) * Math.sin((b.lng-a.lng)*d/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
+}
+const fmtDist = m => m < 1000 ? Math.round(m / 10) * 10 + ' m' : (m / 1000).toFixed(1) + ' km';
+
+/* 확인된 조건만 태그로. 아니라고 확인된 것(false)도 보여준다 —
+   "현금만 받는다"는 것도 판단에 필요한 정보이기 때문이다. */
+function tagsOf(p){
+  const t = [];
+  if (p.solo_ok === true)       t.push(['t-ok',  'Eat alone']);
+  if (p.solo_ok === false)      t.push(['t-no',  'Better with company']);
+  if (p.foreign_card === true)  t.push(['t-ok',  'Card OK']);
+  if (p.foreign_card === false) t.push(['t-no',  'Cash only']);
+  if (p.english_menu === true)  t.push(['t-ok',  'Menu you can read']);
+  if (p.english_menu === false) t.push(['t-no',  'Korean menu only']);
+  if (p.spice_level)            t.push(['t-hot', p.spice_level.replace(/🌶️?/g,'').trim()]);
+  if (p.food_guide_key)         t.push(['t-tip', 'How to eat it']);
+  return t;
+}
+
+/* 무엇이 확인 안 됐는지 밝힌다. 빈칸을 그냥 두면
+   확인해서 없는 건지 아직 모르는 건지 알 수 없다. */
+function unknownOf(p){
+  const u = [];
+  if (p.solo_ok === null || p.solo_ok === undefined)             u.push('solo');
+  if (p.foreign_card === null || p.foreign_card === undefined)   u.push('card');
+  if (p.english_menu === null || p.english_menu === undefined)   u.push('menu');
+  if (!p.spice_level)                                            u.push('spice');
+  return u;
+}
+
+const GUIDE_TIP = {
+  'dwaeji-gukbap': 'Taste the broth plain first, then add salted shrimp. Ask 다대기 빼주세요 if you want it mild.',
+  'sundae-gukbap': 'Sundae is a mild sausage of noodles and blood. Order 고기만 for plain pork only.',
+  'suyuk-baekban': 'Boiled pork, not grilled. Not spicy at all — a safe choice.',
+  'milmyeon':      'Mul milmyeon is cold and mild. Bibim milmyeon is spicy. Scissors on the table are for the noodles.',
+  'gomjangeo':     'Hagfish, grilled at your table. Ask 소금구이 for the mild version.',
+  'hoe':           'Korean raw fish is firm and chewy — that is the point. Spicy stew comes after, included.',
+  'eomuk':         'Take skewers yourself, keep them to count. Broth in the paper cups is free.',
+  'samgyeopsal':   'Rice is ordered separately. Two portions minimum at most places.',
+  'ssiat-hotteok': 'The filling is molten sugar. Wait a minute before biting.',
+};
+
+function render(){
+  const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
+  const base = me ? PLACES : PLACES;
+  const list = base.filter(f.test).slice(0, shown);
+  const total = base.filter(f.test).length;
+
+  const box = document.getElementById('list');
+
+  if (!total){
+    box.innerHTML = `<div class="msg"><b>Nothing checked for this yet.</b>
+      Only places that have actually been confirmed appear here.</div>`;
+    return;
+  }
+
+  box.innerHTML = list.map(p => {
+    const tags = tagsOf(p).map(([c, l]) =>
+      `<span class="t ${c}">${esc(l)}</span>`).join('');
+    const unk = unknownOf(p);
+    const tip = GUIDE_TIP[p.food_guide_key];
+    const menu = (p.subcategory || '').split(/[\n,]/)[0].trim();
+    const naver = 'https://map.naver.com/p/search/' + encodeURIComponent(p.name_ko || p.name_en);
+
+    return `<div class="row ${openId === p.id ? 'on' : ''}" data-id="${esc(p.id)}">
+      <div class="rtop">
+        <div class="nm">
+          <div class="en">${esc(p.name_en || p.name_ko)}</div>
+          ${p.name_ko ? `<div class="ko">${esc(p.name_ko)}</div>` : ''}
+        </div>
+        <div class="dist">${p._d != null ? fmtDist(p._d) : '—'}
+          ${p._d != null ? '<small>away</small>' : ''}</div>
+      </div>
+      ${tags ? `<div class="tags">${tags}</div>` : ''}
+      ${unk.length ? `<div class="unk">Not confirmed: ${unk.join(' · ')}</div>` : ''}
+      <div class="open">
+        ${menu ? `<div class="mn">${esc(menu)}</div>` : ''}
+        ${tip ? `<div class="gd">${esc(tip)}</div>` : ''}
+        <a class="go" href="${naver}" target="_blank" rel="noopener">Open in Naver Map</a>
+      </div>
+    </div>`;
+  }).join('') + (total > shown
+    ? `<div class="msg" style="padding:22px"><button class="askloc" id="more">Show ${total - shown} more</button></div>`
+    : '');
+}
+
+function renderChips(){
+  document.getElementById('chips').innerHTML = FILTERS.map(f => {
+    const n = PLACES.filter(f.test).length;
+    if (!n && f.key !== 'all') return '';
+    return `<button class="chip ${cur === f.key ? 'on' : ''}" data-f="${f.key}">${f.label}</button>`;
+  }).join('');
+}
+
+function sortByDistance(){
+  PLACES.forEach(p => {
+    p._d = (p.lat && p.lng && me) ? distM(me, { lat:p.lat, lng:p.lng }) : null;
+  });
+  PLACES.sort((a, b) => {
+    if (a._d == null && b._d == null) return 0;
+    if (a._d == null) return 1;
+    if (b._d == null) return -1;
+    return a._d - b._d;
+  });
+}
+
+async function load(){
+  const { data, error } = await sb.from('places')
+    .select('id, name_en, name_ko, subcategory, lat, lng, solo_ok, foreign_card, english_menu, spice_level, food_guide_key')
+    .eq('area', '해운대구');
+
+  if (error){
+    document.getElementById('list').innerHTML =
+      `<div class="msg"><b>Couldn't load.</b>${esc(error.message)}</div>`;
+    return;
+  }
+  PLACES = data || [];
+  askLocation();
+}
+
+function askLocation(){
+  const where = document.getElementById('where');
+
+  if (!navigator.geolocation){
+    me = HAEUNDAE; where.innerHTML = 'from <b>Haeundae Beach</b>';
+    sortByDistance(); renderChips(); render(); return;
+  }
+
+  where.textContent = 'finding you…';
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      me = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+      where.innerHTML = 'from <b>where you are</b>';
+      sortByDistance(); renderChips(); render();
+    },
+    () => {
+      // 거부하거나 실패해도 쓸 수 있어야 한다
+      me = HAEUNDAE;
+      where.innerHTML = 'from <b>Haeundae Beach</b>';
+      sortByDistance(); renderChips(); render();
+    },
+    { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
+  );
+}
+
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.chip');
+  if (chip){ cur = chip.dataset.f; shown = 20; openId = null; renderChips(); render(); return; }
+
+  if (e.target.closest('#more')){ shown += 20; render(); return; }
+
+  if (e.target.closest('.go')) return;          // 지도 링크는 그대로 열리게
+
+  const row = e.target.closest('.row');
+  if (row){ openId = (openId === row.dataset.id) ? null : row.dataset.id; render(); }
+});
+
+load();
+</script>
+
+</body>
+</html>
