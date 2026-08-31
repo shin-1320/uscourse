@@ -19,8 +19,8 @@
 <script>
   const CONFIG = {
     NAME:    'UsCourse',
-    CONTACT: 'https://forms.gle/YOUR-FORM',
-    GA_ID:   '',
+    CONTACT: 'https://uscourse.vercel.app',   // 눌렀을 때 갈 곳
+    GA_ID:   '',                              // GA4 측정 ID (예: G-XXXXXXXXXX)
   };
 </script>
 
@@ -281,7 +281,7 @@
     <div class="card panel">
       <h2>Explore Yeongdo by Category</h2>
       <div class="cats" id="cats"></div>
-      <a class="more" href="#interest" data-t="see_more">See more places in Yeongdo
+      <a class="more" id="more" href="#interest" data-t="see_more">See more places in Yeongdo
         <svg width="15" height="15"><use href="#i-arrow" class="ic"/></svg></a>
     </div>
 
@@ -409,11 +409,11 @@
 
   <!-- 반응 -->
   <div class="ask" id="interest">
-    <h2>Would you use this?</h2>
-    <p>Being built for Busan right now, starting with Yeongdo.<br>
-      If this would have helped on your trip, say so — that decides what gets built next.</p>
-    <a class="cta" id="cta" href="#" data-t="interest">Tell us what you'd want →</a>
-    <div class="note">Takes a minute. No account, no email list.</div>
+    <h2>Yeongdo is one island.</h2>
+    <p>The same details are checked for places across the city —<br>
+      solo dining, spice, cards, menus you can read.</p>
+    <a class="cta" id="cta" href="#" data-t="explore">See what else is out there →</a>
+    <div class="note">Free. No account. Works on the phone in your hand.</div>
   </div>
 
 </div>
@@ -496,6 +496,8 @@ const PHOTOS = [IMG.taejong, IMG.sunrise, IMG.kangkang, IMG.bongnae];
     const el = document.getElementById(id); if (el) el.textContent = CONFIG.NAME;
   });
   document.getElementById('cta').href = CONFIG.CONTACT;
+  const moreBtn = document.getElementById('more');
+  if (moreBtn) moreBtn.href = CONFIG.CONTACT;
   document.title = 'Find the right place in Yeongdo — ' + CONFIG.NAME;
 
   /* ── 반응 측정 ─────────────────────────────────────
