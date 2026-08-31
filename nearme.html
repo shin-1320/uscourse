@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Near me — UsCourse</title>
+
+<!--
+  ═══════════════════════════════════════════════════════
+  Near me — 지금 내 주변 (부산 전역)
+
+  앉아서 찾아보는 화면이 아니라, 가게 앞에 서서
+  몇 초 안에 "들어갈지 말지"를 정하는 화면입니다.
+
+  · 위치를 허용하면 가까운 순으로 정렬됩니다. 부산 전역이 대상입니다.
+  · 사진은 그 집이 뭐 하는 곳인지 한눈에 알려주는 역할만 합니다.
+  · 먹는 법은 세 단계를 한 줄로 압축해 보여줍니다.
+  · 확인되지 않은 항목은 숨기지 않고 밝힙니다.
+  ═══════════════════════════════════════════════════════
+-->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --brand:#0300b2;
+    --ink:#0b0d14;
+    --text:#31364a;
+    --muted:#6b7185;
+    --faint:#9ba1b2;
+    --line:#e6e8f0;
+    --bg:#ffffff;
+    --ok-bg:#e6f5ec;  --ok-fg:#17663a;
+    --no-bg:#ffeceb;  --no-fg:#c4322a;
+    --hot-bg:#fff1e6; --hot-fg:#a85a12;
+    --tip-bg:#edecfb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:var(--bg);color:var(--text);
+    font-family:'Inter','Noto Sans KR',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+  .wrap{max-width:520px;margin:0 auto;padding:0 16px}
+
+  header{position:sticky;top:0;background:rgba(255,255,255,.97);
+    backdrop-filter:blur(8px);z-index:10;border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top)}
+  .htop{display:flex;align-items:baseline;justify-content:space-between;
+    padding:16px 0 12px;gap:12px}
+  h1{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.5px}
+  .where{font-size:12.5px;color:var(--muted);white-space:nowrap}
+  .where b{color:var(--brand);font-weight:700}
+
+  .chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:12px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex-shrink:0;font-size:14px;font-weight:600;padding:9px 15px;
+    border-radius:99px;border:1.5px solid var(--line);background:#fff;
+    color:var(--text);cursor:pointer;white-space:nowrap;font-family:inherit}
+  .chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+
+  /* ── 목록 ─────────────────────────────────────────── */
+  .list{padding:4px 0 8px}
+  .row{border-bottom:1px solid var(--line);padding:14px 2px;cursor:pointer}
+  .row:last-child{border-bottom:none}
+  .rtop{display:flex;gap:13px;align-items:flex-start}
+
+  /* 사진 — 무슨 집인지 한눈에 알려주는 역할 */
+  .ph{width:76px;height:76px;border-radius:12px;flex-shrink:0;
+    background-size:cover;background-position:center;background-color:#f1f3f9;
+    display:flex;align-items:center;justify-content:center;font-size:26px}
+
+  .mid{flex:1;min-width:0}
+  .nmrow{display:flex;align-items:baseline;gap:10px}
+  .en{flex:1;min-width:0;font-size:17px;font-weight:700;color:var(--ink);
+    line-height:1.25;letter-spacing:-.3px}
+  .ko{font-size:12.5px;color:var(--faint);margin-top:2px;
+    font-family:'Noto Sans KR',sans-serif}
+  .dist{font-size:14.5px;font-weight:700;color:var(--brand);flex-shrink:0;
+    font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+  .t{font-size:12.5px;font-weight:600;padding:4px 9px;border-radius:8px}
+  .t-ok{background:var(--ok-bg);color:var(--ok-fg)}
+  .t-no{background:var(--no-bg);color:var(--no-fg)}
+  .t-hot{background:var(--hot-bg);color:var(--hot-fg)}
+  .t-tip{background:var(--tip-bg);color:var(--brand)}
+  .unk{font-size:11.5px;color:var(--faint);margin-top:6px;line-height:1.45}
+
+  /* 펼침 — 짧게 */
+  .open{display:none;margin-top:12px;padding:13px 14px;background:#f7f8fc;border-radius:12px}
+  .row.on .open{display:block}
+  .steps{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .sp{font-size:12.5px;font-weight:600;color:var(--ink);background:#fff;
+    border:1px solid var(--line);border-radius:8px;padding:6px 10px;line-height:1.3}
+  .sp b{color:var(--brand);margin-right:4px}
+  .warn{font-size:12.5px;color:var(--hot-fg);background:var(--hot-bg);
+    border-radius:9px;padding:9px 11px;line-height:1.5;margin-bottom:10px}
+  .warn b{font-family:'Noto Sans KR',sans-serif}
+  .mn{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+  .go{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    background:var(--brand);color:#fff;border:none;border-radius:11px;padding:13px;
+    font:inherit;font-size:14.5px;font-weight:700;text-decoration:none}
+
+  .msg{padding:48px 20px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  .msg b{color:var(--ink);display:block;font-size:16px;margin-bottom:6px}
+  .morebtn{background:#fff;border:1.5px solid var(--line);border-radius:11px;
+    padding:13px 26px;font:inherit;font-size:14.5px;font-weight:700;
+    color:var(--ink);cursor:pointer}
+  .foot{padding:18px 0 34px;text-align:center;font-size:11.5px;
+    color:var(--faint);line-height:1.7;border-top:1px solid var(--line)}
+  .foot a{color:var(--brand);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="htop">
+      <h1>Near me</h1>
+      <div class="where" id="where">locating…</div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="list" id="list"><div class="msg">Loading…</div></div>
+  <div class="foot">
+    Only checked details are shown. Blank means not confirmed yet.<br>
+    <a href="https://uscourse.vercel.app" target="_blank" rel="noopener">UsCourse</a> · Busan
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://zygumrggzjwbkihlmpfy.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5Z3Vtcmdnemp3YmtpaGxtcGZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQwMjY2OTIsImV4cCI6MjA5OTYwMjY5Mn0.9d8i1_W5y008VNtikdejIKA8jvnfay1TZRvdX13DkFE";
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const BUSAN = { lat: 35.1379, lng: 129.0556 };   // 위치를 못 받을 때 기준점
+
+const CAT_FACE = { restaurant:'🍜', cafe:'☕', attraction:'🏛️', nature:'🏔️', shopping:'🛍️' };
+
+const FILTERS = [
+  { key:'all',  label:'All',          test: () => true },
+  { key:'solo', label:'Eat alone',    test: p => p.solo_ok === true },
+  { key:'card', label:'Card OK',      test: p => p.foreign_card === true },
+  { key:'menu', label:'Foreign menu', test: p => p.english_menu === true },
+  { key:'mild', label:'Not spicy',    test: p => /mild/i.test(p.spice_level || '') },
+  { key:'how',  label:'How to eat',   test: p => !!p.food_guide_key },
+  { key:'cafe', label:'Cafes',        test: p => p.category === 'cafe' },
+];
+
+let PLACES = [], GUIDES = {}, me = null, cur = 'all', shown = 25, openId = null;
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function distM(a, b){
+  const R = 6371000, d = Math.PI / 180;
+  const x = Math.sin((b.lat-a.lat)*d/2)**2
+    + Math.cos(a.lat*d) * Math.cos(b.lat*d) * Math.sin((b.lng-a.lng)*d/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
+}
+const fmtDist = m => m < 1000 ? Math.round(m / 10) * 10 + ' m' : (m / 1000).toFixed(1) + ' km';
+
+/* 확인된 것만 태그로. false(아니라고 확인된 것)도 판단에 필요하므로 보여준다. */
+function tagsOf(p){
+  const t = [];
+  if (p.solo_ok === true)       t.push(['t-ok',  'Eat alone']);
+  if (p.solo_ok === false)      t.push(['t-no',  'Better with company']);
+  if (p.foreign_card === true)  t.push(['t-ok',  'Card OK']);
+  if (p.foreign_card === false) t.push(['t-no',  'Cash only']);
+  if (p.english_menu === true)  t.push(['t-ok',  'Foreign menu']);
+  if (p.english_menu === false) t.push(['t-no',  'Korean menu only']);
+  if (p.spice_level)            t.push(['t-hot', p.spice_level.replace(/🌶️?/g,'').trim()]);
+  if (p.food_guide_key && GUIDES[p.food_guide_key]) t.push(['t-tip','How to eat']);
+  return t;
+}
+
+/* 무엇이 확인 안 됐는지 밝힌다 — 빈칸만 두면 판단할 수 없다 */
+function unknownOf(p){
+  const u = [];
+  const isFood = p.category === 'restaurant' || p.category === 'cafe';
+  if (p.solo_ok == null && isFood)      u.push('solo');
+  if (p.foreign_card == null)           u.push('card');
+  if (p.english_menu == null && isFood) u.push('menu');
+  if (!p.spice_level && isFood)         u.push('spice');
+  return u;
+}
+
+/* 먹는 법 — 세 단계를 한 줄씩 압축.
+   steps 형식이 '🥣 제목|설명' 이므로 제목만 쓴다. */
+function stepsOf(p){
+  const g = GUIDES[p.food_guide_key];
+  if (!g || !g.steps || !g.steps.length) return null;
+  return {
+    title: g.title_en,
+    steps: g.steps.slice(0, 3).map(raw => {
+      const head = (raw.split('|')[0] || '').trim();
+      return head.replace(/^\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*\s*/u, '');
+    }),
+    // 긴 안내에서 첫 문장만 — 서 있는 상황에 맞게
+    tip: (g.pro_tip || '').split(/(?<=[.!?])\s/)[0].slice(0, 130) || '',
+  };
+}
+
+function render(){
+  const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
+  const all = PLACES.filter(f.test);
+  const list = all.slice(0, shown);
+  const box = document.getElementById('list');
+
+  if (!all.length){
+    box.innerHTML = `<div class="msg"><b>Nothing checked for this yet.</b>
+      Only places actually confirmed appear here.</div>`;
+    return;
+  }
+
+  box.innerHTML = list.map(p => {
+    const tags = tagsOf(p).map(([c,l]) => `<span class="t ${c}">${esc(l)}</span>`).join('');
+    const unk  = unknownOf(p);
+    const g    = stepsOf(p);
+    const menu = (p.subcategory || '').split(/[\n,]/).slice(0,2)
+                   .map(x => x.replace(/[￦₩][\d,\-–~\s]*/g,'').trim()).filter(Boolean).join(' · ');
+    const naver = 'https://map.naver.com/p/search/' + encodeURIComponent(p.name_ko || p.name_en);
+    const face = CAT_FACE[p.category] || '📍';
+    const ph = p.image_url
+      ? `style="background-image:url('${esc(p.image_url)}')"`
+      : `style="background:linear-gradient(150deg,#eef0f8,#e3e7f3)"`;
+
+    return `<div class="row ${openId === p.id ? 'on' : ''}" data-id="${esc(p.id)}">
+      <div class="rtop">
+        <div class="ph" ${ph}>${p.image_url ? '' : face}</div>
+        <div class="mid">
+          <div class="nmrow">
+            <div class="en">${esc(p.name_en || p.name_ko)}</div>
+            <div class="dist">${p._d != null ? fmtDist(p._d) : ''}</div>
+          </div>
+          ${p.name_ko ? `<div class="ko">${esc(p.name_ko)}</div>` : ''}
+          ${tags ? `<div class="tags">${tags}</div>` : ''}
+          ${unk.length ? `<div class="unk">Not confirmed: ${unk.join(' · ')}</div>` : ''}
+        </div>
+      </div>
+      <div class="open">
+        ${g ? `<div class="steps">${g.steps.map((s,i) =>
+            `<span class="sp"><b>${i+1}</b>${esc(s)}</span>`).join('')}</div>` : ''}
+        ${g && g.tip ? `<div class="warn">${esc(g.tip)}</div>` : ''}
+        ${menu ? `<div class="mn">${esc(menu)}</div>` : ''}
+        <a class="go" href="${naver}" target="_blank" rel="noopener">Open in Naver Map</a>
+      </div>
+    </div>`;
+  }).join('') + (all.length > shown
+    ? `<div class="msg" style="padding:20px"><button class="morebtn" id="more">Show more</button></div>`
+    : '');
+}
+
+function renderChips(){
+  document.getElementById('chips').innerHTML = FILTERS.map(f => {
+    const n = PLACES.filter(f.test).length;
+    if (!n && f.key !== 'all') return '';
+    return `<button class="chip ${cur === f.key ? 'on' : ''}" data-f="${f.key}">${f.label}</button>`;
+  }).join('');
+}
+
+function sortByDistance(){
+  PLACES.forEach(p => { p._d = me ? distM(me, { lat:p.lat, lng:p.lng }) : null; });
+  PLACES.sort((a,b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+}
+
+async function load(){
+  const [pl, gd] = await Promise.all([
+    sb.from('places')
+      .select('id, name_en, name_ko, category, subcategory, image_url, lat, lng, solo_ok, foreign_card, english_menu, spice_level, food_guide_key')
+      .not('lat','is',null).not('lng','is',null),
+    sb.from('food_guides').select('key, title_en, steps, pro_tip'),
+  ]);
+
+  if (pl.error){
+    document.getElementById('list').innerHTML =
+      `<div class="msg"><b>Couldn't load.</b>${esc(pl.error.message)}</div>`;
+    return;
+  }
+  PLACES = pl.data || [];
+  (gd.data || []).forEach(g => GUIDES[g.key] = g);
+  askLocation();
+}
+
+function askLocation(){
+  const where = document.getElementById('where');
+  const done = (label) => { sortByDistance(); renderChips(); render(); where.innerHTML = label; };
+
+  if (!navigator.geolocation){ me = BUSAN; return done('from <b>Busan</b>'); }
+
+  navigator.geolocation.getCurrentPosition(
+    pos => { me = { lat:pos.coords.latitude, lng:pos.coords.longitude };
+             done('from <b>where you are</b>'); },
+    () => { me = BUSAN; done('from <b>Busan</b>'); },
+    { enableHighAccuracy:true, timeout:8000, maximumAge:60000 }
+  );
+}
+
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.chip');
+  if (chip){ cur = chip.dataset.f; shown = 25; openId = null; renderChips(); render();
+             window.scrollTo({ top:0, behavior:'smooth' }); return; }
+  if (e.target.closest('#more')){ shown += 25; render(); return; }
+  if (e.target.closest('.go')) return;
+  const row = e.target.closest('.row');
+  if (row){ openId = (openId === row.dataset.id) ? null : row.dataset.id; render(); }
+});
+
+load();
+</script>
+
+</body>
+</html>
