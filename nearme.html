@@ -6,58 +6,56 @@
 <meta name="theme-color" content="#ffffff">
 <title>Near me — UsCourse</title>
 
-<!--
-  ═══════════════════════════════════════════════════════
-  Near me — 지금 내 주변 (부산 전역)
-
-  앉아서 찾아보는 화면이 아니라, 가게 앞에 서서
-  몇 초 안에 "들어갈지 말지"를 정하는 화면입니다.
-
-  · 위치를 허용하면 가까운 순으로 정렬됩니다. 부산 전역이 대상입니다.
-  · 사진은 그 집이 뭐 하는 곳인지 한눈에 알려주는 역할만 합니다.
-  · 먹는 법은 세 단계를 한 줄로 압축해 보여줍니다.
-  · 확인되지 않은 항목은 숨기지 않고 밝힙니다.
-  ═══════════════════════════════════════════════════════
--->
-
+<!-- Supabase JS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Google Fonts (Inter & Noto Sans KR) -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
 
+<!-- Leaflet.js (가볍고 빠른 오픈소스 오픈스트리트맵 엔진) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <style>
+  /* ── 디자인 시스템 & 컬러 변수 설정 ── */
   :root{
-    --brand:#0300b2;
-    --ink:#0b0d14;
-    --text:#31364a;
-    --muted:#6b7185;
-    --faint:#9ba1b2;
-    --line:#e6e8f0;
-    --bg:#ffffff;
-    --ok-bg:#e6f5ec;  --ok-fg:#17663a;
-    --no-bg:#ffeceb;  --no-fg:#c4322a;
-    --hot-bg:#fff1e6; --hot-fg:#a85a12;
-    --tip-bg:#edecfb;
+    --brand:#0300b2;      /* 메인 브랜드 컬러 */
+    --ink:#0b0d14;        /* 주요 텍스트 */
+    --text:#31364a;       /* 본문 텍스트 */
+    --muted:#6b7185;      /* 보조 텍스트 */
+    --faint:#9ba1b2;      /* 흐린 텍스트 및 라인 */
+    --line:#e6e8f0;       /* 분리선 */
+    --bg:#ffffff;         /* 배경색 */
+    --ok-bg:#e6f5ec;  --ok-fg:#17663a;  /* 긍정 태그 (Card OK, Solo OK 등) */
+    --no-bg:#ffeceb;  --no-fg:#c4322a;  /* 부정/미지원 태그 */
+    --hot-bg:#fff1e6; --hot-fg:#a85a12; /* 맵기 및 주의사항 태그 */
+    --tip-bg:#edecfb;                   /* 먹는 법 팁 태그 */
   }
+
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   body{background:var(--bg);color:var(--text);
     font-family:'Inter','Noto Sans KR',system-ui,sans-serif;
     -webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
   .wrap{max-width:520px;margin:0 auto;padding:0 16px}
 
+  /* ── 상단 스티키 헤더 ── */
   header{position:sticky;top:0;background:rgba(255,255,255,.97);
-    backdrop-filter:blur(8px);z-index:10;border-bottom:1px solid var(--line);
+    backdrop-filter:blur(8px);z-index:1000;border-bottom:1px solid var(--line);
     padding-top:env(safe-area-inset-top)}
-  .htop{display:flex;align-items:baseline;justify-content:space-between;
-    padding:16px 0 12px;gap:12px}
+  .htop{display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0 10px;gap:12px}
   h1{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.5px}
-  .where{font-size:12.5px;color:var(--muted);white-space:nowrap}
+  
+  .where{font-size:12.5px;color:var(--muted);white-space:nowrap;font-family:inherit;border:none;background:none;cursor:pointer;padding:0;text-align:left;margin-top:2px}
   .where b{color:var(--brand);font-weight:700}
-
-  /* 위치 상태 — 눌러서 다시 요청할 수 있게 버튼으로 */
-  .where{font-family:inherit;border:none;background:none;cursor:pointer;padding:0}
   .where.off{color:var(--no-fg)}
   .where.off b{color:var(--no-fg);text-decoration:underline}
 
-  /* 검색 — 주소·지역으로도 찾을 수 있다 */
+  /* ── 뷰 전환 토글 스위치 (List <-> Map) ── */
+  .view-toggle{display:flex;background:#f4f5fa;border:1px solid var(--line);border-radius:99px;padding:3px}
+  .toggle-btn{border:none;background:none;font-size:13px;font-weight:700;color:var(--muted);padding:6px 14px;border-radius:99px;cursor:pointer;font-family:inherit;transition:all .2s ease}
+  .toggle-btn.active{background:var(--brand);color:#fff;box-shadow:0 2px 6px rgba(3,0,178,.2)}
+
+  /* ── 검색바 및 카테고리 칩 ── */
   .sbar{display:flex;align-items:center;gap:9px;background:#f4f5fa;
     border-radius:12px;padding:11px 13px;margin-bottom:11px}
   .sic{color:var(--faint);font-size:16px;line-height:1}
@@ -75,13 +73,29 @@
     color:var(--text);cursor:pointer;white-space:nowrap;font-family:inherit}
   .chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
 
-  /* ── 목록 ─────────────────────────────────────────── */
+  /* ── 뷰 컨테이너 (List / Map 전환용) ── */
+  #view-list{display:block}
+  #view-map{display:none;position:relative;width:100%;height:calc(100vh - 180px);min-height:400px;margin:12px 0 24px;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+  #map-container{width:100%;height:100%}
+
+  /* ── Leaflet 지도 마커 및 팝업 커스텀 스타일 ── */
+  .custom-pin{background:var(--brand);color:#fff;border:2px solid #fff;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 3px 10px rgba(0,0,0,.25);font-weight:bold}
+  .my-pin{background:#ff2d55;animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,45,85,0.6)} 70%{box-shadow:0 0 0 12px rgba(255,45,85,0)} 100%{box-shadow:0 0 0 0 rgba(255,45,85,0)}}
+  
+  .leaflet-popup-content-wrapper{border-radius:14px;padding:6px;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+  .pop-card{width:200px;font-family:inherit}
+  .pop-title{font-weight:700;font-size:15px;color:var(--ink);margin-bottom:2px}
+  .pop-sub{font-size:11px;color:var(--muted);margin-bottom:8px}
+  .pop-dist{font-size:12px;font-weight:700;color:var(--brand);margin-bottom:8px}
+  .pop-go{display:block;text-align:center;background:var(--brand);color:#fff;text-decoration:none;font-size:12px;font-weight:700;padding:7px;border-radius:8px}
+
+  /* ── 목록 아이템 UI ── */
   .list{padding:4px 0 8px}
   .row{border-bottom:1px solid var(--line);padding:14px 2px;cursor:pointer}
   .row:last-child{border-bottom:none}
   .rtop{display:flex;gap:13px;align-items:flex-start}
 
-  /* 사진 — 무슨 집인지 한눈에 알려주는 역할 */
   .ph{width:76px;height:76px;border-radius:12px;flex-shrink:0;
     background-size:cover;background-position:center;background-color:#f1f3f9;
     display:flex;align-items:center;justify-content:center;font-size:26px}
@@ -105,7 +119,6 @@
   .t-tip{background:var(--tip-bg);color:var(--brand)}
   .unk{font-size:11.5px;color:var(--faint);margin-top:6px;line-height:1.45}
 
-  /* 펼침 — 짧게 */
   .open{display:none;margin-top:12px;padding:13px 14px;background:#f7f8fc;border-radius:12px}
   .row.on .open{display:block}
   .steps{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
@@ -113,7 +126,7 @@
     border:1px solid var(--line);border-radius:8px;padding:6px 10px;line-height:1.3}
   .sp b{color:var(--brand);margin-right:4px}
   .warn{font-size:12.5px;color:var(--hot-fg);background:var(--hot-bg);
-    border-radius:9px;padding:9px 11px;line-height:1.5;margin-bottom:10px}
+    border-radius:99px;padding:99px 11px;line-height:1.5;margin-bottom:10px}
   .warn b{font-family:'Noto Sans KR',sans-serif}
   .mn{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:10px}
   .go{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
@@ -132,23 +145,45 @@
 </head>
 <body>
 
+<!-- 헤더 영역 -->
 <header>
   <div class="wrap">
     <div class="htop">
-      <h1>Near me</h1>
-      <button class="where" id="where">locating…</button>
+      <div>
+        <h1>Near me</h1>
+        <!-- GPS 위치 정보 상태 및 기준 위치 표시 버튼 -->
+        <button class="where" id="where">locating…</button>
+      </div>
+      
+      <!-- 목록 뷰 / 지도 뷰 스위처 토글 버튼 -->
+      <div class="view-toggle">
+        <button class="toggle-btn active" id="btn-list-view">List</button>
+        <button class="toggle-btn" id="btn-map-view">Map 🗺️</button>
+      </div>
     </div>
+    
+    <!-- 실시간 인메모리 검색바 -->
     <div class="sbar">
       <span class="sic">⌕</span>
       <input id="q" placeholder="Search a place, street or area…" autocomplete="off">
       <button class="sx" id="qx" style="display:none">×</button>
     </div>
+    <!-- 필터 칩 영역 -->
     <div class="chips" id="chips"></div>
   </div>
 </header>
 
 <div class="wrap">
-  <div class="list" id="list"><div class="msg">Loading…</div></div>
+  <!-- 1. 리스트 뷰 컨테이너 -->
+  <main id="view-list">
+    <div class="list" id="list"><div class="msg">Loading…</div></div>
+  </main>
+
+  <!-- 2. 지도 뷰 컨테이너 (기본 hidden 처리) -->
+  <main id="view-map">
+    <div id="map-container"></div>
+  </main>
+
   <div class="foot">
     Only checked details are shown. Blank means not confirmed yet.<br>
     <a href="https://uscourse.vercel.app" target="_blank" rel="noopener">UsCourse</a> · Busan
@@ -156,15 +191,16 @@
 </div>
 
 <script>
+/* ── 1. Supabase 초기화 설정 ── */
 const SUPABASE_URL = "https://zygumrggzjwbkihlmpfy.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5Z3Vtcmdnemp3YmtpaGxtcGZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQwMjY2OTIsImV4cCI6MjA5OTYwMjY5Mn0.9d8i1_W5y008VNtikdejIKA8jvnfay1TZRvdX13DkFE";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-const BUSAN = { lat: 35.1379, lng: 129.0556 };   // 위치를 못 받을 때 기준점
-
+/* ── 2. 기본 상수 및 매핑 데이터 ── */
+const BUSAN = { lat: 35.1379, lng: 129.0556 }; // 위치 데이터 미수신 시 기준 좌표 (부산 중심)
 const CAT_FACE = { restaurant:'🍜', cafe:'☕', attraction:'🏛️', nature:'🏔️', shopping:'🛍️' };
 
-/* 구 이름을 여행자가 아는 지명으로 */
+// 구 단위 명칭 영문 라벨 변환 표
 const AREA_LABEL = {
   '해운대구':'Haeundae', '수영구':'Gwangalli', '부산진구':'Seomyeon',
   '중구':'Nampo', '동구':'Choryang', '서구':'Songdo', '남구':'Gwangan',
@@ -174,6 +210,7 @@ const AREA_LABEL = {
 };
 const areaLabel = a => AREA_LABEL[a] || a || '';
 
+// 필터 조건 정의
 const FILTERS = [
   { key:'all',  label:'All',          test: () => true },
   { key:'solo', label:'Eat alone',    test: p => p.solo_ok === true },
@@ -184,12 +221,16 @@ const FILTERS = [
   { key:'cafe', label:'Cafes',        test: p => p.category === 'cafe' },
 ];
 
+/* ── 3. 앱 상태 관리 변수 ── */
 let PLACES = [], GUIDES = {}, me = null, cur = 'all', shown = 25, openId = null;
-let query = '', located = false;
+let query = '', activeView = 'list';
+let leafletMap = null, markerGroup = null; // Leaflet 지도 관련 인스턴스
 
+// HTML 이스케이프 처리 함수
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+/* ── 4. 거리 계산 (Haversine Formula) ── */
 function distM(a, b){
   const R = 6371000, d = Math.PI / 180;
   const x = Math.sin((b.lat-a.lat)*d/2)**2
@@ -198,7 +239,7 @@ function distM(a, b){
 }
 const fmtDist = m => m < 1000 ? Math.round(m / 10) * 10 + ' m' : (m / 1000).toFixed(1) + ' km';
 
-/* 확인된 것만 태그로. false(아니라고 확인된 것)도 판단에 필요하므로 보여준다. */
+/* ── 5. 데이터 파싱 및 태그 생성 헬퍼 함수 ── */
 function tagsOf(p){
   const t = [];
   if (p.solo_ok === true)       t.push(['t-ok',  'Eat alone']);
@@ -212,7 +253,6 @@ function tagsOf(p){
   return t;
 }
 
-/* 무엇이 확인 안 됐는지 밝힌다 — 빈칸만 두면 판단할 수 없다 */
 function unknownOf(p){
   const u = [];
   const isFood = p.category === 'restaurant' || p.category === 'cafe';
@@ -223,8 +263,6 @@ function unknownOf(p){
   return u;
 }
 
-/* 먹는 법 — 세 단계를 한 줄씩 압축.
-   steps 형식이 '🥣 제목|설명' 이므로 제목만 쓴다. */
 function stepsOf(p){
   const g = GUIDES[p.food_guide_key];
   if (!g || !g.steps || !g.steps.length) return null;
@@ -234,13 +272,11 @@ function stepsOf(p){
       const head = (raw.split('|')[0] || '').trim();
       return head.replace(/^\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*\s*/u, '');
     }),
-    // 긴 안내에서 첫 문장만 — 서 있는 상황에 맞게
     tip: (g.pro_tip || '').split(/(?<=[.!?])\s/)[0].slice(0, 130) || '',
   };
 }
 
-/* 이름·한글명·주소·지역 어느 것으로도 찾을 수 있게 한다.
-   길에서 "여기가 어디지" 할 때 지역명으로 찾는 경우가 많다. */
+// 실시간 클라이언트 사이드 검색 매칭
 function matchQuery(p){
   if (!query) return true;
   const hay = [p.name_en, p.name_ko, p.address, p.area, areaLabel(p.area)]
@@ -248,27 +284,41 @@ function matchQuery(p){
   return hay.includes(query);
 }
 
-function render(){
+// 현재 필터 및 검색어 조건에 걸러진 장소 객체 반환
+function getFilteredList() {
   const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
-  const all = PLACES.filter(p => f.test(p) && matchQuery(p));
+  return PLACES.filter(p => f.test(p) && matchQuery(p));
+}
+
+/* ── 6. UI 메인 렌더링 함수 ── */
+function render(){
+  const all = getFilteredList();
+  
+  // 현재 뷰 상태가 'map'인 경우 지도 마커 업데이트 후 반환
+  if (activeView === 'map') {
+    renderMap(all);
+    return;
+  }
+
+  // 'list' 뷰 상태인 경우 DOM 렌더링 진행
   const list = all.slice(0, shown);
   const box = document.getElementById('list');
 
   if (!all.length){
     box.innerHTML = query
       ? `<div class="msg"><b>No match for "${esc(query)}".</b>
-           Try a place name, a street, or an area like Haeundae.</div>`
+            Try a place name, a street, or an area like Haeundae.</div>`
       : `<div class="msg"><b>Nothing checked for this yet.</b>
-           Only places actually confirmed appear here.</div>`;
+            Only places actually confirmed appear here.</div>`;
     return;
   }
 
   box.innerHTML = list.map(p => {
     const tags = tagsOf(p).map(([c,l]) => `<span class="t ${c}">${esc(l)}</span>`).join('');
-    const unk  = unknownOf(p);
-    const g    = stepsOf(p);
+    const unk   = unknownOf(p);
+    const g     = stepsOf(p);
     const menu = (p.subcategory || '').split(/[\n,]/).slice(0,2)
-                   .map(x => x.replace(/[￦₩][\d,\-–~\s]*/g,'').trim()).filter(Boolean).join(' · ');
+                    .map(x => x.replace(/[￦₩][\d,\-–~\s]*/g,'').trim()).filter(Boolean).join(' · ');
     const naver = 'https://map.naver.com/p/search/' + encodeURIComponent(p.name_ko || p.name_en);
     const face = CAT_FACE[p.category] || '📍';
     const ph = p.image_url
@@ -303,6 +353,7 @@ function render(){
     : '');
 }
 
+// 상단 카테고리 칩 렌더링
 function renderChips(){
   document.getElementById('chips').innerHTML = FILTERS.map(f => {
     const n = PLACES.filter(f.test).length;
@@ -311,13 +362,106 @@ function renderChips(){
   }).join('');
 }
 
+// 거리순 정렬
 function sortByDistance(){
   PLACES.forEach(p => { p._d = me ? distM(me, { lat:p.lat, lng:p.lng }) : null; });
   PLACES.sort((a,b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 }
 
+/* ── 7. Leaflet 지도 제어 로직 ── */
+
+// Leaflet 맵 객체 최초 1회 생성
+function initMap() {
+  if (leafletMap) return;
+  const center = me || BUSAN;
+  
+  // 지도 생성 (줌 컨트롤 위치 변경)
+  leafletMap = L.map('map-container', { zoomControl: false }).setView([center.lat, center.lng], 14);
+  L.control.zoom({ position: 'bottomright' }).addTo(leafletMap);
+
+  // CartoDB Voyager 무료 타일 레이어 로드 (깔끔하고 트렌디한 지도 스타일)
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap &copy; CARTO'
+  }).addTo(leafletMap);
+
+  // 마커들을 하나로 묶어 일괄 관리할 LayerGroup 생성
+  markerGroup = L.layerGroup().addTo(leafletMap);
+}
+
+// 필터링된 장소 데이터를 바탕으로 지도의 마커 및 팝업 갱신
+function renderMap(list) {
+  if (!leafletMap) initMap();
+  
+  // 컨테이너 display:none -> block 변경 시 깨지는 지도 타일 크기를 정상 리사이즈
+  setTimeout(() => leafletMap.invalidateSize(), 100);
+
+  // 기존 핀 제거
+  markerGroup.clearLayers();
+
+  // 1) 내 위치 (혹은 부산 중심) 펄스 마커 렌더링
+  const userPos = me || BUSAN;
+  const myIcon = L.divIcon({
+    className: 'custom-pin my-pin',
+    html: '📍',
+    iconSize: [32, 32],
+    iconAnchor: [16, 16]
+  });
+  L.marker([userPos.lat, userPos.lng], { icon: myIcon })
+   .addTo(markerGroup)
+   .bindPopup('<div style="font-weight:bold;padding:4px">Your Current Location</div>');
+
+  // 2) 장소 데이터 마커 렌더링 및 Bounds(화면 뷰) 계산
+  const bounds = L.latLngBounds([[userPos.lat, userPos.lng]]);
+
+  list.forEach(p => {
+    if (!p.lat || !p.lng) return;
+    
+    const face = CAT_FACE[p.category] || '📍';
+    const icon = L.divIcon({
+      className: 'custom-pin',
+      html: face,
+      iconSize: [30, 30],
+      iconAnchor: [15, 15]
+    });
+
+    const naver = 'https://map.naver.com/p/search/' + encodeURIComponent(p.name_ko || p.name_en);
+    const popContent = `
+      <div class="pop-card">
+        <div class="pop-title">${esc(p.name_en || p.name_ko)}</div>
+        <div class="pop-sub">${esc(p.name_ko || '')}</div>
+        <div class="pop-dist">${p._d ? fmtDist(p._d) : ''} · ${esc(areaLabel(p.area))}</div>
+        <a class="pop-go" href="${naver}" target="_blank" rel="noopener">Open in Naver Map</a>
+      </div>
+    `;
+
+    const m = L.marker([p.lat, p.lng], { icon }).bindPopup(popContent);
+    markerGroup.addLayer(m);
+    bounds.extend([p.lat, p.lng]); // 마커 위치를 Bounds 범위에 포함
+  });
+
+  // 검색/필터 결과 마커들이 모두 지도 한 화면에 들어오도록 카메라이동
+  if (list.length > 0) {
+    leafletMap.fitBounds(bounds, { padding: [40, 40], maxZoom: 15 });
+  }
+}
+
+/* ── 8. 목록 뷰 <-> 지도 뷰 모드 스위칭 ── */
+function switchView(mode) {
+  activeView = mode;
+  document.getElementById('btn-list-view').classList.toggle('active', mode === 'list');
+  document.getElementById('btn-map-view').classList.toggle('active', mode === 'map');
+  
+  document.getElementById('view-list').style.display = (mode === 'list') ? 'block' : 'none';
+  document.getElementById('view-map').style.display = (mode === 'map') ? 'block' : 'none';
+  
+  render(); // 전환 시 변경된 뷰에 맞추어 렌더링 호출
+}
+
+/* ── 9. Supabase 비동기 데이터 로딩 ── */
 async function load(){
   const [pl, gd] = await Promise.all([
+    // 위치(lat, lng)가 정상 수집된 장소 데이터만 쿼리
     sb.from('places')
       .select('id, name_en, name_ko, category, subcategory, image_url, address, area, lat, lng, solo_ok, foreign_card, english_menu, spice_level, food_guide_key')
       .not('lat','is',null).not('lng','is',null),
@@ -334,14 +478,12 @@ async function load(){
   askLocation();
 }
 
-/* 위치 — 허용 여부를 화면에 분명히 드러낸다.
-   거부됐는데 조용히 부산 중심으로 정렬하면
-   "왜 내 주변이 아니지" 하고 혼란스럽기 때문이다. */
+/* ── 10. Geolocation 사용자 위치 동의 요청 ── */
 function askLocation(silent){
   const where = document.getElementById('where');
 
   const done = (ok, label) => {
-    located = ok;
+    me = me || BUSAN;
     where.className = 'where' + (ok ? '' : ' off');
     where.innerHTML = label;
     sortByDistance(); renderChips(); render();
@@ -367,7 +509,9 @@ function askLocation(silent){
   );
 }
 
-/* 검색 */
+/* ── 11. 이벤트 리스너 등록 ── */
+
+// 검색어 입력 제어
 const qInput = document.getElementById('q');
 qInput.addEventListener('input', () => {
   query = qInput.value.trim().toLowerCase();
@@ -376,26 +520,39 @@ qInput.addEventListener('input', () => {
   render();
 });
 
+// 상단 List / Map 전환 토글 버튼 클릭 이벤트
+document.getElementById('btn-list-view').addEventListener('click', () => switchView('list'));
+document.getElementById('btn-map-view').addEventListener('click', () => switchView('map'));
+
+// 위임형 전역 클릭 이벤트 핸들러
 document.addEventListener('click', e => {
-  // 위치 다시 요청
+  // 1) 내 위치 Re-try 클릭
   if (e.target.closest('#where')){ askLocation(); return; }
 
-  // 검색어 지우기
+  // 2) 검색어 초기화 버튼
   if (e.target.closest('#qx')){
     qInput.value = ''; query = ''; 
     document.getElementById('qx').style.display = 'none';
     shown = 25; render(); return;
   }
 
+  // 3) 카테고리 칩 선택
   const chip = e.target.closest('.chip');
   if (chip){ cur = chip.dataset.f; shown = 25; openId = null; renderChips(); render();
-             window.scrollTo({ top:0, behavior:'smooth' }); return; }
+              if (activeView === 'list') window.scrollTo({ top:0, behavior:'smooth' }); return; }
+              
+  // 4) 더보기 버튼
   if (e.target.closest('#more')){ shown += 25; render(); return; }
+  
+  // 5) 외부 링크 클릭 스킵
   if (e.target.closest('.go')) return;
+
+  // 6) 리스트 아이템 클릭 시 아코디언 토글
   const row = e.target.closest('.row');
   if (row){ openId = (openId === row.dataset.id) ? null : row.dataset.id; render(); }
 });
 
+// 초기 구동 실행
 load();
 </script>
 
