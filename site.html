@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UsCourse · Explore Korea without the guesswork</title>
+<meta name="description" content="Know before you go: solo dining, spice levels, foreign card payment, English menus, and how locals actually eat Korean food.">
+
+<!-- ═══════════════════════════════════════════════════
+     SNS 공유 미리보기 (Open Graph / Twitter Card)
+     ★ 배포 후 아래 4곳의 URL을 실제 도메인으로 교체하세요.
+       og:image는 1200×630 이미지를 만들어 같은 폴더에 두면 됩니다.
+       이게 없으면 링크를 공유해도 미리보기 카드가 안 뜹니다.
+     ═══════════════════════════════════════════════════ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UsCourse">
+<meta property="og:title" content="UsCourse · Explore Korea without the guesswork">
+<meta property="og:description" content="Solo dining, foreign cards, English menus, spice levels — and how locals actually eat each dish. Curated for travelers in Busan.">
+<meta property="og:url" content="https://coursus.example.com/">
+<meta property="og:image" content="https://coursus.example.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="zh_TW">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UsCourse · Explore Korea without the guesswork">
+<meta name="twitter:description" content="Solo dining, foreign cards, English menus, spice levels — and how locals actually eat each dish.">
+<meta name="twitter:image" content="https://coursus.example.com/og-image.png">
+
+<!-- ═══════════════════════════════════════════════════
+     ① GOOGLE ANALYTICS
+     G-XXXX 를 본인 GA4 측정 ID로 교체 (아래 두 곳)
+     ═══════════════════════════════════════════════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4ETPQHLXG"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-X4ETPQHLXG');
+
+  /* ── A/B 배정 ────────────────────────────────────────
+     지금은 A안으로 고정되어 있습니다. 모든 방문자가 같은 화면을 봅니다.
+
+     나중에 실험을 켜려면 아래 AB_ENABLED 를 true 로 바꾸세요.
+     그러면 첫 방문 시 50:50으로 나뉘고, localStorage에 저장되어
+     재방문해도 같은 버전을 보게 됩니다. */
+  (function(){
+    var AB_ENABLED = false;          // ← true 로 바꾸면 A/B 실험 시작
+    var KEY = 'coursus_ab_variant';
+
+    if (!AB_ENABLED){ window.AB = 'A'; return; }
+
+    var v = null;
+    try { v = localStorage.getItem(KEY); } catch(e){}
+    if (v !== 'A' && v !== 'B'){
+      v = Math.random() < 0.5 ? 'A' : 'B';
+      try { localStorage.setItem(KEY, v); } catch(e){}
+    }
+    window.AB = v;
+  })();
+
+  /* ── 유입원(UTM) 수집 ────────────────────────────────
+     ?utm_source=reddit&utm_medium=organic 형태로 들어온 값을
+     세션 동안 기억해 모든 이벤트에 함께 보낸다.
+     UTM이 없으면 direct 로 기록한다. */
+  (function(){
+    var KEY = 'coursus_utm';
+    var q = new URLSearchParams(location.search);
+    var incoming = {
+      source:   q.get('utm_source'),
+      medium:   q.get('utm_medium'),
+      campaign: q.get('utm_campaign')
+    };
+    var saved = null;
+    try { saved = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch(e){}
+
+    if (incoming.source){
+      try { sessionStorage.setItem(KEY, JSON.stringify(incoming)); } catch(e){}
+      window.UTM = incoming;
+    } else if (saved){
+      window.UTM = saved;
+    } else {
+      window.UTM = { source: 'direct', medium: 'none', campaign: null };
+    }
+  })();
+
+  /* ── 공통 파라미터 ───────────────────────────────────
+     모든 이벤트에 variant · 유입원 · 기기 · 언어를 함께 보낸다.
+     GA4에서 A/B를 유입원별·기기별로 나눠 볼 수 있게 하기 위함. */
+  function commonParams(){
+    var w = window.innerWidth || 0;
+    return {
+      variant:      window.AB || 'A',
+      source:       (window.UTM && window.UTM.source) || 'direct',
+      medium:       (window.UTM && window.UTM.medium) || 'none',
+      campaign:     (window.UTM && window.UTM.campaign) || '',
+      device_type:  w < 640 ? 'mobile' : (w < 1024 ? 'tablet' : 'desktop'),
+      language:     (window.LANG || document.documentElement.lang || 'en')
+    };
+  }
+
+  /* 이벤트 전송 — GA가 없거나 차단돼도 콘솔에 남긴다.
+     로컬(file://)에서 테스트할 때 이벤트가 조용히 사라지는 것을 막기 위함. */
+  function track(n, p){
+    var params = Object.assign(commonParams(), p || {});
+    if (window.CU_DEBUG) console.log('[track] ' + n, params);
+    try {
+      if (typeof gtag === 'function') gtag('event', n, params);
+    } catch(e){}
+  }
+
+  /* 콘솔에서 CU_DEBUG = true 를 입력하면 이후 이벤트가 콘솔에 찍힌다.
+     배포 후 수집 확인이 끝나면 굳이 켜지 않아도 된다. */
+  window.CU_DEBUG = (location.protocol === 'file:' || location.hostname === 'localhost');
+</script>
+
+<!-- ② 외부 라이브러리 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- ③ 우리 스타일시트 (styles.css) -->
+<!-- 지도 (Leaflet + OSM · 무료, API 키 불필요) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="cu-root">
+
+  <!-- ═══════════════════════════════════════════════════
+       내비게이션 (로고 · 메뉴 · 언어 버튼)
+       data-i18n="키" 가 붙은 요소는 언어 전환 시 app.js가 교체
+       ═══════════════════════════════════════════════════ -->
+  <div class="cu-nav">
+    <div class="cu-logo" onclick="go('home')"><span>Us</span>Course</div>
+    <div class="cu-navright">
+      <div class="cu-navlinks">
+        <span class="cu-navlink act" id="nav-home" data-i18n="nav_home" onclick="go('home')">Home</span>
+        <span class="cu-navlink" id="nav-explore" data-i18n="nav_explore" onclick="go('explore')">Explore</span>
+        <span class="cu-navlink" id="nav-about" data-i18n="nav_about" onclick="go('about')">About</span>
+      </div>
+      <!-- 언어 선택: 클릭하면 목록이 펼쳐짐 (첫 방문 시 브라우저 언어 자동 적용) -->
+      <div class="cu-langwrap">
+        <div class="cu-locals" onclick="toggleLangMenu(event)" title="Language">
+          🌐 <span id="lang-label">EN</span> <span class="cu-caret">▾</span>
+        </div>
+        <div class="cu-langmenu" id="lang-menu"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 설정 경고 (Supabase 키 미입력 시 표시) -->
+  <div id="cu-config-warn" class="cu-warn" style="display:none">⚠️ Supabase 키 미설정 — 장소·리뷰는 키 입력 후 표시됩니다.</div>
+
+  <!-- ═══════════════════════════════════════════════════
+       화면 1: HOME
+       ═══════════════════════════════════════════════════ -->
+  <div class="cu-view on" id="view-home">
+
+    <!-- ═══════════════════════════════════════════════════
+         히어로 — A/B 테스트 구간
+         Headline / Subheadline / 핵심 표현 / CTA 만 A·B로 달라집니다.
+         그 아래 기능 안내·장소 카드·DB·상세페이지는 완전히 동일합니다.
+
+         ※ 검색과 CTA는 별개 행동으로 측정합니다.
+            CTA 클릭 = explore_click (문구를 보고 탐색을 시작함)
+            검색 실행 = search       (원래 찾던 것을 검색함)
+         ═══════════════════════════════════════════════════ -->
+    <div class="cu-hero">
+      <h1 id="hero-title">Explore Korea<br>without the <em>guesswork.</em></h1>
+      <div class="lead" id="hero-lead">Find restaurants, cafes and attractions with the practical details travelers actually need.</div>
+
+      <!-- 검색창이 CTA 역할을 겸합니다.
+           빈 채로 누르면  → explore_click (메시지를 읽고 둘러보러 감)
+           검색어를 넣으면 → search        (원래 찾던 것이 있음)
+           A/B로 달라지는 것은 헤드라인과 서브헤드라인입니다. -->
+      <div class="cu-search">
+        <span class="ic">⌕</span>
+        <input id="home-search" data-i18n-ph="search_ph" placeholder="Search for restaurants, cafes, places..." onkeydown="if(event.key==='Enter')doSearch('enter')">
+        <button data-i18n="search_btn" onclick="doSearch('button')">Search</button>
+      </div>
+
+      <div class="cu-pop">
+        <span class="lb" data-i18n="pop_label">Popular searches:</span>
+        <span class="cu-poptag" onclick="popSearch('Gukbap')">Gukbap</span>
+        <span class="cu-poptag" onclick="popSearch('Milmyeon')">Milmyeon</span>
+        <span class="cu-poptag" onclick="popSearch('Cafe')">Cafe</span>
+        <span class="cu-poptag" onclick="popSearch('Seomyeon')">Seomyeon</span>
+        <span class="cu-poptag" onclick="popSearch('Busan')">Busan</span>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════
+         큐레이션 진입점 — 기존 기능 안내 5칸을 대체
+         설명만 하던 자리를 "눌러서 바로 가는" 자리로 바꿨습니다.
+         세 층이 각각 다른 막막함에 답합니다.
+           테마  — 뭐가 있는지 모르겠다
+           코스  — 어떻게 다녀야 할지 모르겠다
+           상황  — 내 조건에 맞는 곳이 어디인가
+         내용은 app.js가 실제 DB 개수를 세어 채웁니다.
+         ═══════════════════════════════════════════════════ -->
+    <div class="cu-curate">
+      <div class="cu-curate-lb" data-i18n="browse_theme">BROWSE BY THEME</div>
+      <div class="cu-themes" id="cu-themes"></div>
+
+      <div class="cu-curate-lb" data-i18n="walk_route">WALK A ROUTE</div>
+      <div id="cu-courses"></div>
+
+      <div class="cu-curate-lb" data-i18n="your_situation">OR TELL US YOUR SITUATION</div>
+      <div class="cu-situations" id="cu-situations"></div>
+    </div>
+
+    <!-- 인기 장소 (JS가 채움: #home-grid) -->
+    <div class="cu-sec">
+      <div class="cu-sechd">
+        <div class="cu-sectitle" data-i18n="sec_popular">🔥 Popular places near you</div>
+        <span class="cu-seeall" data-i18n="view_all" onclick="go('explore')">View all →</span>
+      </div>
+      <div class="cu-grid" id="home-grid"></div>
+    </div>
+
+    <!-- 통계 배너 -->
+    <div class="cu-banner">
+      <div class="cu-bimg">🏯</div>
+      <div class="cu-btext">
+        <h3 data-i18n="banner_title">Know before you <em>walk in.</em></h3>
+      </div>
+      <div class="cu-stats">
+        <div class="cu-stat"><div class="ic" style="background:var(--g-bg)">🏪</div><div class="nm" id="stat-places">—</div><div class="lb" data-i18n="stat_places">Places</div></div>
+        <div class="cu-stat"><div class="ic" style="background:var(--r-bg)">👥</div><div class="nm" id="stat-reviews">—</div><div class="lb" data-i18n="stat_reviews">Reviews</div></div>
+        <div class="cu-stat"><div class="ic" style="background:var(--a-bg)">📍</div><div class="nm">Busan</div><div class="lb" data-i18n="stat_area">City</div></div>
+      </div>
+    </div>
+
+    <!-- 여행자 후기 (실제 리뷰 있을 때만 표시) -->
+    <div class="cu-tests" id="cu-tests" style="display:none">
+      <div class="cu-testhd">
+        <div class="cu-sectitle" style="font-size:20px" data-i18n="tests_title">What travelers are saying</div>
+      </div>
+      <div class="cu-testgrid" id="testgrid"></div>
+    </div>
+
+    <!-- 푸터 -->
+    <div class="cu-foot">
+      <div class="cu-flogo"><span>Us</span>Course</div>
+      <div class="cu-footright">
+        <span class="cu-footlink" data-i18n="link_privacy" onclick="openModal('privacy')">개인정보 처리방침</span>
+        <span class="cu-footlink" data-i18n="link_terms" onclick="openModal('terms')">이용약관</span>
+        <span class="cu-footlink" data-i18n="link_data" onclick="openModal('data')">데이터 출처</span>
+      </div>
+    </div>
+    <div class="cu-fcopy" style="text-align:center;padding-bottom:24px">© 2026 UsCourse · Korea · 여행 정보는 참고용이며 정확성을 보장하지 않습니다.</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       화면 2: EXPLORE (‹ Home 뒤로가기 포함)
+       ═══════════════════════════════════════════════════ -->
+  <div class="cu-view" id="view-explore">
+    <div class="cu-sec">
+      <div class="cu-sechd">
+        <div style="display:flex;align-items:center;gap:14px">
+          <span class="cu-back" style="margin-bottom:0" data-i18n="back_home" onclick="clearSearch()">‹ Home</span>
+          <div class="cu-sectitle" data-i18n="all_places">All places</div>
+        </div>
+        <span class="cu-count" id="explore-count"></span>
+      </div>
+
+
+      <!-- 목록 / 지도 보기 전환 -->
+      <div class="cu-viewtoggle">
+        <button class="cu-vt act" data-view="list" data-i18n="view_list">List</button>
+        <button class="cu-vt"     data-view="map"  data-i18n="view_map">Map</button>
+      </div>
+
+      <div class="cu-filters" id="cu-filters">
+        <span class="cu-poptag act" onclick="filterCat('all',this)"        data-i18n="cat_all">All</span>
+        <span class="cu-poptag"     onclick="filterCat('restaurant',this)" data-i18n="cat_restaurant">🍜 Food</span>
+        <span class="cu-poptag"     onclick="filterCat('cafe',this)"       data-i18n="cat_cafe">☕ Cafe</span>
+        <span class="cu-poptag"     onclick="filterCat('attraction',this)" data-i18n="cat_attraction">🏛️ Attractions</span>
+        <span class="cu-poptag"     onclick="filterCat('nature',this)"     data-i18n="cat_nature">🏔️ Nature</span>
+      </div>
+      <div class="cu-areas" id="cu-areas"></div>
+      <div class="cu-grid" id="explore-grid"></div>
+      <div id="cu-map"></div>
+      <div id="cu-mapnote"></div>
+      <div class="cu-more" id="cu-more"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       화면 3: ABOUT
+       ═══════════════════════════════════════════════════ -->
+  <div class="cu-view" id="view-about">
+    <div class="cu-sec" style="max-width:640px">
+      <div class="cu-sectitle" style="margin-bottom:14px" data-i18n="about_title">About UsCourse</div>
+      <p style="font-size:15px;line-height:1.7;color:var(--text)" data-i18n="about_text">UsCourse helps travelers explore Korea without the guesswork — showing whether a place welcomes solo diners, accepts foreign cards, has menus in your language, how spicy the food really is, and how locals actually eat each dish. Data is curated from public sources and enriched by traveler reviews.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       화면 4: DETAIL (JS가 #detail-body 통째로 채움)
+       ═══════════════════════════════════════════════════ -->
+  <div class="cu-view" id="view-detail"><div class="cu-detail" id="detail-body"></div></div>
+</div>
+
+<!-- 법적 고지 모달 (내용은 app.js의 MODALS — 법적 문서라 한국어 유지) -->
+<div class="cu-modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="cu-modalbox">
+    <span class="cu-modalclose" onclick="closeModal()">×</span>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ④ 기능 스크립트 — 맨 끝에 둬야 위 요소들을 찾을 수 있음 -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

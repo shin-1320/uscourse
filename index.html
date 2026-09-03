@@ -2,319 +2,866 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UsCourse · Explore Korea without the guesswork</title>
-<meta name="description" content="Know before you go: solo dining, spice levels, foreign card payment, English menus, and how locals actually eat Korean food.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Near me — UsCourse</title>
 
-<!-- ═══════════════════════════════════════════════════
-     SNS 공유 미리보기 (Open Graph / Twitter Card)
-     ★ 배포 후 아래 4곳의 URL을 실제 도메인으로 교체하세요.
-       og:image는 1200×630 이미지를 만들어 같은 폴더에 두면 됩니다.
-       이게 없으면 링크를 공유해도 미리보기 카드가 안 뜹니다.
-     ═══════════════════════════════════════════════════ -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="UsCourse">
-<meta property="og:title" content="UsCourse · Explore Korea without the guesswork">
-<meta property="og:description" content="Solo dining, foreign cards, English menus, spice levels — and how locals actually eat each dish. Curated for travelers in Busan.">
-<meta property="og:url" content="https://coursus.example.com/">
-<meta property="og:image" content="https://coursus.example.com/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="en_US">
-<meta property="og:locale:alternate" content="ja_JP">
-<meta property="og:locale:alternate" content="zh_TW">
-<meta property="og:locale:alternate" content="zh_CN">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="UsCourse · Explore Korea without the guesswork">
-<meta name="twitter:description" content="Solo dining, foreign cards, English menus, spice levels — and how locals actually eat each dish.">
-<meta name="twitter:image" content="https://coursus.example.com/og-image.png">
+<!--
+  ═══════════════════════════════════════════════════════
+  Near me — 지금 내 주변 (부산 전역)
 
-<!-- ═══════════════════════════════════════════════════
-     ① GOOGLE ANALYTICS
-     G-XXXX 를 본인 GA4 측정 ID로 교체 (아래 두 곳)
-     ═══════════════════════════════════════════════════ -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4ETPQHLXG"></script>
-<script>
-  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-  gtag('js',new Date());gtag('config','G-X4ETPQHLXG');
+  가게 앞에 서서 몇 초 안에 "들어갈지"를 정하는 화면입니다.
+  · 위치를 허용하면 가까운 순으로 정렬됩니다.
+  · 이름·주소·지역 어느 것으로도 검색됩니다.
+  · 목록과 지도를 전환할 수 있습니다.
+  · 4개 언어를 지원합니다 (EN · 日本語 · 中文繁 · 中文简).
+  · 확인되지 않은 항목은 숨기지 않고 밝힙니다.
+  ═══════════════════════════════════════════════════════
+-->
 
-  /* ── A/B 배정 ────────────────────────────────────────
-     지금은 A안으로 고정되어 있습니다. 모든 방문자가 같은 화면을 봅니다.
-
-     나중에 실험을 켜려면 아래 AB_ENABLED 를 true 로 바꾸세요.
-     그러면 첫 방문 시 50:50으로 나뉘고, localStorage에 저장되어
-     재방문해도 같은 버전을 보게 됩니다. */
-  (function(){
-    var AB_ENABLED = false;          // ← true 로 바꾸면 A/B 실험 시작
-    var KEY = 'coursus_ab_variant';
-
-    if (!AB_ENABLED){ window.AB = 'A'; return; }
-
-    var v = null;
-    try { v = localStorage.getItem(KEY); } catch(e){}
-    if (v !== 'A' && v !== 'B'){
-      v = Math.random() < 0.5 ? 'A' : 'B';
-      try { localStorage.setItem(KEY, v); } catch(e){}
-    }
-    window.AB = v;
-  })();
-
-  /* ── 유입원(UTM) 수집 ────────────────────────────────
-     ?utm_source=reddit&utm_medium=organic 형태로 들어온 값을
-     세션 동안 기억해 모든 이벤트에 함께 보낸다.
-     UTM이 없으면 direct 로 기록한다. */
-  (function(){
-    var KEY = 'coursus_utm';
-    var q = new URLSearchParams(location.search);
-    var incoming = {
-      source:   q.get('utm_source'),
-      medium:   q.get('utm_medium'),
-      campaign: q.get('utm_campaign')
-    };
-    var saved = null;
-    try { saved = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch(e){}
-
-    if (incoming.source){
-      try { sessionStorage.setItem(KEY, JSON.stringify(incoming)); } catch(e){}
-      window.UTM = incoming;
-    } else if (saved){
-      window.UTM = saved;
-    } else {
-      window.UTM = { source: 'direct', medium: 'none', campaign: null };
-    }
-  })();
-
-  /* ── 공통 파라미터 ───────────────────────────────────
-     모든 이벤트에 variant · 유입원 · 기기 · 언어를 함께 보낸다.
-     GA4에서 A/B를 유입원별·기기별로 나눠 볼 수 있게 하기 위함. */
-  function commonParams(){
-    var w = window.innerWidth || 0;
-    return {
-      variant:      window.AB || 'A',
-      source:       (window.UTM && window.UTM.source) || 'direct',
-      medium:       (window.UTM && window.UTM.medium) || 'none',
-      campaign:     (window.UTM && window.UTM.campaign) || '',
-      device_type:  w < 640 ? 'mobile' : (w < 1024 ? 'tablet' : 'desktop'),
-      language:     (window.LANG || document.documentElement.lang || 'en')
-    };
-  }
-
-  /* 이벤트 전송 — GA가 없거나 차단돼도 콘솔에 남긴다.
-     로컬(file://)에서 테스트할 때 이벤트가 조용히 사라지는 것을 막기 위함. */
-  function track(n, p){
-    var params = Object.assign(commonParams(), p || {});
-    if (window.CU_DEBUG) console.log('[track] ' + n, params);
-    try {
-      if (typeof gtag === 'function') gtag('event', n, params);
-    } catch(e){}
-  }
-
-  /* 콘솔에서 CU_DEBUG = true 를 입력하면 이후 이벤트가 콘솔에 찍힌다.
-     배포 후 수집 확인이 끝나면 굳이 켜지 않아도 된다. */
-  window.CU_DEBUG = (location.protocol === 'file:' || location.hostname === 'localhost');
-</script>
-
-<!-- ② 외부 라이브러리 -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-
-<!-- ③ 우리 스타일시트 (styles.css) -->
-<!-- 지도 (Leaflet + OSM · 무료, API 키 불필요) -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
-<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --brand:#0300b2;
+    --ink:#0b0d14; --text:#31364a; --muted:#6b7185; --faint:#9ba1b2;
+    --line:#e6e8f0; --bg:#ffffff;
+    --ok-bg:#e6f5ec; --ok-fg:#17663a;
+    --no-bg:#ffeceb; --no-fg:#c4322a;
+    --hot-bg:#fff1e6; --hot-fg:#a85a12;
+    --tip-bg:#edecfb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:var(--bg);color:var(--text);
+    font-family:'Inter','Noto Sans KR',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+  .wrap{max-width:520px;margin:0 auto;padding:0 16px}
+
+  header{position:sticky;top:0;background:rgba(255,255,255,.97);
+    backdrop-filter:blur(8px);z-index:600;border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top)}
+  .htop{display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0 6px;gap:10px}
+  h1{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.5px}
+  .hright{display:flex;align-items:center;gap:7px}
+
+  /* 목록 / 지도 */
+  .vt{display:inline-flex;background:#f1f2f8;border-radius:10px;padding:3px}
+  .vt button{border:none;background:none;font:inherit;font-size:13px;font-weight:700;
+    color:var(--muted);padding:7px 13px;border-radius:8px;cursor:pointer}
+  .vt button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(11,13,20,.12)}
+
+  /* 언어 */
+  .lang{position:relative}
+  .lbtn{border:1.5px solid var(--line);background:#fff;border-radius:10px;
+    font:inherit;font-size:13px;font-weight:700;color:var(--ink);
+    padding:8px 11px;cursor:pointer;white-space:nowrap}
+  .lmenu{display:none;position:absolute;top:calc(100% + 6px);right:0;z-index:700;
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:5px;
+    min-width:150px;box-shadow:0 10px 30px rgba(11,13,20,.14)}
+  .lmenu.on{display:block}
+  .lmenu div{padding:10px 12px;border-radius:8px;font-size:14px;color:var(--text);
+    cursor:pointer;display:flex;justify-content:space-between;gap:10px;white-space:nowrap}
+  .lmenu div:hover{background:#f4f5fa}
+  .lmenu div.sel{color:var(--brand);font-weight:700}
+
+  .where{font-family:inherit;border:none;background:none;cursor:pointer;padding:0 0 10px;
+    font-size:12.5px;color:var(--muted);display:block;text-align:left}
+  .where b{color:var(--brand);font-weight:700}
+  .where.off,.where.off b{color:var(--no-fg)}
+  .where.off b{text-decoration:underline}
+
+  .sbar{display:flex;align-items:center;gap:9px;background:#f4f5fa;
+    border-radius:12px;padding:11px 13px;margin-bottom:11px}
+  .sic{color:var(--faint);font-size:16px;line-height:1}
+  .sbar input{flex:1;border:none;outline:none;background:none;font:inherit;
+    font-size:15px;color:var(--ink);min-width:0}
+  .sbar input::placeholder{color:var(--faint)}
+  .sx{border:none;background:none;font-size:20px;color:var(--faint);
+    cursor:pointer;line-height:1;padding:0 2px;font-family:inherit}
+
+  .chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:12px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex-shrink:0;font-size:14px;font-weight:600;padding:9px 15px;
+    border-radius:99px;border:1.5px solid var(--line);background:#fff;
+    color:var(--text);cursor:pointer;white-space:nowrap;font-family:inherit}
+  .chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+
+  /* ── Decision Cards ─────────────────────────────────── */
+  .list{padding:8px 0 18px}
+  .row{border:1px solid var(--line);border-radius:18px;padding:12px;margin:0 0 14px;
+    cursor:pointer;background:#fff;box-shadow:0 2px 10px rgba(11,13,20,.04)}
+  .decision-main{display:grid;grid-template-columns:140px minmax(0,1fr);gap:14px}
+
+  /* 음식 사진 — 원본 비율 그대로, 전체가 보이게.
+     배경이미지 + cover 로는 접시가 잘려 무슨 음식인지 알 수 없었다.
+     img + object-fit:contain 이면 비율이 유지되고 잘리지 않는다.
+     남는 자리는 연한 배경으로 둔다. */
+  .ph{width:140px;height:105px;border-radius:12px;flex-shrink:0;
+    background:#f4f5fa;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;font-size:30px}
+  .ph img{width:100%;height:100%;object-fit:contain;display:block}
+  .dhead{min-width:0}
+  .topline{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .nameblock{min-width:0;flex:1}
+  /* 긴 이름은 두 줄까지만. 그 이상은 … 로 끝내 거리 표시와 겹치지 않게 한다 */
+  .en{font-size:18px;font-weight:800;color:var(--ink);line-height:1.22;letter-spacing:-.4px;
+    display:-webkit-box;-webkit-box-orient:vertical;
+    -webkit-line-clamp:2;line-clamp:2;      /* 표준 속성도 함께 (경고 제거) */
+    overflow:hidden;word-break:break-word}
+  .ko{font-size:12px;color:var(--faint);margin-top:3px;font-family:'Noto Sans KR',sans-serif}
+  .area{font-size:11px;font-weight:600;color:var(--faint);margin-top:2px}
+  .distance{flex-shrink:0;text-align:right}
+  .walk{font-size:15px;font-weight:800;color:var(--brand);white-space:nowrap}
+  .meters{font-size:11.5px;font-weight:600;color:var(--faint);margin-top:3px;white-space:nowrap}
+  /* 뱃지 — 아이콘과 한 단어면 충분하다.
+     부제("easy alone")까지 넣으면 세 층이 되어 카드가 두꺼워지고,
+     정작 중요한 이름·거리보다 뱃지가 커 보인다. */
+  .decision-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .dtag{display:inline-flex;align-items:center;gap:5px;border-radius:9px;
+    padding:5px 9px;font-size:12px;font-weight:700;line-height:1.2;white-space:nowrap}
+  .dtag .ico{font-size:13px;line-height:1}
+  .dtag.ok{background:var(--ok-bg);color:var(--ok-fg)}
+  .dtag.hot{background:var(--hot-bg);color:var(--hot-fg)}
+  .dtag.tip{background:var(--tip-bg);color:var(--brand)}
+  .dtag.neutral{background:#f4f5fa;color:var(--muted)}
+  .decision-summary{margin-top:11px;padding:9px 11px;background:#f7f8fc;border-radius:10px;
+    font-size:12.5px;color:var(--text);line-height:1.45}
+  .decision-summary b{color:var(--ink)}
+  /* 부가정보 — 카드를 넘지 않게.
+     "How to eat"은 짧아 고정하고, 긴 메뉴만 줄여서 … 로 끝낸다. */
+  .secondary{display:flex;align-items:center;gap:10px;margin-top:10px;padding:0 2px;
+    font-size:12px;font-weight:700;color:var(--brand);min-width:0}
+  .secondary .how{white-space:nowrap;flex-shrink:0}
+  .secondary .menu{flex:1;min-width:0;white-space:nowrap;
+    overflow:hidden;text-overflow:ellipsis}
+  .secondary .sep{color:var(--line);font-weight:400;flex-shrink:0}
+  .unknown-line{margin-top:9px;font-size:11px;color:var(--faint);line-height:1.4}
+  .open{display:none;margin-top:12px;padding:13px 14px;background:#f7f8fc;border-radius:12px}
+  .row.on .open{display:block}
+  .steps{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .sp{font-size:12.5px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);
+    border-radius:8px;padding:6px 10px;line-height:1.3}
+  .sp b{color:var(--brand);margin-right:4px}
+  .warn{font-size:12.5px;color:var(--hot-fg);background:var(--hot-bg);border-radius:9px;
+    padding:9px 11px;line-height:1.5;margin-bottom:10px}
+  .mn{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:9px}
+  .addr{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+  .go{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    background:var(--brand);color:#fff;border:none;border-radius:11px;padding:13px;
+    font:inherit;font-size:14.5px;font-weight:700;text-decoration:none}
+  @media (max-width:430px){
+    .decision-main{grid-template-columns:100px minmax(0,1fr);gap:11px}
+    .ph{width:100px;height:75px}.en{font-size:16px}
+    .decision-tags{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+
+  /* ── 지도 ─────────────────────────────────────────── */
+  #map{display:none;height:65vh;min-height:380px;border-radius:14px;
+    border:1px solid var(--line);margin-bottom:10px;z-index:1}
+  .pin span{display:flex;align-items:center;justify-content:center;
+    width:30px;height:30px;border-radius:50%;line-height:1;font-size:15px;
+    background:#fff;border:2.5px solid var(--brand);box-shadow:0 2px 7px rgba(11,13,20,.28)}
+  .pin.me span{background:var(--brand);border-color:#fff}
+  .leaflet-popup-content{margin:11px 13px;font-family:'Inter','Noto Sans KR',sans-serif}
+  .pp .n{font-size:14px;font-weight:700;color:var(--ink);line-height:1.3}
+  .pp .k{font-size:11.5px;color:var(--faint);margin-top:1px}
+  .pp .b{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 4px}
+  .pp a{font-size:12.5px;font-weight:700;color:var(--brand);text-decoration:none}
+
+  .msg{padding:48px 20px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  .msg b{color:var(--ink);display:block;font-size:16px;margin-bottom:6px}
+  .morebtn{background:#fff;border:1.5px solid var(--line);border-radius:11px;
+    padding:13px 26px;font:inherit;font-size:14.5px;font-weight:700;color:var(--ink);cursor:pointer}
+  .foot{padding:18px 0 96px;text-align:center;font-size:11.5px;
+    color:var(--faint);line-height:1.7;border-top:1px solid var(--line)}
+  .foot a{color:var(--brand);text-decoration:none}
+
+  /* ── 담기 · 공유 ─────────────────────────────────────
+     동행에게 "여기 가자"를 보내는 기능.
+     계정 없이 링크 하나로 되게 했다. */
+  .pickbtn{margin-top:8px;width:30px;height:30px;border-radius:50%;
+    border:1.5px solid var(--line);background:#fff;color:var(--muted);
+    font:inherit;font-size:16px;font-weight:700;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;margin-left:auto}
+  .pickbtn:hover{border-color:var(--brand);color:var(--brand)}
+  .pickbtn.on{background:var(--brand);border-color:var(--brand);color:#fff}
+
+  /* 하단 바 — 담은 게 있을 때만 올라온다 */
+  .pickbar{position:fixed;left:0;right:0;bottom:0;z-index:800;
+    display:none;align-items:center;gap:10px;
+    max-width:520px;margin:0 auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.97);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line)}
+  .pickbar.on{display:flex}
+  .pickbar .n{flex:1;font-size:14px;font-weight:700;color:var(--ink)}
+  .pickbar button{font:inherit;font-size:14px;font-weight:700;border-radius:10px;
+    padding:10px 16px;cursor:pointer;white-space:nowrap}
+  .pickbar .ghost{background:#fff;border:1.5px solid var(--line);color:var(--muted)}
+  .pickbar .solid{background:var(--brand);border:none;color:#fff}
+
+  /* 공유 링크로 들어왔을 때 */
+  .sharedbar{background:var(--tip-bg);border-radius:14px;padding:14px 16px;
+    margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .sharedbar .st{font-size:14px;font-weight:800;color:var(--brand)}
+  .sharedbar .ss{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .sharedbar .sb{margin-left:auto;display:flex;gap:7px}
+  .sharedbar button{font:inherit;font-size:13px;font-weight:700;border-radius:9px;
+    padding:8px 13px;cursor:pointer;white-space:nowrap}
+  .sharedbar .ghost{background:#fff;border:1px solid var(--line);color:var(--muted)}
+  .sharedbar .solid{background:var(--brand);border:none;color:#fff}
+
+  #toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%) translateY(8px);
+    background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;
+    padding:11px 18px;border-radius:99px;opacity:0;pointer-events:none;
+    transition:opacity .2s, transform .2s;z-index:900}
+  #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
 </head>
 <body>
-<div id="cu-root">
 
-  <!-- ═══════════════════════════════════════════════════
-       내비게이션 (로고 · 메뉴 · 언어 버튼)
-       data-i18n="키" 가 붙은 요소는 언어 전환 시 app.js가 교체
-       ═══════════════════════════════════════════════════ -->
-  <div class="cu-nav">
-    <div class="cu-logo" onclick="go('home')"><span>Us</span>Course</div>
-    <div class="cu-navright">
-      <div class="cu-navlinks">
-        <span class="cu-navlink act" id="nav-home" data-i18n="nav_home" onclick="go('home')">Home</span>
-        <span class="cu-navlink" id="nav-explore" data-i18n="nav_explore" onclick="go('explore')">Explore</span>
-        <span class="cu-navlink" id="nav-about" data-i18n="nav_about" onclick="go('about')">About</span>
-      </div>
-      <!-- 언어 선택: 클릭하면 목록이 펼쳐짐 (첫 방문 시 브라우저 언어 자동 적용) -->
-      <div class="cu-langwrap">
-        <div class="cu-locals" onclick="toggleLangMenu(event)" title="Language">
-          🌐 <span id="lang-label">EN</span> <span class="cu-caret">▾</span>
+<header>
+  <div class="wrap">
+    <div class="htop">
+      <h1 id="t-title">Near me</h1>
+      <div class="hright">
+        <div class="vt">
+          <button data-v="list" class="on" id="t-list">List</button>
+          <button data-v="map" id="t-map">Map</button>
         </div>
-        <div class="cu-langmenu" id="lang-menu"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 설정 경고 (Supabase 키 미입력 시 표시) -->
-  <div id="cu-config-warn" class="cu-warn" style="display:none">⚠️ Supabase 키 미설정 — 장소·리뷰는 키 입력 후 표시됩니다.</div>
-
-  <!-- ═══════════════════════════════════════════════════
-       화면 1: HOME
-       ═══════════════════════════════════════════════════ -->
-  <div class="cu-view on" id="view-home">
-
-    <!-- ═══════════════════════════════════════════════════
-         히어로 — A/B 테스트 구간
-         Headline / Subheadline / 핵심 표현 / CTA 만 A·B로 달라집니다.
-         그 아래 기능 안내·장소 카드·DB·상세페이지는 완전히 동일합니다.
-
-         ※ 검색과 CTA는 별개 행동으로 측정합니다.
-            CTA 클릭 = explore_click (문구를 보고 탐색을 시작함)
-            검색 실행 = search       (원래 찾던 것을 검색함)
-         ═══════════════════════════════════════════════════ -->
-    <div class="cu-hero">
-      <h1 id="hero-title">Explore Korea<br>without the <em>guesswork.</em></h1>
-      <div class="lead" id="hero-lead">Find restaurants, cafes and attractions with the practical details travelers actually need.</div>
-
-      <!-- 검색창이 CTA 역할을 겸합니다.
-           빈 채로 누르면  → explore_click (메시지를 읽고 둘러보러 감)
-           검색어를 넣으면 → search        (원래 찾던 것이 있음)
-           A/B로 달라지는 것은 헤드라인과 서브헤드라인입니다. -->
-      <div class="cu-search">
-        <span class="ic">⌕</span>
-        <input id="home-search" data-i18n-ph="search_ph" placeholder="Search for restaurants, cafes, places..." onkeydown="if(event.key==='Enter')doSearch('enter')">
-        <button data-i18n="search_btn" onclick="doSearch('button')">Search</button>
-      </div>
-
-      <div class="cu-pop">
-        <span class="lb" data-i18n="pop_label">Popular searches:</span>
-        <span class="cu-poptag" onclick="popSearch('Gukbap')">Gukbap</span>
-        <span class="cu-poptag" onclick="popSearch('Milmyeon')">Milmyeon</span>
-        <span class="cu-poptag" onclick="popSearch('Cafe')">Cafe</span>
-        <span class="cu-poptag" onclick="popSearch('Seomyeon')">Seomyeon</span>
-        <span class="cu-poptag" onclick="popSearch('Busan')">Busan</span>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════════
-         큐레이션 진입점 — 기존 기능 안내 5칸을 대체
-         설명만 하던 자리를 "눌러서 바로 가는" 자리로 바꿨습니다.
-         세 층이 각각 다른 막막함에 답합니다.
-           테마  — 뭐가 있는지 모르겠다
-           코스  — 어떻게 다녀야 할지 모르겠다
-           상황  — 내 조건에 맞는 곳이 어디인가
-         내용은 app.js가 실제 DB 개수를 세어 채웁니다.
-         ═══════════════════════════════════════════════════ -->
-    <div class="cu-curate">
-      <div class="cu-curate-lb" data-i18n="browse_theme">BROWSE BY THEME</div>
-      <div class="cu-themes" id="cu-themes"></div>
-
-      <div class="cu-curate-lb" data-i18n="walk_route">WALK A ROUTE</div>
-      <div id="cu-courses"></div>
-
-      <div class="cu-curate-lb" data-i18n="your_situation">OR TELL US YOUR SITUATION</div>
-      <div class="cu-situations" id="cu-situations"></div>
-    </div>
-
-    <!-- 인기 장소 (JS가 채움: #home-grid) -->
-    <div class="cu-sec">
-      <div class="cu-sechd">
-        <div class="cu-sectitle" data-i18n="sec_popular">🔥 Popular places near you</div>
-        <span class="cu-seeall" data-i18n="view_all" onclick="go('explore')">View all →</span>
-      </div>
-      <div class="cu-grid" id="home-grid"></div>
-    </div>
-
-    <!-- 통계 배너 -->
-    <div class="cu-banner">
-      <div class="cu-bimg">🏯</div>
-      <div class="cu-btext">
-        <h3 data-i18n="banner_title">Know before you <em>walk in.</em></h3>
-      </div>
-      <div class="cu-stats">
-        <div class="cu-stat"><div class="ic" style="background:var(--g-bg)">🏪</div><div class="nm" id="stat-places">—</div><div class="lb" data-i18n="stat_places">Places</div></div>
-        <div class="cu-stat"><div class="ic" style="background:var(--r-bg)">👥</div><div class="nm" id="stat-reviews">—</div><div class="lb" data-i18n="stat_reviews">Reviews</div></div>
-        <div class="cu-stat"><div class="ic" style="background:var(--a-bg)">📍</div><div class="nm">Busan</div><div class="lb" data-i18n="stat_area">City</div></div>
-      </div>
-    </div>
-
-    <!-- 여행자 후기 (실제 리뷰 있을 때만 표시) -->
-    <div class="cu-tests" id="cu-tests" style="display:none">
-      <div class="cu-testhd">
-        <div class="cu-sectitle" style="font-size:20px" data-i18n="tests_title">What travelers are saying</div>
-      </div>
-      <div class="cu-testgrid" id="testgrid"></div>
-    </div>
-
-    <!-- 푸터 -->
-    <div class="cu-foot">
-      <div class="cu-flogo"><span>Us</span>Course</div>
-      <div class="cu-footright">
-        <span class="cu-footlink" data-i18n="link_privacy" onclick="openModal('privacy')">개인정보 처리방침</span>
-        <span class="cu-footlink" data-i18n="link_terms" onclick="openModal('terms')">이용약관</span>
-        <span class="cu-footlink" data-i18n="link_data" onclick="openModal('data')">데이터 출처</span>
-      </div>
-    </div>
-    <div class="cu-fcopy" style="text-align:center;padding-bottom:24px">© 2026 UsCourse · Korea · 여행 정보는 참고용이며 정확성을 보장하지 않습니다.</div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════
-       화면 2: EXPLORE (‹ Home 뒤로가기 포함)
-       ═══════════════════════════════════════════════════ -->
-  <div class="cu-view" id="view-explore">
-    <div class="cu-sec">
-      <div class="cu-sechd">
-        <div style="display:flex;align-items:center;gap:14px">
-          <span class="cu-back" style="margin-bottom:0" data-i18n="back_home" onclick="clearSearch()">‹ Home</span>
-          <div class="cu-sectitle" data-i18n="all_places">All places</div>
+        <div class="lang">
+          <button class="lbtn" id="lbtn">EN ▾</button>
+          <div class="lmenu" id="lmenu"></div>
         </div>
-        <span class="cu-count" id="explore-count"></span>
       </div>
-
-
-      <!-- 목록 / 지도 보기 전환 -->
-      <div class="cu-viewtoggle">
-        <button class="cu-vt act" data-view="list" data-i18n="view_list">List</button>
-        <button class="cu-vt"     data-view="map"  data-i18n="view_map">Map</button>
-      </div>
-
-      <div class="cu-filters" id="cu-filters">
-        <span class="cu-poptag act" onclick="filterCat('all',this)"        data-i18n="cat_all">All</span>
-        <span class="cu-poptag"     onclick="filterCat('restaurant',this)" data-i18n="cat_restaurant">🍜 Food</span>
-        <span class="cu-poptag"     onclick="filterCat('cafe',this)"       data-i18n="cat_cafe">☕ Cafe</span>
-        <span class="cu-poptag"     onclick="filterCat('attraction',this)" data-i18n="cat_attraction">🏛️ Attractions</span>
-        <span class="cu-poptag"     onclick="filterCat('nature',this)"     data-i18n="cat_nature">🏔️ Nature</span>
-      </div>
-      <div class="cu-areas" id="cu-areas"></div>
-      <div class="cu-grid" id="explore-grid"></div>
-      <div id="cu-map"></div>
-      <div id="cu-mapnote"></div>
-      <div class="cu-more" id="cu-more"></div>
     </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════
-       화면 3: ABOUT
-       ═══════════════════════════════════════════════════ -->
-  <div class="cu-view" id="view-about">
-    <div class="cu-sec" style="max-width:640px">
-      <div class="cu-sectitle" style="margin-bottom:14px" data-i18n="about_title">About UsCourse</div>
-      <p style="font-size:15px;line-height:1.7;color:var(--text)" data-i18n="about_text">UsCourse helps travelers explore Korea without the guesswork — showing whether a place welcomes solo diners, accepts foreign cards, has menus in your language, how spicy the food really is, and how locals actually eat each dish. Data is curated from public sources and enriched by traveler reviews.</p>
+    <button class="where" id="where">locating…</button>
+    <div class="sbar">
+      <span class="sic">⌕</span>
+      <input id="q" autocomplete="off">
+      <button class="sx" id="qx" style="display:none">×</button>
     </div>
+    <div class="chips" id="chips"></div>
   </div>
+</header>
 
-  <!-- ═══════════════════════════════════════════════════
-       화면 4: DETAIL (JS가 #detail-body 통째로 채움)
-       ═══════════════════════════════════════════════════ -->
-  <div class="cu-view" id="view-detail"><div class="cu-detail" id="detail-body"></div></div>
-</div>
-
-<!-- 법적 고지 모달 (내용은 app.js의 MODALS — 법적 문서라 한국어 유지) -->
-<div class="cu-modal" id="modal" onclick="if(event.target===this)closeModal()">
-  <div class="cu-modalbox">
-    <span class="cu-modalclose" onclick="closeModal()">×</span>
-    <div id="modal-content"></div>
+<div class="wrap">
+  <div id="map"></div>
+  <div class="list" id="list"><div class="msg">Loading…</div></div>
+  <div class="pickbar" id="pickbar"></div>
+  <div class="foot">
+    <span id="t-foot">Only checked details are shown. Blank means not confirmed yet.</span><br>
+    <a href="https://uscourse.vercel.app" target="_blank" rel="noopener">UsCourse</a> · Busan
   </div>
 </div>
 
-<!-- ④ 기능 스크립트 — 맨 끝에 둬야 위 요소들을 찾을 수 있음 -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-<script src="app.js"></script>
+<script>
+const SUPABASE_URL = "https://zygumrggzjwbkihlmpfy.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5Z3Vtcmdnemp3YmtpaGxtcGZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQwMjY2OTIsImV4cCI6MjA5OTYwMjY5Mn0.9d8i1_W5y008VNtikdejIKA8jvnfay1TZRvdX13DkFE";
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const BUSAN = { lat: 35.1379, lng: 129.0556 };
+const CAT_FACE = { restaurant:'🍜', cafe:'☕', attraction:'🏛️', nature:'🏔️', shopping:'🛍️' };
+
+/* ── 언어 ─────────────────────────────────────────────
+   사이트(index.html)와 같은 저장소 키를 써서 선택이 이어지게 한다. */
+const LANGS = ['en','ja','zh','zhs'];
+const LANG_META = {
+  en:  { label:'EN', name:'English' },
+  ja:  { label:'JA', name:'日本語' },
+  zh:  { label:'繁', name:'中文（繁體）' },
+  zhs: { label:'简', name:'中文（简体）' },
+};
+const T = {
+  en: { title:'Near me', list:'List', map:'Map', search:'Search a place, street or area…',
+        here:'from <b>where you are</b>', centre:'from Busan centre · <b>use my location</b>',
+        locating:'locating…', away:'away', notConfirmed:'Not confirmed', more:'Show more',
+        naver:'Open in Naver Map', foot:'Only checked details are shown. Blank means not confirmed yet.',
+        noMatch:'No match for', tryArea:'Try a place name, a street, or an area like Haeundae.',
+        nothing:'Nothing checked for this yet.', onlyChecked:'Only places actually confirmed appear here.',
+        f_all:'All', f_solo:'Eat alone', f_card:'Card OK', f_menu:'Foreign menu',
+        f_mild:'Not spicy', f_how:'How to eat', f_cafe:'Cafes',
+        b_solo:'Eat alone', b_nosolo:'Better with company', b_card:'Card OK', b_cash:'Cash only',
+        b_menu:'Foreign menu', b_komenu:'Korean menu only', b_how:'How to eat',
+        u_solo:'solo', u_card:'card', u_menu:'menu', u_spice:'spice', me:'You',
+        s_solo:'easy alone', s_card:'foreign cards', s_menu:'you can read it',
+        s_mild:'less spicy', s_spice:'spice level', walk:'{n} min walk',
+        noneChecked:'Nothing confirmed here yet — bring cash just in case.',
+        pick:'Add', picked:'Added', nPicked:'{n} picked', share:'Share',
+        clearList:'Clear', copied:'Link copied',
+        sharedList:'A shared list', sharedBy:'{n} places someone picked for you',
+        saveThese:'Save these', backToAll:'Back to all places' },
+  ja: { title:'近くのお店', list:'リスト', map:'地図', search:'店名・通り・エリアで検索…',
+        here:'<b>現在地</b>から', centre:'釜山中心から · <b>現在地を使う</b>',
+        locating:'現在地を取得中…', away:'', notConfirmed:'未確認', more:'もっと見る',
+        naver:'NAVERマップで開く', foot:'確認できた情報だけを表示しています。空欄は未確認です。',
+        noMatch:'見つかりません:', tryArea:'店名・通り・「海雲台」などのエリア名で探せます。',
+        nothing:'この条件はまだ確認できていません。', onlyChecked:'実際に確認した場所だけが表示されます。',
+        f_all:'すべて', f_solo:'一人ごはん', f_card:'カード可', f_menu:'外国語メニュー',
+        f_mild:'辛くない', f_how:'食べ方', f_cafe:'カフェ',
+        b_solo:'一人でも安心', b_nosolo:'複数人向け', b_card:'カード可', b_cash:'現金のみ',
+        b_menu:'外国語メニュー', b_komenu:'韓国語のみ', b_how:'食べ方',
+        u_solo:'一人', u_card:'カード', u_menu:'メニュー', u_spice:'辛さ', me:'現在地',
+        s_solo:'一人でも気楽', s_card:'海外カード', s_menu:'読めるメニュー',
+        s_mild:'控えめ', s_spice:'辛さの目安', walk:'徒歩{n}分',
+        noneChecked:'まだ何も確認できていません。念のため現金をお持ちください。',
+        pick:'追加', picked:'追加済み', nPicked:'{n}件', share:'共有',
+        clearList:'クリア', copied:'リンクをコピーしました',
+        sharedList:'共有されたリスト', sharedBy:'{n}件のおすすめが届いています',
+        saveThese:'このリストを保存', backToAll:'すべての場所に戻る' },
+  zh: { title:'附近', list:'清單', map:'地圖', search:'搜尋店名、街道或地區…',
+        here:'從<b>你的位置</b>', centre:'從釜山市中心 · <b>使用我的位置</b>',
+        locating:'定位中…', away:'', notConfirmed:'未確認', more:'顯示更多',
+        naver:'用 NAVER 地圖開啟', foot:'只顯示已確認的資訊，空白表示尚未確認。',
+        noMatch:'找不到:', tryArea:'可用店名、街道，或「海雲台」這類地區名搜尋。',
+        nothing:'這個條件還沒有確認過的地點。', onlyChecked:'只顯示實際確認過的地點。',
+        f_all:'全部', f_solo:'一人用餐', f_card:'可刷卡', f_menu:'外語菜單',
+        f_mild:'不辣', f_how:'怎麼吃', f_cafe:'咖啡廳',
+        b_solo:'一人也自在', b_nosolo:'適合多人', b_card:'可刷卡', b_cash:'僅收現金',
+        b_menu:'外語菜單', b_komenu:'只有韓文菜單', b_how:'怎麼吃',
+        u_solo:'一人', u_card:'刷卡', u_menu:'菜單', u_spice:'辣度', me:'你的位置',
+        s_solo:'一人也自在', s_card:'海外卡', s_menu:'看得懂的菜單',
+        s_mild:'較不辣', s_spice:'辣度參考', walk:'步行{n}分鐘',
+        noneChecked:'這裡還沒有任何確認資訊，建議帶些現金。',
+        pick:'加入', picked:'已加入', nPicked:'已選 {n} 個', share:'分享',
+        clearList:'清空', copied:'已複製連結',
+        sharedList:'分享的清單', sharedBy:'有人為你挑了 {n} 個地點',
+        saveThese:'儲存這些', backToAll:'回到全部地點' },
+  zhs: { title:'附近', list:'列表', map:'地图', search:'搜索店名、街道或地区…',
+        here:'从<b>你的位置</b>', centre:'从釜山市中心 · <b>使用我的位置</b>',
+        locating:'定位中…', away:'', notConfirmed:'未确认', more:'显示更多',
+        naver:'用 NAVER 地图打开', foot:'只显示已确认的信息，空白表示尚未确认。',
+        noMatch:'找不到:', tryArea:'可用店名、街道，或"海云台"这类地区名搜索。',
+        nothing:'这个条件还没有确认过的地点。', onlyChecked:'只显示实际确认过的地点。',
+        f_all:'全部', f_solo:'一人用餐', f_card:'可刷卡', f_menu:'外语菜单',
+        f_mild:'不辣', f_how:'怎么吃', f_cafe:'咖啡馆',
+        b_solo:'一人也自在', b_nosolo:'适合多人', b_card:'可刷卡', b_cash:'仅收现金',
+        b_menu:'外语菜单', b_komenu:'只有韩文菜单', b_how:'怎么吃',
+        u_solo:'一人', u_card:'刷卡', u_menu:'菜单', u_spice:'辣度', me:'你的位置',
+        s_solo:'一人也自在', s_card:'境外卡', s_menu:'看得懂的菜单',
+        s_mild:'较不辣', s_spice:'辣度参考', walk:'步行{n}分钟',
+        noneChecked:'这里还没有任何确认信息，建议带些现金。',
+        pick:'加入', picked:'已加入', nPicked:'已选 {n} 个', share:'分享',
+        clearList:'清空', copied:'已复制链接',
+        sharedList:'分享的清单', sharedBy:'有人为你挑了 {n} 个地点',
+        saveThese:'保存这些', backToAll:'回到全部地点' },
+};
+
+function detectLang(){
+  try { const s = localStorage.getItem('cu_lang'); if (LANGS.includes(s)) return s; } catch(e){}
+  const n = ((navigator.languages && navigator.languages[0]) || navigator.language || 'en').toLowerCase();
+  if (n.startsWith('ja')) return 'ja';
+  if (n.startsWith('zh')) return /(tw|hk|mo|hant)/.test(n) ? 'zh' : 'zhs';
+  return 'en';
+}
+let LANG = detectLang();
+const t = k => (T[LANG] || T.en)[k] ?? (T.en[k] ?? '');
+
+const AREA_LABEL = {
+  '해운대구':'Haeundae', '수영구':'Gwangalli', '부산진구':'Seomyeon', '중구':'Nampo',
+  '동구':'Choryang', '서구':'Songdo', '남구':'Gwangan', '사하구':'Gamcheon',
+  '영도구':'Yeongdo', '금정구':'Geumjeong', '동래구':'Dongnae', '북구':'Buk',
+  '연제구':'Yeonje', '사상구':'Sasang', '강서구':'Gangseo', '기장군':'Gijang',
+};
+const areaLabel = a => AREA_LABEL[a] || a || '';
+
+const FILTERS = [
+  { key:'all',  lb:'f_all',  test: () => true },
+  { key:'solo', lb:'f_solo', test: p => p.solo_ok === true },
+  { key:'card', lb:'f_card', test: p => p.foreign_card === true },
+  { key:'menu', lb:'f_menu', test: p => p.english_menu === true },
+  { key:'mild', lb:'f_mild', test: p => /mild/i.test(p.spice_level || '') },
+  { key:'how',  lb:'f_how',  test: p => !!p.food_guide_key },
+  { key:'cafe', lb:'f_cafe', test: p => p.category === 'cafe' },
+];
+
+let PLACES = [], GUIDES = {}, me = null, cur = 'all', shown = 25, openId = null;
+let query = '', mapView = false, lmap = null, layer = null, meMarker = null;
+
+/* ── 목록 담기 · 공유 ─────────────────────────────────
+   동행에게 "여기 가자"를 보내는 가장 단순한 형태.
+   계정 없이 링크 하나로 되게 한다 — 여행 중에 가입을 요구하면
+   대부분 그냥 나가기 때문이다.
+
+   담은 목록은 기기에 저장되고, 공유할 때만 주소에 실린다. */
+const PICK_KEY = 'nm_picked';
+
+function loadPicked(){
+  try {
+    const raw = JSON.parse(localStorage.getItem(PICK_KEY) || '[]');
+    return new Set(Array.isArray(raw) ? raw.map(String) : []);
+  } catch(e){ return new Set(); }
+}
+function savePicked(){
+  try { localStorage.setItem(PICK_KEY, JSON.stringify([...PICKED])); } catch(e){}
+}
+
+let PICKED = loadPicked();
+
+/* 누군가 보내준 목록으로 들어왔는지 — ?list=id1,id2 */
+const sharedIds = (() => {
+  const v = new URLSearchParams(location.search).get('list');
+  return v ? v.split(',').map(x => x.trim()).filter(Boolean) : null;
+})();
+let sharedMode = !!(sharedIds && sharedIds.length);
+
+function togglePick(id){
+  if (PICKED.has(id)) PICKED.delete(id); else PICKED.add(id);
+  savePicked();
+  renderPickBar();
+  render();
+}
+
+function shareList(ids){
+  const url = location.origin + location.pathname +
+    '?list=' + ids.slice(0, 20).join(',');
+  const title = 'Near me';
+
+  if (navigator.share){
+    navigator.share({ title, url }).catch(() => {});
+  } else {
+    navigator.clipboard?.writeText(url).then(() => toast(t('copied')));
+  }
+}
+
+let toastTimer = null;
+function toast(msg){
+  let el = document.getElementById('toast');
+  if (!el){
+    el = document.createElement('div');
+    el.id = 'toast';
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('on'), 1800);
+}
+
+/* 담은 개수와 공유 버튼 — 하나라도 담았을 때만 나타난다 */
+function renderPickBar(){
+  const bar = document.getElementById('pickbar');
+  if (!bar) return;
+  if (!PICKED.size || sharedMode){ bar.className = 'pickbar'; bar.innerHTML = ''; return; }
+  bar.className = 'pickbar on';
+  bar.innerHTML = `
+    <span class="n">${t('nPicked').replace('{n}', PICKED.size)}</span>
+    <button class="ghost" id="pick-clear">${t('clearList')}</button>
+    <button class="solid" id="pick-share">${t('share')}</button>`;
+}
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* 장소 이름 — 현재 언어로. 부산시 API가 일/중문판에서도 한글 상호를 주는 일이 있어,
+   이름이 한글이면 로마자 표기로 대체한다. */
+function nameOf(p){
+  const v = p.i18n && p.i18n[LANG] && p.i18n[LANG].name;
+  if (v && !/[가-힣]/.test(v)) return v;
+  return p.name_en || p.name_ko;
+}
+
+function distM(a, b){
+  const R = 6371000, d = Math.PI / 180;
+  const x = Math.sin((b.lat-a.lat)*d/2)**2
+    + Math.cos(a.lat*d) * Math.cos(b.lat*d) * Math.sin((b.lng-a.lng)*d/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
+}
+const fmtDist = m => m < 1000 ? Math.round(m/10)*10 + ' m' : (m/1000).toFixed(1) + ' km';
+
+function tagsOf(p){
+  const g = [];
+  if (p.solo_ok === true)       g.push(['t-ok',  t('b_solo')]);
+  if (p.solo_ok === false)      g.push(['t-no',  t('b_nosolo')]);
+  if (p.foreign_card === true)  g.push(['t-ok',  t('b_card')]);
+  if (p.foreign_card === false) g.push(['t-no',  t('b_cash')]);
+  if (p.english_menu === true)  g.push(['t-ok',  t('b_menu')]);
+  if (p.english_menu === false) g.push(['t-no',  t('b_komenu')]);
+  if (p.spice_level)            g.push(['t-hot', p.spice_level.replace(/🌶️?/g,'').trim()]);
+  if (p.food_guide_key && GUIDES[p.food_guide_key]) g.push(['t-tip', t('b_how')]);
+  return g;
+}
+
+function unknownOf(p){
+  const u = [], isFood = p.category === 'restaurant' || p.category === 'cafe';
+  if (p.solo_ok == null && isFood)      u.push(t('u_solo'));
+  if (p.foreign_card == null)           u.push(t('u_card'));
+  if (p.english_menu == null && isFood) u.push(t('u_menu'));
+  if (!p.spice_level && isFood)         u.push(t('u_spice'));
+  return u;
+}
+
+/* 먹는 법 — 세 단계를 한 줄씩. 언어별 번역이 있으면 그것을 쓴다. */
+/* 대표메뉴 — 가격을 먼저 통째로 지운 뒤 쪼갠다.
+   쉼표부터 나누면 "￦12,000"이 "000" 파편으로 남는다.
+   앞에 붙은 요리 분류(Korean · / Cafe ·)도 뗀다. */
+/* 화면에 쓸 이름을 짧게 만든다.
+   "본점 / 전문점 / 신도시점" 같은 접미사는 로마자로 옮기면
+   Bonjeom · Jeonmunjeom 이 되어 외국인에게 아무 뜻이 없다.
+   같은 상호가 여러 곳이면 지역 표시로 이미 구분되므로 화면에서는 뗀다.
+
+   붙여 쓴 이름(Alcheonsundaegopchangjeongoljeonmunjeom)도 있어
+   띄어쓰기 여부와 상관없이 끝부분을 검사한다.
+   단, 너무 짧게 남으면(개미집신도시점 → 개미) 원본을 그대로 쓴다. */
+const NAME_TAILS = [
+  /bonjeom$/i, /jeonmunjeom$/i, /jikyeongjeom$/i, /sindosijeom$/i,
+  /\d+hojeom$/i, /bonkwan$/i,
+];
+const NAME_TAILS_KO = [
+  /본점$/, /본관$/, /전문점$/, /직영점$/, /신도시점$/, /\d+호점$/,
+];
+
+function shortName(raw){
+  if (!raw) return '';
+  let v = raw.trim();
+
+  for (const re of [...NAME_TAILS, ...NAME_TAILS_KO]){
+    const cut = v.replace(re, '').trim().replace(/[\s·-]+$/, '');
+    // 잘라낸 뒤에도 알아볼 만큼 남아야 한다
+    if (cut !== v && cut.length >= (/[가-힣]/.test(cut) ? 3 : 5)) { v = cut; break; }
+  }
+  return v || raw;
+}
+
+function menuOf(p, { short = false } = {}){
+  const items = (p.subcategory || '')
+    .replace(/[￦₩][^\S\n]*[\d][\d,\-–~]*/g, '')
+    .replace(/^(Korean|Chinese|Japanese|Western|Snack bar|Cafe)\s*·\s*/i, '')
+    .split(/[\n,·]/).map(x => x.replace(/\s{2,}/g, ' ').trim())
+    .filter(x => x && x.length > 1 && /[a-zA-Z가-힣]/.test(x));
+
+  // 카드에서는 괄호 안 설명을 떼고 한 가지만 — 한 줄에 들어가야 한다.
+  // 펼쳤을 때는 설명까지 그대로 보여준다.
+  if (short){
+    return items.slice(0, 2)
+      .map(x => x.replace(/\s*\([^)]*\)\s*/g, ' ').trim())
+      .filter(Boolean).join(' · ');
+  }
+  return items.slice(0, 2).join(' · ');
+}
+
+function stepsOf(p){
+  const g = GUIDES[p.food_guide_key];
+  if (!g) return null;
+  const loc = g.i18n && g.i18n[LANG];
+  const raw = (loc && loc.steps) || g.steps;
+  if (!raw || !raw.length) return null;
+  const tip = ((loc && loc.pro_tip) || g.pro_tip || '').split(/(?<=[.!?。！？])\s*/)[0];
+  return {
+    steps: raw.slice(0,3).map(x => (x.split('|')[0] || '').trim()
+      .replace(/^\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*\s*/u, '')),
+    tip: tip.slice(0, 140),
+  };
+}
+
+function matchQuery(p){
+  if (!query) return true;
+  const hay = [p.name_en, p.name_ko, nameOf(p), p.address, p.area, areaLabel(p.area)]
+    .filter(Boolean).join(' ').toLowerCase();
+  return hay.includes(query);
+}
+
+function currentList(){
+  // 공유 링크로 들어왔으면 그 목록만 보여준다. 순서도 보낸 사람 순서대로.
+  if (sharedMode){
+    const order = new Map(sharedIds.map((id, i) => [id, i]));
+    return PLACES.filter(p => order.has(p.id))
+                 .sort((a, b) => order.get(a.id) - order.get(b.id));
+  }
+  const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
+  return PLACES.filter(p => f.test(p) && matchQuery(p));
+}
+
+function render(){
+  const all = currentList();
+  const box = document.getElementById('list');
+
+  if (mapView){ renderMap(all); box.innerHTML = ''; return; }
+
+  if (!all.length){
+    box.innerHTML = query
+      ? `<div class="msg"><b>${t('noMatch')} "${esc(query)}"</b>${t('tryArea')}</div>`
+      : `<div class="msg"><b>${t('nothing')}</b>${t('onlyChecked')}</div>`;
+    return;
+  }
+
+  // 누군가 보내준 목록으로 들어왔을 때 — 무엇을 보고 있는지 먼저 알린다
+  const banner = sharedMode ? `
+    <div class="sharedbar">
+      <div>
+        <div class="st">🔗 ${t('sharedList')}</div>
+        <div class="ss">${t('sharedBy').replace('{n}', all.length)}</div>
+      </div>
+      <div class="sb">
+        <button class="ghost" id="shared-all">${t('backToAll')}</button>
+        <button class="solid" id="shared-save">${t('saveThese')}</button>
+      </div>
+    </div>` : '';
+
+  box.innerHTML = banner + all.slice(0, shown).map(p => {
+    const unk = unknownOf(p);
+    const g = stepsOf(p);
+    const menu = menuOf(p, { short: true });   // 카드 한 줄용
+    const menuFull = menuOf(p);                // 펼쳤을 때
+    const naver = 'https://map.naver.com/p/search/' + encodeURIComponent(p.name_ko || p.name_en);
+    // 사진이 없거나 불러오지 못하면 카테고리 이모지로 대체한다
+    const face = CAT_FACE[p.category] || '📍';
+    const ph = p.image_url
+      ? `<img src="${esc(p.image_url)}" alt="" loading="lazy"
+             onerror="this.remove();this.parentNode.textContent='${face}'">`
+      : face;
+
+    const solo = p.solo_ok === true;
+    const card = p.foreign_card === true;
+    const menuOk = p.english_menu === true;
+    const hasSpice = !!p.spice_level;
+    const mild = /mild/i.test(p.spice_level || '');
+
+    /* 확인된 것만 칸으로 만든다. 4칸을 채우려고 없는 정보를 넣지 않는다. */
+    const decisionTags = [
+      solo ? `<span class="dtag ok"><span class="ico">👤</span>${t('b_solo')}</span>` : '',
+      card ? `<span class="dtag ok"><span class="ico">💳</span>${t('b_card')}</span>` : '',
+      menuOk ? `<span class="dtag tip"><span class="ico">🔤</span>${t('b_menu')}</span>` : '',
+      hasSpice ? `<span class="dtag ${mild?'hot':'neutral'}"><span class="ico">🌶️</span>${esc(p.spice_level.replace(/🌶️?/g,'').trim())}</span>` : ''
+    ].filter(Boolean).join('');
+
+    /* 확인된 게 하나도 없을 때.
+       "빨리 정하기 좋다"는 식으로 포장하면 오해를 준다.
+       아무것도 확인되지 않았다는 사실을 그대로 말한다. */
+    const fallback = !decisionTags
+      ? `<div class="decision-summary">${t('noneChecked')}</div>`
+      : '';
+
+    // 도보 4km/h = 분당 약 67m. 신호와 골목을 감안해 넉넉히 잡는다.
+    const walk = p._d != null
+      ? t('walk').replace('{n}', String(Math.max(1, Math.round(p._d / 67))))
+      : '';
+
+    return `<div class="row ${openId===p.id?'on':''}" data-id="${esc(p.id)}">
+      <div class="decision-main">
+        <div class="ph">${ph}</div>
+        <div class="dhead">
+          <div class="topline">
+            <div class="nameblock">
+              <div class="en" title="${esc(nameOf(p))}">${esc(shortName(nameOf(p)))}</div>
+              ${p.name_ko?`<div class="ko">${esc(p.name_ko)}</div>`:''}
+              ${p.area?`<div class="area">📍 ${esc(areaLabel(p.area))}</div>`:''}
+            </div>
+            <div class="distance">
+              ${walk?`<div class="walk">🚶 ${esc(walk)}</div>`:''}
+              ${p._d!=null?`<div class="meters">${esc(fmtDist(p._d))}</div>`:''}
+              <button class="pickbtn ${PICKED.has(p.id)?'on':''}" data-pick="${esc(p.id)}"
+                title="${PICKED.has(p.id)?esc(t('picked')):esc(t('pick'))}"
+                >${PICKED.has(p.id)?'✓':'+'}</button>
+            </div>
+          </div>
+
+          ${decisionTags ? `<div class="decision-tags">${decisionTags}</div>` : fallback}
+
+          ${g || menu ? `<div class="secondary">
+            ${g?`<span class="how">🍴 ${t('b_how')}</span>`:''}
+            ${g && menu?`<span class="sep">|</span>`:''}
+            ${menu?`<span class="menu" title="${esc(menu)}">▧ ${esc(menu)}</span>`:''}
+          </div>` : ''}
+
+          ${unk.length?`<div class="unknown-line">${t('notConfirmed')}: ${unk.join(' · ')}</div>`:''}
+        </div>
+      </div>
+
+      <div class="open">
+        ${g?`<div class="steps">${g.steps.map((s,i)=>`<span class="sp"><b>${i+1}</b>${esc(s)}</span>`).join('')}</div>`:''}
+        ${g&&g.tip?`<div class="warn">${esc(g.tip)}</div>`:''}
+        ${menuFull?`<div class="mn">${esc(menuFull)}</div>`:''}
+        ${p.address?`<div class="addr">📍 ${esc(p.address)}</div>`:''}
+        <a class="go" href="${naver}" target="_blank" rel="noopener">${t('naver')}</a>
+      </div>
+    </div>`;
+    }).join('') + (all.length > shown
+    ? `<div class="msg" style="padding:20px"><button class="morebtn" id="more">${t('more')}</button></div>` : '');
+}
+
+function renderMap(list){
+  if (typeof L === 'undefined') return;
+  if (!lmap){
+    lmap = L.map('map', { scrollWheelZoom:false }).setView([BUSAN.lat, BUSAN.lng], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      { maxZoom:19, attribution:'&copy; OpenStreetMap' }).addTo(lmap);
+    lmap.on('click', () => lmap.scrollWheelZoom.enable());
+  }
+  if (layer) lmap.removeLayer(layer);
+  layer = L.layerGroup();
+
+  list.slice(0, 200).forEach(p => {
+    const icon = L.divIcon({ className:'pin',
+      html:`<span>${CAT_FACE[p.category]||'📍'}</span>`,
+      iconSize:[30,30], iconAnchor:[15,15], popupAnchor:[0,-16] });
+    const tags = tagsOf(p).slice(0,3)
+      .map(([c,l])=>`<span class="t ${c}">${esc(l)}</span>`).join('');
+    const naver = 'https://map.naver.com/p/search/' + encodeURIComponent(p.name_ko || p.name_en);
+    const w = p._d != null
+      ? t('walk').replace('{n}', String(Math.max(1, Math.round(p._d / 67)))) : '';
+    L.marker([p.lat,p.lng],{icon}).bindPopup(`<div class="pp">
+      <div class="n">${esc(nameOf(p))}</div>
+      ${p.name_ko?`<div class="k">${esc(p.name_ko)}</div>`:''}
+      ${w?`<div class="k">🚶 ${esc(w)}</div>`:''}
+      ${tags?`<div class="b">${tags}</div>`:''}
+      <a href="${naver}" target="_blank" rel="noopener">${t('naver')} →</a></div>`).addTo(layer);
+  });
+
+  if (me){
+    meMarker = L.marker([me.lat, me.lng], { icon: L.divIcon({
+      className:'pin me', html:'<span>🧍</span>', iconSize:[30,30], iconAnchor:[15,15] })});
+    meMarker.addTo(layer);
+  }
+  layer.addTo(lmap);
+
+  const pts = list.filter(p=>p.lat&&p.lng).slice(0,60).map(p=>[p.lat,p.lng]);
+  if (me) pts.push([me.lat, me.lng]);
+  if (pts.length) lmap.fitBounds(L.latLngBounds(pts), { padding:[35,35], maxZoom:16 });
+  setTimeout(()=>lmap.invalidateSize(), 60);
+}
+
+function renderChips(){
+  document.getElementById('chips').innerHTML = FILTERS.map(f => {
+    const n = PLACES.filter(f.test).length;
+    if (!n && f.key !== 'all') return '';
+    return `<button class="chip ${cur===f.key?'on':''}" data-f="${f.key}">${t(f.lb)}</button>`;
+  }).join('');
+}
+
+function applyLang(){
+  document.documentElement.lang = LANG === 'zh' ? 'zh-Hant' : LANG === 'zhs' ? 'zh-Hans' : LANG;
+  document.getElementById('t-title').textContent = t('title');
+  document.getElementById('t-list').textContent = t('list');
+  document.getElementById('t-map').textContent  = t('map');
+  document.getElementById('t-foot').textContent = t('foot');
+  document.getElementById('q').placeholder = t('search');
+  document.getElementById('lbtn').textContent = (LANG_META[LANG]||{}).label + ' ▾';
+  document.getElementById('lmenu').innerHTML = LANGS.map(l =>
+    `<div data-l="${l}" class="${l===LANG?'sel':''}"><span>${LANG_META[l].name}</span>${l===LANG?'<span>✓</span>':''}</div>`).join('');
+  renderChips(); render();
+  updateWhere();
+}
+
+let whereState = { ok:false, msg:'locating' };
+function updateWhere(){
+  const w = document.getElementById('where');
+  w.className = 'where' + (whereState.ok ? '' : ' off');
+  w.innerHTML = whereState.msg === 'locating' ? t('locating')
+    : whereState.ok ? t('here') : t('centre');
+}
+
+function sortByDistance(){
+  PLACES.forEach(p => { p._d = me ? distM(me, {lat:p.lat, lng:p.lng}) : null; });
+  PLACES.sort((a,b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+}
+
+function askLocation(){
+  whereState = { ok:false, msg:'locating' }; updateWhere();
+  if (!navigator.geolocation){
+    me = BUSAN; whereState = { ok:false, msg:'centre' };
+    sortByDistance(); updateWhere(); render(); return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    pos => { me = { lat:pos.coords.latitude, lng:pos.coords.longitude };
+             whereState = { ok:true, msg:'here' };
+             sortByDistance(); updateWhere(); render(); },
+    () => { me = BUSAN; whereState = { ok:false, msg:'centre' };
+            sortByDistance(); updateWhere(); render(); },
+    { enableHighAccuracy:true, timeout:8000, maximumAge:60000 }
+  );
+}
+
+async function load(){
+  const [pl, gd] = await Promise.all([
+    sb.from('places')
+      .select('id, name_en, name_ko, category, subcategory, image_url, address, area, i18n, lat, lng, solo_ok, foreign_card, english_menu, spice_level, food_guide_key')
+      .not('lat','is',null).not('lng','is',null),
+    sb.from('food_guides').select('key, title_en, steps, pro_tip, i18n'),
+  ]);
+  if (pl.error){
+    document.getElementById('list').innerHTML =
+      `<div class="msg"><b>Couldn't load.</b>${esc(pl.error.message)}</div>`;
+    return;
+  }
+  PLACES = pl.data || [];
+  (gd.data || []).forEach(g => GUIDES[g.key] = g);
+  applyLang();
+  renderPickBar();
+  askLocation();
+}
+
+/* ── 이벤트 ───────────────────────────────────────────── */
+const qInput = document.getElementById('q');
+qInput.addEventListener('input', () => {
+  query = qInput.value.trim().toLowerCase();
+  document.getElementById('qx').style.display = query ? 'block' : 'none';
+  shown = 25; openId = null; render();
+});
+
+document.addEventListener('click', e => {
+  // 담기 / 빼기
+  const pk = e.target.closest('[data-pick]');
+  if (pk){ e.stopPropagation(); togglePick(pk.dataset.pick); return; }
+
+  if (e.target.closest('#pick-share')){ shareList([...PICKED]); return; }
+  if (e.target.closest('#pick-clear')){
+    PICKED.clear(); savePicked(); renderPickBar(); render(); return;
+  }
+
+  // 공유 링크로 들어온 상태에서
+  if (e.target.closest('#shared-all')){
+    sharedMode = false;
+    history.replaceState(null, '', location.pathname);
+    renderPickBar(); render(); return;
+  }
+  if (e.target.closest('#shared-save')){
+    sharedIds.forEach(id => PICKED.add(id));
+    savePicked(); sharedMode = false;
+    history.replaceState(null, '', location.pathname);
+    renderPickBar(); render(); toast(t('picked')); return;
+  }
+
+  const lm = e.target.closest('[data-l]');
+  if (lm){
+    LANG = lm.dataset.l;
+    try { localStorage.setItem('cu_lang', LANG); } catch(err){}
+    document.getElementById('lmenu').classList.remove('on');
+    applyLang(); return;
+  }
+  if (e.target.closest('#lbtn')){
+    document.getElementById('lmenu').classList.toggle('on'); return;
+  }
+  document.getElementById('lmenu').classList.remove('on');
+
+  if (e.target.closest('#where')){ askLocation(); return; }
+  if (e.target.closest('#qx')){
+    qInput.value = ''; query = '';
+    document.getElementById('qx').style.display = 'none';
+    shown = 25; render(); return;
+  }
+  const vt = e.target.closest('.vt button');
+  if (vt){
+    mapView = vt.dataset.v === 'map';
+    document.querySelectorAll('.vt button').forEach(b => b.classList.toggle('on', b === vt));
+    document.getElementById('map').style.display = mapView ? 'block' : 'none';
+    render(); return;
+  }
+  const chip = e.target.closest('.chip');
+  if (chip){ cur = chip.dataset.f; shown = 25; openId = null;
+             renderChips(); render(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+  if (e.target.closest('#more')){ shown += 25; render(); return; }
+  if (e.target.closest('.go')) return;
+  const row = e.target.closest('.row');
+  if (row){ openId = (openId === row.dataset.id) ? null : row.dataset.id; render(); }
+});
+
+load();
+</script>
+
 </body>
 </html>
