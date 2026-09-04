@@ -97,34 +97,29 @@
     cursor:pointer;background:#fff;box-shadow:0 2px 10px rgba(11,13,20,.04)}
   .decision-main{display:grid;grid-template-columns:184px minmax(0,1fr);gap:15px}
 
-  /* 음식 사진 — 원본 비율 그대로, 전체가 보이게.
-     배경이미지 + cover 로는 접시가 잘려 무슨 음식인지 알 수 없었다.
-     img + object-fit:contain 이면 비율이 유지되고 잘리지 않는다.
-     contain 은 여백이 생기므로 그만큼 크게 잡아야 사진이 작아 보이지 않는다. */
+  /* 음식 사진.
+     부산관광공사가 주는 이미지(_ttiel)는 목록용으로 이미 잘린 썸네일이라,
+     contain 으로 둬도 잘린 사진에 여백만 더해질 뿐이었다.
+     원본을 구하기 전까지는 cover 로 칸을 채우는 편이 덜 어색하다. */
   .ph{width:184px;height:138px;border-radius:12px;flex-shrink:0;
     background:#f4f5fa;display:flex;align-items:center;justify-content:center;
     overflow:hidden;font-size:34px}
-  .ph img{width:100%;height:100%;object-fit:contain;display:block}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block}
   .dhead{min-width:0}
   .topline{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-  .nameblock{min-width:0;flex:1}
-  /* 긴 이름은 두 줄까지만. 그 이상은 … 로 끝내 거리 표시와 겹치지 않게 한다 */
-  .en{font-size:18px;font-weight:800;color:var(--ink);line-height:1.22;letter-spacing:-.4px;
-    display:-webkit-box;-webkit-box-orient:vertical;
-    -webkit-line-clamp:2;line-clamp:2;      /* 표준 속성도 함께 (경고 제거) */
-    overflow:hidden;word-break:break-word}
+  .nameblock{min-width:0}
+  .en{font-size:18px;font-weight:800;color:var(--ink);line-height:1.22;letter-spacing:-.4px}
   .ko{font-size:12px;color:var(--faint);margin-top:3px;font-family:'Noto Sans KR',sans-serif}
   .area{font-size:11px;font-weight:600;color:var(--faint);margin-top:2px}
   .distance{flex-shrink:0;text-align:right}
   .walk{font-size:15px;font-weight:800;color:var(--brand);white-space:nowrap}
   .meters{font-size:11.5px;font-weight:600;color:var(--faint);margin-top:3px;white-space:nowrap}
-  /* 뱃지 — 아이콘과 한 단어면 충분하다.
-     부제("easy alone")까지 넣으면 세 층이 되어 카드가 두꺼워지고,
-     정작 중요한 이름·거리보다 뱃지가 커 보인다. */
-  .decision-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
-  .dtag{display:inline-flex;align-items:center;gap:5px;border-radius:9px;
-    padding:5px 9px;font-size:12px;font-weight:700;line-height:1.2;white-space:nowrap}
-  .dtag .ico{font-size:13px;line-height:1}
+  .decision-tags{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:12px}
+  .dtag{min-width:0;border-radius:11px;padding:8px 7px;line-height:1.15;text-align:center;
+    font-size:11.5px;font-weight:700;overflow:hidden}
+  .dtag .ico{display:block;font-size:16px;line-height:1;margin-bottom:4px}
+  .dtag .sub{display:block;font-size:9.5px;font-weight:500;margin-top:3px;opacity:.78;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .dtag.ok{background:var(--ok-bg);color:var(--ok-fg)}
   .dtag.hot{background:var(--hot-bg);color:var(--hot-fg)}
   .dtag.tip{background:var(--tip-bg);color:var(--brand)}
@@ -132,14 +127,10 @@
   .decision-summary{margin-top:11px;padding:9px 11px;background:#f7f8fc;border-radius:10px;
     font-size:12.5px;color:var(--text);line-height:1.45}
   .decision-summary b{color:var(--ink)}
-  /* 부가정보 — 카드를 넘지 않게.
-     "How to eat"은 짧아 고정하고, 긴 메뉴만 줄여서 … 로 끝낸다. */
-  .secondary{display:flex;align-items:center;gap:10px;margin-top:10px;padding:0 2px;
-    font-size:12px;font-weight:700;color:var(--brand);min-width:0}
-  .secondary .how{white-space:nowrap;flex-shrink:0}
-  .secondary .menu{flex:1;min-width:0;white-space:nowrap;
-    overflow:hidden;text-overflow:ellipsis}
-  .secondary .sep{color:var(--line);font-weight:400;flex-shrink:0}
+  .secondary{display:flex;align-items:center;gap:14px;margin-top:10px;padding:0 2px;
+    font-size:12px;font-weight:700;color:var(--brand)}
+  .secondary span{white-space:nowrap}
+  .secondary .sep{color:var(--line);font-weight:400}
   .unknown-line{margin-top:9px;font-size:11px;color:var(--faint);line-height:1.4}
   .open{display:none;margin-top:12px;padding:13px 14px;background:#f7f8fc;border-radius:12px}
   .row.on .open{display:block}
@@ -147,8 +138,13 @@
   .sp{font-size:12.5px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line);
     border-radius:8px;padding:6px 10px;line-height:1.3}
   .sp b{color:var(--brand);margin-right:4px}
-  .warn{font-size:12.5px;color:var(--hot-fg);background:var(--hot-bg);border-radius:9px;
-    padding:9px 11px;line-height:1.5;margin-bottom:10px}
+  /* 주의 — 얇은 띠로. 내용만큼만 높이를 차지한다 */
+  .warn{display:block;height:auto;min-height:0;
+    font-size:12.5px;color:var(--hot-fg);background:var(--hot-bg);
+    border-left:3px solid var(--hot-fg);border-radius:0 9px 9px 0;
+    padding:10px 12px;line-height:1.55;margin-bottom:10px}
+  .warn .say{display:block;margin-top:6px;font-weight:700;
+    font-family:'Noto Sans KR',sans-serif}
   .mn{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:9px}
   .addr{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px}
   .go{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
@@ -177,49 +173,9 @@
   .msg b{color:var(--ink);display:block;font-size:16px;margin-bottom:6px}
   .morebtn{background:#fff;border:1.5px solid var(--line);border-radius:11px;
     padding:13px 26px;font:inherit;font-size:14.5px;font-weight:700;color:var(--ink);cursor:pointer}
-  .foot{padding:18px 0 96px;text-align:center;font-size:11.5px;
+  .foot{padding:18px 0 34px;text-align:center;font-size:11.5px;
     color:var(--faint);line-height:1.7;border-top:1px solid var(--line)}
   .foot a{color:var(--brand);text-decoration:none}
-
-  /* ── 담기 · 공유 ─────────────────────────────────────
-     동행에게 "여기 가자"를 보내는 기능.
-     계정 없이 링크 하나로 되게 했다. */
-  .pickbtn{margin-top:8px;width:30px;height:30px;border-radius:50%;
-    border:1.5px solid var(--line);background:#fff;color:var(--muted);
-    font:inherit;font-size:16px;font-weight:700;line-height:1;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;margin-left:auto}
-  .pickbtn:hover{border-color:var(--brand);color:var(--brand)}
-  .pickbtn.on{background:var(--brand);border-color:var(--brand);color:#fff}
-
-  /* 하단 바 — 담은 게 있을 때만 올라온다 */
-  .pickbar{position:fixed;left:0;right:0;bottom:0;z-index:800;
-    display:none;align-items:center;gap:10px;
-    max-width:520px;margin:0 auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
-    background:rgba(255,255,255,.97);backdrop-filter:blur(8px);
-    border-top:1px solid var(--line)}
-  .pickbar.on{display:flex}
-  .pickbar .n{flex:1;font-size:14px;font-weight:700;color:var(--ink)}
-  .pickbar button{font:inherit;font-size:14px;font-weight:700;border-radius:10px;
-    padding:10px 16px;cursor:pointer;white-space:nowrap}
-  .pickbar .ghost{background:#fff;border:1.5px solid var(--line);color:var(--muted)}
-  .pickbar .solid{background:var(--brand);border:none;color:#fff}
-
-  /* 공유 링크로 들어왔을 때 */
-  .sharedbar{background:var(--tip-bg);border-radius:14px;padding:14px 16px;
-    margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-  .sharedbar .st{font-size:14px;font-weight:800;color:var(--brand)}
-  .sharedbar .ss{font-size:12.5px;color:var(--muted);margin-top:2px}
-  .sharedbar .sb{margin-left:auto;display:flex;gap:7px}
-  .sharedbar button{font:inherit;font-size:13px;font-weight:700;border-radius:9px;
-    padding:8px 13px;cursor:pointer;white-space:nowrap}
-  .sharedbar .ghost{background:#fff;border:1px solid var(--line);color:var(--muted)}
-  .sharedbar .solid{background:var(--brand);border:none;color:#fff}
-
-  #toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%) translateY(8px);
-    background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;
-    padding:11px 18px;border-radius:99px;opacity:0;pointer-events:none;
-    transition:opacity .2s, transform .2s;z-index:900}
-  #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
@@ -252,10 +208,9 @@
 <div class="wrap">
   <div id="map"></div>
   <div class="list" id="list"><div class="msg">Loading…</div></div>
-  <div class="pickbar" id="pickbar"></div>
   <div class="foot">
     <span id="t-foot">Only checked details are shown. Blank means not confirmed yet.</span><br>
-    <a href="https://uscourse.vercel.app" target="_blank" rel="noopener">UsCourse</a> · Busan
+    <a href="site.html">UsCourse</a> · Busan
   </div>
 </div>
 
@@ -287,14 +242,7 @@ const T = {
         f_mild:'Not spicy', f_how:'How to eat', f_cafe:'Cafes',
         b_solo:'Eat alone', b_nosolo:'Better with company', b_card:'Card OK', b_cash:'Cash only',
         b_menu:'Foreign menu', b_komenu:'Korean menu only', b_how:'How to eat',
-        u_solo:'solo', u_card:'card', u_menu:'menu', u_spice:'spice', me:'You',
-        s_solo:'easy alone', s_card:'foreign cards', s_menu:'you can read it',
-        s_mild:'less spicy', s_spice:'spice level', walk:'{n} min walk',
-        noneChecked:'Nothing confirmed here yet — bring cash just in case.',
-        pick:'Add', picked:'Added', nPicked:'{n} picked', share:'Share',
-        clearList:'Clear', copied:'Link copied',
-        sharedList:'A shared list', sharedBy:'{n} places someone picked for you',
-        saveThese:'Save these', backToAll:'Back to all places' },
+        u_solo:'solo', u_card:'card', u_menu:'menu', u_spice:'spice', me:'You' },
   ja: { list:'リスト', map:'地図', search:'店名・通り・エリアで検索…',
         here:'<b>現在地</b>から', centre:'釜山中心から · <b>現在地を使う</b>',
         locating:'現在地を取得中…', away:'', notConfirmed:'未確認', more:'もっと見る',
@@ -305,14 +253,7 @@ const T = {
         f_mild:'辛くない', f_how:'食べ方', f_cafe:'カフェ',
         b_solo:'一人でも安心', b_nosolo:'複数人向け', b_card:'カード可', b_cash:'現金のみ',
         b_menu:'外国語メニュー', b_komenu:'韓国語のみ', b_how:'食べ方',
-        u_solo:'一人', u_card:'カード', u_menu:'メニュー', u_spice:'辛さ', me:'現在地',
-        s_solo:'一人でも気楽', s_card:'海外カード', s_menu:'読めるメニュー',
-        s_mild:'控えめ', s_spice:'辛さの目安', walk:'徒歩{n}分',
-        noneChecked:'まだ何も確認できていません。念のため現金をお持ちください。',
-        pick:'追加', picked:'追加済み', nPicked:'{n}件', share:'共有',
-        clearList:'クリア', copied:'リンクをコピーしました',
-        sharedList:'共有されたリスト', sharedBy:'{n}件のおすすめが届いています',
-        saveThese:'このリストを保存', backToAll:'すべての場所に戻る' },
+        u_solo:'一人', u_card:'カード', u_menu:'メニュー', u_spice:'辛さ', me:'現在地' },
   zh: { list:'清單', map:'地圖', search:'搜尋店名、街道或地區…',
         here:'從<b>你的位置</b>', centre:'從釜山市中心 · <b>使用我的位置</b>',
         locating:'定位中…', away:'', notConfirmed:'未確認', more:'顯示更多',
@@ -323,14 +264,7 @@ const T = {
         f_mild:'不辣', f_how:'怎麼吃', f_cafe:'咖啡廳',
         b_solo:'一人也自在', b_nosolo:'適合多人', b_card:'可刷卡', b_cash:'僅收現金',
         b_menu:'外語菜單', b_komenu:'只有韓文菜單', b_how:'怎麼吃',
-        u_solo:'一人', u_card:'刷卡', u_menu:'菜單', u_spice:'辣度', me:'你的位置',
-        s_solo:'一人也自在', s_card:'海外卡', s_menu:'看得懂的菜單',
-        s_mild:'較不辣', s_spice:'辣度參考', walk:'步行{n}分鐘',
-        noneChecked:'這裡還沒有任何確認資訊，建議帶些現金。',
-        pick:'加入', picked:'已加入', nPicked:'已選 {n} 個', share:'分享',
-        clearList:'清空', copied:'已複製連結',
-        sharedList:'分享的清單', sharedBy:'有人為你挑了 {n} 個地點',
-        saveThese:'儲存這些', backToAll:'回到全部地點' },
+        u_solo:'一人', u_card:'刷卡', u_menu:'菜單', u_spice:'辣度', me:'你的位置' },
   zhs: { list:'列表', map:'地图', search:'搜索店名、街道或地区…',
         here:'从<b>你的位置</b>', centre:'从釜山市中心 · <b>使用我的位置</b>',
         locating:'定位中…', away:'', notConfirmed:'未确认', more:'显示更多',
@@ -341,14 +275,7 @@ const T = {
         f_mild:'不辣', f_how:'怎么吃', f_cafe:'咖啡馆',
         b_solo:'一人也自在', b_nosolo:'适合多人', b_card:'可刷卡', b_cash:'仅收现金',
         b_menu:'外语菜单', b_komenu:'只有韩文菜单', b_how:'怎么吃',
-        u_solo:'一人', u_card:'刷卡', u_menu:'菜单', u_spice:'辣度', me:'你的位置',
-        s_solo:'一人也自在', s_card:'境外卡', s_menu:'看得懂的菜单',
-        s_mild:'较不辣', s_spice:'辣度参考', walk:'步行{n}分钟',
-        noneChecked:'这里还没有任何确认信息，建议带些现金。',
-        pick:'加入', picked:'已加入', nPicked:'已选 {n} 个', share:'分享',
-        clearList:'清空', copied:'已复制链接',
-        sharedList:'分享的清单', sharedBy:'有人为你挑了 {n} 个地点',
-        saveThese:'保存这些', backToAll:'回到全部地点' },
+        u_solo:'一人', u_card:'刷卡', u_menu:'菜单', u_spice:'辣度', me:'你的位置' },
 };
 
 function detectLang(){
@@ -381,78 +308,6 @@ const FILTERS = [
 
 let PLACES = [], GUIDES = {}, me = null, cur = 'all', shown = 25, openId = null;
 let query = '', mapView = false, lmap = null, layer = null, meMarker = null;
-
-/* ── 목록 담기 · 공유 ─────────────────────────────────
-   동행에게 "여기 가자"를 보내는 가장 단순한 형태.
-   계정 없이 링크 하나로 되게 한다 — 여행 중에 가입을 요구하면
-   대부분 그냥 나가기 때문이다.
-
-   담은 목록은 기기에 저장되고, 공유할 때만 주소에 실린다. */
-const PICK_KEY = 'nm_picked';
-
-function loadPicked(){
-  try {
-    const raw = JSON.parse(localStorage.getItem(PICK_KEY) || '[]');
-    return new Set(Array.isArray(raw) ? raw.map(String) : []);
-  } catch(e){ return new Set(); }
-}
-function savePicked(){
-  try { localStorage.setItem(PICK_KEY, JSON.stringify([...PICKED])); } catch(e){}
-}
-
-let PICKED = loadPicked();
-
-/* 누군가 보내준 목록으로 들어왔는지 — ?list=id1,id2 */
-const sharedIds = (() => {
-  const v = new URLSearchParams(location.search).get('list');
-  return v ? v.split(',').map(x => x.trim()).filter(Boolean) : null;
-})();
-let sharedMode = !!(sharedIds && sharedIds.length);
-
-function togglePick(id){
-  if (PICKED.has(id)) PICKED.delete(id); else PICKED.add(id);
-  savePicked();
-  renderPickBar();
-  render();
-}
-
-function shareList(ids){
-  const url = location.origin + location.pathname +
-    '?list=' + ids.slice(0, 20).join(',');
-  const title = 'Near me';
-
-  if (navigator.share){
-    navigator.share({ title, url }).catch(() => {});
-  } else {
-    navigator.clipboard?.writeText(url).then(() => toast(t('copied')));
-  }
-}
-
-let toastTimer = null;
-function toast(msg){
-  let el = document.getElementById('toast');
-  if (!el){
-    el = document.createElement('div');
-    el.id = 'toast';
-    document.body.appendChild(el);
-  }
-  el.textContent = msg;
-  el.classList.add('on');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('on'), 1800);
-}
-
-/* 담은 개수와 공유 버튼 — 하나라도 담았을 때만 나타난다 */
-function renderPickBar(){
-  const bar = document.getElementById('pickbar');
-  if (!bar) return;
-  if (!PICKED.size || sharedMode){ bar.className = 'pickbar'; bar.innerHTML = ''; return; }
-  bar.className = 'pickbar on';
-  bar.innerHTML = `
-    <span class="n">${t('nPicked').replace('{n}', PICKED.size)}</span>
-    <button class="ghost" id="pick-clear">${t('clearList')}</button>
-    <button class="solid" id="pick-share">${t('share')}</button>`;
-}
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -496,65 +351,25 @@ function unknownOf(p){
 }
 
 /* 먹는 법 — 세 단계를 한 줄씩. 언어별 번역이 있으면 그것을 쓴다. */
-/* 대표메뉴 — 가격을 먼저 통째로 지운 뒤 쪼갠다.
-   쉼표부터 나누면 "￦12,000"이 "000" 파편으로 남는다.
-   앞에 붙은 요리 분류(Korean · / Cafe ·)도 뗀다. */
-/* 화면에 쓸 이름을 짧게 만든다.
-   "본점 / 전문점 / 신도시점" 같은 접미사는 로마자로 옮기면
-   Bonjeom · Jeonmunjeom 이 되어 외국인에게 아무 뜻이 없다.
-   같은 상호가 여러 곳이면 지역 표시로 이미 구분되므로 화면에서는 뗀다.
-
-   붙여 쓴 이름(Alcheonsundaegopchangjeongoljeonmunjeom)도 있어
-   띄어쓰기 여부와 상관없이 끝부분을 검사한다.
-   단, 너무 짧게 남으면(개미집신도시점 → 개미) 원본을 그대로 쓴다. */
-const NAME_TAILS = [
-  /bonjeom$/i, /jeonmunjeom$/i, /jikyeongjeom$/i, /sindosijeom$/i,
-  /\d+hojeom$/i, /bonkwan$/i,
-];
-const NAME_TAILS_KO = [
-  /본점$/, /본관$/, /전문점$/, /직영점$/, /신도시점$/, /\d+호점$/,
-];
-
-function shortName(raw){
-  if (!raw) return '';
-  let v = raw.trim();
-
-  for (const re of [...NAME_TAILS, ...NAME_TAILS_KO]){
-    const cut = v.replace(re, '').trim().replace(/[\s·-]+$/, '');
-    // 잘라낸 뒤에도 알아볼 만큼 남아야 한다
-    if (cut !== v && cut.length >= (/[가-힣]/.test(cut) ? 3 : 5)) { v = cut; break; }
-  }
-  return v || raw;
-}
-
-function menuOf(p, { short = false } = {}){
-  const items = (p.subcategory || '')
-    .replace(/[￦₩][^\S\n]*[\d][\d,\-–~]*/g, '')
-    .replace(/^(Korean|Chinese|Japanese|Western|Snack bar|Cafe)\s*·\s*/i, '')
-    .split(/[\n,·]/).map(x => x.replace(/\s{2,}/g, ' ').trim())
-    .filter(x => x && x.length > 1 && /[a-zA-Z가-힣]/.test(x));
-
-  // 카드에서는 괄호 안 설명을 떼고 한 가지만 — 한 줄에 들어가야 한다.
-  // 펼쳤을 때는 설명까지 그대로 보여준다.
-  if (short){
-    return items.slice(0, 2)
-      .map(x => x.replace(/\s*\([^)]*\)\s*/g, ' ').trim())
-      .filter(Boolean).join(' · ');
-  }
-  return items.slice(0, 2).join(' · ');
-}
-
 function stepsOf(p){
   const g = GUIDES[p.food_guide_key];
   if (!g) return null;
   const loc = g.i18n && g.i18n[LANG];
   const raw = (loc && loc.steps) || g.steps;
   if (!raw || !raw.length) return null;
-  const tip = ((loc && loc.pro_tip) || g.pro_tip || '').split(/(?<=[.!?。！？])\s*/)[0];
+  /* 안내문은 길어서 첫 문장만 쓰되,
+     "이럴 땐 이렇게 말하라"는 한국어 문장은 반드시 함께 보여준다.
+     그게 빠지면 경고만 하고 대처법이 없는 셈이 된다. */
+  const full  = ((loc && loc.pro_tip) || g.pro_tip || '').replace(/\s+/g, ' ').trim();
+  const first = (full.split(/(?<=[.!?。！？])\s+/)[0] || '').slice(0, 150);
+  const m = full.match(/"([^"]*[가-힣][^"]*)"|([가-힣][가-힣\s]{2,}(?:주세요|없어요|있어요))/);
+  const say = m ? (m[1] || m[2] || '').trim() : '';
+
   return {
     steps: raw.slice(0,3).map(x => (x.split('|')[0] || '').trim()
       .replace(/^\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}]*\s*/u, '')),
-    tip: tip.slice(0, 140),
+    tip: first,
+    say,
   };
 }
 
@@ -566,12 +381,6 @@ function matchQuery(p){
 }
 
 function currentList(){
-  // 공유 링크로 들어왔으면 그 목록만 보여준다. 순서도 보낸 사람 순서대로.
-  if (sharedMode){
-    const order = new Map(sharedIds.map((id, i) => [id, i]));
-    return PLACES.filter(p => order.has(p.id))
-                 .sort((a, b) => order.get(a.id) - order.get(b.id));
-  }
   const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
   return PLACES.filter(p => f.test(p) && matchQuery(p));
 }
@@ -589,24 +398,11 @@ function render(){
     return;
   }
 
-  // 누군가 보내준 목록으로 들어왔을 때 — 무엇을 보고 있는지 먼저 알린다
-  const banner = sharedMode ? `
-    <div class="sharedbar">
-      <div>
-        <div class="st">🔗 ${t('sharedList')}</div>
-        <div class="ss">${t('sharedBy').replace('{n}', all.length)}</div>
-      </div>
-      <div class="sb">
-        <button class="ghost" id="shared-all">${t('backToAll')}</button>
-        <button class="solid" id="shared-save">${t('saveThese')}</button>
-      </div>
-    </div>` : '';
-
-  box.innerHTML = banner + all.slice(0, shown).map(p => {
+  box.innerHTML = all.slice(0, shown).map(p => {
     const unk = unknownOf(p);
     const g = stepsOf(p);
-    const menu = menuOf(p, { short: true });   // 카드 한 줄용
-    const menuFull = menuOf(p);                // 펼쳤을 때
+    const menu = (p.subcategory || '').split(/[\\n,]/).slice(0,2)
+      .map(x => x.replace(/[￦₩][\\d,\\-–~\\s]*/g,'').trim()).filter(Boolean).join(' · ');
     const naver = 'https://map.naver.com/p/search/' + encodeURIComponent(p.name_ko || p.name_en);
     // 사진이 없거나 불러오지 못하면 카테고리 이모지로 대체한다
     const face = CAT_FACE[p.category] || '📍';
@@ -621,24 +417,19 @@ function render(){
     const hasSpice = !!p.spice_level;
     const mild = /mild/i.test(p.spice_level || '');
 
-    /* 확인된 것만 칸으로 만든다. 4칸을 채우려고 없는 정보를 넣지 않는다. */
     const decisionTags = [
-      solo ? `<span class="dtag ok"><span class="ico">👤</span>${t('b_solo')}</span>` : '',
-      card ? `<span class="dtag ok"><span class="ico">💳</span>${t('b_card')}</span>` : '',
-      menuOk ? `<span class="dtag tip"><span class="ico">🔤</span>${t('b_menu')}</span>` : '',
-      hasSpice ? `<span class="dtag ${mild?'hot':'neutral'}"><span class="ico">🌶️</span>${esc(p.spice_level.replace(/🌶️?/g,'').trim())}</span>` : ''
-    ].filter(Boolean).join('');
+      solo ? `<div class="dtag ok"><span class="ico">👤</span>Solo OK<span class="sub">easy alone</span></div>` : '',
+      card ? `<div class="dtag ok"><span class="ico">💳</span>Card OK<span class="sub">foreign cards</span></div>` : '',
+      menuOk ? `<div class="dtag tip"><span class="ico">▣</span>English Menu<span class="sub">English available</span></div>` : '',
+      hasSpice ? `<div class="dtag ${mild?'hot':'neutral'}"><span class="ico">🌶️</span>${esc(p.spice_level.replace(/🌶️?/g,'').trim())}<span class="sub">${mild?'less spicy':'spice level'}</span></div>` : ''
+    ].filter(Boolean).slice(0,4).join('');
 
-    /* 확인된 게 하나도 없을 때.
-       "빨리 정하기 좋다"는 식으로 포장하면 오해를 준다.
-       아무것도 확인되지 않았다는 사실을 그대로 말한다. */
     const fallback = !decisionTags
-      ? `<div class="decision-summary">${t('noneChecked')}</div>`
+      ? `<div class="decision-summary"><b>Decision info</b> · Good choice if you want to decide quickly.</div>`
       : '';
 
-    // 도보 4km/h = 분당 약 67m. 신호와 골목을 감안해 넉넉히 잡는다.
     const walk = p._d != null
-      ? t('walk').replace('{n}', String(Math.max(1, Math.round(p._d / 67))))
+      ? `${Math.max(1,Math.round(p._d/80))} min walk`
       : '';
 
     return `<div class="row ${openId===p.id?'on':''}" data-id="${esc(p.id)}">
@@ -647,35 +438,33 @@ function render(){
         <div class="dhead">
           <div class="topline">
             <div class="nameblock">
-              <div class="en" title="${esc(nameOf(p))}">${esc(shortName(nameOf(p)))}</div>
+              <div class="en">${esc(nameOf(p))}</div>
               ${p.name_ko?`<div class="ko">${esc(p.name_ko)}</div>`:''}
               ${p.area?`<div class="area">📍 ${esc(areaLabel(p.area))}</div>`:''}
             </div>
             <div class="distance">
               ${walk?`<div class="walk">🚶 ${esc(walk)}</div>`:''}
               ${p._d!=null?`<div class="meters">${esc(fmtDist(p._d))}</div>`:''}
-              <button class="pickbtn ${PICKED.has(p.id)?'on':''}" data-pick="${esc(p.id)}"
-                title="${PICKED.has(p.id)?esc(t('picked')):esc(t('pick'))}"
-                >${PICKED.has(p.id)?'✓':'+'}</button>
             </div>
           </div>
 
           ${decisionTags ? `<div class="decision-tags">${decisionTags}</div>` : fallback}
 
           ${g || menu ? `<div class="secondary">
-            ${g?`<span class="how">🍴 ${t('b_how')}</span>`:''}
+            ${g?`<span>🍴 How to eat</span>`:''}
             ${g && menu?`<span class="sep">|</span>`:''}
-            ${menu?`<span class="menu" title="${esc(menu)}">▧ ${esc(menu)}</span>`:''}
+            ${menu?`<span>▧ ${esc(menu)}</span>`:''}
           </div>` : ''}
 
-          ${unk.length?`<div class="unknown-line">${t('notConfirmed')}: ${unk.join(' · ')}</div>`:''}
+          ${unk.length?`<div class="unknown-line">Not confirmed: ${unk.join(' · ')}</div>`:''}
         </div>
       </div>
 
       <div class="open">
         ${g?`<div class="steps">${g.steps.map((s,i)=>`<span class="sp"><b>${i+1}</b>${esc(s)}</span>`).join('')}</div>`:''}
-        ${g&&g.tip?`<div class="warn">${esc(g.tip)}</div>`:''}
-        ${menuFull?`<div class="mn">${esc(menuFull)}</div>`:''}
+        ${g&&g.tip?`<div class="warn">${esc(g.tip)}${
+          g.say?`<span class="say">→ ${esc(g.say)}</span>`:''}</div>`:''}
+        ${menu?`<div class="mn">${esc(menu)}</div>`:''}
         ${p.address?`<div class="addr">📍 ${esc(p.address)}</div>`:''}
         <a class="go" href="${naver}" target="_blank" rel="noopener">${t('naver')}</a>
       </div>
@@ -702,12 +491,9 @@ function renderMap(list){
     const tags = tagsOf(p).slice(0,3)
       .map(([c,l])=>`<span class="t ${c}">${esc(l)}</span>`).join('');
     const naver = 'https://map.naver.com/p/search/' + encodeURIComponent(p.name_ko || p.name_en);
-    const w = p._d != null
-      ? t('walk').replace('{n}', String(Math.max(1, Math.round(p._d / 67)))) : '';
     L.marker([p.lat,p.lng],{icon}).bindPopup(`<div class="pp">
       <div class="n">${esc(nameOf(p))}</div>
       ${p.name_ko?`<div class="k">${esc(p.name_ko)}</div>`:''}
-      ${w?`<div class="k">🚶 ${esc(w)}</div>`:''}
       ${tags?`<div class="b">${tags}</div>`:''}
       <a href="${naver}" target="_blank" rel="noopener">${t('naver')} →</a></div>`).addTo(layer);
   });
@@ -792,7 +578,6 @@ async function load(){
   PLACES = pl.data || [];
   (gd.data || []).forEach(g => GUIDES[g.key] = g);
   applyLang();
-  renderPickBar();
   askLocation();
 }
 
@@ -805,28 +590,6 @@ qInput.addEventListener('input', () => {
 });
 
 document.addEventListener('click', e => {
-  // 담기 / 빼기
-  const pk = e.target.closest('[data-pick]');
-  if (pk){ e.stopPropagation(); togglePick(pk.dataset.pick); return; }
-
-  if (e.target.closest('#pick-share')){ shareList([...PICKED]); return; }
-  if (e.target.closest('#pick-clear')){
-    PICKED.clear(); savePicked(); renderPickBar(); render(); return;
-  }
-
-  // 공유 링크로 들어온 상태에서
-  if (e.target.closest('#shared-all')){
-    sharedMode = false;
-    history.replaceState(null, '', location.pathname);
-    renderPickBar(); render(); return;
-  }
-  if (e.target.closest('#shared-save')){
-    sharedIds.forEach(id => PICKED.add(id));
-    savePicked(); sharedMode = false;
-    history.replaceState(null, '', location.pathname);
-    renderPickBar(); render(); toast(t('picked')); return;
-  }
-
   const lm = e.target.closest('[data-l]');
   if (lm){
     LANG = lm.dataset.l;
