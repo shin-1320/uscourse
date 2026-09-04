@@ -107,19 +107,24 @@
   .ph img{width:100%;height:100%;object-fit:cover;display:block}
   .dhead{min-width:0}
   .topline{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-  .nameblock{min-width:0}
-  .en{font-size:18px;font-weight:800;color:var(--ink);line-height:1.22;letter-spacing:-.4px}
+  .nameblock{min-width:0;flex:1}
+  /* 긴 이름은 두 줄까지만. 그 이상은 … 로 끝내 거리 표시와 겹치지 않게 한다 */
+  .en{font-size:18px;font-weight:800;color:var(--ink);line-height:1.22;letter-spacing:-.4px;
+    display:-webkit-box;-webkit-box-orient:vertical;
+    -webkit-line-clamp:2;line-clamp:2;
+    overflow:hidden;word-break:break-word}
   .ko{font-size:12px;color:var(--faint);margin-top:3px;font-family:'Noto Sans KR',sans-serif}
   .area{font-size:11px;font-weight:600;color:var(--faint);margin-top:2px}
   .distance{flex-shrink:0;text-align:right}
   .walk{font-size:15px;font-weight:800;color:var(--brand);white-space:nowrap}
   .meters{font-size:11.5px;font-weight:600;color:var(--faint);margin-top:3px;white-space:nowrap}
-  .decision-tags{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:12px}
-  .dtag{min-width:0;border-radius:11px;padding:8px 7px;line-height:1.15;text-align:center;
-    font-size:11.5px;font-weight:700;overflow:hidden}
-  .dtag .ico{display:block;font-size:16px;line-height:1;margin-bottom:4px}
-  .dtag .sub{display:block;font-size:9.5px;font-weight:500;margin-top:3px;opacity:.78;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* 뱃지 — 아이콘과 한 단어면 충분하다.
+     부제("spice level")까지 넣으면 세 층이 되어 카드가 두꺼워지고,
+     좁은 칸에서는 그 부제가 잘려 "spice le…" 처럼 보인다. */
+  .decision-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .dtag{display:inline-flex;align-items:center;gap:5px;border-radius:9px;
+    padding:5px 9px;font-size:12px;font-weight:700;line-height:1.2;white-space:nowrap}
+  .dtag .ico{font-size:13px;line-height:1}
   .dtag.ok{background:var(--ok-bg);color:var(--ok-fg)}
   .dtag.hot{background:var(--hot-bg);color:var(--hot-fg)}
   .dtag.tip{background:var(--tip-bg);color:var(--brand)}
@@ -127,10 +132,14 @@
   .decision-summary{margin-top:11px;padding:9px 11px;background:#f7f8fc;border-radius:10px;
     font-size:12.5px;color:var(--text);line-height:1.45}
   .decision-summary b{color:var(--ink)}
-  .secondary{display:flex;align-items:center;gap:14px;margin-top:10px;padding:0 2px;
-    font-size:12px;font-weight:700;color:var(--brand)}
-  .secondary span{white-space:nowrap}
-  .secondary .sep{color:var(--line);font-weight:400}
+  /* 부가정보 — 카드를 넘지 않게.
+     "How to eat"은 짧아 고정하고, 긴 메뉴만 줄여서 … 로 끝낸다. */
+  .secondary{display:flex;align-items:center;gap:10px;margin-top:10px;padding:0 2px;
+    font-size:12px;font-weight:700;color:var(--brand);min-width:0}
+  .secondary .how{white-space:nowrap;flex-shrink:0}
+  .secondary .menu{flex:1;min-width:0;white-space:nowrap;
+    overflow:hidden;text-overflow:ellipsis}
+  .secondary .sep{color:var(--line);font-weight:400;flex-shrink:0}
   .unknown-line{margin-top:9px;font-size:11px;color:var(--faint);line-height:1.4}
   .open{display:none;margin-top:12px;padding:13px 14px;background:#f7f8fc;border-radius:12px}
   .row.on .open{display:block}
@@ -351,6 +360,47 @@ function unknownOf(p){
 }
 
 /* 먹는 법 — 세 단계를 한 줄씩. 언어별 번역이 있으면 그것을 쓴다. */
+/* 화면에 쓸 이름을 짧게 만든다.
+   "본점 / 전문점 / 신도시점" 같은 접미사는 로마자로 옮기면
+   Bonjeom · Jeonmunjeom 이 되어 외국인에게 아무 뜻이 없다.
+   같은 상호가 여러 곳이면 지역 표시로 이미 구분되므로 화면에서는 뗀다.
+   단, 너무 짧게 남으면(개미집신도시점 → 개미) 원본을 그대로 쓴다. */
+const NAME_TAILS = [
+  /bonjeom$/i, /jeonmunjeom$/i, /jikyeongjeom$/i, /sindosijeom$/i,
+  /\d+hojeom$/i, /bonkwan$/i,
+];
+const NAME_TAILS_KO = [
+  /본점$/, /본관$/, /전문점$/, /직영점$/, /신도시점$/, /\d+호점$/,
+];
+
+function shortName(raw){
+  if (!raw) return '';
+  let v = raw.trim();
+  for (const re of [...NAME_TAILS, ...NAME_TAILS_KO]){
+    const cut = v.replace(re, '').trim().replace(/[\s·-]+$/, '');
+    if (cut !== v && cut.length >= (/[가-힣]/.test(cut) ? 3 : 5)) { v = cut; break; }
+  }
+  return v || raw;
+}
+
+/* 대표메뉴 — 가격을 먼저 통째로 지운 뒤 쪼갠다.
+   쉼표부터 나누면 "￦12,000"이 "000" 파편으로 남는다.
+   카드에서는 괄호 안 설명까지 떼야 한 줄에 들어간다. */
+function menuOf(p, { short = false } = {}){
+  const items = (p.subcategory || '')
+    .replace(/[￦₩][^\S\n]*[\d][\d,\-–~]*/g, '')
+    .replace(/^(Korean|Chinese|Japanese|Western|Snack bar|Cafe)\s*·\s*/i, '')
+    .split(/[\n,·]/).map(x => x.replace(/\s{2,}/g, ' ').trim())
+    .filter(x => x && x.length > 1 && /[a-zA-Z가-힣]/.test(x));
+
+  if (short){
+    return items.slice(0, 2)
+      .map(x => x.replace(/\s*\([^)]*\)\s*/g, ' ').trim())
+      .filter(Boolean).join(' · ');
+  }
+  return items.slice(0, 2).join(' · ');
+}
+
 function stepsOf(p){
   const g = GUIDES[p.food_guide_key];
   if (!g) return null;
@@ -401,8 +451,8 @@ function render(){
   box.innerHTML = all.slice(0, shown).map(p => {
     const unk = unknownOf(p);
     const g = stepsOf(p);
-    const menu = (p.subcategory || '').split(/[\\n,]/).slice(0,2)
-      .map(x => x.replace(/[￦₩][\\d,\\-–~\\s]*/g,'').trim()).filter(Boolean).join(' · ');
+    const menu = menuOf(p, { short: true });   // 카드 한 줄용 (괄호 설명 제외)
+    const menuFull = menuOf(p);                // 펼쳤을 때 (설명 포함)
     const naver = 'https://map.naver.com/p/search/' + encodeURIComponent(p.name_ko || p.name_en);
     // 사진이 없거나 불러오지 못하면 카테고리 이모지로 대체한다
     const face = CAT_FACE[p.category] || '📍';
@@ -418,18 +468,18 @@ function render(){
     const mild = /mild/i.test(p.spice_level || '');
 
     const decisionTags = [
-      solo ? `<div class="dtag ok"><span class="ico">👤</span>Solo OK<span class="sub">easy alone</span></div>` : '',
-      card ? `<div class="dtag ok"><span class="ico">💳</span>Card OK<span class="sub">foreign cards</span></div>` : '',
-      menuOk ? `<div class="dtag tip"><span class="ico">▣</span>English Menu<span class="sub">English available</span></div>` : '',
-      hasSpice ? `<div class="dtag ${mild?'hot':'neutral'}"><span class="ico">🌶️</span>${esc(p.spice_level.replace(/🌶️?/g,'').trim())}<span class="sub">${mild?'less spicy':'spice level'}</span></div>` : ''
+      solo ? `<span class="dtag ok"><span class="ico">👤</span>${t('b_solo')}</span>` : '',
+      card ? `<span class="dtag ok"><span class="ico">💳</span>${t('b_card')}</span>` : '',
+      menuOk ? `<span class="dtag tip"><span class="ico">🔤</span>${t('b_menu')}</span>` : '',
+      hasSpice ? `<span class="dtag ${mild?'hot':'neutral'}"><span class="ico">🌶️</span>${esc(p.spice_level.replace(/🌶️?/g,'').trim())}</span>` : ''
     ].filter(Boolean).slice(0,4).join('');
 
     const fallback = !decisionTags
-      ? `<div class="decision-summary"><b>Decision info</b> · Good choice if you want to decide quickly.</div>`
+      ? `<div class="decision-summary">${t('noneChecked')}</div>`
       : '';
 
     const walk = p._d != null
-      ? `${Math.max(1,Math.round(p._d/80))} min walk`
+      ? t('walk').replace('{n}', String(Math.max(1, Math.round(p._d / 67))))
       : '';
 
     return `<div class="row ${openId===p.id?'on':''}" data-id="${esc(p.id)}">
@@ -438,7 +488,7 @@ function render(){
         <div class="dhead">
           <div class="topline">
             <div class="nameblock">
-              <div class="en">${esc(nameOf(p))}</div>
+              <div class="en" title="${esc(nameOf(p))}">${esc(shortName(nameOf(p)))}</div>
               ${p.name_ko?`<div class="ko">${esc(p.name_ko)}</div>`:''}
               ${p.area?`<div class="area">📍 ${esc(areaLabel(p.area))}</div>`:''}
             </div>
@@ -451,12 +501,12 @@ function render(){
           ${decisionTags ? `<div class="decision-tags">${decisionTags}</div>` : fallback}
 
           ${g || menu ? `<div class="secondary">
-            ${g?`<span>🍴 How to eat</span>`:''}
+            ${g?`<span class="how">🍴 ${t('b_how')}</span>`:''}
             ${g && menu?`<span class="sep">|</span>`:''}
-            ${menu?`<span>▧ ${esc(menu)}</span>`:''}
+            ${menu?`<span class="menu" title="${esc(menu)}">▧ ${esc(menu)}</span>`:''}
           </div>` : ''}
 
-          ${unk.length?`<div class="unknown-line">Not confirmed: ${unk.join(' · ')}</div>`:''}
+          ${unk.length?`<div class="unknown-line">${t('notConfirmed')}: ${unk.join(' · ')}</div>`:''}
         </div>
       </div>
 
@@ -464,7 +514,7 @@ function render(){
         ${g?`<div class="steps">${g.steps.map((s,i)=>`<span class="sp"><b>${i+1}</b>${esc(s)}</span>`).join('')}</div>`:''}
         ${g&&g.tip?`<div class="warn">${esc(g.tip)}${
           g.say?`<span class="say">→ ${esc(g.say)}</span>`:''}</div>`:''}
-        ${menu?`<div class="mn">${esc(menu)}</div>`:''}
+        ${menuFull?`<div class="mn">${esc(menuFull)}</div>`:''}
         ${p.address?`<div class="addr">📍 ${esc(p.address)}</div>`:''}
         <a class="go" href="${naver}" target="_blank" rel="noopener">${t('naver')}</a>
       </div>
