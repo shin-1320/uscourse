@@ -95,15 +95,15 @@
   .list{padding:8px 0 18px}
   .row{border:1px solid var(--line);border-radius:18px;padding:12px;margin:0 0 14px;
     cursor:pointer;background:#fff;box-shadow:0 2px 10px rgba(11,13,20,.04)}
-  .decision-main{display:grid;grid-template-columns:140px minmax(0,1fr);gap:14px}
+  .decision-main{display:grid;grid-template-columns:184px minmax(0,1fr);gap:15px}
 
   /* 음식 사진 — 원본 비율 그대로, 전체가 보이게.
      배경이미지 + cover 로는 접시가 잘려 무슨 음식인지 알 수 없었다.
      img + object-fit:contain 이면 비율이 유지되고 잘리지 않는다.
-     남는 자리는 연한 배경으로 둔다. */
-  .ph{width:140px;height:105px;border-radius:12px;flex-shrink:0;
+     contain 은 여백이 생기므로 그만큼 크게 잡아야 사진이 작아 보이지 않는다. */
+  .ph{width:184px;height:138px;border-radius:12px;flex-shrink:0;
     background:#f4f5fa;display:flex;align-items:center;justify-content:center;
-    overflow:hidden;font-size:30px}
+    overflow:hidden;font-size:34px}
   .ph img{width:100%;height:100%;object-fit:contain;display:block}
   .dhead{min-width:0}
   .topline{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
@@ -155,8 +155,8 @@
     background:var(--brand);color:#fff;border:none;border-radius:11px;padding:13px;
     font:inherit;font-size:14.5px;font-weight:700;text-decoration:none}
   @media (max-width:430px){
-    .decision-main{grid-template-columns:100px minmax(0,1fr);gap:11px}
-    .ph{width:100px;height:75px}.en{font-size:16px}
+    .decision-main{grid-template-columns:132px minmax(0,1fr);gap:12px}
+    .ph{width:132px;height:99px}.en{font-size:16px}
     .decision-tags{grid-template-columns:repeat(2,minmax(0,1fr))}
   }
 
@@ -277,7 +277,7 @@ const LANG_META = {
   zhs: { label:'简', name:'中文（简体）' },
 };
 const T = {
-  en: { title:'Near me', list:'List', map:'Map', search:'Search a place, street or area…',
+  en: { list:'List', map:'Map', search:'Search a place, street or area…',
         here:'from <b>where you are</b>', centre:'from Busan centre · <b>use my location</b>',
         locating:'locating…', away:'away', notConfirmed:'Not confirmed', more:'Show more',
         naver:'Open in Naver Map', foot:'Only checked details are shown. Blank means not confirmed yet.',
@@ -295,7 +295,7 @@ const T = {
         clearList:'Clear', copied:'Link copied',
         sharedList:'A shared list', sharedBy:'{n} places someone picked for you',
         saveThese:'Save these', backToAll:'Back to all places' },
-  ja: { title:'近くのお店', list:'リスト', map:'地図', search:'店名・通り・エリアで検索…',
+  ja: { list:'リスト', map:'地図', search:'店名・通り・エリアで検索…',
         here:'<b>現在地</b>から', centre:'釜山中心から · <b>現在地を使う</b>',
         locating:'現在地を取得中…', away:'', notConfirmed:'未確認', more:'もっと見る',
         naver:'NAVERマップで開く', foot:'確認できた情報だけを表示しています。空欄は未確認です。',
@@ -313,7 +313,7 @@ const T = {
         clearList:'クリア', copied:'リンクをコピーしました',
         sharedList:'共有されたリスト', sharedBy:'{n}件のおすすめが届いています',
         saveThese:'このリストを保存', backToAll:'すべての場所に戻る' },
-  zh: { title:'附近', list:'清單', map:'地圖', search:'搜尋店名、街道或地區…',
+  zh: { list:'清單', map:'地圖', search:'搜尋店名、街道或地區…',
         here:'從<b>你的位置</b>', centre:'從釜山市中心 · <b>使用我的位置</b>',
         locating:'定位中…', away:'', notConfirmed:'未確認', more:'顯示更多',
         naver:'用 NAVER 地圖開啟', foot:'只顯示已確認的資訊，空白表示尚未確認。',
@@ -331,7 +331,7 @@ const T = {
         clearList:'清空', copied:'已複製連結',
         sharedList:'分享的清單', sharedBy:'有人為你挑了 {n} 個地點',
         saveThese:'儲存這些', backToAll:'回到全部地點' },
-  zhs: { title:'附近', list:'列表', map:'地图', search:'搜索店名、街道或地区…',
+  zhs: { list:'列表', map:'地图', search:'搜索店名、街道或地区…',
         here:'从<b>你的位置</b>', centre:'从釜山市中心 · <b>使用我的位置</b>',
         locating:'定位中…', away:'', notConfirmed:'未确认', more:'显示更多',
         naver:'用 NAVER 地图打开', foot:'只显示已确认的信息，空白表示尚未确认。',
@@ -735,7 +735,8 @@ function renderChips(){
 
 function applyLang(){
   document.documentElement.lang = LANG === 'zh' ? 'zh-Hant' : LANG === 'zhs' ? 'zh-Hans' : LANG;
-  document.getElementById('t-title').textContent = t('title');
+  // 상단 "Near me"는 서비스 이름이므로 번역하지 않는다.
+  // 브랜드는 어느 언어에서도 같은 이름으로 불려야 한다.
   document.getElementById('t-list').textContent = t('list');
   document.getElementById('t-map').textContent  = t('map');
   document.getElementById('t-foot').textContent = t('foot');
