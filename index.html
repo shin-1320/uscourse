@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>Near me — UsCourse</title>
+<title>Near me · Busan</title>
 
 <!--
   ═══════════════════════════════════════════════════════
@@ -139,15 +139,20 @@
   .topline{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
   .nameblock{min-width:0;flex:1}
   /* 긴 이름은 두 줄까지만. 그 이상은 … 로 끝내 거리 표시와 겹치지 않게 한다 */
-  .en{font-size:18px;font-weight:800;color:var(--ink);line-height:1.22;letter-spacing:-.4px;
+  /* 이름 — 한 줄에 담는 것을 우선한다.
+     로마자 상호는 길어지기 쉬우므로 자간을 좁히고,
+     그래도 넘치면 두 번째 줄로 가되 단어 중간에서 끊기지 않게 한다. */
+  .en{font-size:17px;font-weight:800;color:var(--ink);line-height:1.25;letter-spacing:-.5px;
     display:-webkit-box;-webkit-box-orient:vertical;
     -webkit-line-clamp:2;line-clamp:2;
-    overflow:hidden;word-break:break-word}
+    overflow:hidden;overflow-wrap:break-word;word-break:normal}
   .ko{font-size:12px;color:var(--faint);margin-top:3px;font-family:'Noto Sans KR',sans-serif}
   .area{font-size:11px;font-weight:600;color:var(--faint);margin-top:2px}
-  .distance{flex-shrink:0;text-align:right}
-  .walk{font-size:15px;font-weight:800;color:var(--brand);white-space:nowrap}
-  .meters{font-size:11.5px;font-weight:600;color:var(--faint);margin-top:3px;white-space:nowrap}
+  /* 거리 — 한 줄로 붙여 두되, 이름이 먼저 읽혀야 하므로 작게 둔다 */
+  .distance{flex-shrink:0;text-align:right;min-width:52px}
+  .walk{font-size:12.5px;font-weight:800;color:var(--brand);white-space:nowrap;line-height:1.25;
+    letter-spacing:-.2px}
+  .meters{font-size:10.5px;font-weight:600;color:var(--faint);margin-top:2px;white-space:nowrap}
   /* 뱃지 — 아이콘과 한 단어면 충분하다.
      부제("spice level")까지 넣으면 세 층이 되어 카드가 두꺼워지고,
      좁은 칸에서는 그 부제가 잘려 "spice le…" 처럼 보인다. */
@@ -289,7 +294,7 @@
   <div class="pickbar" id="pickbar"></div>
   <div class="foot">
     <span id="t-foot">Only checked details are shown. Blank means not confirmed yet.</span><br>
-    <a href="site.html">UsCourse</a> · Busan
+    Near me · Busan, Korea
   </div>
 </div>
 
@@ -658,6 +663,7 @@ function render(){
       ? `<div class="decision-summary">${t('noneChecked')}</div>`
       : '';
 
+    // 도보 4km/h = 분당 약 67m. 신호와 골목을 감안해 넉넉히 잡는다.
     const walk = p._d != null
       ? t('walk').replace('{n}', String(Math.max(1, Math.round(p._d / 67))))
       : '';
