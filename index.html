@@ -19,6 +19,36 @@
   ═══════════════════════════════════════════════════════
 -->
 
+<!-- ═══════════════════════════════════════════════════
+     Google Analytics
+     여기서 재는 것은 "왔다"가 아니라 "움직였다" 입니다.
+     특히 map_click(네이버 지도로 나감)이 실제로 가겠다는 신호이므로
+     가장 중요한 지표입니다.
+     ═══════════════════════════════════════════════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4ETPQHLXG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-X4ETPQHLXG');
+
+  /* 모든 이벤트에 기기·언어를 함께 보낸다.
+     모바일에서만 쓰이는지, 어느 언어권이 오는지 나눠 보기 위함이다. */
+  function track(name, params){
+    const w = window.innerWidth || 0;
+    const common = {
+      device_type: w < 640 ? 'mobile' : (w < 1024 ? 'tablet' : 'desktop'),
+      language: (window.LANG || document.documentElement.lang || 'en'),
+    };
+    const merged = Object.assign(common, params || {});
+    if (window.NM_DEBUG) console.log('[track]', name, merged);
+    try { gtag('event', name, merged); } catch(e){}
+  }
+
+  // 로컬에서 열면 콘솔에 찍어 확인할 수 있게 한다
+  window.NM_DEBUG = (location.protocol === 'file:' || location.hostname === 'localhost');
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -182,9 +212,48 @@
   .msg b{color:var(--ink);display:block;font-size:16px;margin-bottom:6px}
   .morebtn{background:#fff;border:1.5px solid var(--line);border-radius:11px;
     padding:13px 26px;font:inherit;font-size:14.5px;font-weight:700;color:var(--ink);cursor:pointer}
-  .foot{padding:18px 0 34px;text-align:center;font-size:11.5px;
+  .foot{padding:18px 0 96px;text-align:center;font-size:11.5px;
     color:var(--faint);line-height:1.7;border-top:1px solid var(--line)}
   .foot a{color:var(--brand);text-decoration:none}
+
+  /* ── 담기 · 공유 ─────────────────────────────────────
+     동행에게 "여기 가자"를 보내는 기능. 계정 없이 링크 하나로. */
+  .pickbtn{margin-top:8px;width:30px;height:30px;border-radius:50%;
+    border:1.5px solid var(--line);background:#fff;color:var(--muted);
+    font:inherit;font-size:16px;font-weight:700;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;margin-left:auto}
+  .pickbtn:hover{border-color:var(--brand);color:var(--brand)}
+  .pickbtn.on{background:var(--brand);border-color:var(--brand);color:#fff}
+
+  /* 하단 바 — 담은 게 있을 때만 올라온다 */
+  .pickbar{position:fixed;left:0;right:0;bottom:0;z-index:800;
+    display:none;align-items:center;gap:10px;
+    max-width:520px;margin:0 auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.97);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line)}
+  .pickbar.on{display:flex}
+  .pickbar .n{flex:1;font-size:14px;font-weight:700;color:var(--ink)}
+  .pickbar button{font:inherit;font-size:14px;font-weight:700;border-radius:10px;
+    padding:10px 16px;cursor:pointer;white-space:nowrap}
+  .pickbar .ghost{background:#fff;border:1.5px solid var(--line);color:var(--muted)}
+  .pickbar .solid{background:var(--brand);border:none;color:#fff}
+
+  /* 공유 링크로 들어왔을 때 */
+  .sharedbar{background:var(--tip-bg);border-radius:14px;padding:14px 16px;
+    margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .sharedbar .st{font-size:14px;font-weight:800;color:var(--brand)}
+  .sharedbar .ss{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .sharedbar .sb{margin-left:auto;display:flex;gap:7px}
+  .sharedbar button{font:inherit;font-size:13px;font-weight:700;border-radius:9px;
+    padding:8px 13px;cursor:pointer;white-space:nowrap}
+  .sharedbar .ghost{background:#fff;border:1px solid var(--line);color:var(--muted)}
+  .sharedbar .solid{background:var(--brand);border:none;color:#fff}
+
+  #toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%) translateY(8px);
+    background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;
+    padding:11px 18px;border-radius:99px;opacity:0;pointer-events:none;
+    transition:opacity .2s, transform .2s;z-index:900}
+  #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
@@ -217,6 +286,7 @@
 <div class="wrap">
   <div id="map"></div>
   <div class="list" id="list"><div class="msg">Loading…</div></div>
+  <div class="pickbar" id="pickbar"></div>
   <div class="foot">
     <span id="t-foot">Only checked details are shown. Blank means not confirmed yet.</span><br>
     <a href="site.html">UsCourse</a> · Busan
@@ -251,7 +321,13 @@ const T = {
         f_mild:'Not spicy', f_how:'How to eat', f_cafe:'Cafes',
         b_solo:'Eat alone', b_nosolo:'Better with company', b_card:'Card OK', b_cash:'Cash only',
         b_menu:'Foreign menu', b_komenu:'Korean menu only', b_how:'How to eat',
-        u_solo:'solo', u_card:'card', u_menu:'menu', u_spice:'spice', me:'You' },
+        u_solo:'solo', u_card:'card', u_menu:'menu', u_spice:'spice', me:'You',
+        walk:'{n} min walk',
+        noneChecked:'Nothing confirmed here yet — bring cash just in case.',
+        pick:'Add', picked:'Added', nPicked:'{n} picked', share:'Share',
+        clearList:'Clear', copied:'Link copied',
+        sharedList:'A shared list', sharedBy:'{n} places someone picked for you',
+        saveThese:'Save these', backToAll:'Back to all places' },
   ja: { list:'リスト', map:'地図', search:'店名・通り・エリアで検索…',
         here:'<b>現在地</b>から', centre:'釜山中心から · <b>現在地を使う</b>',
         locating:'現在地を取得中…', away:'', notConfirmed:'未確認', more:'もっと見る',
@@ -262,7 +338,13 @@ const T = {
         f_mild:'辛くない', f_how:'食べ方', f_cafe:'カフェ',
         b_solo:'一人でも安心', b_nosolo:'複数人向け', b_card:'カード可', b_cash:'現金のみ',
         b_menu:'外国語メニュー', b_komenu:'韓国語のみ', b_how:'食べ方',
-        u_solo:'一人', u_card:'カード', u_menu:'メニュー', u_spice:'辛さ', me:'現在地' },
+        u_solo:'一人', u_card:'カード', u_menu:'メニュー', u_spice:'辛さ', me:'現在地',
+        walk:'徒歩{n}分',
+        noneChecked:'まだ何も確認できていません。念のため現金をお持ちください。',
+        pick:'追加', picked:'追加済み', nPicked:'{n}件', share:'共有',
+        clearList:'クリア', copied:'リンクをコピーしました',
+        sharedList:'共有されたリスト', sharedBy:'{n}件のおすすめが届いています',
+        saveThese:'このリストを保存', backToAll:'すべての場所に戻る' },
   zh: { list:'清單', map:'地圖', search:'搜尋店名、街道或地區…',
         here:'從<b>你的位置</b>', centre:'從釜山市中心 · <b>使用我的位置</b>',
         locating:'定位中…', away:'', notConfirmed:'未確認', more:'顯示更多',
@@ -273,7 +355,13 @@ const T = {
         f_mild:'不辣', f_how:'怎麼吃', f_cafe:'咖啡廳',
         b_solo:'一人也自在', b_nosolo:'適合多人', b_card:'可刷卡', b_cash:'僅收現金',
         b_menu:'外語菜單', b_komenu:'只有韓文菜單', b_how:'怎麼吃',
-        u_solo:'一人', u_card:'刷卡', u_menu:'菜單', u_spice:'辣度', me:'你的位置' },
+        u_solo:'一人', u_card:'刷卡', u_menu:'菜單', u_spice:'辣度', me:'你的位置',
+        walk:'步行{n}分鐘',
+        noneChecked:'這裡還沒有任何確認資訊，建議帶些現金。',
+        pick:'加入', picked:'已加入', nPicked:'已選 {n} 個', share:'分享',
+        clearList:'清空', copied:'已複製連結',
+        sharedList:'分享的清單', sharedBy:'有人為你挑了 {n} 個地點',
+        saveThese:'儲存這些', backToAll:'回到全部地點' },
   zhs: { list:'列表', map:'地图', search:'搜索店名、街道或地区…',
         here:'从<b>你的位置</b>', centre:'从釜山市中心 · <b>使用我的位置</b>',
         locating:'定位中…', away:'', notConfirmed:'未确认', more:'显示更多',
@@ -284,7 +372,13 @@ const T = {
         f_mild:'不辣', f_how:'怎么吃', f_cafe:'咖啡馆',
         b_solo:'一人也自在', b_nosolo:'适合多人', b_card:'可刷卡', b_cash:'仅收现金',
         b_menu:'外语菜单', b_komenu:'只有韩文菜单', b_how:'怎么吃',
-        u_solo:'一人', u_card:'刷卡', u_menu:'菜单', u_spice:'辣度', me:'你的位置' },
+        u_solo:'一人', u_card:'刷卡', u_menu:'菜单', u_spice:'辣度', me:'你的位置',
+        walk:'步行{n}分钟',
+        noneChecked:'这里还没有任何确认信息，建议带些现金。',
+        pick:'加入', picked:'已加入', nPicked:'已选 {n} 个', share:'分享',
+        clearList:'清空', copied:'已复制链接',
+        sharedList:'分享的清单', sharedBy:'有人为你挑了 {n} 个地点',
+        saveThese:'保存这些', backToAll:'回到全部地点' },
 };
 
 function detectLang(){
@@ -317,6 +411,73 @@ const FILTERS = [
 
 let PLACES = [], GUIDES = {}, me = null, cur = 'all', shown = 25, openId = null;
 let query = '', mapView = false, lmap = null, layer = null, meMarker = null;
+
+/* ── 목록 담기 · 공유 ─────────────────────────────────
+   동행에게 "여기 가자"를 보내는 가장 단순한 형태.
+   계정 없이 링크 하나로 되게 한다 — 여행 중에 가입을 요구하면
+   대부분 그냥 나가기 때문이다.
+
+   담은 목록은 기기에 저장되고, 공유할 때만 주소에 실린다. */
+const PICK_KEY = 'nm_picked';
+
+function loadPicked(){
+  try {
+    const raw = JSON.parse(localStorage.getItem(PICK_KEY) || '[]');
+    return new Set(Array.isArray(raw) ? raw.map(String) : []);
+  } catch(e){ return new Set(); }
+}
+function savePicked(){
+  try { localStorage.setItem(PICK_KEY, JSON.stringify([...PICKED])); } catch(e){}
+}
+
+let PICKED = loadPicked();
+
+/* 누군가 보내준 목록으로 들어왔는지 — ?list=id1,id2 */
+const sharedIds = (() => {
+  const v = new URLSearchParams(location.search).get('list');
+  return v ? v.split(',').map(x => x.trim()).filter(Boolean) : null;
+})();
+let sharedMode = !!(sharedIds && sharedIds.length);
+
+function togglePick(id){
+  const adding = !PICKED.has(id);
+  track(adding ? 'pick_add' : 'pick_remove', { place_id: id, total: PICKED.size + (adding?1:-1) });
+  if (adding) PICKED.add(id); else PICKED.delete(id);
+  savePicked(); renderPickBar(); render();
+}
+
+function shareList(ids){
+  const url = location.origin + location.pathname + '?list=' + ids.slice(0, 20).join(',');
+  track('share_list', { count: ids.length, method: navigator.share ? 'native' : 'clipboard' });
+
+  if (navigator.share){
+    navigator.share({ title: 'Near me', url }).catch(() => {});
+  } else {
+    navigator.clipboard?.writeText(url).then(() => toast(t('copied')));
+  }
+}
+
+let toastTimer = null;
+function toast(msg){
+  let el = document.getElementById('toast');
+  if (!el){ el = document.createElement('div'); el.id = 'toast'; document.body.appendChild(el); }
+  el.textContent = msg;
+  el.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('on'), 1800);
+}
+
+/* 담은 개수와 공유 버튼 — 하나라도 담았을 때만 나타난다 */
+function renderPickBar(){
+  const bar = document.getElementById('pickbar');
+  if (!bar) return;
+  if (!PICKED.size || sharedMode){ bar.className = 'pickbar'; bar.innerHTML = ''; return; }
+  bar.className = 'pickbar on';
+  bar.innerHTML = `
+    <span class="n">${t('nPicked').replace('{n}', PICKED.size)}</span>
+    <button class="ghost" id="pick-clear">${t('clearList')}</button>
+    <button class="solid" id="pick-share">${t('share')}</button>`;
+}
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -431,6 +592,12 @@ function matchQuery(p){
 }
 
 function currentList(){
+  // 공유 링크로 들어왔으면 그 목록만. 순서도 보낸 사람 순서대로.
+  if (sharedMode){
+    const order = new Map(sharedIds.map((id, i) => [id, i]));
+    return PLACES.filter(p => order.has(p.id))
+                 .sort((a, b) => order.get(a.id) - order.get(b.id));
+  }
   const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
   return PLACES.filter(p => f.test(p) && matchQuery(p));
 }
@@ -448,7 +615,20 @@ function render(){
     return;
   }
 
-  box.innerHTML = all.slice(0, shown).map(p => {
+  // 보내준 목록으로 들어왔을 때 — 무엇을 보고 있는지 먼저 알린다
+  const banner = sharedMode ? `
+    <div class="sharedbar">
+      <div>
+        <div class="st">🔗 ${t('sharedList')}</div>
+        <div class="ss">${t('sharedBy').replace('{n}', all.length)}</div>
+      </div>
+      <div class="sb">
+        <button class="ghost" id="shared-all">${t('backToAll')}</button>
+        <button class="solid" id="shared-save">${t('saveThese')}</button>
+      </div>
+    </div>` : '';
+
+  box.innerHTML = banner + all.slice(0, shown).map(p => {
     const unk = unknownOf(p);
     const g = stepsOf(p);
     const menu = menuOf(p, { short: true });   // 카드 한 줄용 (괄호 설명 제외)
@@ -495,6 +675,9 @@ function render(){
             <div class="distance">
               ${walk?`<div class="walk">🚶 ${esc(walk)}</div>`:''}
               ${p._d!=null?`<div class="meters">${esc(fmtDist(p._d))}</div>`:''}
+              <button class="pickbtn ${PICKED.has(p.id)?'on':''}" data-pick="${esc(p.id)}"
+                title="${PICKED.has(p.id)?esc(t('picked')):esc(t('pick'))}"
+                >${PICKED.has(p.id)?'✓':'+'}</button>
             </div>
           </div>
 
@@ -606,8 +789,10 @@ function askLocation(){
   navigator.geolocation.getCurrentPosition(
     pos => { me = { lat:pos.coords.latitude, lng:pos.coords.longitude };
              whereState = { ok:true, msg:'here' };
+             track('location', { granted: true });
              sortByDistance(); updateWhere(); render(); },
     () => { me = BUSAN; whereState = { ok:false, msg:'centre' };
+            track('location', { granted: false });
             sortByDistance(); updateWhere(); render(); },
     { enableHighAccuracy:true, timeout:8000, maximumAge:60000 }
   );
@@ -627,7 +812,9 @@ async function load(){
   }
   PLACES = pl.data || [];
   (gd.data || []).forEach(g => GUIDES[g.key] = g);
+  track('nearme_view', { places: PLACES.length, shared: sharedMode });
   applyLang();
+  renderPickBar();
   askLocation();
 }
 
@@ -640,6 +827,31 @@ qInput.addEventListener('input', () => {
 });
 
 document.addEventListener('click', e => {
+  // 담기 / 빼기
+  const pk = e.target.closest('[data-pick]');
+  if (pk){ e.stopPropagation(); togglePick(pk.dataset.pick); return; }
+
+  if (e.target.closest('#pick-share')){ shareList([...PICKED]); return; }
+  if (e.target.closest('#pick-clear')){
+    track('pick_clear', { count: PICKED.size });
+    PICKED.clear(); savePicked(); renderPickBar(); render(); return;
+  }
+
+  // 공유 링크로 들어온 상태에서
+  if (e.target.closest('#shared-all')){
+    track('shared_exit', {});
+    sharedMode = false;
+    history.replaceState(null, '', location.pathname);
+    renderPickBar(); render(); return;
+  }
+  if (e.target.closest('#shared-save')){
+    track('shared_save', { count: sharedIds.length });
+    sharedIds.forEach(id => PICKED.add(id));
+    savePicked(); sharedMode = false;
+    history.replaceState(null, '', location.pathname);
+    renderPickBar(); render(); toast(t('picked')); return;
+  }
+
   const lm = e.target.closest('[data-l]');
   if (lm){
     LANG = lm.dataset.l;
@@ -661,17 +873,42 @@ document.addEventListener('click', e => {
   const vt = e.target.closest('.vt button');
   if (vt){
     mapView = vt.dataset.v === 'map';
+    track('view_toggle', { view: vt.dataset.v });
     document.querySelectorAll('.vt button').forEach(b => b.classList.toggle('on', b === vt));
     document.getElementById('map').style.display = mapView ? 'block' : 'none';
     render(); return;
   }
   const chip = e.target.closest('.chip');
   if (chip){ cur = chip.dataset.f; shown = 25; openId = null;
+             track('filter_click', { filter: cur });
              renderChips(); render(); window.scrollTo({top:0,behavior:'smooth'}); return; }
   if (e.target.closest('#more')){ shown += 25; render(); return; }
-  if (e.target.closest('.go')) return;
+  // 네이버 지도로 나가는 것 = "실제로 가겠다"에 가장 가까운 행동
+  const go = e.target.closest('.go');
+  if (go){
+    const row = go.closest('.row');
+    const p = row ? PLACES.find(x => x.id === row.dataset.id) : null;
+    track('map_click', {
+      place_id: row ? row.dataset.id : '',
+      place_name: p ? (p.name_en || p.name_ko) : '',
+      category: p ? p.category : '',
+    });
+    return;
+  }
   const row = e.target.closest('.row');
-  if (row){ openId = (openId === row.dataset.id) ? null : row.dataset.id; render(); }
+  if (row){
+    const opening = openId !== row.dataset.id;
+    openId = opening ? row.dataset.id : null;
+    if (opening){
+      const p = PLACES.find(x => x.id === row.dataset.id);
+      track('card_open', {
+        place_id: row.dataset.id,
+        place_name: p ? (p.name_en || p.name_ko) : '',
+        has_guide: !!(p && p.food_guide_key),
+      });
+    }
+    render();
+  }
 });
 
 load();
