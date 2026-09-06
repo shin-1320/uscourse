@@ -691,12 +691,24 @@ function splitToken(token, depth = 0){
 
 /* 지점 표시 — 로마자로 옮기면 Bonjeom · Gwangallijeom 이 되어
    외국인에게 아무 뜻이 없다. 지역은 이미 따로 표시되므로 화면에서는 뗀다. */
+/* 지점 표시.
+   "반점(banjeom)"은 중국집 이름의 일부이지 지점이 아니다.
+   그냥 -jeom 으로 끝나는 것을 다 자르면 "동화반점"이 "Donghwaban"이 된다.
+   그래서 지점을 뜻하는 형태만 골라 적는다. */
 const BRANCH_TAILS = [
+  // 단독으로 붙은 경우
   /^bonjeom$/i, /^bonkwan$/i, /^jeonmunjeom$/i, /^jikyeongjeom$/i,
   /^sindosijeom$/i, /^\d+hojeom$/i,
-  /jeom$/i,                        // Gwangallijeom, Haeundaejeom, Seomyeonjeom
-  /bonjeom$/i,                     // Busanbonjeom, Guseobonjeom
-  /^본점$/, /^본관$/, /^전문점$/, /^직영점$/, /점$/,
+  // 앞말과 붙은 경우 — 앞에 두 글자 이상이 있어야 한다
+  /..bonjeom$/i,        // Busanbonjeom, Guseobonjeom, Gwangallibonjeom
+  /..jeonmunjeom$/i,    // Gwaebeopjjukkumijeonmunjeom
+  /..sindosijeom$/i,    // Gaemijipsindosijeom
+  /..hojeom$/i,
+  // 지역명 + 점 — 반점·상점 같은 상호는 제외한다
+  /(?<!ban)(?<!sang)(?<!bap)jeom$/i,
+  // 한글
+  /^본점$/, /^본관$/, /^전문점$/, /^직영점$/,
+  /(?<!반)(?<!상)점$/,
 ];
 
 function shortName(raw){
