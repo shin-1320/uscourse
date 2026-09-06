@@ -113,17 +113,20 @@
   .sx{border:none;background:none;font-size:20px;color:var(--faint);
     cursor:pointer;line-height:1;padding:0 2px;font-family:inherit}
 
-  .chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:12px;
+  .chips{display:flex;gap:5px;overflow-x:auto;padding-bottom:10px;
     scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .chips::-webkit-scrollbar{display:none}
-  .chip{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;
-    font-size:14px;font-weight:600;padding:9px 15px;
-    border-radius:99px;border:1.5px solid var(--line);background:#fff;
-    color:var(--text);cursor:pointer;white-space:nowrap;font-family:inherit}
-  .chip .ci{font-size:15px;line-height:1}
-  .chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
-  /* 선택되면 아이콘이 흰 바탕 위로 올라와 눈에 띄게 한다 */
-  .chip.on .ci{filter:brightness(1.15) saturate(1.2)}
+  /* 조건 칩 — 도구는 작아야 한다.
+     칩이 크면 화면 위쪽을 다 먹어서 정작 봐야 할 카드가 밀린다.
+     테두리를 지우고 옅은 바탕으로 두면, 선택된 것만 또렷하게 보인다. */
+  .chip{flex-shrink:0;display:inline-flex;align-items:center;gap:4px;
+    font-size:12.5px;font-weight:600;padding:6px 11px;
+    border-radius:8px;border:none;background:#f1f2f8;
+    color:var(--muted);cursor:pointer;white-space:nowrap;font-family:inherit;
+    line-height:1.3}
+  .chip .ci{font-size:12.5px;line-height:1}
+  .chip:hover{background:#e8eaf4;color:var(--ink)}
+  .chip.on{background:var(--brand);color:#fff}
 
   /* ── Decision Cards ─────────────────────────────────── */
   .list{padding:8px 0 18px}
@@ -303,6 +306,23 @@
 
   /* 미확인 줄 — 있는 그대로 두되 눈에 덜 띄게 */
   .unknown-line{opacity:.72}
+
+  /* ── 지역 줄 ─────────────────────────────────────────
+     조건 칩과 성격이 다르다.
+     지역은 "어디를 볼까" — 한 번 정하면 유지된다.
+     조건은 "뭘 거를까" — 자주 바꾼다.
+     같은 모양의 칩을 두 줄로 두면 뭐가 뭔지 구분이 안 되고
+     화면만 복잡해진다. 그래서 지역은 테두리 없는 글자 줄로 낮춘다. */
+  .areas{display:flex;gap:0;overflow-x:auto;padding:0 0 8px;align-items:center;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .areas::-webkit-scrollbar{display:none}
+  .area{flex-shrink:0;font:inherit;font-size:12.5px;font-weight:600;
+    padding:4px 9px;border:none;background:none;color:var(--faint);
+    cursor:pointer;white-space:nowrap;border-radius:6px}
+  .area:hover{color:var(--brand)}
+  .area.on{color:var(--brand);background:var(--tip-bg);font-weight:700}
+  /* 구분점 — "내 주변"과 지역들을 눈으로 나눈다 */
+  .areas .sep{flex-shrink:0;width:1px;height:11px;background:var(--line);margin:0 8px}
 </style>
 </head>
 <body>
@@ -328,6 +348,9 @@
       <input id="q" autocomplete="off">
       <button class="sx" id="qx" style="display:none">×</button>
     </div>
+    <!-- 지역 — 위치가 잡혀도 다른 동네를 볼 수 있어야 한다.
+         위치를 못 잡았을 때는 이게 유일한 출발점이 된다. -->
+    <div class="areas" id="areas"></div>
     <div class="chips" id="chips"></div>
   </div>
 </header>
@@ -389,7 +412,7 @@ const T = {
         clearList:'Clear', copied:'Link copied',
         sharedList:'A shared list', sharedBy:'{n} places someone picked for you',
         saveThese:'Save these', backToAll:'Back to all places',
-        pickArea:'Where are you headed?',
+        nearMe:'Near me', pickArea:'Where are you headed?',
         pickAreaDesc:'We could not get your location, so distances are measured from the city centre. Pick an area instead.',
         onlyCheckedLabel:'Only checked places', nothingNear:'Nothing registered around you yet.',
         tryArea2:'Try one of these areas:' },
@@ -410,7 +433,7 @@ const T = {
         clearList:'クリア', copied:'リンクをコピーしました',
         sharedList:'共有されたリスト', sharedBy:'{n}件のおすすめが届いています',
         saveThese:'このリストを保存', backToAll:'すべての場所に戻る',
-        pickArea:'どのあたりへ？',
+        nearMe:'現在地', pickArea:'どのあたりへ？',
         pickAreaDesc:'現在地を取得できなかったため、市内中心からの距離です。エリアを選んでください。',
         onlyCheckedLabel:'確認済みのみ', nothingNear:'この周辺にはまだ登録がありません。',
         tryArea2:'このあたりはいかがですか：' },
@@ -431,7 +454,7 @@ const T = {
         clearList:'清空', copied:'已複製連結',
         sharedList:'分享的清單', sharedBy:'有人為你挑了 {n} 個地點',
         saveThese:'儲存這些', backToAll:'回到全部地點',
-        pickArea:'你要去哪一帶？',
+        nearMe:'我的位置', pickArea:'你要去哪一帶？',
         pickAreaDesc:'無法取得你的位置，目前以市中心計算距離。請直接選擇區域。',
         onlyCheckedLabel:'只看已確認', nothingNear:'你附近還沒有登錄的地點。',
         tryArea2:'試試這些區域：' },
@@ -452,7 +475,7 @@ const T = {
         clearList:'清空', copied:'已复制链接',
         sharedList:'分享的清单', sharedBy:'有人为你挑了 {n} 个地点',
         saveThese:'保存这些', backToAll:'回到全部地点',
-        pickArea:'你要去哪一带？',
+        nearMe:'我的位置', pickArea:'你要去哪一带？',
         pickAreaDesc:'无法获取你的位置，目前以市中心计算距离。请直接选择区域。',
         onlyCheckedLabel:'只看已确认', nothingNear:'你附近还没有登录的地点。',
         tryArea2:'试试这些区域：' },
@@ -948,6 +971,21 @@ function renderMap(list){
   setTimeout(()=>lmap.invalidateSize(), 60);
 }
 
+/* 지역 줄 — 항상 보인다.
+   위치를 못 잡았을 때뿐 아니라, 잡혔더라도 "내일은 남포동" 처럼
+   다른 동네를 미리 볼 수 있어야 하기 때문이다. */
+function renderAreas(){
+  const box = document.getElementById('areas');
+  if (!box) return;
+  const nearOn = !pickedArea;
+  box.innerHTML =
+    `<button class="area ${nearOn ? 'on' : ''}" data-area="near">📍 ${t('nearMe')}</button>` +
+    `<span class="sep"></span>` +
+    AREA_SPOTS.map(a =>
+      `<button class="area ${pickedArea && pickedArea.key === a.key ? 'on' : ''}"
+        data-area="${esc(a.key)}">${esc(a.label)}</button>`).join('');
+}
+
 function renderChips(){
   const box = document.getElementById('chips');
   if (!box) return;
@@ -987,6 +1025,7 @@ function applyLang(){
   setHtml('lmenu', LANGS.map(l =>
     `<div data-l="${l}" class="${l===LANG?'sel':''}"><span>${LANG_META[l].name}</span>${l===LANG?'<span>✓</span>':''}</div>`).join(''));
 
+  renderAreas();
   renderChips();
   render();
   updateWhere();
@@ -1100,15 +1139,22 @@ qInput.addEventListener('input', () => {
 
 document.addEventListener('click', e => {
   // 지역 고르기 — 위치를 못 잡았을 때 대신 쓴다
-  const ap = e.target.closest('.areapick [data-area]');
+  const ap = e.target.closest('[data-area]');
   if (ap){
+    // "내 주변"으로 돌아가기
+    if (ap.dataset.area === 'near'){
+      pickedArea = null;
+      askLocation();
+      renderAreas();
+      return;
+    }
     const spot = AREA_SPOTS.find(a => a.key === ap.dataset.area);
     if (spot){
       me = { lat: spot.lat, lng: spot.lng };
       pickedArea = spot;
       whereState = { ok:false, msg:'picked' };
       track('area_pick', { area: spot.label });
-      sortByDistance(); updateWhere(); render();
+      sortByDistance(); updateWhere(); renderAreas(); render();
       window.scrollTo({ top:0, behavior:'smooth' });
     }
     return;
