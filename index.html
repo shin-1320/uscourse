@@ -492,6 +492,9 @@ const FILTERS = [
 
 let PLACES = [], GUIDES = {}, me = null, cur = 'all', shown = 25, openId = null;
 let query = '', mapView = false, lmap = null, layer = null, meMarker = null;
+let loading = true;        // 첫 로딩 여부 — 스켈레톤을 그릴지 판단
+let onlyChecked = false;   // 확인된 곳만 보기
+let pickedArea = null;     // 위치 대신 직접 고른 지역
 
 /* ── 목록 담기 · 공유 ─────────────────────────────────
    동행에게 "여기 가자"를 보내는 가장 단순한 형태.
@@ -792,8 +795,9 @@ function areaPicker(){
 }
 
 function render(){
-  const all = currentList();
   const box = document.getElementById('list');
+  if (!box) return;
+  const all = currentList();
 
   if (loading){ box.innerHTML = skeleton(); return; }
   if (mapView){ renderMap(all); box.innerHTML = ''; return; }
@@ -945,32 +949,53 @@ function renderMap(list){
 }
 
 function renderChips(){
-  document.getElementById('chips').innerHTML = FILTERS.map(f => {
-    const n = PLACES.filter(f.test).length;
-    if (!n && f.key !== 'all') return '';
+  const box = document.getElementById('chips');
+  if (!box) return;
+
+  /* 데이터가 오기 전에는 개수를 셀 수 없다.
+     그때 개수 0을 이유로 숨기면 칩이 "All" 하나만 남아
+     화면이 텅 빈 것처럼 보인다. 로딩 중에는 전부 보여준다. */
+  box.innerHTML = FILTERS.map(f => {
+    if (!loading){
+      const n = PLACES.filter(f.test).length;
+      if (!n && f.key !== 'all') return '';
+    }
     return `<button class="chip ${cur===f.key?'on':''}" data-f="${f.key}">${
       f.ic ? `<span class="ci">${f.ic}</span>` : ''}${t(f.lb)}</button>`;
   }).join('');
 }
 
 function applyLang(){
-  document.documentElement.lang = LANG === 'zh' ? 'zh-Hant' : LANG === 'zhs' ? 'zh-Hans' : LANG;
+  /* 요소 하나가 없어도 화면 전체가 멈추면 안 된다.
+     예전에는 여기서 null 을 만나면 그 아래 renderChips·render 가
+     아예 실행되지 않아 칩도 목록도 나오지 않았다. */
+  const el = id => document.getElementById(id);
+  const setTxt  = (id, v) => { const e = el(id); if (e) e.textContent = v; };
+  const setHtml = (id, v) => { const e = el(id); if (e) e.innerHTML = v; };
+
+  document.documentElement.lang =
+    LANG === 'zh' ? 'zh-Hant' : LANG === 'zhs' ? 'zh-Hans' : LANG;
+
   // 상단 "Near me"는 서비스 이름이므로 번역하지 않는다.
-  // 브랜드는 어느 언어에서도 같은 이름으로 불려야 한다.
-  document.getElementById('t-list').textContent = t('list');
-  document.getElementById('t-map').textContent  = t('map');
-  document.getElementById('t-foot').textContent = t('foot');
-  document.getElementById('q').placeholder = t('search');
-  document.getElementById('lbtn').textContent = (LANG_META[LANG]||{}).label + ' ▾';
-  document.getElementById('lmenu').innerHTML = LANGS.map(l =>
-    `<div data-l="${l}" class="${l===LANG?'sel':''}"><span>${LANG_META[l].name}</span>${l===LANG?'<span>✓</span>':''}</div>`).join('');
-  renderChips(); render();
+  setTxt('t-list', t('list'));
+  setTxt('t-map',  t('map'));
+  setTxt('t-foot', t('foot'));
+  setTxt('lbtn', ((LANG_META[LANG] || {}).label || 'EN') + ' ▾');
+
+  const q = el('q'); if (q) q.placeholder = t('search');
+
+  setHtml('lmenu', LANGS.map(l =>
+    `<div data-l="${l}" class="${l===LANG?'sel':''}"><span>${LANG_META[l].name}</span>${l===LANG?'<span>✓</span>':''}</div>`).join(''));
+
+  renderChips();
+  render();
   updateWhere();
 }
 
 let whereState = { ok:false, msg:'locating' };
 function updateWhere(){
   const w = document.getElementById('where');
+  if (!w) return;
   // 지역을 직접 골랐으면 그 이름을 보여준다 — 어디 기준인지 분명해야 한다
   if (pickedArea){
     w.className = 'where';
