@@ -334,7 +334,7 @@
 
 <div class="wrap">
   <div id="map"></div>
-  <div class="list" id="list"><div class="msg">Loading…</div></div>
+  <div class="list" id="list"></div>
   <div class="pickbar" id="pickbar"></div>
   <div class="foot">
     <span id="t-foot">Only checked details are shown. Blank means not confirmed yet.</span><br>
@@ -988,43 +988,81 @@ function sortByDistance(){
 }
 
 function askLocation(){
-  whereState = { ok:false, msg:'locating' }; updateWhere();
-  if (!navigator.geolocation){
-    me = BUSAN; whereState = { ok:false, msg:'centre' };
-    sortByDistance(); updateWhere(); render(); return;
-  }
+  whereState = { ok:false, msg:'locating' };
+  updateWhere();
+
+  // 위치를 기다리는 동안에도 목록이 보이게 부산 중심을 기본으로 둔다.
+  // 응답이 늦어도 빈 화면을 보지 않도록.
+  if (!me) me = BUSAN;
+
+  const settle = (ok) => {
+    whereState = { ok, msg: ok ? 'here' : 'centre' };
+    track('location', { granted: ok });
+    sortByDistance();
+    updateWhere();
+    if (!loading) render();
+  };
+
+  if (!navigator.geolocation) return settle(false);
+
   navigator.geolocation.getCurrentPosition(
-    pos => { me = { lat:pos.coords.latitude, lng:pos.coords.longitude };
-             whereState = { ok:true, msg:'here' };
-             track('location', { granted: true });
-             sortByDistance(); updateWhere(); render(); },
-    () => { me = BUSAN; whereState = { ok:false, msg:'centre' };
-            track('location', { granted: false });
-            sortByDistance(); updateWhere(); render(); },
-    { enableHighAccuracy:true, timeout:8000, maximumAge:60000 }
+    pos => { me = { lat: pos.coords.latitude, lng: pos.coords.longitude }; settle(true); },
+    ()  => { me = BUSAN; settle(false); },
+    // 데스크톱은 GPS 가 없어 오래 걸린다. 5초면 충분히 기다린 것으로 본다.
+    { enableHighAccuracy: false, timeout: 5000, maximumAge: 120000 }
   );
 }
 
+/* ── 시작 ─────────────────────────────────────────────
+   순서가 중요하다.
+   예전에는 데이터를 다 받은 뒤에야 화면을 그려서,
+   조회가 느리거나 실패하면 "Loading…" 에 갇혔다.
+
+   지금은 화면(스켈레톤)을 먼저 띄우고, 위치와 데이터를 따로 돌린다.
+   하나가 실패해도 나머지는 계속 간다. */
 async function load(){
-  const [pl, gd] = await Promise.all([
-    sb.from('places')
-      .select('id, name_en, name_ko, category, subcategory, image_url, address, area, i18n, lat, lng, solo_ok, foreign_card, english_menu, spice_level, food_guide_key')
-      .not('lat','is',null).not('lng','is',null),
-    sb.from('food_guides').select('key, title_en, steps, pro_tip, i18n'),
-  ]);
-  if (pl.error){
-    loading = false;
-    document.getElementById('list').innerHTML =
-      `<div class="msg"><b>Couldn't load.</b>${esc(pl.error.message)}</div>`;
-    return;
-  }
-  PLACES = pl.data || [];
-  (gd.data || []).forEach(g => GUIDES[g.key] = g);
-  loading = false;
-  track('nearme_view', { places: PLACES.length, shared: sharedMode });
-  applyLang();
+  applyLang();          // 스켈레톤과 칩을 먼저 그린다
   renderPickBar();
-  askLocation();
+  askLocation();        // 위치는 데이터와 무관하게 따로 요청
+
+  // 먹는 법 가이드는 없어도 목록은 보여야 하므로 실패를 삼킨다
+  sb.from('food_guides').select('key, title_en, steps, pro_tip, i18n')
+    .then(({ data, error }) => {
+      if (error){ console.warn('가이드를 불러오지 못했습니다:', error.message); return; }
+      (data || []).forEach(g => GUIDES[g.key] = g);
+      if (!loading) render();
+    })
+    .catch(e => console.warn('가이드 오류:', e));
+
+  // 장소 — 이것만은 있어야 화면이 성립한다
+  try {
+    const { data, error } = await sb.from('places')
+      .select('id, name_en, name_ko, category, subcategory, image_url, address, area, i18n, lat, lng, solo_ok, foreign_card, english_menu, spice_level, food_guide_key')
+      .not('lat','is',null).not('lng','is',null);
+
+    if (error) throw error;
+
+    PLACES = data || [];
+    loading = false;
+    track('nearme_view', { places: PLACES.length, shared: sharedMode });
+    sortByDistance();
+    renderChips();
+    render();
+  } catch(e){
+    loading = false;
+    console.error('장소를 불러오지 못했습니다:', e);
+    setHTML('list', `<div class="msg">
+      <b>Couldn't load places.</b>
+      ${esc(e.message || String(e))}<br><br>
+      <button class="morebtn" onclick="location.reload()">Try again</button>
+    </div>`);
+  }
+}
+
+/* 요소가 없어도 오류가 나지 않게 한다 */
+function setHTML(id, html){
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
 }
 
 /* ── 이벤트 ───────────────────────────────────────────── */
