@@ -327,6 +327,20 @@
   .area.on{color:var(--brand);background:var(--tip-bg);font-weight:700}
   /* 구분점 — "내 주변"과 지역들을 눈으로 나눈다 */
   .areas .sep{flex-shrink:0;width:1px;height:11px;background:var(--line);margin:0 8px}
+
+  /* ── 주소 복사 · 정보 신고 ───────────────────────────
+     복사는 "택시 기사에게 보여준다"는 실제 행동이라
+     길찾기만큼 강한 결정 신호다.
+     신고는 정보가 틀렸을 때 스스로 고치려는 움직임을 본다. */
+  .addr{display:flex;align-items:flex-start;gap:8px;justify-content:space-between}
+  .copybtn{flex-shrink:0;font:inherit;font-size:11.5px;font-weight:700;
+    color:var(--brand);background:var(--tip-bg);border:none;border-radius:7px;
+    padding:5px 9px;cursor:pointer;white-space:nowrap}
+  .copybtn:hover{filter:brightness(.96)}
+  .reportbtn{display:block;width:100%;margin-top:8px;font:inherit;font-size:11.5px;
+    font-weight:600;color:var(--faint);background:none;border:none;
+    padding:6px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .reportbtn:hover{color:var(--no-fg)}
 </style>
 </head>
 <body>
@@ -417,6 +431,7 @@ const T = {
         b_menu:'Foreign menu', b_komenu:'Korean menu only', b_how:'How to eat',
         u_solo:'solo', u_card:'card', u_menu:'menu', u_spice:'spice', me:'You',
         tagline:'Explore Korea without the guesswork.',
+        copyAddr:'Copy', report:'Is this wrong? Tell us', reported:'Thanks — we will check',
         walk:'{n} min walk',
         noneChecked:'Nothing confirmed here yet — bring cash just in case.',
         pick:'Add', picked:'Added', nPicked:'{n} picked', share:'Share',
@@ -439,6 +454,7 @@ const T = {
         b_menu:'外国語メニュー', b_komenu:'韓国語のみ', b_how:'食べ方',
         u_solo:'一人', u_card:'カード', u_menu:'メニュー', u_spice:'辛さ', me:'現在地',
         tagline:'韓国を、迷わず楽しむ。',
+        copyAddr:'コピー', report:'情報が違いますか？', reported:'ありがとうございます。確認します',
         walk:'徒歩{n}分',
         noneChecked:'まだ何も確認できていません。念のため現金をお持ちください。',
         pick:'追加', picked:'追加済み', nPicked:'{n}件', share:'共有',
@@ -461,6 +477,7 @@ const T = {
         b_menu:'外語菜單', b_komenu:'只有韓文菜單', b_how:'怎麼吃',
         u_solo:'一人', u_card:'刷卡', u_menu:'菜單', u_spice:'辣度', me:'你的位置',
         tagline:'玩韓國，不用再用猜的。',
+        copyAddr:'複製', report:'資訊有誤嗎？告訴我們', reported:'謝謝，我們會確認',
         walk:'步行{n}分鐘',
         noneChecked:'這裡還沒有任何確認資訊，建議帶些現金。',
         pick:'加入', picked:'已加入', nPicked:'已選 {n} 個', share:'分享',
@@ -483,6 +500,7 @@ const T = {
         b_menu:'外语菜单', b_komenu:'只有韩文菜单', b_how:'怎么吃',
         u_solo:'一人', u_card:'刷卡', u_menu:'菜单', u_spice:'辣度', me:'你的位置',
         tagline:'玩韩国，不用再靠猜。',
+        copyAddr:'复制', report:'信息有误吗？告诉我们', reported:'谢谢，我们会确认',
         walk:'步行{n}分钟',
         noneChecked:'这里还没有任何确认信息，建议带些现金。',
         pick:'加入', picked:'已加入', nPicked:'已选 {n} 个', share:'分享',
@@ -563,6 +581,8 @@ let sharedMode = !!(sharedIds && sharedIds.length);
 function togglePick(id){
   const adding = !PICKED.has(id);
   track(adding ? 'pick_add' : 'pick_remove', { place_id: id, total: PICKED.size + (adding?1:-1) });
+  // 저장도 "가겠다"에 가까운 행동이다
+  if (adding) trackDecision('save', PLACES.find(x => x.id === id));
   if (adding) PICKED.add(id); else PICKED.delete(id);
   savePicked(); renderPickBar(); render();
 }
@@ -598,6 +618,48 @@ function renderPickBar(){
     <span class="n">${t('nPicked').replace('{n}', PICKED.size)}</span>
     <button class="ghost" id="pick-clear">${t('clearList')}</button>
     <button class="solid" id="pick-share">${t('share')}</button>`;
+}
+
+/* ── PMF 검증 지표 ─────────────────────────────────────
+   이 서비스가 실제로 쓸모 있는지는 세 가지 질문으로 갈린다.
+
+   ① 네이버·구글을 두고 굳이 여기서 조건을 먼저 검색하는가
+      → Click_Filter 빈도로 본다. 필터를 안 쓰면 그냥 지도의 열화판이다.
+
+   ② 제공한 사실을 믿고 곧바로 움직이는가
+      → Click_Direction / Click_Copy_Address 로 본다.
+        상세를 열어보는 것과 실제로 가는 것은 다르다.
+
+   ③ 정보가 틀렸을 때 스스로 고치려 드는가
+      → Report_Info 로 본다. 이게 일어나면 데이터가 자라기 시작한다.
+
+   여기에 시간과 이탈을 더해 판단한다. */
+const SESSION = {
+  start: Date.now(),
+  filterUses: 0,        // 조건을 몇 번 바꿨나
+  decided: false,       // 한 곳이라도 "가겠다"고 눌렀나
+  lastZeroFilter: null, // 결과가 0이었던 마지막 조건
+  zeroAt: 0,            // 그 시각
+};
+
+/* 진입부터 결정까지 걸린 시간(초).
+   목표는 30초 안이다. 그보다 오래 걸리면 "1초 판단"이 아니다. */
+const secsSinceStart = () => Math.round((Date.now() - SESSION.start) / 1000);
+
+/* 결정 행동 — 상세를 본 것과 실제로 가는 것은 다르다.
+   지도·길찾기·주소 복사가 "가겠다"에 가장 가까운 신호다. */
+function trackDecision(kind, p){
+  const first = !SESSION.decided;
+  SESSION.decided = true;
+  track('Decision_Action', {
+    action: kind,                        // direction | copy_address | save
+    place_id: p ? p.id : '',
+    place_name: p ? (p.name_en || p.name_ko) : '',
+    category: p ? p.category : '',
+    seconds_to_decision: secsSinceStart(),
+    is_first_decision: first,
+    filters_used: SESSION.filterUses,
+  });
 }
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
@@ -886,6 +948,20 @@ function render(){
   if (loading){ box.innerHTML = skeleton(); return; }
   if (mapView){ renderMap(all); box.innerHTML = ''; return; }
 
+  /* 조건을 걸었는데 결과가 0이면 기록해 둔다.
+     그 상태에서 그냥 나가버리면(Zero_Result_Exit) 데이터가 부족하다는 뜻이다.
+     "혼밥 + 안 매움" 같은 날카로운 조합에서 자주 일어난다. */
+  if (!all.length && (cur !== 'all' || query)){
+    SESSION.lastZeroFilter = `${cur}${query ? '+search' : ''}`;
+    SESSION.zeroAt = Date.now();
+    track('Zero_Result', {
+      filter: cur,
+      has_query: !!query,
+      only_checked: onlyChecked,
+      area: pickedArea ? pickedArea.label : (whereState.ok ? 'near_me' : 'centre'),
+    });
+  }
+
   if (!all.length){
     box.innerHTML = query
       ? `<div class="msg"><b>${t('noMatch')} "${esc(query)}"</b>${t('tryArea')}</div>`
@@ -986,8 +1062,12 @@ function render(){
         ${g&&g.tip?`<div class="warn">${esc(g.tip)}${
           g.say?`<span class="say">→ ${esc(g.say)}</span>`:''}</div>`:''}
         ${menuFull?`<div class="mn">${esc(menuFull)}</div>`:''}
-        ${p.address?`<div class="addr">📍 ${esc(p.address)}</div>`:''}
-        <a class="go" href="${naver}" target="_blank" rel="noopener">${t('naver')}</a>
+        ${p.address?`<div class="addr">
+          <span>📍 ${esc(p.address)}</span>
+          <button class="copybtn" data-copy="${esc(p.id)}">${t('copyAddr')}</button>
+        </div>`:''}
+        <a class="go" href="${naver}" data-dir="${esc(p.id)}" target="_blank" rel="noopener">${t('naver')}</a>
+        <button class="reportbtn" data-report="${esc(p.id)}">${t('report')}</button>
       </div>
     </div>`;
     }).join('') + (all.length > shown
@@ -1284,19 +1364,59 @@ document.addEventListener('click', e => {
   }
   const chip = e.target.closest('.chip');
   if (chip){ cur = chip.dataset.f; shown = 25; openId = null;
-             track('filter_click', { filter: cur });
+             SESSION.filterUses++;
+             /* 조건을 쓰는지가 첫 번째 질문의 답이다.
+                안 쓰면 이 서비스는 그냥 지도의 열화판이다. */
+             track('Click_Filter', {
+               filter: cur,
+               use_count: SESSION.filterUses,
+               seconds_since_start: secsSinceStart(),
+             });
              renderChips(); render(); window.scrollTo({top:0,behavior:'smooth'}); return; }
   if (e.target.closest('#more')){ shown += 25; render(); return; }
-  // 네이버 지도로 나가는 것 = "실제로 가겠다"에 가장 가까운 행동
-  const go = e.target.closest('.go');
+  /* 길찾기 — "실제로 가겠다"에 가장 가까운 행동.
+     상세를 여는 것과 여기를 누르는 것은 전혀 다른 신호다. */
+  const go = e.target.closest('[data-dir]');
   if (go){
-    const row = go.closest('.row');
-    const p = row ? PLACES.find(x => x.id === row.dataset.id) : null;
-    track('map_click', {
-      place_id: row ? row.dataset.id : '',
+    const p = PLACES.find(x => x.id === go.dataset.dir);
+    track('Click_Direction', {
+      place_id: go.dataset.dir,
       place_name: p ? (p.name_en || p.name_ko) : '',
       category: p ? p.category : '',
+      map: 'naver',
     });
+    trackDecision('direction', p);
+    return;
+  }
+
+  /* 주소 복사 — 택시 기사에게 보여주려는 행동.
+     길찾기만큼 강한 결정 신호다. */
+  const cp = e.target.closest('[data-copy]');
+  if (cp){
+    e.stopPropagation();
+    const p = PLACES.find(x => x.id === cp.dataset.copy);
+    const text = p ? `${p.name_ko || p.name_en}\n${p.address || ''}`.trim() : '';
+    navigator.clipboard?.writeText(text).then(() => toast(t('copied')));
+    track('Click_Copy_Address', {
+      place_id: cp.dataset.copy,
+      place_name: p ? (p.name_en || p.name_ko) : '',
+    });
+    trackDecision('copy_address', p);
+    return;
+  }
+
+  /* 정보 신고 — 틀린 걸 고치려는 움직임.
+     이게 일어나기 시작하면 데이터가 스스로 자란다. */
+  const rp = e.target.closest('[data-report]');
+  if (rp){
+    e.stopPropagation();
+    const p = PLACES.find(x => x.id === rp.dataset.report);
+    track('Report_Info', {
+      place_id: rp.dataset.report,
+      place_name: p ? (p.name_en || p.name_ko) : '',
+      seconds_since_start: secsSinceStart(),
+    });
+    toast(t('reported'));
     return;
   }
   const row = e.target.closest('.row');
@@ -1309,11 +1429,28 @@ document.addEventListener('click', e => {
         place_id: row.dataset.id,
         place_name: p ? (p.name_en || p.name_ko) : '',
         has_guide: !!(p && p.food_guide_key),
+        seconds_since_start: secsSinceStart(),
+        filters_used: SESSION.filterUses,
       });
     }
     render();
   }
 });
+
+/* 떠날 때 한 번 — 이 세션이 무엇으로 끝났는지 남긴다.
+   결정까지 갔는지, 조건만 만지다 나갔는지, 0건에서 포기했는지. */
+window.addEventListener('pagehide', () => {
+  const zeroExit = !!SESSION.lastZeroFilter &&
+    (Date.now() - SESSION.zeroAt) < 20000 && !SESSION.decided;
+
+  track('Session_End', {
+    seconds: secsSinceStart(),
+    filters_used: SESSION.filterUses,
+    reached_decision: SESSION.decided,
+    zero_result_exit: zeroExit,               // 결과 0에서 그냥 나갔나
+    last_zero_filter: SESSION.lastZeroFilter || '',
+  });
+}, { once: true });
 
 load();
 </script>
