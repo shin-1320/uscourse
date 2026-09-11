@@ -335,9 +335,12 @@
      조건은 "뭘 거를까" — 자주 바꾼다.
      같은 모양의 칩을 두 줄로 두면 뭐가 뭔지 구분이 안 되고
      화면만 복잡해진다. 그래서 지역은 테두리 없는 글자 줄로 낮춘다. */
-  .areas{display:flex;gap:0;overflow-x:auto;padding:0 0 8px;align-items:center;
+  .areas{display:flex;gap:0;padding:0 0 8px;align-items:center;overflow:hidden}
+  /* 지역만 가로로 넘기고, "내 주변"은 자리에 고정한다 */
+  .areas .scroller{display:flex;gap:0;overflow-x:auto;min-width:0;
     scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .areas::-webkit-scrollbar{display:none}
+  .areas .scroller::-webkit-scrollbar{display:none}
+  .area.fixed{flex-shrink:0}
   .area{flex-shrink:0;font:inherit;font-size:12.5px;font-weight:600;
     padding:4px 9px;border:none;background:none;color:var(--faint);
     cursor:pointer;white-space:nowrap;border-radius:6px}
@@ -467,6 +470,8 @@ const T = {
         b_menu:'Foreign menu', b_komenu:'Korean menu only', b_how:'How to eat',
         u_solo:'solo', u_card:'card', u_menu:'menu', u_spice:'spice', me:'You',
         tagline:'Explore Korea without the guesswork.',
+        locDenied:'Location is blocked — allow it in your browser settings, or pick an area below.',
+        locTimeout:'Could not find you. Tap to retry, or pick an area below.',
         addHome:'Add to home screen so you can open it in one tap.',
         addHomeIos:'Tap the share button, then "Add to Home Screen".',
         addHomeBtn:'Add', later:'Not now',
@@ -493,6 +498,8 @@ const T = {
         b_menu:'外国語メニュー', b_komenu:'韓国語のみ', b_how:'食べ方',
         u_solo:'一人', u_card:'カード', u_menu:'メニュー', u_spice:'辛さ', me:'現在地',
         tagline:'韓国を、迷わず楽しむ。',
+        locDenied:'位置情報がブロックされています。ブラウザの設定で許可するか、下のエリアを選んでください。',
+        locTimeout:'現在地を取得できませんでした。タップで再試行、または下のエリアを選んでください。',
         addHome:'ホーム画面に追加すると、次からすぐ開けます。',
         addHomeIos:'共有ボタンから「ホーム画面に追加」を選んでください。',
         addHomeBtn:'追加', later:'あとで',
@@ -519,6 +526,8 @@ const T = {
         b_menu:'外語菜單', b_komenu:'只有韓文菜單', b_how:'怎麼吃',
         u_solo:'一人', u_card:'刷卡', u_menu:'菜單', u_spice:'辣度', me:'你的位置',
         tagline:'玩韓國，不用再用猜的。',
+        locDenied:'定位被封鎖了。請在瀏覽器設定中允許，或選擇下方區域。',
+        locTimeout:'找不到你的位置。點一下重試，或選擇下方區域。',
         addHome:'加到主畫面，下次一鍵就能開啟。',
         addHomeIos:'點分享按鈕，選「加入主畫面」。',
         addHomeBtn:'加入', later:'稍後',
@@ -545,6 +554,8 @@ const T = {
         b_menu:'外语菜单', b_komenu:'只有韩文菜单', b_how:'怎么吃',
         u_solo:'一人', u_card:'刷卡', u_menu:'菜单', u_spice:'辣度', me:'你的位置',
         tagline:'玩韩国，不用再靠猜。',
+        locDenied:'定位被阻止了。请在浏览器设置中允许，或选择下方区域。',
+        locTimeout:'找不到你的位置。点一下重试，或选择下方区域。',
         addHome:'添加到主屏幕，下次一键就能打开。',
         addHomeIos:'点分享按钮，选"添加到主屏幕"。',
         addHomeBtn:'添加', later:'稍后',
@@ -1167,12 +1178,17 @@ function renderAreas(){
   const box = document.getElementById('areas');
   if (!box) return;
   const nearOn = !pickedArea;
+  /* "내 주변"은 스크롤에서 빼서 늘 보이게 한다.
+     지역을 고르면 그쪽으로 스크롤되는데, 그때 돌아갈 버튼이
+     화면 밖으로 밀려나면 빠져나올 방법이 없다. */
   box.innerHTML =
-    `<button class="area ${nearOn ? 'on' : ''}" data-area="near">📍 ${t('nearMe')}</button>` +
+    `<button class="area fixed ${nearOn ? 'on' : ''}" data-area="near">📍 ${t('nearMe')}</button>` +
     `<span class="sep"></span>` +
+    `<span class="scroller">` +
     AREA_SPOTS.map(a =>
       `<button class="area ${pickedArea && pickedArea.key === a.key ? 'on' : ''}"
-        data-area="${esc(a.key)}">${esc(a.label)}</button>`).join('');
+        data-area="${esc(a.key)}">${esc(a.label)}</button>`).join('') +
+    `</span>`;
 }
 
 function renderChips(){
@@ -1225,15 +1241,34 @@ let whereState = { ok:false, msg:'locating' };
 function updateWhere(){
   const w = document.getElementById('where');
   if (!w) return;
+
   // 지역을 직접 골랐으면 그 이름을 보여준다 — 어디 기준인지 분명해야 한다
   if (pickedArea){
     w.className = 'where';
     w.innerHTML = `📍 from <b>${esc(pickedArea.label)}</b>`;
     return;
   }
-  w.className = 'where' + (whereState.ok ? '' : ' off');
-  w.innerHTML = whereState.msg === 'locating' ? t('locating')
-    : whereState.ok ? t('here') : t('centre');
+
+  if (whereState.msg === 'locating'){
+    w.className = 'where';
+    w.innerHTML = t('locating');
+    return;
+  }
+
+  if (whereState.ok){
+    w.className = 'where';
+    w.innerHTML = t('here');
+    return;
+  }
+
+  /* 실패했으면 왜인지 말해준다.
+     "위치를 못 잡았다"만으로는 사용자가 무엇을 해야 할지 모른다. */
+  const why = whereState.why;
+  const msg = why === 'denied'  ? t('locDenied')
+            : why === 'timeout' ? t('locTimeout')
+            : t('centre');
+  w.className = 'where off';
+  w.innerHTML = msg;
 }
 
 function sortByDistance(){
@@ -1245,26 +1280,73 @@ function askLocation(){
   whereState = { ok:false, msg:'locating' };
   updateWhere();
 
-  // 위치를 기다리는 동안에도 목록이 보이게 부산 중심을 기본으로 둔다.
-  // 응답이 늦어도 빈 화면을 보지 않도록.
+  // 기다리는 동안에도 목록이 보이게 부산 중심을 기본으로 둔다
   if (!me) me = BUSAN;
 
-  const settle = (ok) => {
-    whereState = { ok, msg: ok ? 'here' : 'centre' };
-    track('location', { granted: ok });
+  const settle = (ok, why) => {
+    whereState = { ok, msg: ok ? 'here' : 'centre', why: why || '' };
+    track('location', { granted: ok, reason: why || '' });
     sortByDistance();
     updateWhere();
     if (!loading) render();
   };
 
-  if (!navigator.geolocation) return settle(false);
+  if (!navigator.geolocation) return settle(false, 'unsupported');
+
+  /* 위치는 한 번에 잘 안 잡힌다.
+     GPS 를 처음 켜면 시간이 걸리고, 실내에서는 더 오래 걸린다.
+     그래서 두 번 시도한다.
+
+       1차: 빠르게 — 캐시나 기지국 기준으로 대충이라도
+       2차: 정확하게 — GPS 를 켜고 넉넉히 기다린다
+
+     둘 다 실패해야 포기한다. 한 번만 시도하면
+     "위치 권한을 켰는데도 안 잡힌다"가 된다. */
+  const opts1 = { enableHighAccuracy: false, timeout: 6000,  maximumAge: 60000 };
+  const opts2 = { enableHighAccuracy: true,  timeout: 20000, maximumAge: 0 };
+
+  const ok = (pos) => {
+    me = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+    settle(true);
+  };
 
   navigator.geolocation.getCurrentPosition(
-    pos => { me = { lat: pos.coords.latitude, lng: pos.coords.longitude }; settle(true); },
-    ()  => { me = BUSAN; settle(false); },
-    // 데스크톱은 GPS 가 없어 오래 걸린다. 5초면 충분히 기다린 것으로 본다.
-    { enableHighAccuracy: false, timeout: 5000, maximumAge: 120000 }
+    ok,
+    (err1) => {
+      // 권한을 거부한 경우에는 다시 시도해도 소용없다
+      if (err1 && err1.code === 1){ me = BUSAN; return settle(false, 'denied'); }
+
+      // 시간 초과·위치 불명이면 GPS 를 켜고 한 번 더
+      navigator.geolocation.getCurrentPosition(
+        ok,
+        (err2) => {
+          me = BUSAN;
+          settle(false, err2 && err2.code === 3 ? 'timeout' : 'unavailable');
+        },
+        opts2
+      );
+    },
+    opts1
   );
+
+  /* 위치가 잡히면 이후 이동도 따라가게 한다.
+     걸어다니면서 쓰는 화면이라, 한 번 잡고 끝내면 금방 어긋난다. */
+  if (navigator.geolocation.watchPosition && !window.__nmWatch){
+    window.__nmWatch = navigator.geolocation.watchPosition(
+      (pos) => {
+        const moved = me ? distM(me, { lat: pos.coords.latitude, lng: pos.coords.longitude }) : 1e9;
+        // 100m 이상 움직였을 때만 다시 정렬한다 (덜컹거림 방지)
+        if (moved > 100 && !pickedArea){
+          me = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+          whereState = { ok: true, msg: 'here' };
+          sortByDistance(); updateWhere();
+          if (!loading) render();
+        }
+      },
+      () => {},
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 30000 }
+    );
+  }
 }
 
 /* ── 시작 ─────────────────────────────────────────────
