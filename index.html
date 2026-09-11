@@ -907,20 +907,13 @@ function currentList(){
     return PLACES.filter(p => order.has(p.id))
                  .sort((a, b) => order.get(a.id) - order.get(b.id));
   }
-
   const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
-
-  // 지역을 직접 고르면 해당 지역의 장소만 보여준다.
-  // 기존에는 대표 좌표를 기준으로 전체 부산 장소를 거리순 정렬했기 때문에
-  // Haeundae를 눌러도 Nampo/Yeongdo 등의 장소가 섞여 나왔다.
-  const inPickedArea = p => !pickedArea ||
-    String(p.area || '').trim() === String(pickedArea.key || '').trim();
-
   return PLACES.filter(p =>
-    inPickedArea(p) &&
-    f.test(p) &&
-    matchQuery(p) &&
-    (!onlyChecked || hasChecked(p)));
+    // 지역 탭은 '거리 기준점 변경'이 아니라 '지역 범위 제한'이다.
+    // 따라서 Haeundae를 눌러도 me는 실제 사용자의 위치를 그대로 유지하고,
+    // Haeundae에 속한 장소만 골라서 그 장소까지의 실제 거리를 보여준다.
+    (!pickedArea || p.area === pickedArea.key) &&
+    f.test(p) && matchQuery(p) && (!onlyChecked || hasChecked(p)));
 }
 
 /* 불러오는 동안 카드 모양을 미리 그린다.
@@ -1303,7 +1296,9 @@ document.addEventListener('click', e => {
     }
     const spot = AREA_SPOTS.find(a => a.key === ap.dataset.area);
     if (spot){
-      me = { lat: spot.lat, lng: spot.lng };
+      // 중요: 지역을 눌러도 me(사용자 실제 위치)는 바꾸지 않는다.
+      // 예전 코드는 지역 대표 좌표를 me에 넣어서
+      // '내 위치 → 음식점 거리'가 아니라 '해운대 대표점 → 음식점 거리'가 됐다.
       pickedArea = spot;
       whereState = { ok:false, msg:'picked' };
       track('area_pick', { area: spot.label });
