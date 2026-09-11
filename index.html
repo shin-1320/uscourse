@@ -909,9 +909,6 @@ function currentList(){
   }
   const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
   return PLACES.filter(p =>
-    // 지역 탭은 '거리 기준점 변경'이 아니라 '지역 범위 제한'이다.
-    // 따라서 Haeundae를 눌러도 me는 실제 사용자의 위치를 그대로 유지하고,
-    // Haeundae에 속한 장소만 골라서 그 장소까지의 실제 거리를 보여준다.
     (!pickedArea || p.area === pickedArea.key) &&
     f.test(p) && matchQuery(p) && (!onlyChecked || hasChecked(p)));
 }
@@ -1181,10 +1178,12 @@ let whereState = { ok:false, msg:'locating' };
 function updateWhere(){
   const w = document.getElementById('where');
   if (!w) return;
-  // 지역을 직접 골랐으면 그 이름을 보여준다 — 어디 기준인지 분명해야 한다
+  // 지역은 '보는 범위'일 뿐이다. 거리 기준은 계속 내 위치다.
   if (pickedArea){
-    w.className = 'where';
-    w.innerHTML = `📍 from <b>${esc(pickedArea.label)}</b>`;
+    w.className = 'where' + (whereState.ok ? '' : ' off');
+    w.innerHTML = whereState.ok
+      ? `📍 <b>${esc(pickedArea.label)}</b> · ${t('here')}`
+      : `📍 <b>${esc(pickedArea.label)}</b> · ${t('centre')}`;
     return;
   }
   w.className = 'where' + (whereState.ok ? '' : ' off');
@@ -1296,13 +1295,14 @@ document.addEventListener('click', e => {
     }
     const spot = AREA_SPOTS.find(a => a.key === ap.dataset.area);
     if (spot){
-      // 중요: 지역을 눌러도 me(사용자 실제 위치)는 바꾸지 않는다.
-      // 예전 코드는 지역 대표 좌표를 me에 넣어서
-      // '내 위치 → 음식점 거리'가 아니라 '해운대 대표점 → 음식점 거리'가 됐다.
+      // 지역 선택은 '내 위치'를 바꾸는 것이 아니라 '볼 지역'만 바꾼다.
+      // 거리는 계속 실제 현재 위치(me)에서 각 장소까지 계산한다.
       pickedArea = spot;
-      whereState = { ok:false, msg:'picked' };
+      whereState = { ok: !!me && whereState.ok, msg: whereState.ok ? 'here' : 'centre' };
       track('area_pick', { area: spot.label });
+      // me는 절대 spot 좌표로 덮어쓰지 않는다.
       sortByDistance(); updateWhere(); renderAreas(); render();
+      if (mapView && lmap) renderMap(currentList());
       window.scrollTo({ top:0, behavior:'smooth' });
     }
     return;
