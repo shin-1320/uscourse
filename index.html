@@ -3,7 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#0300b2">
+
+<!-- ═══════════════════════════════════════════════════
+     홈 화면에 추가 (PWA)
+
+     웹은 주소를 기억해야 다시 올 수 있다는 약점이 있다.
+     홈 화면에 아이콘을 두면 앱처럼 한 번에 열리고,
+     재방문이 잦은 일본 여행자 같은 경우에 특히 중요하다.
+
+     iPhone : 사파리 → 공유 → "홈 화면에 추가"
+     Android: 크롬 → ⋮ → "홈 화면에 추가"
+     ═══════════════════════════════════════════════════ -->
+<link rel="manifest" href="site.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Near me">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Near me · Busan</title>
 
 <!--
@@ -317,9 +335,12 @@
      조건은 "뭘 거를까" — 자주 바꾼다.
      같은 모양의 칩을 두 줄로 두면 뭐가 뭔지 구분이 안 되고
      화면만 복잡해진다. 그래서 지역은 테두리 없는 글자 줄로 낮춘다. */
-  .areas{display:flex;gap:0;overflow-x:auto;padding:0 0 8px;align-items:center;
+  .areas{display:flex;gap:0;padding:0 0 8px;align-items:center;overflow:hidden}
+  /* 지역만 가로로 넘기고, "내 주변"은 자리에 고정한다 */
+  .areas .scroller{display:flex;gap:0;overflow-x:auto;min-width:0;
     scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .areas::-webkit-scrollbar{display:none}
+  .areas .scroller::-webkit-scrollbar{display:none}
+  .area.fixed{flex-shrink:0}
   .area{flex-shrink:0;font:inherit;font-size:12.5px;font-weight:600;
     padding:4px 9px;border:none;background:none;color:var(--faint);
     cursor:pointer;white-space:nowrap;border-radius:6px}
@@ -341,6 +362,23 @@
     font-weight:600;color:var(--faint);background:none;border:none;
     padding:6px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
   .reportbtn:hover{color:var(--no-fg)}
+
+  /* ── 홈 화면에 추가 안내 ─────────────────────────────
+     한 번만 보여주고, 닫으면 다시 묻지 않는다. */
+  .a2hs{display:none}
+  .a2hs.on{display:flex;align-items:center;gap:10px;
+    position:fixed;left:0;right:0;bottom:0;z-index:790;
+    max-width:520px;margin:0 auto;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:var(--brand);color:#fff;
+    box-shadow:0 -4px 20px rgba(11,13,20,.18)}
+  .a2hs .ic{font-size:20px;line-height:1;flex-shrink:0}
+  .a2hs .tx{flex:1;font-size:12.5px;line-height:1.45;min-width:0}
+  .a2hs button{font:inherit;font-size:13px;font-weight:700;border-radius:9px;
+    padding:8px 13px;cursor:pointer;white-space:nowrap;flex-shrink:0}
+  .a2hs .solid{background:#fff;color:var(--brand);border:none}
+  .a2hs .ghost{background:none;border:none;color:rgba(255,255,255,.75);
+    padding:8px 4px;text-decoration:underline;text-underline-offset:3px}
 </style>
 </head>
 <body>
@@ -382,6 +420,7 @@
 <div class="wrap">
   <div id="map"></div>
   <div class="list" id="list"></div>
+  <div id="a2hs"></div>
   <div class="pickbar" id="pickbar"></div>
   <div class="foot">
     <span id="t-foot">Only checked details are shown. Blank means not confirmed yet.</span><br>
@@ -426,11 +465,16 @@ const T = {
         noMatch:'No match for', tryArea:'Try a place name, a street, or an area like Haeundae.',
         nothing:'Nothing checked for this yet.', onlyChecked:'Only places actually confirmed appear here.',
         f_all:'All', f_solo:'Eat alone', f_card:'Card OK', f_menu:'Foreign menu',
-        f_mild:'Not spicy', f_how:'How to eat', f_cafe:'Cafes',
+        f_spicy:'Spicy', f_how:'How to eat', f_cafe:'Cafes',
         b_solo:'Eat alone', b_nosolo:'Better with company', b_card:'Card OK', b_cash:'Cash only',
         b_menu:'Foreign menu', b_komenu:'Korean menu only', b_how:'How to eat',
         u_solo:'solo', u_card:'card', u_menu:'menu', u_spice:'spice', me:'You',
         tagline:'Explore Korea without the guesswork.',
+        locDenied:'Location is blocked — allow it in your browser settings, or pick an area below.',
+        locTimeout:'Could not find you. Tap to retry, or pick an area below.',
+        addHome:'Add to home screen so you can open it in one tap.',
+        addHomeIos:'Tap the share button, then "Add to Home Screen".',
+        addHomeBtn:'Add', later:'Not now',
         copyAddr:'Copy', report:'Is this wrong? Tell us', reported:'Thanks — we will check',
         walk:'{n} min walk',
         noneChecked:'Nothing confirmed here yet — bring cash just in case.',
@@ -449,11 +493,16 @@ const T = {
         noMatch:'見つかりません:', tryArea:'店名・通り・「海雲台」などのエリア名で探せます。',
         nothing:'この条件はまだ確認できていません。', onlyChecked:'実際に確認した場所だけが表示されます。',
         f_all:'すべて', f_solo:'一人ごはん', f_card:'カード可', f_menu:'外国語メニュー',
-        f_mild:'辛くない', f_how:'食べ方', f_cafe:'カフェ',
+        f_spicy:'辛い', f_how:'食べ方', f_cafe:'カフェ',
         b_solo:'一人でも安心', b_nosolo:'複数人向け', b_card:'カード可', b_cash:'現金のみ',
         b_menu:'外国語メニュー', b_komenu:'韓国語のみ', b_how:'食べ方',
         u_solo:'一人', u_card:'カード', u_menu:'メニュー', u_spice:'辛さ', me:'現在地',
         tagline:'韓国を、迷わず楽しむ。',
+        locDenied:'位置情報がブロックされています。ブラウザの設定で許可するか、下のエリアを選んでください。',
+        locTimeout:'現在地を取得できませんでした。タップで再試行、または下のエリアを選んでください。',
+        addHome:'ホーム画面に追加すると、次からすぐ開けます。',
+        addHomeIos:'共有ボタンから「ホーム画面に追加」を選んでください。',
+        addHomeBtn:'追加', later:'あとで',
         copyAddr:'コピー', report:'情報が違いますか？', reported:'ありがとうございます。確認します',
         walk:'徒歩{n}分',
         noneChecked:'まだ何も確認できていません。念のため現金をお持ちください。',
@@ -472,11 +521,16 @@ const T = {
         noMatch:'找不到:', tryArea:'可用店名、街道，或「海雲台」這類地區名搜尋。',
         nothing:'這個條件還沒有確認過的地點。', onlyChecked:'只顯示實際確認過的地點。',
         f_all:'全部', f_solo:'一人用餐', f_card:'可刷卡', f_menu:'外語菜單',
-        f_mild:'不辣', f_how:'怎麼吃', f_cafe:'咖啡廳',
+        f_spicy:'辣', f_how:'怎麼吃', f_cafe:'咖啡廳',
         b_solo:'一人也自在', b_nosolo:'適合多人', b_card:'可刷卡', b_cash:'僅收現金',
         b_menu:'外語菜單', b_komenu:'只有韓文菜單', b_how:'怎麼吃',
         u_solo:'一人', u_card:'刷卡', u_menu:'菜單', u_spice:'辣度', me:'你的位置',
         tagline:'玩韓國，不用再用猜的。',
+        locDenied:'定位被封鎖了。請在瀏覽器設定中允許，或選擇下方區域。',
+        locTimeout:'找不到你的位置。點一下重試，或選擇下方區域。',
+        addHome:'加到主畫面，下次一鍵就能開啟。',
+        addHomeIos:'點分享按鈕，選「加入主畫面」。',
+        addHomeBtn:'加入', later:'稍後',
         copyAddr:'複製', report:'資訊有誤嗎？告訴我們', reported:'謝謝，我們會確認',
         walk:'步行{n}分鐘',
         noneChecked:'這裡還沒有任何確認資訊，建議帶些現金。',
@@ -495,11 +549,16 @@ const T = {
         noMatch:'找不到:', tryArea:'可用店名、街道，或"海云台"这类地区名搜索。',
         nothing:'这个条件还没有确认过的地点。', onlyChecked:'只显示实际确认过的地点。',
         f_all:'全部', f_solo:'一人用餐', f_card:'可刷卡', f_menu:'外语菜单',
-        f_mild:'不辣', f_how:'怎么吃', f_cafe:'咖啡馆',
+        f_spicy:'辣', f_how:'怎么吃', f_cafe:'咖啡馆',
         b_solo:'一人也自在', b_nosolo:'适合多人', b_card:'可刷卡', b_cash:'仅收现金',
         b_menu:'外语菜单', b_komenu:'只有韩文菜单', b_how:'怎么吃',
         u_solo:'一人', u_card:'刷卡', u_menu:'菜单', u_spice:'辣度', me:'你的位置',
         tagline:'玩韩国，不用再靠猜。',
+        locDenied:'定位被阻止了。请在浏览器设置中允许，或选择下方区域。',
+        locTimeout:'找不到你的位置。点一下重试，或选择下方区域。',
+        addHome:'添加到主屏幕，下次一键就能打开。',
+        addHomeIos:'点分享按钮，选"添加到主屏幕"。',
+        addHomeBtn:'添加', later:'稍后',
         copyAddr:'复制', report:'信息有误吗？告诉我们', reported:'谢谢，我们会确认',
         walk:'步行{n}分钟',
         noneChecked:'这里还没有任何确认信息，建议带些现金。',
@@ -540,7 +599,11 @@ const FILTERS = [
   { key:'solo', ic:'👤',  lb:'f_solo', test: p => p.solo_ok === true },
   { key:'card', ic:'💳',  lb:'f_card', test: p => p.foreign_card === true },
   { key:'menu', ic:'🔤',  lb:'f_menu', test: p => p.english_menu === true },
-  { key:'mild', ic:'🌶️',  lb:'f_mild', test: p => /mild/i.test(p.spice_level || '') },
+  /* 매운 곳 — 매운맛 표시가 있는 곳만.
+     안 매운 곳은 표시하지 않는 방식이라 "안 매움"으로 거르면
+     거의 전부가 통과해 필터 구실을 못 한다.
+     매운 걸 찾는 사람과 피하려는 사람 모두 이 칩 하나로 판단할 수 있다. */
+  { key:'spicy', ic:'🌶️', lb:'f_spicy', test: p => !!p.spice_level },
   { key:'how',  ic:'🍴',  lb:'f_how',  test: p => !!p.food_guide_key },
   { key:'cafe', ic:'☕',  lb:'f_cafe', test: p => p.category === 'cafe' },
 ];
@@ -549,7 +612,14 @@ let PLACES = [], GUIDES = {}, me = null, cur = 'all', shown = 25, openId = null;
 let query = '', mapView = false, lmap = null, layer = null, meMarker = null;
 let loading = true;        // 첫 로딩 여부 — 스켈레톤을 그릴지 판단
 let onlyChecked = false;   // 확인된 곳만 보기
-let pickedArea = null;     // 위치 대신 직접 고른 지역
+/* 지역 칩은 "걸러내기"지 "거리 기준"이 아니다.
+   해운대를 눌렀다고 해운대 한복판에서 잰 거리를 보여주면
+   실제로 얼마나 걸어야 하는지 알 수 없다.
+
+     myPos      — 실제 내 위치 (GPS). 거리는 항상 여기서 잰다.
+     pickedArea — 어느 동네를 볼지. 목록을 거르기만 한다. */
+let pickedArea = null;     // 보고 싶은 지역 (필터)
+let myPos = null;          // 실제 내 위치 (GPS)
 
 /* ── 목록 담기 · 공유 ─────────────────────────────────
    동행에게 "여기 가자"를 보내는 가장 단순한 형태.
@@ -694,12 +764,22 @@ function tagsOf(p){
   return g;
 }
 
+/* 확인되지 않은 항목.
+   매운맛은 여기 넣지 않는다.
+   안 매운 음식은 굳이 표시하지 않는 것이 원칙이라,
+   비어 있다는 것이 곧 "안 맵다"는 뜻이기 때문이다.
+   그걸 "미확인"이라고 쓰면 확인된 정보를 모르는 것처럼 만든다.
+
+   카페도 마찬가지로 혼밥·메뉴를 따지지 않는다.
+   커피를 혼자 못 마시는 곳은 없다. */
 function unknownOf(p){
-  const u = [], isFood = p.category === 'restaurant' || p.category === 'cafe';
-  if (p.solo_ok == null && isFood)      u.push(t('u_solo'));
-  if (p.foreign_card == null)           u.push(t('u_card'));
-  if (p.english_menu == null && isFood) u.push(t('u_menu'));
-  if (!p.spice_level && isFood)         u.push(t('u_spice'));
+  const u = [];
+  const isRestaurant = p.category === 'restaurant';
+
+  if (p.solo_ok == null && isRestaurant)      u.push(t('u_solo'));
+  if (p.foreign_card == null)                 u.push(t('u_card'));
+  if (p.english_menu == null && isRestaurant) u.push(t('u_menu'));
+
   return u;
 }
 
@@ -909,8 +989,9 @@ function currentList(){
   }
   const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
   return PLACES.filter(p =>
-    (!pickedArea || p.area === pickedArea.key) &&
-    f.test(p) && matchQuery(p) && (!onlyChecked || hasChecked(p)));
+    f.test(p) && matchQuery(p)
+    && (!onlyChecked || hasChecked(p))
+    && (!pickedArea || p.area === pickedArea.key));   // 지역은 걸러내기만
 }
 
 /* 불러오는 동안 카드 모양을 미리 그린다.
@@ -932,7 +1013,7 @@ function skeleton(n = 3){
 /* 위치를 못 잡았을 때 — 어디를 볼지 직접 고르게 한다.
    그냥 부산 중심 기준으로 뿌리면 "왜 엉뚱한 게 나오지"가 된다. */
 function areaPicker(){
-  if (whereState.ok || pickedArea || sharedMode) return '';
+  if (myPos || pickedArea || sharedMode) return '';
   return `<div class="areapick">
     <div class="t">${t('pickArea')}</div>
     <div class="d">${t('pickAreaDesc')}</div>
@@ -1120,12 +1201,17 @@ function renderAreas(){
   const box = document.getElementById('areas');
   if (!box) return;
   const nearOn = !pickedArea;
+  /* "내 주변"은 스크롤에서 빼서 늘 보이게 한다.
+     지역을 고르면 그쪽으로 스크롤되는데, 그때 돌아갈 버튼이
+     화면 밖으로 밀려나면 빠져나올 방법이 없다. */
   box.innerHTML =
-    `<button class="area ${nearOn ? 'on' : ''}" data-area="near">📍 ${t('nearMe')}</button>` +
+    `<button class="area fixed ${nearOn ? 'on' : ''}" data-area="near">📍 ${t('nearMe')}</button>` +
     `<span class="sep"></span>` +
+    `<span class="scroller">` +
     AREA_SPOTS.map(a =>
       `<button class="area ${pickedArea && pickedArea.key === a.key ? 'on' : ''}"
-        data-area="${esc(a.key)}">${esc(a.label)}</button>`).join('');
+        data-area="${esc(a.key)}">${esc(a.label)}</button>`).join('') +
+    `</span>`;
 }
 
 function renderChips(){
@@ -1178,21 +1264,51 @@ let whereState = { ok:false, msg:'locating' };
 function updateWhere(){
   const w = document.getElementById('where');
   if (!w) return;
-  // 지역은 '보는 범위'일 뿐이다. 거리 기준은 계속 내 위치다.
+
+  /* 어디서 잰 거리인지, 어디를 보고 있는지를 함께 알린다.
+     둘이 다를 수 있다 — 내 위치에서 잰 해운대 가게들. */
   if (pickedArea){
-    w.className = 'where' + (whereState.ok ? '' : ' off');
-    w.innerHTML = whereState.ok
-      ? `📍 <b>${esc(pickedArea.label)}</b> · ${t('here')}`
-      : `📍 <b>${esc(pickedArea.label)}</b> · ${t('centre')}`;
+    w.className = 'where';
+    w.innerHTML = myPos
+      ? `📍 ${t('here')} · <b>${esc(pickedArea.label)}</b>`
+      : `📍 from <b>${esc(pickedArea.label)}</b>`;
     return;
   }
-  w.className = 'where' + (whereState.ok ? '' : ' off');
-  w.innerHTML = whereState.msg === 'locating' ? t('locating')
-    : whereState.ok ? t('here') : t('centre');
+
+  if (whereState.msg === 'locating'){
+    w.className = 'where';
+    w.innerHTML = t('locating');
+    return;
+  }
+
+  if (whereState.ok){
+    w.className = 'where';
+    w.innerHTML = t('here');
+    return;
+  }
+
+  /* 실패했으면 왜인지 말해준다.
+     "위치를 못 잡았다"만으로는 사용자가 무엇을 해야 할지 모른다. */
+  const why = whereState.why;
+  const msg = why === 'denied'  ? t('locDenied')
+            : why === 'timeout' ? t('locTimeout')
+            : t('centre');
+  w.className = 'where off';
+  w.innerHTML = msg;
+}
+
+/* 거리 기준점 — 내 위치를 알면 무조건 그것을 쓴다.
+   모를 때만 고른 지역, 그것도 없으면 부산 중심. */
+function originPoint(){
+  if (myPos) return myPos;
+  if (pickedArea) return { lat: pickedArea.lat, lng: pickedArea.lng };
+  return BUSAN;
 }
 
 function sortByDistance(){
-  PLACES.forEach(p => { p._d = me ? distM(me, {lat:p.lat, lng:p.lng}) : null; });
+  const o = originPoint();
+  me = o;                       // 지도·표시가 같은 기준을 쓰도록 맞춘다
+  PLACES.forEach(p => { p._d = distM(o, { lat:p.lat, lng:p.lng }); });
   PLACES.sort((a,b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 }
 
@@ -1200,26 +1316,75 @@ function askLocation(){
   whereState = { ok:false, msg:'locating' };
   updateWhere();
 
-  // 위치를 기다리는 동안에도 목록이 보이게 부산 중심을 기본으로 둔다.
-  // 응답이 늦어도 빈 화면을 보지 않도록.
+  // 기다리는 동안에도 목록이 보이게 부산 중심을 기본으로 둔다
   if (!me) me = BUSAN;
 
-  const settle = (ok) => {
-    whereState = { ok, msg: ok ? 'here' : 'centre' };
-    track('location', { granted: ok });
+  const settle = (ok, why) => {
+    whereState = { ok, msg: ok ? 'here' : 'centre', why: why || '' };
+    track('location', { granted: ok, reason: why || '' });
     sortByDistance();
     updateWhere();
     if (!loading) render();
   };
 
-  if (!navigator.geolocation) return settle(false);
+  if (!navigator.geolocation) return settle(false, 'unsupported');
+
+  /* 위치는 한 번에 잘 안 잡힌다.
+     GPS 를 처음 켜면 시간이 걸리고, 실내에서는 더 오래 걸린다.
+     그래서 두 번 시도한다.
+
+       1차: 빠르게 — 캐시나 기지국 기준으로 대충이라도
+       2차: 정확하게 — GPS 를 켜고 넉넉히 기다린다
+
+     둘 다 실패해야 포기한다. 한 번만 시도하면
+     "위치 권한을 켰는데도 안 잡힌다"가 된다. */
+  const opts1 = { enableHighAccuracy: false, timeout: 6000,  maximumAge: 60000 };
+  const opts2 = { enableHighAccuracy: true,  timeout: 20000, maximumAge: 0 };
+
+  const ok = (pos) => {
+    myPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+    me = myPos;
+    settle(true);
+  };
 
   navigator.geolocation.getCurrentPosition(
-    pos => { me = { lat: pos.coords.latitude, lng: pos.coords.longitude }; settle(true); },
-    ()  => { me = BUSAN; settle(false); },
-    // 데스크톱은 GPS 가 없어 오래 걸린다. 5초면 충분히 기다린 것으로 본다.
-    { enableHighAccuracy: false, timeout: 5000, maximumAge: 120000 }
+    ok,
+    (err1) => {
+      // 권한을 거부한 경우에는 다시 시도해도 소용없다
+      if (err1 && err1.code === 1){ myPos = null; me = BUSAN; return settle(false, 'denied'); }
+
+      // 시간 초과·위치 불명이면 GPS 를 켜고 한 번 더
+      navigator.geolocation.getCurrentPosition(
+        ok,
+        (err2) => {
+          myPos = null; me = BUSAN;
+          settle(false, err2 && err2.code === 3 ? 'timeout' : 'unavailable');
+        },
+        opts2
+      );
+    },
+    opts1
   );
+
+  /* 위치가 잡히면 이후 이동도 따라가게 한다.
+     걸어다니면서 쓰는 화면이라, 한 번 잡고 끝내면 금방 어긋난다. */
+  if (navigator.geolocation.watchPosition && !window.__nmWatch){
+    window.__nmWatch = navigator.geolocation.watchPosition(
+      (pos) => {
+        const next = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        const moved = myPos ? distM(myPos, next) : 1e9;
+        // 100m 이상 움직였을 때만 다시 정렬한다 (덜컹거림 방지)
+        if (moved > 100){
+          myPos = next; me = next;
+          whereState = { ok: true, msg: 'here' };
+          sortByDistance(); updateWhere();
+          if (!loading) render();
+        }
+      },
+      () => {},
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 30000 }
+    );
+  }
 }
 
 /* ── 시작 ─────────────────────────────────────────────
@@ -1289,20 +1454,17 @@ document.addEventListener('click', e => {
     // "내 주변"으로 돌아가기
     if (ap.dataset.area === 'near'){
       pickedArea = null;
-      askLocation();
-      renderAreas();
+      if (!myPos) askLocation();       // 위치를 모를 때만 다시 요청
+      sortByDistance(); updateWhere(); renderAreas(); render();
       return;
     }
     const spot = AREA_SPOTS.find(a => a.key === ap.dataset.area);
     if (spot){
-      // 지역 선택은 '내 위치'를 바꾸는 것이 아니라 '볼 지역'만 바꾼다.
-      // 거리는 계속 실제 현재 위치(me)에서 각 장소까지 계산한다.
+      me = { lat: spot.lat, lng: spot.lng };
       pickedArea = spot;
-      whereState = { ok: !!me && whereState.ok, msg: whereState.ok ? 'here' : 'centre' };
+      whereState = { ok:false, msg:'picked' };
       track('area_pick', { area: spot.label });
-      // me는 절대 spot 좌표로 덮어쓰지 않는다.
       sortByDistance(); updateWhere(); renderAreas(); render();
-      if (mapView && lmap) renderMap(currentList());
       window.scrollTo({ top:0, behavior:'smooth' });
     }
     return;
@@ -1457,6 +1619,60 @@ window.addEventListener('pagehide', () => {
     last_zero_filter: SESSION.lastZeroFilter || '',
   });
 }, { once: true });
+
+/* ── 홈 화면에 추가 안내 ───────────────────────────────
+   대부분 "홈 화면에 추가"라는 기능을 모른다.
+   웹은 주소를 기억해야 다시 올 수 있으니, 한 번은 알려준다.
+   단, 닫으면 다시 묻지 않는다 — 귀찮게 하면 역효과다. */
+let deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  showA2HS('android');
+});
+
+function showA2HS(kind){
+  try { if (localStorage.getItem('nm_a2hs_done')) return; } catch(e){}
+  // 이미 홈 화면에서 열린 상태면 안내할 필요가 없다
+  if (window.matchMedia?.('(display-mode: standalone)').matches) return;
+  if (window.navigator.standalone) return;
+
+  const box = document.getElementById('a2hs');
+  if (!box) return;
+  box.className = 'a2hs on';
+  box.innerHTML = `
+    <div class="ic">📍</div>
+    <div class="tx">${kind === 'ios' ? t('addHomeIos') : t('addHome')}</div>
+    ${kind === 'android' ? `<button class="solid" id="a2hs-go">${t('addHomeBtn')}</button>` : ''}
+    <button class="ghost" id="a2hs-no">${t('later')}</button>`;
+  track('a2hs_shown', { kind });
+}
+
+/* iOS 는 beforeinstallprompt 가 없어 직접 안내해야 한다.
+   방문 20초쯤 뒤에 한 번만 — 들어오자마자 띄우면 방해가 된다. */
+(function(){
+  const ua = navigator.userAgent || '';
+  const isIos = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  const isSafari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS/.test(ua);
+  if (isIos && isSafari) setTimeout(() => showA2HS('ios'), 20000);
+})();
+
+document.addEventListener('click', (e) => {
+  if (e.target.closest('#a2hs-go')){
+    track('a2hs_accept', {});
+    if (deferredPrompt){ deferredPrompt.prompt(); deferredPrompt = null; }
+    closeA2HS();
+    return;
+  }
+  if (e.target.closest('#a2hs-no')){ track('a2hs_dismiss', {}); closeA2HS(); }
+});
+
+function closeA2HS(){
+  try { localStorage.setItem('nm_a2hs_done', '1'); } catch(e){}
+  const box = document.getElementById('a2hs');
+  if (box){ box.className = ''; box.innerHTML = ''; }
+}
 
 load();
 </script>
