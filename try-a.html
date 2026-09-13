@@ -22,7 +22,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Near me">
 <meta name="mobile-web-app-capable" content="yes">
-<title>Near me · Busan (A)</title>
+<title>Near me · Busan (B)</title>
 
 <!--
   ═══════════════════════════════════════════════════════
@@ -379,6 +379,43 @@
   .a2hs .solid{background:#fff;color:var(--brand);border:none}
   .a2hs .ghost{background:none;border:none;color:rgba(255,255,255,.75);
     padding:8px 4px;text-decoration:underline;text-underline-offset:3px}
+
+  /* ── B안: 상황 → 판단 → 장소 ────────────────────────── */
+
+  /* 상황 질문 — 열자마자 목록이 아니라 질문이 나온다 */
+  .ask{padding:22px 2px 40px}
+  .ask-t{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.4px;
+    line-height:1.3;margin-bottom:7px}
+  .ask-h{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:20px}
+  .ask-list{display:grid;gap:9px;margin-bottom:20px}
+  .sit{display:flex;align-items:center;gap:12px;width:100%;
+    padding:15px 16px;border-radius:14px;border:1.5px solid var(--line);
+    background:#fff;cursor:pointer;font:inherit;text-align:left}
+  .sit:hover{border-color:var(--brand)}
+  .sit.on{border-color:var(--brand);background:var(--tip-bg)}
+  .sit .ic{font-size:20px;line-height:1;flex-shrink:0}
+  .sit .tx{flex:1;font-size:15px;font-weight:600;color:var(--ink);line-height:1.35}
+  .sit .ck{font-size:15px;font-weight:800;color:var(--brand);width:16px;text-align:right}
+  .ask-go{width:100%;padding:15px;border:none;border-radius:12px;
+    background:var(--brand);color:#fff;font:inherit;font-size:15px;font-weight:700;
+    cursor:pointer;margin-bottom:10px}
+  .ask-skip{width:100%;padding:10px;border:none;background:none;
+    color:var(--faint);font:inherit;font-size:13px;cursor:pointer;
+    text-decoration:underline;text-underline-offset:3px}
+
+  /* 결과 요약 — 서비스가 무엇을 걸렀는지 말해준다.
+     이 한 줄이 "목록"과 "판단"을 가른다. */
+  .lead{background:var(--tip-bg);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+  .lead-t{font-size:13.5px;color:var(--text);line-height:1.5}
+  .lead-t b{color:var(--brand);font-weight:700}
+  .lead-n{display:flex;align-items:center;justify-content:space-between;
+    gap:10px;margin-top:8px;font-size:15px;font-weight:800;color:var(--ink)}
+  .lead-edit{font:inherit;font-size:12.5px;font-weight:700;color:var(--brand);
+    background:#fff;border:none;border-radius:8px;padding:6px 11px;cursor:pointer}
+
+  /* 첫 카드에만 — 왜 이게 맨 위인지 */
+  .why{margin-top:9px;font-size:12px;font-weight:600;color:var(--ok-fg);
+    background:var(--ok-bg);border-radius:8px;padding:7px 10px;line-height:1.4}
 </style>
 </head>
 <body>
@@ -413,7 +450,8 @@
     <!-- 지역 — 위치가 잡혀도 다른 동네를 볼 수 있어야 한다.
          위치를 못 잡았을 때는 이게 유일한 출발점이 된다. -->
     <div class="areas" id="areas"></div>
-    <div class="chips" id="chips"></div>
+    <!-- B안에서는 상황 선택이 조건을 대신하므로 칩 줄을 쓰지 않는다 -->
+    <div class="chips" id="chips" style="display:none"></div>
   </div>
 </header>
 
@@ -470,6 +508,15 @@ const T = {
         b_menu:'Foreign menu', b_komenu:'Korean menu only', b_how:'How to eat',
         u_solo:'solo', u_card:'card', u_menu:'menu', u_spice:'spice', me:'You',
         tagline:'Explore Korea without the guesswork.',
+        askTitle:'What is your situation right now?',
+        askHint:'Pick what applies. We only show places where all of it is confirmed.',
+        sit_solo:"I'm on my own", sit_card:'I only have a foreign card',
+        sit_menu:"I can't read Korean", sit_nospice:"I can't do spicy",
+        skipAsk:'Skip — show everything', seeResults:'Show places',
+        b_nospice:'Not spicy',
+        resultLead:'Places where', resultAll:'all of this is confirmed',
+        resultCount:'{n} places', changeSit:'Change',
+        whyFirst:'Closest, and everything checks out.',
         locDenied:'Location is blocked — allow it in your browser settings, or pick an area below.',
         locTimeout:'Could not find you. Tap to retry, or pick an area below.',
         addHome:'Add to home screen so you can open it in one tap.',
@@ -498,6 +545,15 @@ const T = {
         b_menu:'外国語メニュー', b_komenu:'韓国語のみ', b_how:'食べ方',
         u_solo:'一人', u_card:'カード', u_menu:'メニュー', u_spice:'辛さ', me:'現在地',
         tagline:'韓国を、迷わず楽しむ。',
+        askTitle:'いま、どんな状況ですか？',
+        askHint:'当てはまるものを選んでください。すべて確認できた店だけを表示します。',
+        sit_solo:'一人で来ています', sit_card:'海外カードしかありません',
+        sit_menu:'韓国語が読めません', sit_nospice:'辛いものが苦手です',
+        skipAsk:'スキップしてすべて見る', seeResults:'お店を見る',
+        b_nospice:'辛くない',
+        resultLead:'次のすべてが確認できたお店', resultAll:'',
+        resultCount:'{n}件', changeSit:'変更',
+        whyFirst:'いちばん近くて、条件もすべて満たしています。',
         locDenied:'位置情報がブロックされています。ブラウザの設定で許可するか、下のエリアを選んでください。',
         locTimeout:'現在地を取得できませんでした。タップで再試行、または下のエリアを選んでください。',
         addHome:'ホーム画面に追加すると、次からすぐ開けます。',
@@ -526,6 +582,15 @@ const T = {
         b_menu:'外語菜單', b_komenu:'只有韓文菜單', b_how:'怎麼吃',
         u_solo:'一人', u_card:'刷卡', u_menu:'菜單', u_spice:'辣度', me:'你的位置',
         tagline:'玩韓國，不用再用猜的。',
+        askTitle:'你現在的情況是？',
+        askHint:'選擇符合的項目。只顯示全部都已確認的店家。',
+        sit_solo:'我一個人', sit_card:'我只有海外卡',
+        sit_menu:'我看不懂韓文', sit_nospice:'我不能吃辣',
+        skipAsk:'跳過，看全部', seeResults:'看店家',
+        b_nospice:'不辣',
+        resultLead:'以下全部已確認的店家', resultAll:'',
+        resultCount:'{n} 間', changeSit:'更改',
+        whyFirst:'最近，而且條件全部符合。',
         locDenied:'定位被封鎖了。請在瀏覽器設定中允許，或選擇下方區域。',
         locTimeout:'找不到你的位置。點一下重試，或選擇下方區域。',
         addHome:'加到主畫面，下次一鍵就能開啟。',
@@ -554,6 +619,15 @@ const T = {
         b_menu:'外语菜单', b_komenu:'只有韩文菜单', b_how:'怎么吃',
         u_solo:'一人', u_card:'刷卡', u_menu:'菜单', u_spice:'辣度', me:'你的位置',
         tagline:'玩韩国，不用再靠猜。',
+        askTitle:'你现在的情况是？',
+        askHint:'选择符合的项目。只显示全部都已确认的店家。',
+        sit_solo:'我一个人', sit_card:'我只有境外卡',
+        sit_menu:'我看不懂韩文', sit_nospice:'我不能吃辣',
+        skipAsk:'跳过，看全部', seeResults:'看店家',
+        b_nospice:'不辣',
+        resultLead:'以下全部已确认的店家', resultAll:'',
+        resultCount:'{n} 家', changeSit:'更改',
+        whyFirst:'最近，而且条件全部符合。',
         locDenied:'定位被阻止了。请在浏览器设置中允许，或选择下方区域。',
         locTimeout:'找不到你的位置。点一下重试，或选择下方区域。',
         addHome:'添加到主屏幕，下次一键就能打开。',
@@ -594,6 +668,19 @@ const areaLabel = a => AREA_LABEL[a] || a || '';
    글자만 있으면 훑을 때 구분이 안 된다.
    아이콘은 카드 안 뱃지와 같은 것을 써서, 칩을 누르면
    그 표시가 붙은 곳이 나온다는 게 눈으로 이어지게 한다. */
+/* 상황 — 조건 이름이 아니라 사람이 하는 말로 적는다.
+   "Eat alone"은 기능 이름이고, "I'm on my own"은 상황이다. */
+const SITUATIONS = [
+  { key:'solo', ic:'👤', lb:'sit_solo', chip:'b_solo',
+    test: p => p.solo_ok === true },
+  { key:'card', ic:'💳', lb:'sit_card', chip:'b_card',
+    test: p => p.foreign_card === true },
+  { key:'menu', ic:'🔤', lb:'sit_menu', chip:'b_menu',
+    test: p => p.english_menu === true },
+  { key:'nospice', ic:'🌶️', lb:'sit_nospice', chip:'b_nospice',
+    test: p => !p.spice_level },
+];
+
 const FILTERS = [
   { key:'all',  ic:'',    lb:'f_all',  test: () => true },
   { key:'solo', ic:'👤',  lb:'f_solo', test: p => p.solo_ok === true },
@@ -612,7 +699,27 @@ let PLACES = [], GUIDES = {}, me = null, cur = 'all', shown = 25, openId = null;
 let query = '', mapView = false, lmap = null, layer = null, meMarker = null;
 let loading = true;        // 첫 로딩 여부 — 스켈레톤을 그릴지 판단
 let onlyChecked = false;   // 확인된 곳만 보기
-let pickedArea = null;     // 위치 대신 직접 고른 지역
+/* 지역 칩은 "걸러내기"지 "거리 기준"이 아니다.
+   해운대를 눌렀다고 해운대 한복판에서 잰 거리를 보여주면
+   실제로 얼마나 걸어야 하는지 알 수 없다.
+
+   그래서 둘을 나눈다.
+     myPos      — 실제 내 위치 (GPS). 거리는 항상 여기서 잰다.
+     pickedArea — 어느 동네를 볼지. 목록을 거르기만 한다.
+
+   위치를 끝내 못 잡았을 때만 지역 중심을 거리 기준으로 쓴다. */
+let pickedArea = null;     // 보고 싶은 지역 (필터)
+let myPos = null;          // 실제 내 위치 (GPS)
+
+/* ── B안: 상황 → 판단 → 장소 ───────────────────────────
+   A안(index.html)은 열자마자 목록이 나온다.
+   그래서 "조건으로 찾는 곳"이라는 게 전달되지 않고
+   지도 앱의 목록처럼 읽힌다.
+
+   B안은 상황을 먼저 묻고, 무엇을 걸렀는지 문장으로 보여준 뒤
+   결과를 낸다. 같은 데이터인데 서비스가 한 일이 드러난다. */
+let askMode = true;                 // 첫 화면에서 상황을 묻는 중인가
+let picked = new Set();             // 고른 상황들
 
 /* ── 목록 담기 · 공유 ─────────────────────────────────
    동행에게 "여기 가자"를 보내는 가장 단순한 형태.
@@ -981,8 +1088,12 @@ function currentList(){
                  .sort((a, b) => order.get(a.id) - order.get(b.id));
   }
   const f = FILTERS.find(x => x.key === cur) || FILTERS[0];
+  const sits = SITUATIONS.filter(x => picked.has(x.key));
   return PLACES.filter(p =>
-    f.test(p) && matchQuery(p) && (!onlyChecked || hasChecked(p)));
+    f.test(p) && matchQuery(p)
+    && (!onlyChecked || hasChecked(p))
+    && sits.every(x => x.test(p))              // 고른 상황을 모두 만족해야 한다
+    && (!pickedArea || p.area === pickedArea.key));  // 지역은 걸러내기만
 }
 
 /* 불러오는 동안 카드 모양을 미리 그린다.
@@ -1004,7 +1115,7 @@ function skeleton(n = 3){
 /* 위치를 못 잡았을 때 — 어디를 볼지 직접 고르게 한다.
    그냥 부산 중심 기준으로 뿌리면 "왜 엉뚱한 게 나오지"가 된다. */
 function areaPicker(){
-  if (whereState.ok || pickedArea || sharedMode) return '';
+  if (myPos || pickedArea || sharedMode) return '';
   return `<div class="areapick">
     <div class="t">${t('pickArea')}</div>
     <div class="d">${t('pickAreaDesc')}</div>
@@ -1013,9 +1124,50 @@ function areaPicker(){
   </div>`;
 }
 
+/* 첫 화면 — 상황을 먼저 묻는다.
+   열자마자 목록이 나오면 "지도 앱"으로 읽힌다.
+   무엇을 기준으로 찾는 곳인지 3초 안에 전달되어야 한다. */
+function askScreen(){
+  return `<div class="ask">
+    <div class="ask-t">${t('askTitle')}</div>
+    <div class="ask-h">${t('askHint')}</div>
+    <div class="ask-list">
+      ${SITUATIONS.map(sit => `
+        <button class="sit ${picked.has(sit.key) ? 'on' : ''}" data-sit="${sit.key}">
+          <span class="ic">${sit.ic}</span>
+          <span class="tx">${t(sit.lb)}</span>
+          <span class="ck">${picked.has(sit.key) ? '✓' : ''}</span>
+        </button>`).join('')}
+    </div>
+    <button class="ask-go" id="ask-go">${t('seeResults')}</button>
+    <button class="ask-skip" id="ask-skip">${t('skipAsk')}</button>
+  </div>`;
+}
+
+/* 무엇을 걸렀는지 문장으로.
+   칩 이름을 나열하는 것과, 서비스가 한 일을 말하는 것은 다르다.
+   이 한 줄이 있고 없고가 "목록"과 "판단"을 가른다. */
+function resultLead(count){
+  if (!picked.size) return '';
+  const names = SITUATIONS.filter(x => picked.has(x.key)).map(x => t(x.chip));
+  return `<div class="lead">
+    <div class="lead-t">${t('resultLead')}
+      <b>${names.join(' · ')}</b> ${t('resultAll')}</div>
+    <div class="lead-n">${t('resultCount').replace('{n}', count)}
+      <button class="lead-edit" id="lead-edit">${t('changeSit')}</button></div>
+  </div>`;
+}
+
 function render(){
   const box = document.getElementById('list');
   if (!box) return;
+
+  // 상황을 묻는 중이면 목록 대신 질문을 보여준다
+  if (askMode && !loading && !sharedMode){
+    box.innerHTML = askScreen();
+    return;
+  }
+
   const all = currentList();
 
   if (loading){ box.innerHTML = skeleton(); return; }
@@ -1064,7 +1216,8 @@ function render(){
       ${t('onlyCheckedLabel')}
     </label>`;
 
-  box.innerHTML = areaPicker() + banner + toggle + all.slice(0, shown).map(p => {
+  box.innerHTML = areaPicker() + banner + resultLead(all.length) + toggle
+    + all.slice(0, shown).map((p, idx) => {
     const unk = unknownOf(p);
     const g = stepsOf(p);
     const menu = menuOf(p, { short: true });   // 카드 한 줄용 (괄호 설명 제외)
@@ -1119,6 +1272,7 @@ function render(){
           </div>
 
           ${decisionTags ? `<div class="decision-tags">${decisionTags}</div>` : fallback}
+          ${idx === 0 && picked.size ? `<div class="why">✓ ${t('whyFirst')}</div>` : ''}
 
           ${g || menu ? `<div class="secondary">
             ${g?`<span class="how">🍴 ${t('b_how')}</span>`:''}
@@ -1256,10 +1410,13 @@ function updateWhere(){
   const w = document.getElementById('where');
   if (!w) return;
 
-  // 지역을 직접 골랐으면 그 이름을 보여준다 — 어디 기준인지 분명해야 한다
+  /* 어디서 잰 거리인지, 어디를 보고 있는지를 함께 알린다.
+     둘이 다를 수 있기 때문이다 — 내 위치에서 잰 해운대 가게들. */
   if (pickedArea){
     w.className = 'where';
-    w.innerHTML = `📍 from <b>${esc(pickedArea.label)}</b>`;
+    w.innerHTML = myPos
+      ? `📍 ${t('here')} · <b>${esc(pickedArea.label)}</b>`
+      : `📍 from <b>${esc(pickedArea.label)}</b>`;
     return;
   }
 
@@ -1285,8 +1442,19 @@ function updateWhere(){
   w.innerHTML = msg;
 }
 
+/* 거리 기준점.
+   내 위치를 알면 무조건 그것을 쓴다.
+   모를 때만 고른 지역, 그것도 없으면 부산 중심. */
+function originPoint(){
+  if (myPos) return myPos;
+  if (pickedArea) return { lat: pickedArea.lat, lng: pickedArea.lng };
+  return BUSAN;
+}
+
 function sortByDistance(){
-  PLACES.forEach(p => { p._d = me ? distM(me, {lat:p.lat, lng:p.lng}) : null; });
+  const o = originPoint();
+  me = o;                       // 지도·표시가 같은 기준을 쓰도록 맞춘다
+  PLACES.forEach(p => { p._d = distM(o, { lat:p.lat, lng:p.lng }); });
   PLACES.sort((a,b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 }
 
@@ -1320,7 +1488,8 @@ function askLocation(){
   const opts2 = { enableHighAccuracy: true,  timeout: 20000, maximumAge: 0 };
 
   const ok = (pos) => {
-    me = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+    myPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+    me = myPos;
     settle(true);
   };
 
@@ -1328,13 +1497,13 @@ function askLocation(){
     ok,
     (err1) => {
       // 권한을 거부한 경우에는 다시 시도해도 소용없다
-      if (err1 && err1.code === 1){ me = BUSAN; return settle(false, 'denied'); }
+      if (err1 && err1.code === 1){ myPos = null; me = BUSAN; return settle(false, 'denied'); }
 
       // 시간 초과·위치 불명이면 GPS 를 켜고 한 번 더
       navigator.geolocation.getCurrentPosition(
         ok,
         (err2) => {
-          me = BUSAN;
+          myPos = null; me = BUSAN;
           settle(false, err2 && err2.code === 3 ? 'timeout' : 'unavailable');
         },
         opts2
@@ -1348,10 +1517,11 @@ function askLocation(){
   if (navigator.geolocation.watchPosition && !window.__nmWatch){
     window.__nmWatch = navigator.geolocation.watchPosition(
       (pos) => {
-        const moved = me ? distM(me, { lat: pos.coords.latitude, lng: pos.coords.longitude }) : 1e9;
+        const next = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        const moved = myPos ? distM(myPos, next) : 1e9;
         // 100m 이상 움직였을 때만 다시 정렬한다 (덜컹거림 방지)
-        if (moved > 100 && !pickedArea){
-          me = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        if (moved > 100){
+          myPos = next; me = next;
           whereState = { ok: true, msg: 'here' };
           sortByDistance(); updateWhere();
           if (!loading) render();
@@ -1424,22 +1594,58 @@ qInput.addEventListener('input', () => {
 });
 
 document.addEventListener('click', e => {
+  // 상황 고르기
+  const sit = e.target.closest('[data-sit]');
+  if (sit){
+    const k = sit.dataset.sit;
+    if (picked.has(k)) picked.delete(k); else picked.add(k);
+    track('Situation_Pick', { situation: k, total: picked.size });
+    render();
+    return;
+  }
+  if (e.target.closest('#ask-go')){
+    askMode = false;
+    track('Situation_Done', {
+      count: picked.size,
+      situations: [...picked].join(','),
+      seconds: secsSinceStart(),
+    });
+    render();
+    window.scrollTo({ top:0, behavior:'smooth' });
+    return;
+  }
+  if (e.target.closest('#ask-skip')){
+    askMode = false; picked.clear();
+    track('Situation_Skip', { seconds: secsSinceStart() });
+    render();
+    return;
+  }
+  // 결과 화면에서 상황 다시 고르기
+  if (e.target.closest('#lead-edit')){
+    askMode = true;
+    track('Situation_Edit', {});
+    render();
+    window.scrollTo({ top:0, behavior:'smooth' });
+    return;
+  }
+
   // 지역 고르기 — 위치를 못 잡았을 때 대신 쓴다
   const ap = e.target.closest('[data-area]');
   if (ap){
     // "내 주변"으로 돌아가기
     if (ap.dataset.area === 'near'){
       pickedArea = null;
-      askLocation();
-      renderAreas();
+      if (!myPos) askLocation();       // 위치를 모를 때만 다시 요청
+      sortByDistance(); updateWhere(); renderAreas(); render();
       return;
     }
     const spot = AREA_SPOTS.find(a => a.key === ap.dataset.area);
     if (spot){
-      me = { lat: spot.lat, lng: spot.lng };
       pickedArea = spot;
-      whereState = { ok:false, msg:'picked' };
-      track('area_pick', { area: spot.label });
+      // 내 위치를 알면 거리 기준은 그대로 둔다 — 목록만 좁아진다.
+      // 위치를 모를 때만 지역 중심에서 잰다.
+      me = myPos || { lat: spot.lat, lng: spot.lng };
+      track('area_pick', { area: spot.label, has_location: !!myPos });
       sortByDistance(); updateWhere(); renderAreas(); render();
       window.scrollTo({ top:0, behavior:'smooth' });
     }
@@ -1654,4 +1860,3 @@ load();
 </script>
 
 </body>
-</html>
