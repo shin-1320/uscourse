@@ -249,6 +249,9 @@
   .foot{padding:18px 0 96px;text-align:center;font-size:11.5px;
     color:var(--faint);line-height:1.7;border-top:1px solid var(--line)}
   .foot a{color:var(--brand);text-decoration:none}
+  /* 공공데이터 출처 표기 — KOGL 1유형은 출처 표시가 조건이다 */
+  .foot .src{display:inline-block;margin:6px 0;font-size:10.5px;
+    color:var(--faint);line-height:1.6}
 
   /* ── 담기 · 공유 ─────────────────────────────────────
      동행에게 "여기 가자"를 보내는 기능. 계정 없이 링크 하나로. */
@@ -411,6 +414,54 @@
 
   .why{margin-top:9px;font-size:12px;font-weight:600;color:var(--ok-fg);
     background:var(--ok-bg);border-radius:8px;padding:7px 10px;line-height:1.4}
+
+  /* ── 정정 제보 ───────────────────────────────────────
+     "틀렸다"고 말할 수 있어야 정보가 자란다.
+     본인이 쓴 것은 고치고 지울 수 있게 한다. */
+  .rp{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+  .rp-item{padding:9px 11px;background:#f7f8fc;border-radius:10px;margin-bottom:7px}
+  .rp-item.mine{background:var(--tip-bg)}
+  .rp-body{font-size:12.5px;color:var(--text);line-height:1.5;
+    white-space:pre-wrap;word-break:break-word}
+  .rp-meta{display:flex;align-items:center;justify-content:space-between;
+    gap:8px;margin-top:6px;font-size:11px;color:var(--faint)}
+  .rp-act{display:flex;gap:8px;flex-shrink:0}
+  .rp-act button{font:inherit;font-size:11px;font-weight:700;color:var(--brand);
+    background:none;border:none;padding:2px;cursor:pointer;
+    text-decoration:underline;text-underline-offset:2px}
+
+  .rp-form textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;
+    padding:10px 12px;font:inherit;font-size:13px;line-height:1.5;resize:vertical;
+    color:var(--ink);outline:none}
+  .rp-form textarea:focus{border-color:var(--brand)}
+  .rp-btns{display:flex;gap:7px;justify-content:flex-end;margin-top:8px}
+  .rp-btns button{font:inherit;font-size:12.5px;font-weight:700;
+    border-radius:9px;padding:8px 14px;cursor:pointer}
+  .rp-cancel{background:#fff;border:1.5px solid var(--line);color:var(--muted)}
+  .rp-send{background:var(--brand);border:none;color:#fff}
+
+  /* ── 할 거리 ─────────────────────────────────────────
+     밥집을 고르는 흐름을 방해하지 않도록 목록 아래에 둔다.
+     카드보다 가볍게 그려서 "덤"으로 읽히게 한다. */
+  .xp{margin:22px 0 10px;padding:16px;border-radius:16px;background:#f7f8fc}
+  .xp-head{margin-bottom:12px}
+  .xp-t{display:block;font-size:15px;font-weight:800;color:var(--ink);letter-spacing:-.3px}
+  .xp-h{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+  .xp-item{display:flex;gap:11px;align-items:flex-start;
+    background:#fff;border-radius:12px;padding:12px;margin-bottom:8px}
+  .xp-ic{font-size:20px;line-height:1.2;flex-shrink:0}
+  .xp-body{flex:1;min-width:0}
+  .xp-nm{font-size:14px;font-weight:700;color:var(--ink);line-height:1.3}
+  .xp-sum{font-size:12px;color:var(--muted);line-height:1.5;margin-top:3px}
+  .xp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+  .xp-tag{font-size:11px;font-weight:600;padding:3px 7px;border-radius:6px;
+    background:#f1f2f8;color:var(--muted)}
+  .xp-tag.ok{background:var(--ok-bg);color:var(--ok-fg)}
+  .xp-tag.warn{background:var(--hot-bg);color:var(--hot-fg)}
+  .xp-unk{font-size:10.5px;color:var(--faint);margin-top:5px}
+  .xp-by{font-size:10.5px;color:var(--faint);margin-top:5px}
+  .xp-go{flex-shrink:0;font-size:16px;color:var(--brand);text-decoration:none;
+    padding:2px 4px}
 </style>
 </head>
 <body>
@@ -456,6 +507,9 @@
   <div class="pickbar" id="pickbar"></div>
   <div class="foot">
     <span id="t-foot">Only checked details are shown. Blank means not confirmed yet.</span><br>
+    <a href="legal.html" id="t-legal">Privacy, terms &amp; data sources</a><br>
+    <span class="src">Place data: Busan Metropolitan City · Korea Tourism Organization<br>
+      Maps: © OpenStreetMap contributors</span><br>
     Near me · Busan, Korea
   </div>
 </div>
@@ -466,6 +520,42 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const BUSAN = { lat: 35.1379, lng: 129.0556 };
+
+/* 문의·정정 요청 주소.
+   legal.html 의 주소와 같아야 한다. 바꿀 때 둘 다 고칠 것. */
+const CONTACT_EMAIL = 'syj6471@gmail.com';
+
+/* ── 정정 제보 ─────────────────────────────────────────
+   계정 없이 본인이 쓴 것만 고치고 지울 수 있어야 한다.
+   여행 중에 회원가입을 요구하면 대부분 그냥 나가기 때문이다.
+
+   그래서 기기마다 임의의 비밀 문자열을 만들어 저장하고,
+   글을 쓸 때 함께 보낸다. 수정·삭제는 그 값이 맞아야만 된다.
+   이 값은 서버에서 목록으로 나갈 때 절대 포함되지 않는다. */
+const TOKEN_KEY = 'nm_token';
+
+function myToken(){
+  try {
+    let v = localStorage.getItem(TOKEN_KEY);
+    if (!v){
+      v = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random())
+            .replace(/-/g, '') + Math.random().toString(36).slice(2);
+      localStorage.setItem(TOKEN_KEY, v);
+    }
+    return v;
+  } catch(e){
+    // 저장이 막힌 환경 — 이번 방문에만 유효한 값을 쓴다
+    window.__nmTmpToken = window.__nmTmpToken ||
+      (String(Date.now()) + Math.random().toString(36).slice(2));
+    return window.__nmTmpToken;
+  }
+}
+
+let EXPERIENCES = [];    // 할 거리 — 지역별로 걸러 보여준다
+let REPORTS = {};        // place_id → 그 가게에 달린 제보들
+let MY_REPORTS = {};     // report_id → 내가 쓴 것 (수정·삭제 가능 표시용)
+let reportOpenFor = null;// 지금 입력창이 열린 가게
+let reportEditing = null;// 수정 중인 제보 id
 
 /* 위치를 못 잡았을 때 고를 수 있는 상권.
    "부산 중심에서" 라고만 하면 왜 엉뚱한 곳이 나오는지 알 수 없다.
@@ -506,6 +596,14 @@ const T = {
         askHint:'Pick what applies. We only show places where all of it is confirmed.',
         sit_solo:"I'm on my own", sit_card:'I only have a foreign card',
         sit_menu:"I can't read Korean", sit_nospice:"I can't do spicy",
+        legalLink:'Privacy, terms & data sources',
+        xpTitle:'Also in {area}', xpHint:'Things you can actually join',
+        xpEnglish:'English OK', xpBooking:'Book ahead', xpFree:'Free', xpSolo:'Join alone',
+        xpMin:' min',
+        reportPlaceholder:'What is wrong? e.g. cards are not accepted, it has closed',
+        edit:'Edit', delete:'Delete', cancel:'Cancel', send:'Send',
+        confirmDelete:'Delete this?', reportDone:'checked',
+        reportTooShort:'Please write a little more', reportNotYours:'Not yours to change',
         skipAsk:'Skip — show everything', seeResults:'Show places',
         b_nospice:'Not spicy',
         resultLead:'Places where', resultAll:'is confirmed',
@@ -543,6 +641,14 @@ const T = {
         askHint:'当てはまるものを選んでください。すべて確認できた店だけを表示します。',
         sit_solo:'一人で来ています', sit_card:'海外カードしかありません',
         sit_menu:'韓国語が読めません', sit_nospice:'辛いものが苦手です',
+        legalLink:'プライバシー・利用規約・データ出典',
+        xpTitle:'{area}では、ほかに', xpHint:'実際に参加できるもの',
+        xpEnglish:'英語OK', xpBooking:'要予約', xpFree:'無料', xpSolo:'一人参加OK',
+        xpMin:'分',
+        reportPlaceholder:'どこが違いますか？（例：カードが使えない、閉店した）',
+        edit:'修正', delete:'削除', cancel:'キャンセル', send:'送信',
+        confirmDelete:'削除しますか？', reportDone:'確認済み',
+        reportTooShort:'もう少し詳しく書いてください', reportNotYours:'この投稿は変更できません',
         skipAsk:'スキップしてすべて見る', seeResults:'お店を見る',
         b_nospice:'辛くない',
         resultLead:'次のすべてが確認できたお店', resultAll:'',
@@ -580,6 +686,14 @@ const T = {
         askHint:'選擇符合的項目。只顯示全部都已確認的店家。',
         sit_solo:'我一個人', sit_card:'我只有海外卡',
         sit_menu:'我看不懂韓文', sit_nospice:'我不能吃辣',
+        legalLink:'隱私權、使用條款與資料來源',
+        xpTitle:'{area}還有', xpHint:'可以實際參加的',
+        xpEnglish:'可用英語', xpBooking:'需預約', xpFree:'免費', xpSolo:'可單人參加',
+        xpMin:'分鐘',
+        reportPlaceholder:'哪裡有誤？（例：不能刷卡、已歇業）',
+        edit:'修改', delete:'刪除', cancel:'取消', send:'送出',
+        confirmDelete:'要刪除嗎？', reportDone:'已確認',
+        reportTooShort:'請再寫詳細一點', reportNotYours:'無法修改這則',
         skipAsk:'跳過，看全部', seeResults:'看店家',
         b_nospice:'不辣',
         resultLead:'以下全部已確認的店家', resultAll:'',
@@ -617,6 +731,14 @@ const T = {
         askHint:'选择符合的项目。只显示全部都已确认的店家。',
         sit_solo:'我一个人', sit_card:'我只有境外卡',
         sit_menu:'我看不懂韩文', sit_nospice:'我不能吃辣',
+        legalLink:'隐私权、使用条款与数据来源',
+        xpTitle:'{area}还有', xpHint:'可以实际参加的',
+        xpEnglish:'可用英语', xpBooking:'需预约', xpFree:'免费', xpSolo:'可单人参加',
+        xpMin:'分钟',
+        reportPlaceholder:'哪里有误？（例：不能刷卡、已歇业）',
+        edit:'修改', delete:'删除', cancel:'取消', send:'发送',
+        confirmDelete:'要删除吗？', reportDone:'已确认',
+        reportTooShort:'请再写详细一点', reportNotYours:'无法修改这则',
         skipAsk:'跳过，看全部', seeResults:'看店家',
         b_nospice:'不辣',
         resultLead:'以下全部已确认的店家', resultAll:'',
@@ -821,6 +943,198 @@ function trackDecision(kind, p){
     is_first_decision: first,
     filters_used: SESSION.filterUses,
   });
+}
+
+/* 할 거리 영역.
+
+   밥집을 고르는 흐름을 방해하면 안 되므로 목록 "아래"에 둔다.
+   그리고 지역이 정해졌을 때만 보여준다 —
+   "부산 로컬 브랜드"는 막연하지만 "영도에 이런 게 있다"는 구체적이다.
+
+   브랜드 소개가 아니라 "무엇을 할 수 있는가"로 적는다.
+   여행자가 아쉬운 것은 브랜드를 못 만나서가 아니라
+   둘째 날에 할 게 없어서이기 때문이다. */
+function experienceBlock(){
+  // 지역이 정해져야 의미가 있다
+  const area = pickedArea ? pickedArea.key : null;
+  if (!area) return '';
+
+  const list = EXPERIENCES.filter(x => x.area === area).slice(0, 6);
+  if (!list.length) return '';
+
+  const KIND_ICON = { workshop:'🧵', space:'🚪', project:'🏗', product:'🎁' };
+
+  return `<div class="xp">
+    <div class="xp-head">
+      <span class="xp-t">${t('xpTitle').replace('{area}', esc(pickedArea.label))}</span>
+      <span class="xp-h">${t('xpHint')}</span>
+    </div>
+    ${list.map(x => {
+      const title = pick(x, 'title') || x.title_en;
+      const sum   = pick(x, 'summary') || x.summary_en || '';
+
+      // 갈 수 있는가를 가르는 것만 — places 의 뱃지와 같은 원칙
+      const tags = [];
+      if (x.english_ok === true)       tags.push(['ok',  t('xpEnglish')]);
+      if (x.booking_required === true) tags.push(['warn',t('xpBooking')]);
+      if (x.solo_ok === true)          tags.push(['ok',  t('xpSolo')]);
+      if (x.duration_min)              tags.push(['n',   `${x.duration_min}${t('xpMin')}`]);
+      if (x.price_krw === 0)           tags.push(['ok',  t('xpFree')]);
+      else if (x.price_krw)            tags.push(['n',   '₩' + x.price_krw.toLocaleString()]);
+
+      // 확인되지 않은 것은 밝힌다
+      const unk = [];
+      if (x.english_ok == null)       unk.push(t('xpEnglish'));
+      if (x.booking_required == null) unk.push(t('xpBooking'));
+
+      return `<div class="xp-item">
+        <div class="xp-ic">${KIND_ICON[x.kind] || '📍'}</div>
+        <div class="xp-body">
+          <div class="xp-nm">${esc(title)}</div>
+          ${sum ? `<div class="xp-sum">${esc(sum)}</div>` : ''}
+          ${tags.length ? `<div class="xp-tags">${tags.map(([c,l]) =>
+            `<span class="xp-tag ${c}">${esc(l)}</span>`).join('')}</div>` : ''}
+          ${unk.length ? `<div class="xp-unk">${t('notConfirmed')}: ${unk.join(' · ')}</div>` : ''}
+          ${x.creator ? `<div class="xp-by">${esc(x.creator)}</div>` : ''}
+        </div>
+        ${x.link ? `<a class="xp-go" href="${esc(x.link)}" target="_blank"
+           rel="noopener" data-xp="${esc(x.id)}">→</a>` : ''}
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+/* 언어별 값 고르기 — i18n 에 있으면 그것을, 없으면 기본값을 쓴다 */
+function pick(row, field){
+  const v = row.i18n && row.i18n[LANG] && row.i18n[LANG][field];
+  if (v) return v;
+  return row[field + '_en'] || row[field + '_ko'] || '';
+}
+
+/* 할 거리 — 지역이 정해졌을 때만 보여주므로 한 번 받아 두고 걸러 쓴다.
+   수가 적어서 통째로 받아도 부담이 없다. */
+async function loadExperiences(){
+  try {
+    const { data, error } = await sb.from('experiences')
+      .select('id, kind, area, title_en, title_ko, summary_en, summary_ko, creator, creator_url, duration_min, price_krw, english_ok, booking_required, solo_ok, address, image_url, link, i18n, sort_order')
+      .eq('is_active', true)
+      .order('sort_order', { ascending: false });
+    if (error) throw error;
+    EXPERIENCES = data || [];
+    if (!loading) render();
+  } catch(e){
+    console.warn('할 거리를 불러오지 못했습니다:', e.message);
+  }
+}
+
+/* 한 가게의 제보를 불러온다. 카드를 펼칠 때만 부른다 —
+   목록 전체를 미리 받으면 느려지고 대부분 쓰이지도 않는다. */
+async function loadReports(placeId){
+  try {
+    const { data, error } = await sb.from('reports_public')
+      .select('id, kind, body, status, created_at')
+      .eq('place_id', placeId)
+      .order('created_at', { ascending: false })
+      .limit(20);
+    if (error) throw error;
+    REPORTS[placeId] = data || [];
+  } catch(e){
+    console.warn('제보를 불러오지 못했습니다:', e.message);
+    REPORTS[placeId] = [];
+  }
+}
+
+/* 내가 쓴 것을 표시하기 위해 한 번 받아 둔다 */
+async function loadMyReports(){
+  try {
+    const { data, error } = await sb.rpc('my_reports', { p_token: myToken() });
+    if (error) throw error;
+    MY_REPORTS = {};
+    (data || []).forEach(r => { MY_REPORTS[r.id] = true; });
+  } catch(e){
+    console.warn('내 제보를 불러오지 못했습니다:', e.message);
+  }
+}
+
+async function saveReport(placeId, body){
+  const text = (body || '').trim();
+  if (text.length < 2){ toast(t('reportTooShort')); return false; }
+
+  try {
+    if (reportEditing){
+      const { data, error } = await sb.rpc('update_report', {
+        p_id: reportEditing, p_token: myToken(), p_body: text });
+      if (error) throw error;
+      if (!data){ toast(t('reportNotYours')); return false; }
+      track('Report_Edit', { place_id: placeId });
+    } else {
+      const { error } = await sb.rpc('add_report', {
+        p_place_id: placeId, p_body: text, p_token: myToken(),
+        p_kind: 'wrong', p_lang: LANG });
+      if (error) throw error;
+      track('Report_Info', { place_id: placeId, seconds_since_start: secsSinceStart() });
+    }
+
+    reportEditing = null;
+    await Promise.all([loadReports(placeId), loadMyReports()]);
+    toast(t('reported'));
+    render();
+    return true;
+  } catch(e){
+    console.error(e);
+    toast(e.message || 'Failed');
+    return false;
+  }
+}
+
+async function removeReport(id, placeId){
+  try {
+    const { data, error } = await sb.rpc('delete_report',
+      { p_id: id, p_token: myToken() });
+    if (error) throw error;
+    if (!data){ toast(t('reportNotYours')); return; }
+    track('Report_Delete', { place_id: placeId });
+    delete MY_REPORTS[id];
+    await loadReports(placeId);
+    render();
+  } catch(e){
+    console.error(e);
+    toast(e.message || 'Failed');
+  }
+}
+
+/* 카드 안에 들어갈 제보 영역 */
+function reportBlock(p){
+  const list = REPORTS[p.id];
+  const open = reportOpenFor === p.id;
+
+  const items = (list || []).map(r => {
+    const mine = !!MY_REPORTS[r.id];
+    const when = new Date(r.created_at).toLocaleDateString();
+    return `<div class="rp-item${mine ? ' mine' : ''}">
+      <div class="rp-body">${esc(r.body)}</div>
+      <div class="rp-meta">
+        <span>${when}${r.status === 'done' ? ' · ' + t('reportDone') : ''}</span>
+        ${mine ? `<span class="rp-act">
+          <button data-redit="${esc(r.id)}" data-rplace="${esc(p.id)}">${t('edit')}</button>
+          <button data-rdel="${esc(r.id)}" data-rplace="${esc(p.id)}">${t('delete')}</button>
+        </span>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  return `<div class="rp">
+    ${items || ''}
+    ${open ? `
+      <div class="rp-form">
+        <textarea id="rp-input" rows="3" placeholder="${esc(t('reportPlaceholder'))}"></textarea>
+        <div class="rp-btns">
+          <button class="rp-cancel" data-rcancel="1">${t('cancel')}</button>
+          <button class="rp-send" data-rsend="${esc(p.id)}">${t('send')}</button>
+        </div>
+      </div>`
+    : `<button class="reportbtn" data-report="${esc(p.id)}">${t('report')}</button>`}
+  </div>`;
 }
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
@@ -1280,11 +1594,12 @@ function render(){
           <button class="copybtn" data-copy="${esc(p.id)}">${t('copyAddr')}</button>
         </div>`:''}
         <a class="go" href="${naver}" data-dir="${esc(p.id)}" target="_blank" rel="noopener">${t('naver')}</a>
-        <button class="reportbtn" data-report="${esc(p.id)}">${t('report')}</button>
+        ${reportBlock(p)}
       </div>
     </div>`;
     }).join('') + (all.length > shown
-    ? `<div class="msg" style="padding:20px"><button class="morebtn" id="more">${t('more')}</button></div>` : '');
+    ? `<div class="msg" style="padding:20px"><button class="morebtn" id="more">${t('more')}</button></div>` : '')
+    + experienceBlock();
 }
 
 function renderMap(list){
@@ -1391,6 +1706,7 @@ function applyLang(){
   setTxt('t-list', t('list'));
   setTxt('t-map',  t('map'));
   setTxt('t-foot', t('foot'));
+  setTxt('t-legal', t('legalLink'));
   setTxt('lbtn', ((LANG_META[LANG] || {}).label || 'EN') + ' ▾');
 
   const q = el('q'); if (q) q.placeholder = t('search');
@@ -1542,6 +1858,10 @@ async function load(){
   applyLang();          // 스켈레톤과 칩을 먼저 그린다
   renderPickBar();
   askLocation();        // 위치는 데이터와 무관하게 따로 요청
+
+  // 내가 쓴 제보를 표시하려면 목록이 필요하다. 실패해도 목록은 보여야 한다.
+  loadMyReports().catch(() => {});
+  loadExperiences().catch(() => {});
 
   // 먹는 법 가이드는 없어도 목록은 보여야 하므로 실패를 삼킨다
   sb.from('food_guides').select('key, title_en, steps, pro_tip, i18n')
@@ -1750,24 +2070,75 @@ document.addEventListener('click', e => {
 
   /* 정보 신고 — 틀린 걸 고치려는 움직임.
      이게 일어나기 시작하면 데이터가 스스로 자란다. */
+  // 할 거리 클릭 — 밥집 말고 다른 걸 보러 가는가
+  const xp = e.target.closest('[data-xp]');
+  if (xp){ track('Experience_Click', { id: xp.dataset.xp,
+    area: pickedArea ? pickedArea.label : '' }); return; }
+
+  /* 정정 제보 — 입력창 열기 */
   const rp = e.target.closest('[data-report]');
   if (rp){
     e.stopPropagation();
-    const p = PLACES.find(x => x.id === rp.dataset.report);
-    track('Report_Info', {
-      place_id: rp.dataset.report,
-      place_name: p ? (p.name_en || p.name_ko) : '',
-      seconds_since_start: secsSinceStart(),
-    });
-    toast(t('reported'));
+    reportOpenFor = rp.dataset.report;
+    reportEditing = null;
+    render();
+    setTimeout(() => document.getElementById('rp-input')?.focus(), 50);
     return;
   }
+
+  // 취소
+  if (e.target.closest('[data-rcancel]')){
+    e.stopPropagation();
+    reportOpenFor = null; reportEditing = null;
+    render();
+    return;
+  }
+
+  // 보내기
+  const rsend = e.target.closest('[data-rsend]');
+  if (rsend){
+    e.stopPropagation();
+    const el = document.getElementById('rp-input');
+    const placeId = rsend.dataset.rsend;
+    saveReport(placeId, el ? el.value : '').then(ok => {
+      if (ok) reportOpenFor = null;
+      render();
+    });
+    return;
+  }
+
+  // 내가 쓴 것 고치기
+  const redit = e.target.closest('[data-redit]');
+  if (redit){
+    e.stopPropagation();
+    const pid = redit.dataset.rplace;
+    const item = (REPORTS[pid] || []).find(x => x.id === redit.dataset.redit);
+    reportEditing = redit.dataset.redit;
+    reportOpenFor = pid;
+    render();
+    setTimeout(() => {
+      const el = document.getElementById('rp-input');
+      if (el && item){ el.value = item.body; el.focus(); }
+    }, 50);
+    return;
+  }
+
+  // 내가 쓴 것 지우기
+  const rdel = e.target.closest('[data-rdel]');
+  if (rdel){
+    e.stopPropagation();
+    if (confirm(t('confirmDelete'))) removeReport(rdel.dataset.rdel, rdel.dataset.rplace);
+    return;
+  }
+
   const row = e.target.closest('.row');
   if (row){
     const opening = openId !== row.dataset.id;
     openId = opening ? row.dataset.id : null;
     if (opening){
       const p = PLACES.find(x => x.id === row.dataset.id);
+      // 펼칠 때만 불러온다 — 목록 전체를 미리 받으면 느려진다
+      if (!REPORTS[row.dataset.id]) loadReports(row.dataset.id).then(render);
       track('card_open', {
         place_id: row.dataset.id,
         place_name: p ? (p.name_en || p.name_ko) : '',

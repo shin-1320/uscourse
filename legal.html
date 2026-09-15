@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy, Terms & Data — Near me</title>
+<meta name="robots" content="index, follow">
+
+<!--
+  ═══════════════════════════════════════════════════════
+  법적 고지
+
+  이 서비스가 실제로 하는 일만 적었습니다.
+  하지도 않는 것을 적어두면 그 자체가 거짓 고지가 됩니다.
+
+  현재 상태 (코드에서 확인한 것)
+    · 위치 — 브라우저에서만 쓰고 서버로 보내지 않는다
+    · 저장 — cu_lang(언어) / nm_picked(담은 목록) / nm_asked(질문 표시 여부)
+    · 외부 — Google Analytics, Supabase, Naver Map, 글꼴·지도 CDN
+    · 사진 — 부산관광공사·한국관광공사 이미지를 주소로 불러온다
+
+  ★ 서비스가 바뀌면 이 문서도 함께 고쳐야 합니다.
+  ★ 이 문서는 법률 자문이 아닙니다. 상업화 전에 전문가 검토를 권합니다.
+  ═══════════════════════════════════════════════════════
+-->
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --brand:#0300b2; --ink:#0b0d14; --text:#31364a;
+    --muted:#6b7185; --faint:#9ba1b2; --line:#e6e8f0;
+    --warn-bg:#fff1e6; --warn-fg:#a85a12;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#fff;color:var(--text);
+    font-family:'Inter','Noto Sans KR',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.7}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px 80px}
+
+  header{padding:24px 0 18px;border-bottom:1px solid var(--line);margin-bottom:32px}
+  .back{font-size:13px;font-weight:700;color:var(--brand);
+    text-decoration:none;display:inline-block;margin-bottom:14px}
+  h1{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.5px}
+  .updated{font-size:12.5px;color:var(--faint);margin-top:6px}
+
+  nav{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:32px}
+  nav a{font-size:13px;font-weight:600;color:var(--muted);background:#f1f2f8;
+    border-radius:8px;padding:7px 12px;text-decoration:none}
+  nav a:hover{background:var(--brand);color:#fff}
+
+  section{margin-bottom:44px;scroll-margin-top:20px}
+  h2{font-size:19px;font-weight:800;color:var(--ink);letter-spacing:-.3px;
+    margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+  h3{font-size:15px;font-weight:700;color:var(--ink);margin:22px 0 8px}
+  p{font-size:14.5px;margin-bottom:12px}
+  ul{margin:0 0 14px 18px}
+  li{font-size:14.5px;margin-bottom:7px}
+  .ko{font-size:13px;color:var(--muted);margin-top:4px;
+    font-family:'Noto Sans KR',sans-serif}
+  /* 소제목 옆 한국어 — 제목만 덜렁 번역되어 떠 있지 않게 */
+  .kh{font-size:12.5px;font-weight:500;color:var(--faint);
+    font-family:'Noto Sans KR',sans-serif;margin-left:7px}
+  /* 목록 항목 아래 한국어 */
+  .kl{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;
+    font-family:'Noto Sans KR',sans-serif}
+
+  table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:13.5px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);
+    vertical-align:top}
+  th{font-weight:700;color:var(--ink);background:#f7f8fc;font-size:12.5px}
+  td code{font-size:12.5px;background:#f1f2f8;padding:2px 6px;border-radius:5px}
+
+  .note{background:var(--warn-bg);border-left:3px solid var(--warn-fg);
+    border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:16px}
+  .note p{color:var(--warn-fg);font-size:13.5px;margin:0}
+  .note p + p{margin-top:8px}
+
+  footer{border-top:1px solid var(--line);padding-top:22px;
+    font-size:12.5px;color:var(--faint);line-height:1.8}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <a class="back" href="./">← Near me</a>
+  <h1>Privacy, Terms &amp; Data</h1>
+  <div class="updated">Last updated: 14 September 2026</div>
+</header>
+
+<nav>
+  <a href="#privacy">Privacy</a>
+  <a href="#location">Location</a>
+  <a href="#terms">Terms</a>
+  <a href="#accuracy">Accuracy</a>
+  <a href="#sources">Data sources</a>
+  <a href="#photos">Photos</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+
+<!-- ══ 개인정보 ══════════════════════════════════════ -->
+<section id="privacy">
+  <h2>Privacy</h2>
+
+  <p>This service does not ask for your name, email, phone number or any account.
+     There is nothing to sign up for, and nothing that identifies you personally.</p>
+  <p class="ko">이름·이메일·전화번호를 묻지 않습니다. 회원가입도 없고,
+     개인을 특정할 수 있는 정보를 받지 않습니다.</p>
+
+  <h3>What stays on your device <span class="kh">기기 내 저장 항목</span></h3>
+  <p>Your language setting and the places you save are kept in your browser,
+     so the service opens the way you left it. They stay on your device
+     and disappear when you clear your browser data.</p>
+  <p class="ko">다시 찾아오셨을 때 같은 상태로 열리도록, 설정한 언어와 담아둔 장소가
+     브라우저에 저장됩니다. 이 정보는 기기 안에만 있으며 브라우저 기록을 지우면
+     함께 사라집니다.</p>
+
+  <h3>What is sent elsewhere <span class="kh">제공처</span></h3>
+  <table>
+    <tr><th>Service</th><th>What it receives</th><th>Purpose</th></tr>
+    <tr><td>Google Analytics</td>
+        <td>Which pages and buttons are used, device type, language,
+            approximate region from IP address
+            <span class="kl">어떤 화면·버튼을 썼는지, 기기 종류, 언어, IP 기반 대략적 지역</span></td>
+        <td>To see whether the service is useful. No personal identifiers are sent.
+            <span class="kl">서비스가 쓸모 있는지 확인하기 위함. 개인 식별 정보는 보내지 않습니다.</span></td></tr>
+    <tr><td>Supabase</td>
+        <td>Requests for place data (read only)
+            <span class="kl">장소 정보 조회 요청 (읽기 전용)</span></td>
+        <td>The place list is stored there
+            <span class="kl">장소 목록이 보관된 곳</span></td></tr>
+    <tr><td>Naver Map</td>
+        <td>Only when you tap "Open in Naver Map" — the place name
+            <span class="kl">지도 버튼을 눌렀을 때만, 가게 이름</span></td>
+        <td>Directions. Google Maps cannot give walking directions in Korea.
+            <span class="kl">길찾기. 한국에서는 구글 지도로 도보 길찾기가 되지 않습니다.</span></td></tr>
+    <tr><td>Google Fonts, jsDelivr, unpkg</td>
+        <td>Your IP address, as with any web request
+            <span class="kl">여느 웹 요청과 같이 IP 주소</span></td>
+        <td>Fonts and map library files
+            <span class="kl">글꼴과 지도 라이브러리 파일</span></td></tr>
+  </table>
+
+  <p>Google Analytics uses cookies. You can block them in your browser settings
+     or by using an ad blocker; the service still works.</p>
+  <p class="ko">Google Analytics는 쿠키를 사용합니다. 브라우저 설정이나 차단 확장으로
+     막아도 서비스 이용에는 지장이 없습니다.</p>
+</section>
+
+
+<!-- ══ 위치 ══════════════════════════════════════════ -->
+<section id="location">
+  <h2>Location</h2>
+
+  <div class="note">
+    <p><b>Your location is never sent to us.</b></p>
+    <p>The browser gives your coordinates to the page, the page calculates
+       distances on your device, and that is the end of it.
+       Nothing is transmitted, logged or stored.</p>
+    <p><b>위치 정보는 전송되지 않습니다.</b> 브라우저가 알려준 좌표로 기기 안에서
+       거리를 계산할 뿐이며, 전송·기록·저장하지 않습니다.</p>
+  </div>
+
+  <p>If you decline the location prompt, or if it fails, the service still works —
+     you pick an area instead and distances are measured from there.</p>
+  <p class="ko">위치 권한을 거부해도 지역을 직접 고르면 그대로 이용할 수 있습니다.
+     좌표는 기기 안에서만 쓰이고 서버로 전송되지 않습니다.</p>
+
+  <p>Google Analytics separately estimates a broad region from your IP address,
+     as almost every website does. That is city-level at best and is not
+     your precise location.</p>
+  <p class="ko">Google Analytics는 대부분의 웹사이트와 마찬가지로 IP 주소로 대략적인
+     지역을 추정합니다. 도시 단위 수준이며 정확한 위치가 아닙니다.</p>
+</section>
+
+
+<!-- ══ 이용약관 ══════════════════════════════════════ -->
+<section id="terms">
+  <h2>Terms of use</h2>
+
+  <p>This service is provided free of charge, as is, for personal travel planning.</p>
+  <p class="ko">개인적인 여행 계획 용도로 현 상태 그대로 무료 제공됩니다.</p>
+
+  <h3>What you may do <span class="kh">허용 범위</span></h3>
+  <ul>
+    <li>Use it for your own trip, share links with people you travel with
+      <span class="kl">본인 여행에 이용하기, 동행에게 링크 공유하기</span></li>
+    <li>Point others to it
+      <span class="kl">다른 사람에게 알리기</span></li>
+  </ul>
+
+  <h3>What you may not do <span class="kh">금지 사항</span></h3>
+  <ul>
+    <li>Copy the data in bulk (scraping, automated collection) or republish it as your own
+      <span class="kl">데이터를 대량으로 수집·복제하거나 자기 것처럼 재배포하기</span></li>
+    <li>Use it in a way that disrupts the service or the places listed
+      <span class="kl">서비스나 게재된 업소에 지장을 주는 방식으로 이용하기</span></li>
+  </ul>
+
+</section>
+
+
+<!-- ══ 정확성 ════════════════════════════════════════ -->
+<section id="accuracy">
+  <h2>Accuracy &amp; limits of liability</h2>
+
+  <div class="note">
+    <p><b>Please treat everything here as a guide, not a guarantee.</b></p>
+    <p>Restaurants change. A place that accepted foreign cards last month may
+       not today. Opening hours change, shops close, menus are reprinted.</p>
+    <p><b>여기 있는 정보는 참고 자료이지 보증이 아닙니다.</b> 가게 사정은 바뀝니다.
+       지난달에 해외 카드를 받던 곳이 오늘은 받지 않을 수 있습니다.</p>
+  </div>
+
+  <p>Information is gathered from public data and checked in person where possible,
+     but it can be out of date or wrong. Before relying on something that matters —
+     whether your card will work, whether you can eat alone — please confirm at the venue.</p>
+
+  <p>Where a detail has not been confirmed, the service says so rather than guessing.
+     A blank badge means "not checked", not "not available".</p>
+  <p class="ko">확인되지 않은 항목은 짐작해서 채우지 않고 그대로 밝힙니다.
+     빈 표시는 "없음"이 아니라 "확인되지 않음"이라는 뜻입니다.</p>
+
+  <p>We are not responsible for losses arising from acting on this information,
+     including wasted journeys, refused payments or closed businesses.
+     We have no connection to the places listed and receive nothing from them.</p>
+
+  <p class="ko">정보는 공공데이터와 직접 확인을 바탕으로 하지만 시간이 지나면 달라질 수 있습니다.
+     결제 수단이나 영업 여부처럼 중요한 사항은 현장에서 다시 확인해 주세요.
+     이 정보를 근거로 한 행동의 결과에 대해 책임지지 않습니다.
+     게재된 업소와는 어떠한 제휴 관계도 없으며 대가를 받지 않습니다.</p>
+</section>
+
+
+<!-- ══ 데이터 출처 ═══════════════════════════════════ -->
+<section id="sources">
+  <h2>Where the data comes from <span class="kh">데이터 출처</span></h2>
+
+  <table>
+    <tr><th>Source</th><th>What</th><th>Licence</th></tr>
+    <tr><td>Busan Metropolitan City<br><span class="ko">부산광역시</span></td>
+        <td>Restaurant and attraction listings, addresses, coordinates
+            <span class="kl">음식점·명소 목록, 주소, 좌표</span></td>
+        <td>Public data portal — KOGL Type 1 (attribution required)</td></tr>
+    <tr><td>Korea Tourism Organization<br><span class="ko">한국관광공사</span></td>
+        <td>TourAPI listings, cafés
+            <span class="kl">TourAPI 목록, 카페</span></td>
+        <td>Public data portal — attribution required</td></tr>
+    <tr><td>Checked in person<br><span class="ko">직접 확인</span></td>
+        <td>Solo dining, foreign cards, menu languages, how dishes are eaten
+            <span class="kl">혼밥 가능 여부, 해외 카드, 메뉴 언어, 먹는 방법</span></td>
+        <td>Original work<span class="kl">자체 제작</span></td></tr>
+    <tr><td>OpenStreetMap</td>
+        <td>Map tiles</td>
+        <td>ODbL — © OpenStreetMap contributors</td></tr>
+  </table>
+
+  <p>The parts that decide your evening — whether you can eat alone, whether your
+     card works, how hot it really is — are not in any public database.
+     Those are checked one place at a time.</p>
+  <p class="ko">혼자 가도 되는지, 카드가 되는지, 실제로 얼마나 매운지는
+     어느 공공데이터에도 없습니다. 이런 항목은 한 곳씩 직접 확인합니다.</p>
+</section>
+
+
+<!-- ══ 사진 ══════════════════════════════════════════ -->
+<section id="photos">
+  <h2>Photographs</h2>
+
+  <p>Photographs are loaded directly from the Busan Metropolitan City and
+     Korea Tourism Organization public data services. They are not copied or
+     stored by this service; your browser fetches them from the original source.</p>
+  <p class="ko">사진은 부산광역시·한국관광공사 공공데이터의 원본 주소에서 직접 불러옵니다.
+     이 서비스가 복제하거나 저장하지 않으며, 이용자의 브라우저가 원본에서 직접 받아옵니다.</p>
+
+  <p>Where no photograph is available, a simple icon is shown instead.</p>
+  <p class="ko">사진이 없는 곳은 간단한 아이콘으로 대신합니다.</p>
+
+  <div class="note">
+    <p><b>If you hold rights to an image shown here</b> and would like it removed,
+       write to the address below and it will be taken down promptly.</p>
+    <p><b>게재된 사진에 대한 권리를 가지고 계시고</b> 삭제를 원하시면
+       아래 주소로 알려주세요. 확인 후 바로 내리겠습니다.</p>
+  </div>
+</section>
+
+
+<!-- ══ 문의 ══════════════════════════════════════════ -->
+<section id="contact">
+  <h2>Corrections &amp; contact</h2>
+
+  <p>If something here is wrong — a place has closed, cards are no longer accepted,
+     a badge is mistaken — please tell us. Each card has a
+     <b>"Is this wrong? Tell us"</b> link, or you can write directly.</p>
+  <p class="ko">폐업했거나, 카드가 더 이상 되지 않거나, 표시가 잘못된 경우 알려주세요.
+     각 카드의 "Is this wrong? Tell us" 링크를 쓰시거나 직접 메일을 보내셔도 됩니다.</p>
+
+  <p><b>Email:</b> <a href="mailto:syj6471@gmail.com">syj6471@gmail.com</a></p>
+
+  <p class="ko">잘못된 정보를 발견하시면 알려주세요. 확인 후 수정하거나 삭제합니다.
+     업소 관계자께서 게재를 원하지 않으시는 경우에도 연락 주시면 바로 내리겠습니다.</p>
+
+  <h3>Removal requests <span class="kh">삭제 요청</span></h3>
+  <p>Business owners who do not wish to appear here may ask for removal and it will
+     be actioned without question.</p>
+  <p class="ko">게재를 원하지 않으시는 업소 관계자께서 요청하시면 사유를 묻지 않고
+     바로 삭제합니다.</p>
+</section>
+
+
+<footer>
+  Near me · Busan, Korea<br>
+  This page describes what the service actually does. If the service changes,
+  this page is updated with it.<br>
+  <span class="ko">이 문서는 법률 자문이 아닙니다.</span>
+</footer>
+
+</div>
+</body>
+</html>
