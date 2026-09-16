@@ -204,7 +204,7 @@
   .secondary .menu{flex:1;min-width:0;white-space:nowrap;
     overflow:hidden;text-overflow:ellipsis}
   .secondary .sep{color:var(--line);font-weight:400;flex-shrink:0}
-  .unknown-line{margin-top:9px;font-size:11px;color:var(--faint);line-height:1.4}
+  
   .open{display:none;margin-top:12px;padding:13px 14px;background:#f7f8fc;border-radius:12px}
   .row.on .open{display:block}
   .steps{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
@@ -241,6 +241,13 @@
   .pp .k{font-size:11.5px;color:var(--faint);margin-top:1px}
   .pp .b{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 4px}
   .pp a{font-size:12.5px;font-weight:700;color:var(--brand);text-decoration:none}
+  /* 지도 팝업 뱃지 — tagsOf() 가 돌려주는 클래스에 맞춘다.
+     이게 없으면 핀을 눌렀을 때 뱃지가 맨 글자로 나온다. */
+  .pp .t{font-size:11px;font-weight:600;padding:3px 7px;border-radius:6px}
+  .pp .t-ok{background:var(--ok-bg);color:var(--ok-fg)}
+  .pp .t-no{background:var(--no-bg);color:var(--no-fg)}
+  .pp .t-hot{background:var(--hot-bg);color:var(--hot-fg)}
+  .pp .t-tip{background:var(--tip-bg);color:var(--brand)}
 
   .msg{padding:48px 20px;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
   .msg b{color:var(--ink);display:block;font-size:16px;margin-bottom:6px}
@@ -523,7 +530,6 @@ const BUSAN = { lat: 35.1379, lng: 129.0556 };
 
 /* 문의·정정 요청 주소.
    legal.html 의 주소와 같아야 한다. 바꿀 때 둘 다 고칠 것. */
-const CONTACT_EMAIL = 'syj6471@gmail.com';
 
 /* ── 정정 제보 ─────────────────────────────────────────
    계정 없이 본인이 쓴 것만 고치고 지울 수 있어야 한다.
@@ -907,10 +913,10 @@ function renderPickBar(){
    이 서비스가 실제로 쓸모 있는지는 세 가지 질문으로 갈린다.
 
    ① 네이버·구글을 두고 굳이 여기서 조건을 먼저 검색하는가
-      → Click_Filter 빈도로 본다. 필터를 안 쓰면 그냥 지도의 열화판이다.
+      → filter_use 빈도로 본다. 필터를 안 쓰면 그냥 지도의 열화판이다.
 
    ② 제공한 사실을 믿고 곧바로 움직이는가
-      → Click_Direction / Click_Copy_Address 로 본다.
+      → naver_map_click / copy_address 로 본다.
         상세를 열어보는 것과 실제로 가는 것은 다르다.
 
    ③ 정보가 틀렸을 때 스스로 고치려 드는가
@@ -1905,10 +1911,21 @@ function setHTML(id, html){
 
 /* ── 이벤트 ───────────────────────────────────────────── */
 const qInput = document.getElementById('q');
+let searchTimer = null;
+let lastTrackedSearch = '';
 qInput.addEventListener('input', () => {
   query = qInput.value.trim().toLowerCase();
   document.getElementById('qx').style.display = query ? 'block' : 'none';
   shown = 25; openId = null; render();
+
+  // 검색어를 입력할 때마다 보내지 않고, 입력이 멈춘 뒤 실제 결과가 갱신된 경우에만 기록한다.
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    if (query && query !== lastTrackedSearch) {
+      track('search', { query });
+      lastTrackedSearch = query;
+    }
+  }, 700);
 });
 
 document.addEventListener('click', e => {
@@ -1955,9 +1972,13 @@ document.addEventListener('click', e => {
     }
     const spot = AREA_SPOTS.find(a => a.key === ap.dataset.area);
     if (spot){
-      me = { lat: spot.lat, lng: spot.lng };
       pickedArea = spot;
-      whereState = { ok:false, msg:'picked' };
+      /* 내 위치를 알면 거리 기준은 그대로 둔다 — 목록만 좁아진다.
+         위치를 모를 때만 지역 중심에서 잰다. */
+      if (!myPos){
+        me = { lat: spot.lat, lng: spot.lng };
+        whereState = { ok:false, msg:'centre' };
+      }
       track('area_pick', { area: spot.label });
       sortByDistance(); updateWhere(); renderAreas(); render();
       window.scrollTo({ top:0, behavior:'smooth' });
@@ -2013,7 +2034,7 @@ document.addEventListener('click', e => {
 
   if (e.target.closest('#where')){ pickedArea = null; askLocation(); return; }
   if (e.target.closest('#qx')){
-    qInput.value = ''; query = '';
+    qInput.value = ''; query = ''; clearTimeout(searchTimer); lastTrackedSearch = '';
     document.getElementById('qx').style.display = 'none';
     shown = 25; render(); return;
   }
@@ -2030,7 +2051,7 @@ document.addEventListener('click', e => {
              SESSION.filterUses++;
              /* 조건을 쓰는지가 첫 번째 질문의 답이다.
                 안 쓰면 이 서비스는 그냥 지도의 열화판이다. */
-             track('Click_Filter', {
+             track('filter_use', {
                filter: cur,
                use_count: SESSION.filterUses,
                seconds_since_start: secsSinceStart(),
@@ -2042,7 +2063,7 @@ document.addEventListener('click', e => {
   const go = e.target.closest('[data-dir]');
   if (go){
     const p = PLACES.find(x => x.id === go.dataset.dir);
-    track('Click_Direction', {
+    track('naver_map_click', {
       place_id: go.dataset.dir,
       place_name: p ? (p.name_en || p.name_ko) : '',
       category: p ? p.category : '',
@@ -2060,7 +2081,7 @@ document.addEventListener('click', e => {
     const p = PLACES.find(x => x.id === cp.dataset.copy);
     const text = p ? `${p.name_ko || p.name_en}\n${p.address || ''}`.trim() : '';
     navigator.clipboard?.writeText(text).then(() => toast(t('copied')));
-    track('Click_Copy_Address', {
+    track('copy_address', {
       place_id: cp.dataset.copy,
       place_name: p ? (p.name_en || p.name_ko) : '',
     });
