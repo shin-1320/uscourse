@@ -562,6 +562,7 @@ let REPORTS = {};        // place_id → 그 가게에 달린 제보들
 let MY_REPORTS = {};     // report_id → 내가 쓴 것 (수정·삭제 가능 표시용)
 let reportOpenFor = null;// 지금 입력창이 열린 가게
 let reportEditing = null;// 수정 중인 제보 id
+let reportDraft = '';    // 쓰던 글 — 화면이 다시 그려져도 남기기 위해
 
 /* 위치를 못 잡았을 때 고를 수 있는 상권.
    "부산 중심에서" 라고만 하면 왜 엉뚱한 곳이 나오는지 알 수 없다.
@@ -1133,7 +1134,7 @@ function reportBlock(p){
     ${items || ''}
     ${open ? `
       <div class="rp-form">
-        <textarea id="rp-input" rows="3" placeholder="${esc(t('reportPlaceholder'))}"></textarea>
+        <textarea id="rp-input" rows="3" placeholder="${esc(t('reportPlaceholder'))}">${esc(reportDraft)}</textarea>
         <div class="rp-btns">
           <button class="rp-cancel" data-rcancel="1">${t('cancel')}</button>
           <button class="rp-send" data-rsend="${esc(p.id)}">${t('send')}</button>
@@ -2096,12 +2097,18 @@ document.addEventListener('click', e => {
   if (xp){ track('Experience_Click', { id: xp.dataset.xp,
     area: pickedArea ? pickedArea.label : '' }); return; }
 
-  /* 정정 제보 — 입력창 열기 */
+  /* 쓰던 글을 붙잡아 둔다. 목록이 다시 그려지는 일이 잦기 때문이다. */
+document.addEventListener('input', (e) => {
+  if (e.target && e.target.id === 'rp-input') reportDraft = e.target.value;
+});
+
+/* 정정 제보 — 입력창 열기 */
   const rp = e.target.closest('[data-report]');
   if (rp){
     e.stopPropagation();
     reportOpenFor = rp.dataset.report;
     reportEditing = null;
+    reportDraft = '';
     render();
     setTimeout(() => document.getElementById('rp-input')?.focus(), 50);
     return;
@@ -2110,7 +2117,7 @@ document.addEventListener('click', e => {
   // 취소
   if (e.target.closest('[data-rcancel]')){
     e.stopPropagation();
-    reportOpenFor = null; reportEditing = null;
+    reportOpenFor = null; reportEditing = null; reportDraft = '';
     render();
     return;
   }
@@ -2121,8 +2128,8 @@ document.addEventListener('click', e => {
     e.stopPropagation();
     const el = document.getElementById('rp-input');
     const placeId = rsend.dataset.rsend;
-    saveReport(placeId, el ? el.value : '').then(ok => {
-      if (ok) reportOpenFor = null;
+    saveReport(placeId, el ? el.value : reportDraft).then(ok => {
+      if (ok){ reportOpenFor = null; reportDraft = ''; }
       render();
     });
     return;
@@ -2136,6 +2143,7 @@ document.addEventListener('click', e => {
     const item = (REPORTS[pid] || []).find(x => x.id === redit.dataset.redit);
     reportEditing = redit.dataset.redit;
     reportOpenFor = pid;
+    reportDraft = item ? item.body : '';
     render();
     setTimeout(() => {
       const el = document.getElementById('rp-input');
@@ -2151,6 +2159,13 @@ document.addEventListener('click', e => {
     if (confirm(t('confirmDelete'))) removeReport(rdel.dataset.rdel, rdel.dataset.rplace);
     return;
   }
+
+  /* 펼친 영역 안을 누른 것은 카드를 접으라는 뜻이 아니다.
+     입력칸이 카드 안에 있어서, 글을 쓰려고 누르면
+     카드가 닫혀 아무것도 쓸 수 없었다. */
+  if (e.target.closest('.open')) return;
+  const tag = (e.target.tagName || '').toUpperCase();
+  if (tag === 'TEXTAREA' || tag === 'INPUT' || tag === 'SELECT' || tag === 'LABEL') return;
 
   const row = e.target.closest('.row');
   if (row){
