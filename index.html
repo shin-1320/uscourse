@@ -421,8 +421,6 @@
   .lead-edit{font:inherit;font-size:12.5px;font-weight:700;color:var(--brand);
     background:#fff;border:none;border-radius:8px;padding:6px 11px;cursor:pointer}
 
-  .why{margin-top:9px;font-size:12px;font-weight:600;color:var(--ok-fg);
-    background:var(--ok-bg);border-radius:8px;padding:7px 10px;line-height:1.4}
 
   /* ── 정정 제보 ───────────────────────────────────────
      "틀렸다"고 말할 수 있어야 정보가 자란다.
@@ -642,7 +640,6 @@ const T = {
         b_nospice:'Not spicy',
         resultLead:'Places where', resultAll:'is confirmed',
         resultCount:'{n} places', changeSit:'Change',
-        whyFirst:'Closest, and everything checks out.',
         locDenied:'Location is blocked — allow it in your browser settings, or pick an area below.',
         locTimeout:'Could not find you. Tap to retry, or pick an area below.',
         addHome:'Add to home screen so you can open it in one tap.',
@@ -691,7 +688,6 @@ const T = {
         b_nospice:'辛くない',
         resultLead:'次のすべてが確認できたお店', resultAll:'',
         resultCount:'{n}件', changeSit:'変更',
-        whyFirst:'いちばん近くて、条件もすべて満たしています。',
         locDenied:'位置情報がブロックされています。ブラウザの設定で許可するか、下のエリアを選んでください。',
         locTimeout:'現在地を取得できませんでした。タップで再試行、または下のエリアを選んでください。',
         addHome:'ホーム画面に追加すると、次からすぐ開けます。',
@@ -740,7 +736,6 @@ const T = {
         b_nospice:'不辣',
         resultLead:'以下全部已確認的店家', resultAll:'',
         resultCount:'{n} 間', changeSit:'更改',
-        whyFirst:'最近，而且條件全部符合。',
         locDenied:'定位被封鎖了。請在瀏覽器設定中允許，或選擇下方區域。',
         locTimeout:'找不到你的位置。點一下重試，或選擇下方區域。',
         addHome:'加到主畫面，下次一鍵就能開啟。',
@@ -789,7 +784,6 @@ const T = {
         b_nospice:'不辣',
         resultLead:'以下全部已确认的店家', resultAll:'',
         resultCount:'{n} 家', changeSit:'更改',
-        whyFirst:'最近，而且条件全部符合。',
         locDenied:'定位被阻止了。请在浏览器设置中允许，或选择下方区域。',
         locTimeout:'找不到你的位置。点一下重试，或选择下方区域。',
         addHome:'添加到主屏幕，下次一键就能打开。',
@@ -841,7 +835,7 @@ const areaLabel = a => AREA_LABEL[a] || a || '';
    "Eat alone"은 기능 이름이고, "I'm on my own"은 상황이다. */
 const SITUATIONS = [
   { key:'solo',    ic:'👤', lb:'sit_solo',    chip:'b_solo',
-    test: p => p.solo_ok === true },
+    test: p => p.solo_ok === true || p.category === 'cafe' },
   { key:'menu',    ic:'🔤', lb:'sit_menu',    chip:'b_menu',
     test: p => p.english_menu === true },
   { key:'nospice', ic:'🌶️', lb:'sit_nospice', chip:'b_nospice',
@@ -850,7 +844,11 @@ const SITUATIONS = [
 
 const FILTERS = [
   { key:'all',  ic:'',    lb:'f_all',  test: () => true },
-  { key:'solo', ic:'👤',  lb:'f_solo', test: p => p.solo_ok === true },
+  /* 혼밥 — 카페는 따질 필요가 없으므로 무조건 통과시킨다.
+     표시하지 않는 것과 걸러내는 것은 다르다.
+     여기서 막으면 "혼자 왔다"고 고른 사람에게 카페가 하나도 안 나온다. */
+  { key:'solo', ic:'👤',  lb:'f_solo',
+    test: p => p.solo_ok === true || p.category === 'cafe' },
   { key:'menu', ic:'🔤',  lb:'f_menu', test: p => p.english_menu === true },
   /* 안 매운 곳 — 세 단계로 채우므로 Mild 만 걸러낼 수 있다.
      매운 것을 못 먹는 사람에게는 이쪽이 필요한 조건이다. */
@@ -1606,7 +1604,9 @@ function render(){
              onerror="this.remove();this.parentNode.textContent='${face}'">`
       : face;
 
-    const solo = p.solo_ok === true;
+    /* 카페에 "혼자 가도 됨"은 당연한 말이라 뱃지로 달지 않는다.
+       커피를 혼자 못 마시는 곳은 없다. */
+    const solo = p.solo_ok === true && p.category !== 'cafe';
     /* 카드는 웬만한 곳에서 다 된다. 그래서 "된다"를 알리는 것보다
        "현금만 받는다"를 알리는 편이 쓸모 있다.
        드문 경우만 적으면 확인해야 할 곳도 크게 줄어든다. */
@@ -1650,7 +1650,6 @@ function render(){
           </div>
 
           ${decisionTags ? `<div class="decision-tags">${decisionTags}</div>` : fallback}
-          ${idx === 0 && picked.size ? `<div class="why">✓ ${t('whyFirst')}</div>` : ''}
 
           ${menu ? `<div class="menuline" title="${esc(menu)}">${esc(menu)}</div>` : ''}
           ${g ? `<div class="howline">🍴 ${t('b_how')}</div>` : ''}
