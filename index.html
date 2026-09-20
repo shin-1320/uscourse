@@ -195,9 +195,6 @@
   .dtag.neutral{background:#f4f5fa;color:var(--muted)}
   /* 현금만 — 알아야 곤란해지지 않는 정보라 경고색으로 */
   .dtag.no{background:var(--no-bg);color:var(--no-fg)}
-  .decision-summary{margin-top:11px;padding:9px 11px;background:#f7f8fc;border-radius:10px;
-    font-size:12.5px;color:var(--text);line-height:1.45}
-  .decision-summary b{color:var(--ink)}
   /* 메뉴 — 무엇을 파는 곳인지 알려주는 설명이다.
      굵은 파란 글씨로 두면 누를 수 있는 것처럼 보여 혼란스럽다.
      조용한 회색으로 한 줄만 둔다. */
@@ -647,7 +644,6 @@ const T = {
         addHomeBtn:'Add', later:'Not now',
         copyAddr:'Copy', report:'Is this wrong? Tell us', reported:'Thanks — we will check',
         walk:'{n} min walk',
-        noneChecked:'Nothing confirmed here yet — bring cash just in case.',
         pick:'Add', picked:'Added', nPicked:'{n} picked', share:'Share',
         clearList:'Clear', copied:'Link copied',
         sharedList:'A shared list', sharedBy:'{n} places someone picked for you',
@@ -695,7 +691,6 @@ const T = {
         addHomeBtn:'追加', later:'あとで',
         copyAddr:'コピー', report:'情報が違いますか？', reported:'ありがとうございます。確認します',
         walk:'徒歩{n}分',
-        noneChecked:'まだ何も確認できていません。念のため現金をお持ちください。',
         pick:'追加', picked:'追加済み', nPicked:'{n}件', share:'共有',
         clearList:'クリア', copied:'リンクをコピーしました',
         sharedList:'共有されたリスト', sharedBy:'{n}件のおすすめが届いています',
@@ -743,7 +738,6 @@ const T = {
         addHomeBtn:'加入', later:'稍後',
         copyAddr:'複製', report:'資訊有誤嗎？告訴我們', reported:'謝謝，我們會確認',
         walk:'步行{n}分鐘',
-        noneChecked:'這裡還沒有任何確認資訊，建議帶些現金。',
         pick:'加入', picked:'已加入', nPicked:'已選 {n} 個', share:'分享',
         clearList:'清空', copied:'已複製連結',
         sharedList:'分享的清單', sharedBy:'有人為你挑了 {n} 個地點',
@@ -791,7 +785,6 @@ const T = {
         addHomeBtn:'添加', later:'稍后',
         copyAddr:'复制', report:'信息有误吗？告诉我们', reported:'谢谢，我们会确认',
         walk:'步行{n}分钟',
-        noneChecked:'这里还没有任何确认信息，建议带些现金。',
         pick:'加入', picked:'已加入', nPicked:'已选 {n} 个', share:'分享',
         clearList:'清空', copied:'已复制链接',
         sharedList:'分享的清单', sharedBy:'有人为你挑了 {n} 个地点',
@@ -1621,9 +1614,9 @@ function render(){
       hasSpice ? `<span class="dtag ${mild?'hot':'neutral'}"><span class="ico">🌶️</span>${esc(p.spice_level.replace(/🌶️?/g,'').trim())}</span>` : ''
     ].filter(Boolean).slice(0,4).join('');
 
-    const fallback = !decisionTags
-      ? `<div class="decision-summary">${t('noneChecked')}</div>`
-      : '';
+    // 뱃지가 없으면 그냥 비워 둔다.
+    // 확인된 것이 없다는 사실을 굳이 문장으로 알릴 필요는 없다.
+    const fallback = '';
 
     // 도보 4km/h = 분당 약 67m. 신호와 골목을 감안해 넉넉히 잡는다.
     const walk = p._d != null
