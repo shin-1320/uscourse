@@ -350,6 +350,8 @@
     scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .areas .scroller::-webkit-scrollbar{display:none}
   .area.fixed{flex-shrink:0}
+  /* 도시 — 동네보다 한 단계 위라 조금 진하게 */
+  .area.city{flex-shrink:0;color:var(--ink);font-weight:800}
   .area{flex-shrink:0;font:inherit;font-size:12.5px;font-weight:600;
     padding:4px 9px;border:none;background:none;color:var(--faint);
     cursor:pointer;white-space:nowrap;border-radius:6px}
@@ -580,19 +582,70 @@ let reportDraft = '';    // 쓰던 글 — 화면이 다시 그려져도 남기�
 /* 위치를 못 잡았을 때 고를 수 있는 상권.
    "부산 중심에서" 라고만 하면 왜 엉뚱한 곳이 나오는지 알 수 없다.
    여행자가 실제로 머무는 곳들을 골라 뒀다. */
-/* 지역 칩 — 여행자가 아는 이름으로 둔다.
-   "수영구"보다 "Gwangalli"가 통하기 때문이다.
-   다만 카드의 구 표시와는 다른 값이므로 혼동하지 않도록
-   key(실제 구) 와 label(부르는 이름) 을 나눠 둔다. */
-const AREA_SPOTS = [
-  { key:'해운대구',  label:'Haeundae',  lat:35.1587, lng:129.1604 },
-  { key:'수영구',    label:'Gwangalli', lat:35.1532, lng:129.1186 },
-  { key:'남구',      label:'Daeyeon',   lat:35.1360, lng:129.0900 },
-  { key:'부산진구',  label:'Seomyeon',  lat:35.1578, lng:129.0594 },
-  { key:'중구',      label:'Nampo',     lat:35.0979, lng:129.0301 },
-  { key:'영도구',    label:'Yeongdo',   lat:35.0910, lng:129.0680 },
-  { key:'사하구',    label:'Gamcheon',  lat:35.0975, lng:129.0107 },
-];
+/* ── 도시와 동네 ───────────────────────────────────────
+   "중구"와 "강서구"는 부산에도 서울에도 있다.
+   구 이름만으로 거르면 두 도시가 섞이므로 도시를 먼저 나눈다.
+
+   도시는 가게의 좌표로 판단한다. 데이터에 도시 칸이 따로 없고,
+   부산(북위 35도대)과 서울(37도대)은 좌표만으로 확실히 갈린다.
+
+   동네 칩은 여행자가 아는 이름으로 둔다 — "수영구"보다 "Gwangalli".
+   key 는 실제 구 이름, label 은 부르는 이름이다. */
+const CITIES = {
+  busan: {
+    label: 'Busan', center: { lat: 35.1379, lng: 129.0556 },
+    test: p => p.lat > 34.9 && p.lat < 35.45 && p.lng > 128.7 && p.lng < 129.35,
+    spots: [
+      { key:'해운대구', label:'Haeundae',  lat:35.1587, lng:129.1604 },
+      { key:'수영구',   label:'Gwangalli', lat:35.1532, lng:129.1186 },
+      { key:'남구',     label:'Daeyeon',   lat:35.1360, lng:129.0900 },
+      { key:'부산진구', label:'Seomyeon',  lat:35.1578, lng:129.0594 },
+      { key:'중구',     label:'Nampo',     lat:35.0979, lng:129.0301 },
+      { key:'영도구',   label:'Yeongdo',   lat:35.0910, lng:129.0680 },
+      { key:'사하구',   label:'Gamcheon',  lat:35.0975, lng:129.0107 },
+    ],
+  },
+  seoul: {
+    label: 'Seoul', center: { lat: 37.5665, lng: 126.9780 },
+    test: p => p.lat > 37.4 && p.lat < 37.72 && p.lng > 126.75 && p.lng < 127.2,
+    spots: [
+      { key:'종로구',   label:'Jongno',    lat:37.5735, lng:126.9890 },
+      { key:'중구',     label:'Myeongdong',lat:37.5636, lng:126.9850 },
+      { key:'마포구',   label:'Hongdae',   lat:37.5563, lng:126.9236 },
+      { key:'용산구',   label:'Itaewon',   lat:37.5345, lng:126.9946 },
+      { key:'강남구',   label:'Gangnam',   lat:37.4979, lng:127.0276 },
+      { key:'성동구',   label:'Seongsu',   lat:37.5446, lng:127.0557 },
+      { key:'서초구',   label:'Seocho',    lat:37.4837, lng:127.0324 },
+    ],
+  },
+};
+
+/* 가게가 어느 도시인지 */
+function cityOf(p){
+  for (const [k, c] of Object.entries(CITIES)) if (c.test(p)) return k;
+  return null;
+}
+
+/* 내 위치에서 가장 가까운 도시. 멀리 있으면(해외 등) 부산을 기본으로. */
+function nearestCity(pos){
+  if (!pos) return 'busan';
+  let best = 'busan', bestD = 1e12;
+  for (const [k, c] of Object.entries(CITIES)){
+    const d = distM(pos, c.center);
+    if (d < bestD){ bestD = d; best = k; }
+  }
+  return bestD < 80000 ? best : 'busan';
+}
+
+/* 지금 보고 있는 도시 — 기기에 기억해 둔다 */
+let curCity = (() => {
+  try { const v = localStorage.getItem('nm_city'); if (CITIES[v]) return v; } catch(e){}
+  return 'busan';
+})();
+let cityChosen = false;   // 사용자가 직접 골랐는지 (위치로 덮어쓰지 않기 위해)
+
+/* 예전 코드가 쓰는 이름 — 지금 도시의 동네 목록 */
+const AREA_SPOTS_OF = () => CITIES[curCity].spots;
 const CAT_FACE = { restaurant:'🍜', cafe:'☕', attraction:'🏛️', nature:'🏔️', shopping:'🛍️' };
 
 /* ── 언어 ─────────────────────────────────────────────
@@ -1463,7 +1516,8 @@ function currentList(){
   return PLACES.filter(p =>
     f.test(p) && matchQuery(p)
     && (!onlyChecked || hasChecked(p))
-    && (!pickedArea || p.area === pickedArea.key)     // 지역은 걸러내기만
+    && cityOf(p) === curCity                          // 지금 도시의 가게만
+    && (!pickedArea || p.area === pickedArea.key)     // 동네는 걸러내기만
     && SITUATIONS.filter(x => picked.has(x.key)).every(x => x.test(p)));
 }
 
@@ -1490,7 +1544,7 @@ function areaPicker(){
   return `<div class="areapick">
     <div class="t">${t('pickArea')}</div>
     <div class="d">${t('pickAreaDesc')}</div>
-    <div class="row2">${AREA_SPOTS.map(a =>
+    <div class="row2">${AREA_SPOTS_OF().map(a =>
       `<button data-area="${esc(a.key)}">${esc(a.label)}</button>`).join('')}</div>
   </div>`;
 }
@@ -1558,7 +1612,7 @@ function render(){
     box.innerHTML = query
       ? `<div class="msg"><b>${t('noMatch')} "${esc(query)}"</b>${t('tryArea')}</div>`
       : `<div class="msg"><b>${t('nothingNear')}</b>${t('tryArea2')}</div>
-         <div class="areapick"><div class="row2">${AREA_SPOTS.map(a =>
+         <div class="areapick"><div class="row2">${AREA_SPOTS_OF().map(a =>
            `<button data-area="${esc(a.key)}">${esc(a.label)}</button>`).join('')}</div></div>`;
     return;
   }
@@ -1728,14 +1782,18 @@ function renderAreas(){
   const box = document.getElementById('areas');
   if (!box) return;
   const nearOn = !pickedArea;
-  /* "내 주변"은 스크롤에서 빼서 늘 보이게 한다.
-     지역을 고르면 그쪽으로 스크롤되는데, 그때 돌아갈 버튼이
-     화면 밖으로 밀려나면 빠져나올 방법이 없다. */
+
+  /* 도시 전환은 맨 앞에 짧게. 누르면 다음 도시로 넘어간다.
+     도시가 둘뿐이라 드롭다운보다 한 번 누르는 편이 빠르다. */
+  const cityBtn = `<button class="area city" data-city="1">${esc(CITIES[curCity].label)} ▾</button>`;
+
   box.innerHTML =
+    cityBtn +
+    `<span class="sep"></span>` +
     `<button class="area fixed ${nearOn ? 'on' : ''}" data-area="near">📍 ${t('nearMe')}</button>` +
     `<span class="sep"></span>` +
     `<span class="scroller">` +
-    AREA_SPOTS.map(a =>
+    AREA_SPOTS_OF().map(a =>
       `<button class="area ${pickedArea && pickedArea.key === a.key ? 'on' : ''}"
         data-area="${esc(a.key)}">${esc(a.label)}</button>`).join('') +
     `</span>`;
@@ -1840,10 +1898,16 @@ function updateWhere(){
 
 /* 거리 기준점 — 내 위치를 알면 무조건 그것을 쓴다.
    모를 때만 고른 지역, 그것도 없으면 부산 중심. */
+/* 거리 기준점.
+   내 위치가 지금 보는 도시 안이면 내 위치에서 잰다.
+   부산에 있으면서 서울을 보고 있다면 "도보 4,000분"이 나오므로,
+   그때는 고른 동네나 도시 중심에서 잰다. */
 function originPoint(){
-  if (myPos) return myPos;
+  const city = CITIES[curCity];
+  const here = myPos && distM(myPos, city.center) < 40000;
+  if (here) return myPos;
   if (pickedArea) return { lat: pickedArea.lat, lng: pickedArea.lng };
-  return BUSAN;
+  return city.center;
 }
 
 function sortByDistance(){
@@ -1885,6 +1949,12 @@ function askLocation(){
   const ok = (pos) => {
     myPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
     me = myPos;
+    // 서울에 있는 사람에게 부산이 먼저 뜨지 않도록.
+    // 단, 사용자가 도시를 직접 골랐으면 건드리지 않는다.
+    if (!cityChosen){
+      const c = nearestCity(myPos);
+      if (c !== curCity){ curCity = c; pickedArea = null; renderAreas(); }
+    }
     settle(true);
   };
 
@@ -2035,6 +2105,20 @@ document.addEventListener('click', e => {
     return;
   }
 
+  // 도시 바꾸기 — 누를 때마다 다음 도시로
+  if (e.target.closest('[data-city]')){
+    const keys = Object.keys(CITIES);
+    curCity = keys[(keys.indexOf(curCity) + 1) % keys.length];
+    cityChosen = true;
+    pickedArea = null;
+    try { localStorage.setItem('nm_city', curCity); } catch(err){}
+    track('city_pick', { city: curCity });
+    shown = 25; openId = null;
+    sortByDistance(); updateWhere(); renderAreas(); render();
+    window.scrollTo({ top:0, behavior:'smooth' });
+    return;
+  }
+
   // 지역 고르기 — 위치를 못 잡았을 때 대신 쓴다
   const ap = e.target.closest('[data-area]');
   if (ap){
@@ -2045,7 +2129,7 @@ document.addEventListener('click', e => {
       sortByDistance(); updateWhere(); renderAreas(); render();
       return;
     }
-    const spot = AREA_SPOTS.find(a => a.key === ap.dataset.area);
+    const spot = AREA_SPOTS_OF().find(a => a.key === ap.dataset.area);
     if (spot){
       pickedArea = spot;
       /* 내 위치를 알면 거리 기준은 그대로 둔다 — 목록만 좁아진다.
