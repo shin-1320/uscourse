@@ -898,8 +898,10 @@ const FILTERS = [
   { key:'menu', ic:'🔤',  lb:'f_menu', test: p => p.english_menu === true },
   /* 안 매운 곳 — 세 단계로 채우므로 Mild 만 걸러낼 수 있다.
      매운 것을 못 먹는 사람에게는 이쪽이 필요한 조건이다. */
+  /* 안 매운 곳 — 매운 곳만 Hot·Medium 으로 표시한다.
+     표시가 없으면 안 맵다는 뜻이다. (예전에 들어간 Mild 도 안 매운 쪽으로 친다) */
   { key:'mild', ic:'🌶️', lb:'f_mild',
-    test: p => /mild/i.test(p.spice_level || '') },
+    test: p => p.category === 'restaurant' && (!p.spice_level || /mild/i.test(p.spice_level)) },
   { key:'how',  ic:'🍴',  lb:'f_how',  test: p => !!p.food_guide_key },
   { key:'cafe', ic:'☕',  lb:'f_cafe', test: p => p.category === 'cafe' },
 ];
@@ -1279,7 +1281,6 @@ function unknownOf(p){
   /* 매운맛은 세 단계로 채우므로 비어 있으면 확인하지 않은 것이다.
      "표시가 없으면 안 맵다"는 규칙은 더 이상 쓰지 않는다 —
      안 매운 것도 Mild 로 적어야 확인 여부가 분명해진다. */
-  if (!p.spice_level && isRestaurant)         u.push(t('u_spice'));
 
   return u;
 }
@@ -2025,13 +2026,24 @@ async function load(){
 
   // 장소 — 이것만은 있어야 화면이 성립한다
   try {
-    const { data, error } = await sb.from('places')
-      .select('id, name_en, name_ko, category, subcategory, image_url, address, area, i18n, lat, lng, solo_ok, foreign_card, english_menu, spice_level, food_guide_key')
-      .not('lat','is',null).not('lng','is',null);
+    /* Supabase 는 한 번에 최대 1,000줄만 돌려준다.
+       서울이 더해져 1,000곳을 넘자 뒤쪽이 통째로 잘려 서울 가게가 안 보였다.
+       1,000줄씩 나눠 끝까지 받는다. */
+    const COLS = 'id, name_en, name_ko, category, subcategory, image_url, address, area, i18n, lat, lng, solo_ok, foreign_card, english_menu, spice_level, food_guide_key';
+    const PAGE = 1000;
+    let all = [];
+    for (let from = 0; ; from += PAGE){
+      const { data, error } = await sb.from('places')
+        .select(COLS)
+        .not('lat','is',null).not('lng','is',null)
+        .order('id')
+        .range(from, from + PAGE - 1);
+      if (error) throw error;
+      all = all.concat(data || []);
+      if (!data || data.length < PAGE) break;
+    }
 
-    if (error) throw error;
-
-    PLACES = data || [];
+    PLACES = all;
     loading = false;
     track('nearme_view', { places: PLACES.length, shared: sharedMode });
     sortByDistance();
