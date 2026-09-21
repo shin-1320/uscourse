@@ -22,7 +22,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Near me">
 <meta name="mobile-web-app-capable" content="yes">
-<title>Near me · Busan</title>
+<title>Near me · Korea</title>
 
 <!--
   ═══════════════════════════════════════════════════════
@@ -351,7 +351,26 @@
   .areas .scroller::-webkit-scrollbar{display:none}
   .area.fixed{flex-shrink:0}
   /* 도시 — 동네보다 한 단계 위라 조금 진하게 */
-  .area.city{flex-shrink:0;color:var(--ink);font-weight:800}
+  /* 도시 — 누르면 펼쳐지는 목록. 언어 선택과 같은 모양 */
+  .citywrap{position:relative;flex-shrink:0}
+  /* 처음 화면 — 도시를 고른다. 모든 도시가 같은 크기로 나란히 */
+  .citypick{padding:34px 0 40px;text-align:center}
+  .citypick .t{font-size:19px;font-weight:800;color:var(--ink);margin-bottom:18px}
+  .citypick .row2{display:flex;flex-wrap:wrap;justify-content:center;gap:9px}
+  .citypick button{font:inherit;font-size:15px;font-weight:700;color:var(--ink);
+    background:#fff;border:1.5px solid var(--line);border-radius:12px;
+    padding:13px 22px;min-width:120px;cursor:pointer}
+  .citypick button:hover{border-color:var(--brand);color:var(--brand)}
+  .area.city{color:var(--ink);font-weight:800}
+  .citymenu{display:none;position:fixed;z-index:700;margin-top:4px;
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:5px;
+    min-width:140px;box-shadow:0 10px 30px rgba(11,13,20,.14)}
+  .citymenu.on{display:block}
+  .citymenu button{display:flex;justify-content:space-between;gap:10px;width:100%;
+    font:inherit;font-size:14px;color:var(--text);background:none;border:none;
+    padding:10px 12px;border-radius:8px;cursor:pointer;text-align:left}
+  .citymenu button:hover{background:#f4f5fa}
+  .citymenu button.sel{color:var(--brand);font-weight:700}
   .area{flex-shrink:0;font:inherit;font-size:12.5px;font-weight:600;
     padding:4px 9px;border:none;background:none;color:var(--faint);
     cursor:pointer;white-space:nowrap;border-radius:6px}
@@ -530,9 +549,9 @@
   <div class="foot">
     <span id="t-foot">Only checked details are shown. Blank means not confirmed yet.</span><br>
     <a href="legal.html" id="t-legal">Privacy, terms &amp; data sources</a><br>
-    <span class="src">Place data: Busan Metropolitan City · Korea Tourism Organization<br>
+    <span class="src">Place data: Busan Metropolitan City · Seoul Metropolitan Government · Korea Tourism Organization<br>
       Maps: © OpenStreetMap contributors</span><br>
-    Near me · Busan, Korea
+    Near me · Korea
   </div>
 </div>
 
@@ -628,24 +647,31 @@ function cityOf(p){
 
 /* 내 위치에서 가장 가까운 도시. 멀리 있으면(해외 등) 부산을 기본으로. */
 function nearestCity(pos){
-  if (!pos) return 'busan';
-  let best = 'busan', bestD = 1e12;
+  if (!pos) return null;
+  let best = null, bestD = 1e12;
   for (const [k, c] of Object.entries(CITIES)){
     const d = distM(pos, c.center);
     if (d < bestD){ bestD = d; best = k; }
   }
-  return bestD < 80000 ? best : 'busan';
+  return bestD < 80000 ? best : null;
 }
 
 /* 지금 보고 있는 도시 — 기기에 기억해 둔다 */
+/* 도시는 모두 같은 자리다. 어느 도시도 기본값이 아니다.
+   직접 고른 적이 있으면 그 도시, 위치를 알면 가까운 도시,
+   둘 다 없으면 null — 이때는 "어느 도시예요?"를 먼저 묻는다. */
 let curCity = (() => {
   try { const v = localStorage.getItem('nm_city'); if (CITIES[v]) return v; } catch(e){}
-  return 'busan';
+  return null;
 })();
 let cityChosen = false;   // 사용자가 직접 골랐는지 (위치로 덮어쓰지 않기 위해)
 
-/* 예전 코드가 쓰는 이름 — 지금 도시의 동네 목록 */
-const AREA_SPOTS_OF = () => CITIES[curCity].spots;
+/* 지금 도시의 동네 목록. 도시를 아직 모르면 비어 있다. */
+const AREA_SPOTS_OF = () => curCity ? CITIES[curCity].spots : [];
+
+/* 도시 목록은 이름순 — 어느 도시가 먼저라는 인상을 주지 않는다 */
+const CITY_KEYS = () => Object.keys(CITIES).sort((a, b) =>
+  CITIES[a].label.localeCompare(CITIES[b].label));
 const CAT_FACE = { restaurant:'🍜', cafe:'☕', attraction:'🏛️', nature:'🏔️', shopping:'🛍️' };
 
 /* ── 언어 ─────────────────────────────────────────────
@@ -659,7 +685,7 @@ const LANG_META = {
 };
 const T = {
   en: { list:'List', map:'Map', search:'Search a place, street or area…',
-        here:'from <b>where you are</b>', centre:'from Busan centre · <b>use my location</b>',
+        here:'from <b>where you are</b>', centre:'from the city centre · <b>use my location</b>',
         locating:'locating…', away:'away', notConfirmed:'Not confirmed', more:'Show more',
         naver:'Open in Naver Map', foot:'Only checked details are shown. Blank means not confirmed yet.',
         noMatch:'No match for', tryArea:'Try a place name, a street, or an area like Haeundae.',
@@ -701,12 +727,13 @@ const T = {
         clearList:'Clear', copied:'Link copied',
         sharedList:'A shared list', sharedBy:'{n} places someone picked for you',
         saveThese:'Save these', backToAll:'Back to all places',
+        pickCity:'Which city are you in?', chooseCity:'City',
         nearMe:'Near me', pickArea:'Where are you headed?',
         pickAreaDesc:'We could not get your location, so distances are measured from the city centre. Pick an area instead.',
         onlyCheckedLabel:'Only checked places', nothingNear:'Nothing registered around you yet.',
         tryArea2:'Try one of these areas:' },
   ja: { list:'リスト', map:'地図', search:'店名・通り・エリアで検索…',
-        here:'<b>現在地</b>から', centre:'釜山中心から · <b>現在地を使う</b>',
+        here:'<b>現在地</b>から', centre:'市の中心から · <b>現在地を使う</b>',
         locating:'現在地を取得中…', away:'', notConfirmed:'未確認', more:'もっと見る',
         naver:'NAVERマップで開く', foot:'確認できた情報だけを表示しています。空欄は未確認です。',
         noMatch:'見つかりません:', tryArea:'店名・通り・「海雲台」などのエリア名で探せます。',
@@ -748,12 +775,13 @@ const T = {
         clearList:'クリア', copied:'リンクをコピーしました',
         sharedList:'共有されたリスト', sharedBy:'{n}件のおすすめが届いています',
         saveThese:'このリストを保存', backToAll:'すべての場所に戻る',
+        pickCity:'どの都市にいますか？', chooseCity:'都市',
         nearMe:'現在地', pickArea:'どのあたりへ？',
         pickAreaDesc:'現在地を取得できなかったため、市内中心からの距離です。エリアを選んでください。',
         onlyCheckedLabel:'確認済みのみ', nothingNear:'この周辺にはまだ登録がありません。',
         tryArea2:'このあたりはいかがですか：' },
   zh: { list:'清單', map:'地圖', search:'搜尋店名、街道或地區…',
-        here:'從<b>你的位置</b>', centre:'從釜山市中心 · <b>使用我的位置</b>',
+        here:'從<b>你的位置</b>', centre:'從市中心 · <b>使用我的位置</b>',
         locating:'定位中…', away:'', notConfirmed:'未確認', more:'顯示更多',
         naver:'用 NAVER 地圖開啟', foot:'只顯示已確認的資訊，空白表示尚未確認。',
         noMatch:'找不到:', tryArea:'可用店名、街道，或「海雲台」這類地區名搜尋。',
@@ -795,12 +823,13 @@ const T = {
         clearList:'清空', copied:'已複製連結',
         sharedList:'分享的清單', sharedBy:'有人為你挑了 {n} 個地點',
         saveThese:'儲存這些', backToAll:'回到全部地點',
+        pickCity:'你在哪個城市？', chooseCity:'城市',
         nearMe:'我的位置', pickArea:'你要去哪一帶？',
         pickAreaDesc:'無法取得你的位置，目前以市中心計算距離。請直接選擇區域。',
         onlyCheckedLabel:'只看已確認', nothingNear:'你附近還沒有登錄的地點。',
         tryArea2:'試試這些區域：' },
   zhs: { list:'列表', map:'地图', search:'搜索店名、街道或地区…',
-        here:'从<b>你的位置</b>', centre:'从釜山市中心 · <b>使用我的位置</b>',
+        here:'从<b>你的位置</b>', centre:'从市中心 · <b>使用我的位置</b>',
         locating:'定位中…', away:'', notConfirmed:'未确认', more:'显示更多',
         naver:'用 NAVER 地图打开', foot:'只显示已确认的信息，空白表示尚未确认。',
         noMatch:'找不到:', tryArea:'可用店名、街道，或"海云台"这类地区名搜索。',
@@ -842,6 +871,7 @@ const T = {
         clearList:'清空', copied:'已复制链接',
         sharedList:'分享的清单', sharedBy:'有人为你挑了 {n} 个地点',
         saveThese:'保存这些', backToAll:'回到全部地点',
+        pickCity:'你在哪个城市？', chooseCity:'城市',
         nearMe:'我的位置', pickArea:'你要去哪一带？',
         pickAreaDesc:'无法获取你的位置，目前以市中心计算距离。请直接选择区域。',
         onlyCheckedLabel:'只看已确认', nothingNear:'你附近还没有登录的地点。',
@@ -1590,6 +1620,18 @@ function render(){
     return;
   }
   setHeaderVisible(true);
+
+  /* 처음 화면 — 도시를 모르면 먼저 묻는다.
+     부산을 슬쩍 깔아두면 부산이 본거지처럼 보인다. */
+  if (!curCity){
+    box.innerHTML = `<div class="citypick">
+      <div class="t">${t('pickCity')}</div>
+      <div class="row2">${CITY_KEYS().map(k =>
+        `<button data-city="${k}">${esc(CITIES[k].label)}</button>`).join('')}</div>
+    </div>`;
+    return;
+  }
+
   const all = currentList();
 
   if (loading){ box.innerHTML = skeleton(); return; }
@@ -1784,9 +1826,18 @@ function renderAreas(){
   if (!box) return;
   const nearOn = !pickedArea;
 
-  /* 도시 전환은 맨 앞에 짧게. 누르면 다음 도시로 넘어간다.
-     도시가 둘뿐이라 드롭다운보다 한 번 누르는 편이 빠르다. */
-  const cityBtn = `<button class="area city" data-city="1">${esc(CITIES[curCity].label)} ▾</button>`;
+  /* 도시 — 누르면 목록이 펼쳐진다.
+     도시는 계속 늘어날 것이라(경주·제주) 나란히 늘어놓을 수 없다.
+     언어 선택과 같은 모양으로 두면 몇 개가 되어도 그대로 쓸 수 있고,
+     목록에 모든 도시가 보이므로 돌아가는 길도 분명하다. */
+  const cityBtn = `<span class="citywrap">
+    <button class="area city" data-cityopen="1">${esc(curCity ? CITIES[curCity].label : t('chooseCity'))} ▾</button>
+    <span class="citymenu" id="citymenu">${
+      CITY_KEYS().map(k =>
+        `<button class="${k === curCity ? 'sel' : ''}" data-city="${k}">
+           <span>${esc(CITIES[k].label)}</span>${k === curCity ? '<span>✓</span>' : ''}</button>`
+      ).join('')}</span>
+  </span>`;
 
   box.innerHTML =
     cityBtn +
@@ -1904,6 +1955,7 @@ function updateWhere(){
    부산에 있으면서 서울을 보고 있다면 "도보 4,000분"이 나오므로,
    그때는 고른 동네나 도시 중심에서 잰다. */
 function originPoint(){
+  if (!curCity) return myPos || null;
   const city = CITIES[curCity];
   const here = myPos && distM(myPos, city.center) < 40000;
   if (here) return myPos;
@@ -1914,7 +1966,7 @@ function originPoint(){
 function sortByDistance(){
   const o = originPoint();
   me = o;                       // 지도·표시가 같은 기준을 쓰도록 맞춘다
-  PLACES.forEach(p => { p._d = distM(o, { lat:p.lat, lng:p.lng }); });
+  PLACES.forEach(p => { p._d = o ? distM(o, { lat:p.lat, lng:p.lng }) : null; });
   PLACES.sort((a,b) => (a._d ?? 1e12) - (b._d ?? 1e12));
 }
 
@@ -1954,7 +2006,7 @@ function askLocation(){
     // 단, 사용자가 도시를 직접 골랐으면 건드리지 않는다.
     if (!cityChosen){
       const c = nearestCity(myPos);
-      if (c !== curCity){ curCity = c; pickedArea = null; renderAreas(); }
+      if (c && c !== curCity){ curCity = c; pickedArea = null; renderAreas(); }
     }
     settle(true);
   };
@@ -2118,9 +2170,16 @@ document.addEventListener('click', e => {
   }
 
   // 도시 바꾸기 — 누를 때마다 다음 도시로
-  if (e.target.closest('[data-city]')){
-    const keys = Object.keys(CITIES);
-    curCity = keys[(keys.indexOf(curCity) + 1) % keys.length];
+  // 도시 목록 열고 닫기
+  if (e.target.closest('[data-cityopen]')){
+    document.getElementById('citymenu')?.classList.toggle('on');
+    return;
+  }
+  const cb = e.target.closest('[data-city]');
+  if (cb){
+    document.getElementById('citymenu')?.classList.remove('on');
+    if (cb.dataset.city === curCity) return;
+    curCity = cb.dataset.city;
     cityChosen = true;
     pickedArea = null;
     try { localStorage.setItem('nm_city', curCity); } catch(err){}
@@ -2196,6 +2255,7 @@ document.addEventListener('click', e => {
     LANG = lm.dataset.l;
     try { localStorage.setItem('cu_lang', LANG); } catch(err){}
     document.getElementById('lmenu').classList.remove('on');
+  document.getElementById('citymenu')?.classList.remove('on');
     applyLang(); return;
   }
   if (e.target.closest('#lbtn')){
