@@ -1279,7 +1279,10 @@ function distM(a, b){
     + Math.cos(a.lat*d) * Math.cos(b.lat*d) * Math.sin((b.lng-a.lng)*d/2)**2;
   return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1-x));
 }
-const fmtDist = m => m < 1000 ? Math.round(m/10)*10 + ' m' : (m/1000).toFixed(1) + ' km';
+/* 1km 미만은 m, 10km 미만은 소수 한 자리, 그 이상은 정수 — "325.4 km"는 어색하다 */
+const fmtDist = m => m < 1000 ? Math.round(m/10)*10 + ' m'
+                  : m < 10000 ? (m/1000).toFixed(1) + ' km'
+                  : Math.round(m/1000).toLocaleString() + ' km';
 
 function tagsOf(p){
   const g = [];
@@ -1715,8 +1718,10 @@ function render(){
     // 확인된 것이 없다는 사실을 굳이 문장으로 알릴 필요는 없다.
     const fallback = '';
 
-    // 도보 4km/h = 분당 약 67m. 신호와 골목을 감안해 넉넉히 잡는다.
-    const walk = p._d != null
+    /* 도보 4km/h = 분당 약 67m. 신호와 골목을 감안해 넉넉히 잡는다.
+       3km 가 넘으면 걸어갈 거리가 아니므로 도보 시간은 빼고 km 만 보여준다.
+       부산에서 서울 가게를 보면 "도보 4,800분"이 되기 때문이다. */
+    const walk = (p._d != null && p._d <= 3000)
       ? t('walk').replace('{n}', String(Math.max(1, Math.round(p._d / 67))))
       : '';
 
@@ -1954,20 +1959,35 @@ function updateWhere(){
    내 위치가 지금 보는 도시 안이면 내 위치에서 잰다.
    부산에 있으면서 서울을 보고 있다면 "도보 4,000분"이 나오므로,
    그때는 고른 동네나 도시 중심에서 잰다. */
+/* 거리 기준점 — 내 위치를 알면 언제나 내 위치에서 잰다.
+   부산에 있으면서 서울을 보고 있어도 실제 거리(약 325km)를 보여준다.
+   내 위치를 모를 때만 고른 동네나 도시 중심에서 잰다. */
 function originPoint(){
-  if (!curCity) return myPos || null;
-  const city = CITIES[curCity];
-  const here = myPos && distM(myPos, city.center) < 40000;
-  if (here) return myPos;
+  if (myPos) return myPos;
   if (pickedArea) return { lat: pickedArea.lat, lng: pickedArea.lng };
-  return city.center;
+  return curCity ? CITIES[curCity].center : null;
 }
 
 function sortByDistance(){
   const o = originPoint();
   me = o;                       // 지도·표시가 같은 기준을 쓰도록 맞춘다
-  PLACES.forEach(p => { p._d = o ? distM(o, { lat:p.lat, lng:p.lng }) : null; });
-  PLACES.sort((a,b) => (a._d ?? 1e12) - (b._d ?? 1e12));
+
+  /* 보여주는 거리는 언제나 내 위치에서 잰다.
+     다만 다른 도시를 보고 있을 때 "내 위치에서 가까운 순"으로 늘어놓으면
+     그 도시 안에서의 순서가 뒤죽박죽이 된다(부산에서 본 서울은 남동쪽부터).
+     그래서 순서만은 고른 동네나 그 도시 중심에서 가까운 순으로 한다. */
+  const city = curCity ? CITIES[curCity] : null;
+  const far  = myPos && city && distM(myPos, city.center) > 40000;
+  const sortFrom = far
+    ? (pickedArea ? { lat: pickedArea.lat, lng: pickedArea.lng } : city.center)
+    : o;
+
+  PLACES.forEach(p => {
+    const pt = { lat: p.lat, lng: p.lng };
+    p._d = o ? distM(o, pt) : null;               // 화면에 보이는 거리
+    p._s = sortFrom ? distM(sortFrom, pt) : 1e12; // 늘어놓는 순서
+  });
+  PLACES.sort((a, b) => (a._s ?? 1e12) - (b._s ?? 1e12));
 }
 
 function askLocation(){
