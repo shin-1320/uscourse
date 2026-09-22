@@ -1,565 +1,467 @@
--- 자동 큐레이션 — 2026-09-21
+-- 자동 큐레이션 — 2026-09-22
 --
--- 먹는 법 36곳 · 매운맛 219곳
--- 혼밥 가능 198곳 · 혼밥 불가 105곳
+-- 먹는 법 22곳 · 매운맛 31곳
+-- 혼밥 가능 310곳 · 혼밥 불가 97곳
 --
 -- 실행 전에 훑어보시고, 이상한 줄은 지우고 돌리세요.
 
-update places set spice_level = '🌶️ Mild' where id = 'f6deba11-5e98-47a8-8c92-b27150c0433e';   -- 배비장보쌈구서본점
-update places set spice_level = '🌶️ Mild' where id = '3b48f545-628b-4ed1-a31f-f55fcabd32f2';   -- 이태원숯불구이
-update places set spice_level = '🌶️ Mild' where id = 'baadf44b-e325-483f-8b35-897248a9db03';   -- 할매재첩국집
-update places set spice_level = '🌶️ Mild' where id = '9c6dc16c-d017-4b07-9d4d-81cc97aef028';   -- 골목 손칼국수
-update places set spice_level = '🌶️🌶️ Medium' where id = '2c7d3768-82a1-4595-9b8a-5304adc3f860';   -- 원조할머니떡볶이집
-update places set spice_level = '🌶️ Mild' where id = 'e8800e5a-361d-41d7-b7d3-cb6e98b68a23';   -- 할매재첩국
-update places set spice_level = '🌶️ Mild' where id = 'bf9e110a-3ac6-4968-a212-35bfbf7f7dd7';   -- 금강만두
-update places set spice_level = '🌶️ Mild' where id = 'c4841b51-b93c-4c19-93c9-79fcbbca2578';   -- 마포숯불갈비
-update places set spice_level = '🌶️🌶️ Medium' where id = '5ee186b3-6cc5-476f-bf15-d9d4b973b16f';   -- 왕밀면냉면 본점
-update places set spice_level = '🌶️🌶️ Medium' where id = '61ee3dd2-d131-40bb-8cbe-9ef5e71165db';   -- 은성집
-update places set spice_level = '🌶️ Mild' where id = '489e5ace-6eda-4540-98b8-68e4da9402e2';   -- 초량갈비
-update places set spice_level = '🌶️ Mild' where id = 'a6276c6f-ef47-4ba0-abd7-d6882c049493';   -- 포항가자미물회국수말이전문점
-update places set spice_level = '🌶️ Mild' where id = '8776c27c-7348-4106-82af-a903515c8b05';   -- 동원숯불갈비
-update places set spice_level = '🌶️ Mild' where id = '2744aa40-1350-4df0-881c-bd680b9034d4';   -- 부산족발
-update places set food_guide_key = 'suyuk-baekban' where id = 'c867242d-40f7-41a7-a663-d805f559cae0';   -- 동촌황정순수육전골
-update places set spice_level = '🌶️ Mild' where id = 'c867242d-40f7-41a7-a663-d805f559cae0';   -- 동촌황정순수육전골
-update places set spice_level = '🌶️ Mild' where id = '126ed0df-b261-4cfd-98ae-c0159ebdfd5c';   -- 일미장어
-update places set spice_level = '🌶️ Mild' where id = '76684b1b-c8ed-4c6b-a6f4-55d3e94be36d';   -- 옻바다전복삼계탕
-update places set spice_level = '🌶️ Mild' where id = '08aa01a3-9e78-485c-9846-8151c324fdd0';   -- 행복을 짓는 수향촌밥상
-update places set spice_level = '🌶️ Mild' where id = 'e849f615-67b6-462c-af2a-41b4a4120f54';   -- 할매복국
-update places set spice_level = '🌶️ Mild' where id = 'ef203864-bebe-4178-999a-6394a10ce640';   -- 하동재첩국
-update places set food_guide_key = 'suyuk-baekban' where id = '3bf69a1a-76e0-4a84-8ec0-14e3312e6279';   -- 마포옥
-update places set spice_level = '🌶️ Mild' where id = '3bf69a1a-76e0-4a84-8ec0-14e3312e6279';   -- 마포옥
-update places set spice_level = '🌶️ Mild' where id = 'adc1d716-5371-4c38-8a67-7300458d6679';   -- 본 고갈비
-update places set spice_level = '🌶️ Mild' where id = '75579e4a-516c-4f0d-8bad-ecab6e17e5c2';   -- 깊픈(GIPPEN)
-update places set spice_level = '🌶️ Mild' where id = '04de5fbe-2658-4181-81c9-cd9d4c5d560a';   -- 알라딘의 양고기
-update places set spice_level = '🌶️ Mild' where id = 'ff0ce309-817c-4b3b-b4d6-5929bcb0063b';   -- 맹여사육전육회
-update places set food_guide_key = 'samgyeopsal' where id = 'ebd567bc-e7b9-484f-ad80-da797291ffbd';   -- 은주정
-update places set spice_level = '🌶️🌶️ Medium' where id = 'ebd567bc-e7b9-484f-ad80-da797291ffbd';   -- 은주정
-update places set spice_level = '🌶️ Mild' where id = '5b122f5f-195a-409b-9f39-01ae4b0f6180';   -- 배종관동래삼계탕
-update places set spice_level = '🌶️ Mild' where id = '79464c54-ea88-4849-9dc5-0ac147a962e3';   -- 백가백반
-update places set spice_level = '🌶️ Mild' where id = 'b0faf93a-37a5-43af-962c-3c980cbc53dd';   -- 한우숯불양곱창
-update places set spice_level = '🌶️🌶️ Medium' where id = 'dcd29315-9795-440c-9a5a-9ba3aa1ae788';   -- 다락
-update places set food_guide_key = 'samgyeopsal' where id = 'b8286089-4362-4495-9cda-c7666bbf9fea';   -- 그램그램 압구정크루즈점
-update places set spice_level = '🌶️ Mild' where id = 'b8286089-4362-4495-9cda-c7666bbf9fea';   -- 그램그램 압구정크루즈점
-update places set spice_level = '🌶️ Mild' where id = '5578bb51-ec0c-4df5-a0a2-b4bbf709486c';   -- 금용만두
-update places set spice_level = '🌶️ Mild' where id = '910cde14-8c13-4b76-9599-180299f22308';   -- 공항칼국수
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '38d5bf9a-d795-4bc2-a523-2e8759419153';   -- 등촌 최월선칼국수
-update places set spice_level = '🌶️🌶️ Medium' where id = 'c86e8ed9-52b4-4a24-a2b1-0402945b06ff';   -- 애플하우스
-update places set food_guide_key = 'eomuk' where id = 'eb0c66dd-63e5-4bb3-98a4-1cba45545d94';   -- 차니오뎅
-update places set spice_level = '🌶️ Mild' where id = '52dc42aa-b6ab-4a3a-af69-a1115227c5aa';   -- 청죽
-update places set spice_level = '🌶️🌶️ Medium' where id = 'e1cb77be-925d-4b10-b3bc-f1be3c2f4a73';   -- 코끼리분식
-update places set spice_level = '🌶️ Mild' where id = '2ccb647e-9cd0-419c-a8ef-8d16ff2276d9';   -- 샤브남바완
-update places set food_guide_key = 'suyuk-baekban' where id = '9a23a13d-11e4-4a9e-bc20-f484f9151653';   -- 아빠의 양식당
-update places set spice_level = '🌶️ Mild' where id = '9a23a13d-11e4-4a9e-bc20-f484f9151653';   -- 아빠의 양식당
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = 'f580116a-81ee-43d9-b95c-59dbcd5420a9';   -- 홍스쭈꾸미 홍대본점
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = 'c0ef68c5-7dd3-40b7-b522-7103864d2ecf';   -- 명동채움 한정식
-update places set spice_level = '🌶️ Mild' where id = '34f1b21a-1222-43cc-abe3-ac8113fdd8c0';   -- 할매재첩국부산본점
-update places set spice_level = '🌶️ Mild' where id = '0ed9c38b-50e6-467f-b35b-a370f7ae77bf';   -- 경찰서옆초밥집
-update places set spice_level = '🌶️🌶️ Medium' where id = '7834984c-9b25-4a41-a0ee-9d0213f447c2';   -- 명동교자
-update places set spice_level = '🌶️🌶️ Medium' where id = 'fd653a6c-c9b4-47ac-9182-6a1f398c8fa1';   -- 이드
-update places set food_guide_key = 'suyuk-baekban' where id = '6ce6daf8-cb6c-43a1-9113-f7cf328e4aea';   -- 능라도 광화문점
-update places set spice_level = '🌶️🌶️ Medium' where id = '6ce6daf8-cb6c-43a1-9113-f7cf328e4aea';   -- 능라도 광화문점
-update places set spice_level = '🌶️🌶️ Medium' where id = '94f32d7c-a960-4157-acc6-0b5ae3fed0f8';   -- 능라도 여의도점
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '192d9daf-5848-40f9-a54f-f0d1d87d8910';   -- 대왕불맛
-update places set spice_level = '🌶️ Mild' where id = 'b552d5ad-cd8f-4720-91b3-cde340936638';   -- 전골그집 주례본점
-update places set spice_level = '🌶️ Mild' where id = 'c6d1813b-e850-451e-bd5a-622b7cb04f22';   -- 우성삼계탕
-update places set spice_level = '🌶️ Mild' where id = '4349422c-e375-4111-a599-bbcfc10c32a3';   -- 북경만두
-update places set food_guide_key = 'suyuk-baekban' where id = '7e7520d9-dc28-4351-bb96-bbe74adfc47c';   -- 전주설렁탕
-update places set spice_level = '🌶️ Mild' where id = '7e7520d9-dc28-4351-bb96-bbe74adfc47c';   -- 전주설렁탕
-update places set spice_level = '🌶️ Mild' where id = '35ebd7ca-8155-4eeb-90bc-540ab8347916';   -- 박해윤통영해물밥상
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = 'cd721f4f-42fe-4f9d-a1d7-313d10f1e38b';   -- 봉추찜닭 압구정로데오점
-update places set spice_level = '🌶️ Mild' where id = 'b3521157-7553-4c84-9d8d-e956d1d25d49';   -- 멍텅구리
-update places set spice_level = '🌶️ Mild' where id = '255506a0-5afc-4e99-8f4d-4efc2abe36a4';   -- 석화한정식
-update places set spice_level = '🌶️ Mild' where id = '17c06c17-e3bf-4abc-8fa2-0b82e3e88ded';   -- 동경밥상
-update places set spice_level = '🌶️ Mild' where id = '0945aa46-adfc-421c-b365-0f44e2fcec4a';   -- 마가만두
-update places set spice_level = '🌶️ Mild' where id = 'e7a0cd56-93ca-4719-8425-437fe3797e40';   -- 초량돼지국밥
-update places set food_guide_key = 'hoe' where id = '92a165b7-a8a9-42d2-94ec-426811f47494';   -- 도산정육 청담본점
-update places set spice_level = '🌶️ Mild' where id = '92a165b7-a8a9-42d2-94ec-426811f47494';   -- 도산정육 청담본점
-update places set spice_level = '🌶️ Mild' where id = 'ed9d8321-7942-49a0-a2b3-8715e52b0c39';   -- 영도미학
-update places set spice_level = '🌶️ Mild' where id = '9756f4da-8290-4c10-b245-cc2e17f6dcb2';   -- 오대양횟집
-update places set spice_level = '🌶️ Mild' where id = 'ef1a73f7-d3e3-497c-8434-22cf2f917af6';   -- 선창횟집
-update places set spice_level = '🌶️ Mild' where id = 'eac21007-ba94-4b19-a0ce-5dfaaccf0ad5';   -- 부광숯불갈비
-update places set spice_level = '🌶️ Mild' where id = 'c7f26964-1b70-4306-920c-e75d6973f748';   -- 원조일미기사식당
-update places set spice_level = '🌶️ Mild' where id = '3d6419d7-2e06-458c-9e8e-d8193c7e8e45';   -- 1969부원동칼국수 부산본점
-update places set food_guide_key = 'suyuk-baekban' where id = '07c16d0f-1b04-4765-af43-c5eda4d8cdce';   -- 능라도 명동점
-update places set spice_level = '🌶️🌶️ Medium' where id = '07c16d0f-1b04-4765-af43-c5eda4d8cdce';   -- 능라도 명동점
-update places set spice_level = '🌶️ Mild' where id = 'ad005ffb-e356-4741-a0f1-d8ee72490945';   -- 까치횟집
-update places set spice_level = '🌶️ Mild' where id = '7fad1628-91b0-4697-b43a-e0ac72d55a91';   -- 무진장횟집
-update places set spice_level = '🌶️🌶️ Medium' where id = 'd000b4ca-ec16-47d8-bafa-9deaec0a4a4c';   -- 팔도밀방 강남본점
-update places set spice_level = '🌶️ Mild' where id = '536b895c-ccaf-4392-80c5-d1f91986868f';   -- 광안리신라횟집
-update places set spice_level = '🌶️ Mild' where id = 'a387d1b1-fbf0-4841-97ff-b52b96881c7b';   -- 문스시
-update places set spice_level = '🌶️ Mild' where id = '2c808abf-a62c-441e-8a02-2866c7f0086d';   -- 동북화과왕
-update places set food_guide_key = 'suyuk-baekban' where id = 'f7e10b32-bdeb-42c0-8722-35fbc5311603';   -- 산동교자
-update places set spice_level = '🌶️ Mild' where id = 'f7e10b32-bdeb-42c0-8722-35fbc5311603';   -- 산동교자
-update places set spice_level = '🌶️ Mild' where id = '37506942-a573-413d-9d44-1f79750d3d61';   -- 아지겐
-update places set spice_level = '🌶️ Mild' where id = '98d13021-5760-4561-93dd-b3b4a43ee735';   -- 사랑도횟집
-update places set spice_level = '🌶️ Mild' where id = 'a82c485e-3f06-4a30-968c-84240c486ee8';   -- 금수복국
-update places set spice_level = '🌶️ Mild' where id = '36799c69-9bea-4345-a8f0-ac268910ce4f';   -- 우연횟집
-update places set spice_level = '🌶️ Mild' where id = 'd4a96761-3a27-47f4-a5d5-cffd45a91ab4';   -- 영변횟집
-update places set spice_level = '🌶️ Mild' where id = 'e9f72654-2ba9-4866-bb1f-a723fdc6a12d';   -- 박옥희할매집원조복국
-update places set spice_level = '🌶️ Mild' where id = '9957f33c-ffab-483b-968f-fd089c423fd8';   -- 신진도간장게장
-update places set spice_level = '🌶️ Mild' where id = 'd7a8b1f3-0d05-4d9e-ae6d-4ee55a6eef05';   -- 부산명물횟집
-update places set spice_level = '🌶️ Mild' where id = 'b5553669-2658-491b-98ee-e7fbe510628a';   -- 스시심 타카이
-update places set spice_level = '🌶️ Mild' where id = '6afa3949-14ce-42c5-8664-a2f8ce6e9489';   -- 무진장횟집 기장점
-update places set spice_level = '🌶️ Mild' where id = 'f94ebb4b-2804-4bb8-91d8-750a0dadf6c1';   -- 초원복국
-update places set spice_level = '🌶️ Mild' where id = '21f3705f-228d-462b-8737-15bdfd05dc3d';   -- 소바연구소 신촌본점
-update places set spice_level = '🌶️ Mild' where id = 'd22189d3-0ace-49f8-883a-1ae9fc2bc6b7';   -- [백년가게] 삼원가든
-update places set spice_level = '🌶️🌶️ Medium' where id = 'bbdfc3f5-4b14-42f8-b802-edec9f21a488';   -- 고삼이 합정직영점
-update places set spice_level = '🌶️ Mild' where id = '7c110712-ceab-41a2-ab50-6448f14ce383';   -- 관호 광화문점
-update places set spice_level = '🌶️ Mild' where id = 'f91b88c4-7cd2-4e4f-a95d-bc495619c479';   -- 관호 여의도 본점
-update places set spice_level = '🌶️ Mild' where id = '9dd9f68e-434d-4228-bab5-3d9661cb4d44';   -- 청년밥상문간
-update places set spice_level = '🌶️ Mild' where id = '23a7b99c-077c-4f8a-9568-4b0b753b9988';   -- 한우오마카세 우모크
-update places set food_guide_key = 'ssiat-hotteok' where id = '3830f5a5-1acd-4757-b1fc-8bbfaab5fbb7';   -- 신가네 호떡 김밥 떡볶이
-update places set spice_level = '🌶️🌶️ Medium' where id = 'b0a204c0-1c18-4193-ad88-d214ef101e1b';   -- 연백냉면
-update places set spice_level = '🌶️ Mild' where id = 'aaa69075-8e27-4a1d-a7d4-817835251163';   -- 유숙단부자낙지
-update places set spice_level = '🌶️ Mild' where id = '1854407b-0e22-4fbe-9f80-7c046a569a48';   -- 명인등심 마포공덕 직영점
-update places set spice_level = '🌶️ Mild' where id = 'e4e40525-c545-44b8-93f1-7a3b78ba853e';   -- 만호갈미샤브샤브
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '8a786acb-2cce-40ac-9dc9-670a2e5f82de';   -- 마파람해물찜해물탕 구서본점
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '2352476f-1e85-4363-89dc-fcfc370e2f1c';   -- 6일 닭강정
-update places set food_guide_key = 'samgyeopsal' where id = 'e4ff33e6-c6d9-493f-a5ce-fc22a5ee085c';   -- 팔각도 성수역점
-update places set spice_level = '🌶️🌶️ Medium' where id = 'e4ff33e6-c6d9-493f-a5ce-fc22a5ee085c';   -- 팔각도 성수역점
-update places set spice_level = '🌶️ Mild' where id = 'b367d47a-9ee3-49fd-839b-5a49e7e9c76c';   -- 새총횟집
-update places set spice_level = '🌶️ Mild' where id = '705f89dc-24c0-4c44-9af0-90cc3382a8ef';   -- 다온 한정식
-update places set spice_level = '🌶️ Mild' where id = '774d4be2-8a0a-432b-beed-187505174602';   -- 멘야산다이메
-update places set spice_level = '🌶️ Mild' where id = 'a730cb7f-0d31-4ffc-9a61-6f0a9bdecd5b';   -- 명동곰돌이
-update places set spice_level = '🌶️ Mild' where id = '901e95e1-24f5-4a6c-af61-f9dc27108d21';   -- 너마늘 안동갈비
-update places set spice_level = '🌶️ Mild' where id = '09731f4a-9ec8-409f-b0cb-1d3b7f988b5f';   -- 아마 홍대점
-update places set food_guide_key = 'suyuk-baekban' where id = '26dc2554-a7f7-471f-917a-daa4682a702e';   -- 보배반점 명동점
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '26dc2554-a7f7-471f-917a-daa4682a702e';   -- 보배반점 명동점
-update places set spice_level = '🌶️🌶️ Medium' where id = '7de53b2a-3cb1-4794-9f11-a4a55e6522eb';   -- 희락갈치
-update places set spice_level = '🌶️🌶️ Medium' where id = 'a4870963-3332-4258-9706-c77abe784955';   -- 형제육회 본점
-update places set food_guide_key = 'suyuk-baekban' where id = '825ca5d9-5ee5-4e06-956f-6dd09dd89edf';   -- 제일제면소 여의도IFC몰점
-update places set spice_level = '🌶️ Mild' where id = '825ca5d9-5ee5-4e06-956f-6dd09dd89edf';   -- 제일제면소 여의도IFC몰점
-update places set spice_level = '🌶️ Mild' where id = 'abce516e-3791-4aef-a1ae-f7d68f844bad';   -- 고래불
-update places set food_guide_key = 'samgyeopsal' where id = 'e5480996-0338-41be-ad1c-fda0a4914fc3';   -- 씨제이더마켓 제일제당센터점
-update places set spice_level = '🌶️🌶️ Medium' where id = 'e5480996-0338-41be-ad1c-fda0a4914fc3';   -- 씨제이더마켓 제일제당센터점
-update places set food_guide_key = 'hoe' where id = '64f9421d-453e-4f22-9555-ca9102fe737f';   -- 인생횟집 종각본점
-update places set spice_level = '🌶️ Mild' where id = '64f9421d-453e-4f22-9555-ca9102fe737f';   -- 인생횟집 종각본점
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '510bfabf-ab01-4f15-a95f-849c3dee8d76';   -- 진고개 동대문점
-update places set spice_level = '🌶️ Mild' where id = '3394b37d-c0df-4192-96e9-a340cc56314c';   -- 모녀김밥
-update places set spice_level = '🌶️ Mild' where id = 'fc13e7cc-151a-4b64-bf30-ff66a53d0895';   -- 종로삼계탕
-update places set spice_level = '🌶️ Mild' where id = 'ccb7325c-9aab-491e-867d-a7f3ce128b2f';   -- 밀양갈비
-update places set spice_level = '🌶️🌶️ Medium' where id = '0c9ea3f0-c378-4efc-ad9e-9b0d92209457';   -- 홍대닭갈비
-update places set spice_level = '🌶️ Mild' where id = 'f5e3c898-4eb1-4b69-9854-86adf530d7b4';   -- [백년가게] 이문설렁탕
-update places set spice_level = '🌶️ Mild' where id = '74cb6ebe-b8ba-4fa1-a3b5-f8e0350312a5';   -- 사마리칸트
-update places set food_guide_key = 'samgyeopsal' where id = 'ee066f52-5ee5-4489-aadf-6ac609cbd319';   -- 무샤
-update places set spice_level = '🌶️ Mild' where id = 'f45bd12e-e667-43b2-a096-226882671a52';   -- 바다식당
-update places set spice_level = '🌶️ Mild' where id = 'f20c0cd6-b024-4ab8-a36c-e2e712fc0c08';   -- 소바마에
-update places set spice_level = '🌶️ Mild' where id = '538911d1-701e-483f-b104-c56b0136c3ec';   -- 손맛김밥
-update places set spice_level = '🌶️ Mild' where id = '7a6e7855-6f61-46d2-bcf8-20c320997f81';   -- 양지추어탕
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '4ff860a6-835f-43af-9dc7-402979403a12';   -- 르포트13
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '2bd7ea5b-210d-47e9-8572-b8bad38c5688';   -- 가양칼국수버섯매운탕
-update places set spice_level = '🌶️ Mild' where id = 'd3eaac3b-2484-4982-a44a-b17507887a5f';   -- 갈비명가이상(길음신관)
-update places set spice_level = '🌶️ Mild' where id = 'bd1ca071-51bc-4bd9-8c74-fa6a3d0b4cf9';   -- 동백섬횟집
-update places set spice_level = '🌶️ Mild' where id = '93179e59-ed60-412d-97a2-e53de65bb24e';   -- 명동충무김밥
-update places set spice_level = '🌶️ Mild' where id = '80c0a58c-10bf-49d9-983e-4936b3ad961a';   -- 명동정
-update places set spice_level = '🌶️ Mild' where id = '394cf41e-d8e0-4759-aeae-8119e13b4e28';   -- 제주복국
-update places set spice_level = '🌶️ Mild' where id = 'af136c92-b382-4e52-87cf-3db4326ae577';   -- 기장곰장어
-update places set spice_level = '🌶️ Mild' where id = '976fbf65-d1af-4684-9043-a0c8afeaed9e';   -- 내림손삼계탕 을지로점
-update places set spice_level = '🌶️ Mild' where id = '6a35f781-7090-4441-b5e4-faab9ddbc510';   -- 고려삼계탕
-update places set spice_level = '🌶️ Mild' where id = 'fabe5860-c4d0-4f85-b4f8-7e0041d0dd29';   -- 꼬숑돈까스
-update places set spice_level = '🌶️ Mild' where id = 'e3b9f063-f3e9-4585-8c84-2691e0e618a0';   -- 곽경찬의 시골밥상
-update places set spice_level = '🌶️ Mild' where id = '9fe2f81d-1f3a-4f89-84d5-b062c7138244';   -- 가미우동
-update places set spice_level = '🌶️🌶️ Medium' where id = '875b7a2f-df63-4f59-a1e5-544b53f7aeb0';   -- 감촌
-update places set spice_level = '🌶️🌶️ Medium' where id = 'c5af3f57-471b-4ad8-ac54-291026a0101d';   -- 까치네
-update places set spice_level = '🌶️ Mild' where id = '76c1834f-e4fb-4cee-aae3-b6728fe4d302';   -- 강강술래(상계점)
-update places set spice_level = '🌶️ Mild' where id = 'bf33a750-6a4b-4592-9164-ef0831fd79f3';   -- 강강술래(신림본동점)
-update places set food_guide_key = 'samgyeopsal' where id = '75bda2a2-0125-47f9-a96d-28c67cd41932';   -- 뀌쏭82
-update places set spice_level = '🌶️ Mild' where id = '75bda2a2-0125-47f9-a96d-28c67cd41932';   -- 뀌쏭82
-update places set food_guide_key = 'dwaeji-gukbap' where id = '43343602-5e59-47d9-9279-f42191689c19';   -- 강남따로국밥
-update places set spice_level = '🌶️ Mild' where id = '43343602-5e59-47d9-9279-f42191689c19';   -- 강남따로국밥
-update places set spice_level = '🌶️ Mild' where id = 'c3c575b9-36f1-4112-a2dc-7aa812c59fea';   -- 개화옥
-update places set spice_level = '🌶️ Mild' where id = 'ad4e1bfb-87f0-4298-ab80-5fb35f3e3d6e';   -- 함흥보쌈사계절냉면
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '856a8f41-c4b2-483f-993e-81e019f1f46a';   -- 봉추찜닭 명동중앙우체국점
-update places set spice_level = '🌶️🌶️ Medium' where id = '8dd84a4b-cacb-4d6f-9fad-fe5a1fa81255';   -- 부산집 후라이드치킨
-update places set spice_level = '🌶️ Mild' where id = '368c6902-719c-4794-95eb-2f3f56f07707';   -- 능라밥상
-update places set spice_level = '🌶️ Mild' where id = '654f8e53-4ea8-4fc4-97a5-ce2b48e7b3a8';   -- 곰국시집
-update places set spice_level = '🌶️ Mild' where id = 'a4efe3ce-77b2-4b1b-8a44-2bb6758582a7';   -- 청화초밥
-update places set food_guide_key = 'suyuk-baekban' where id = '3e31bce4-491c-4e14-ba7a-100ed908677e';   -- 덕원꼬리곰탕방치탕
-update places set spice_level = '🌶️ Mild' where id = '3e31bce4-491c-4e14-ba7a-100ed908677e';   -- 덕원꼬리곰탕방치탕
-update places set spice_level = '🌶️ Mild' where id = '3882c35b-93ba-4dea-8e61-273908fb6042';   -- 국화정원
-update places set spice_level = '🌶️ Mild' where id = '44d3f82c-bdc8-4cb7-b5c8-27a79a85c7d0';   -- 궁
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = 'baf00806-a0fa-4aee-9043-d042c26f7bc6';   -- 대포찜닭
-update places set spice_level = '🌶️ Mild' where id = '9de9b28a-6a90-47e2-9289-2ededf896a99';   -- 그릴아지사이
-update places set spice_level = '🌶️ Mild' where id = 'e63fbf72-6804-4d84-adc4-17482d63cc22';   -- 기소야
-update places set spice_level = '🌶️ Mild' where id = 'b4cb6c81-8772-487f-9168-6f0e82c3ab3e';   -- 30년전통가마솥석쇠돼지갈비
-update places set spice_level = '🌶️🌶️ Medium' where id = 'a578d608-bff0-4d9c-807c-303cc397e6bd';   -- 꽃지
-update places set food_guide_key = 'samgyeopsal' where id = 'fcfd76a8-a260-40d5-a52a-ebe032ffc573';   -- 나리의집
-update places set spice_level = '🌶️ Mild' where id = 'fcfd76a8-a260-40d5-a52a-ebe032ffc573';   -- 나리의집
-update places set food_guide_key = 'suyuk-baekban' where id = '947e7822-80e0-429a-abff-77429e86288d';   -- 란주라미엔
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '947e7822-80e0-429a-abff-77429e86288d';   -- 란주라미엔
-update places set spice_level = '🌶️ Mild' where id = '0bd09f12-95a8-48f4-8e23-6f2e283ee8cf';   -- 나인스게이트그릴
-update places set food_guide_key = 'suyuk-baekban' where id = '3e35d0bd-09c4-4850-926e-c9d8f11f95a9';   -- 난향
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '3e35d0bd-09c4-4850-926e-c9d8f11f95a9';   -- 난향
-update places set food_guide_key = 'suyuk-baekban' where id = '13d26923-551d-490c-bff5-cba352f365ec';   -- 램랜드
-update places set spice_level = '🌶️ Mild' where id = '13d26923-551d-490c-bff5-cba352f365ec';   -- 램랜드
-update places set spice_level = '🌶️ Mild' where id = 'dd81fd8f-7837-4b37-bd1d-66be27c4bea6';   -- 램하우스
-update places set spice_level = '🌶️ Mild' where id = 'f9e4c37d-7225-4b7a-9618-4a0eed0ece3e';   -- 낙원(메이필드호텔)
-update places set food_guide_key = 'gomjangeo' where id = 'afd19a21-6ee4-48eb-af33-f996e7c0203f';   -- 남매집
-update places set spice_level = '🌶️🌶️ Medium' where id = 'afd19a21-6ee4-48eb-af33-f996e7c0203f';   -- 남매집
-update places set spice_level = '🌶️ Mild' where id = 'f20d690c-5f39-4124-862b-2adb2e83b18f';   -- 남문토방
-update places set spice_level = '🌶️ Mild' where id = '91984bb4-ef52-4706-9ccd-0024f1fedaca';   -- 마전터
-update places set food_guide_key = 'hoe' where id = '8e4f7f98-e043-4655-b5de-cc824c7318d7';   -- 마차횟집
-update places set spice_level = '🌶️ Mild' where id = '8e4f7f98-e043-4655-b5de-cc824c7318d7';   -- 마차횟집
-update places set spice_level = '🌶️🌶️ Medium' where id = '643fbbed-ec3e-4dd2-83e0-cfb080b09d89';   -- 남서울민물장어
-update places set spice_level = '🌶️🌶️ Medium' where id = '2d71ab0b-7f29-4eeb-a75c-b23d61f1023d';   -- 명동함흥면옥
-update places set spice_level = '🌶️ Mild' where id = '81cace36-3edf-44ad-abf3-6ae807ca9473';   -- 남포면옥(중구)
-update places set spice_level = '🌶️🌶️ Medium' where id = '131a8541-1429-4b9a-ad4e-34789ace91de';   -- 명품잔치국수
-update places set food_guide_key = 'samgyeopsal' where id = '055cfcae-c251-4baf-9baf-db0a54819467';   -- [백년가게] 삼천포식당
-update places set spice_level = '🌶️ Mild' where id = '055cfcae-c251-4baf-9baf-db0a54819467';   -- [백년가게] 삼천포식당
-update places set spice_level = '🌶️🌶️ Medium' where id = 'bf267367-29be-40a2-ba2d-d68a54efa3c7';   -- 백년옥
-update places set food_guide_key = 'sundae-gukbap' where id = '8deabd42-14da-4fd5-aa14-0fa89bb597e6';   -- 백암왕순대
-update places set spice_level = '🌶️ Mild' where id = '8deabd42-14da-4fd5-aa14-0fa89bb597e6';   -- 백암왕순대
-update places set spice_level = '🌶️ Mild' where id = '649ea44c-9a5d-4357-ac66-bfe32b1cdd72';   -- 금수복국 잠실소피텔점
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '08828c13-04f3-421d-990d-fc6f2d09fedf';   -- 너비집
-update places set spice_level = '🌶️ Mild' where id = 'dfc3f59f-fcd5-4156-bb4a-8f8c0ddd5020';   -- 벽제갈비 타워팰리스점
-update places set spice_level = '🌶️ Mild' where id = 'ed8e083b-315c-4e54-8178-222ecf1c1c32';   -- 봉피양(방이점)
-update places set spice_level = '🌶️ Mild' where id = '5b23ee4e-3c99-4290-a072-4860f3c947d0';   -- 부민옥
-update places set food_guide_key = 'suyuk-baekban' where id = 'ea8744b2-d8c6-44b6-bf1a-57817ff9e042';   -- 느린마을 양조장 강남점
-update places set spice_level = '🌶️ Mild' where id = 'ea8744b2-d8c6-44b6-bf1a-57817ff9e042';   -- 느린마을 양조장 강남점
-update places set spice_level = '🌶️ Mild' where id = 'c7e253b5-a1f3-4567-8fca-5115ecee7d39';   -- 부산양곱창
-update places set spice_level = '🌶️ Mild' where id = '5481c605-44fc-47cc-a126-05619bd05262';   -- 불이아
-update places set spice_level = '🌶️ Mild' where id = '38c3a0aa-62b2-4757-acec-dcd5ed866ae5';   -- 단풍나무집(이태원점)
-update places set spice_level = '🌶️ Mild' where id = 'fef0f6b5-4af9-457b-9cb1-7ec3846192e3';   -- 대련집
-update places set spice_level = '🌶️ Mild' where id = '1e5c687b-666e-4d74-b410-bf492207299b';   -- 대문
-update places set spice_level = '🌶️ Mild' where id = '4ca710e8-4c97-45fb-9221-6c22e64beab9';   -- 대방골
-update places set spice_level = '🌶️ Mild' where id = '0008ee44-a368-4af9-ba69-817bd2efcbc3';   -- 대여
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '5e20f23f-780e-44ed-9737-cc8ae8ff21e0';   -- 삼오쭈꾸미
-update places set spice_level = '🌶️ Mild' where id = 'c9c62a99-fc67-4a9b-b84c-245c8740a044';   -- [백년가게] 삼원가든
-update places set food_guide_key = 'samgyeopsal' where id = '7d618f73-f349-4a64-841b-60fabf08d17b';   -- [백년가게] 싸리골
-update places set spice_level = '🌶️ Mild' where id = '7d618f73-f349-4a64-841b-60fabf08d17b';   -- [백년가게] 싸리골
-update places set spice_level = '🌶️ Mild' where id = 'aab378b2-09cc-4ea1-ac98-3a44d8cbc988';   -- 삼거리푸줏간 센트럴시티점
-update places set spice_level = '🌶️ Mild' where id = 'cea8cfd8-7d90-4483-87e8-0a0363c53d5b';   -- 거대갈비
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '0680ec5d-9b8e-4576-917f-7b5556ee8e71';   -- 도림
-update places set spice_level = '🌶️ Mild' where id = '2184c4c7-0b75-4601-9488-346b365411d5';   -- 88돼지갈비
-update places set spice_level = '🌶️ Mild' where id = '658e21f2-c873-48ba-a420-6471cf1db551';   -- 삼학도
-update places set spice_level = '🌶️ Mild' where id = 'b6eb847f-b0d1-48fd-84a7-6388a96202da';   -- 상락원
-update places set spice_level = '🌶️🌶️🌶️ Hot' where id = '1fa8bd29-3b64-4b18-b145-b41220f89d7f';   -- 쯔꾸시
-update places set spice_level = '🌶️ Mild' where id = 'fb6740b7-57f8-459c-89cf-14564c799e20';   -- 가미분식
-update places set spice_level = '🌶️ Mild' where id = '0ab25c3a-839e-4c34-bf09-edc126851212';   -- 갯마을
-update places set spice_level = '🌶️ Mild' where id = '0a5ea760-1217-484d-9390-8f1e250b857d';   -- 동경식당
-update places set food_guide_key = 'samgyeopsal' where id = '2cd1ab3c-1904-4127-98f5-d4528e005d4f';   -- 새벽집
-update places set spice_level = '🌶️ Mild' where id = '2cd1ab3c-1904-4127-98f5-d4528e005d4f';   -- 새벽집
-update places set spice_level = '🌶️ Mild' where id = '6eb13d17-b734-4435-a5ed-eec0710fb9b3';   -- 된장예술과술
-update places set spice_level = '🌶️ Mild' where id = '37b37aa9-9d40-4f9a-a808-26eade1d781d';   -- 은하갈비
-update places set food_guide_key = 'suyuk-baekban' where id = '48864e56-2da9-431a-a7d3-139805536ea7';   -- 서궁
-update places set spice_level = '🌶️ Mild' where id = '48864e56-2da9-431a-a7d3-139805536ea7';   -- 서궁
-update places set spice_level = '🌶️ Mild' where id = 'aca56a8c-a65e-4a6a-92f4-f686f507fb9c';   -- 서석대
-update places set food_guide_key = 'sundae-gukbap' where id = '8949e0e4-e6ab-4cf3-aadb-f50be7b540e6';   -- 서초 남순남순대국
-update places set spice_level = '🌶️🌶️ Medium' where id = '5fdd992c-f842-471b-a26c-c2fbd0c4b409';   -- 두꺼비정육점식당
-update places set spice_level = '🌶️ Mild' where id = '6dc5f021-c8b3-4cd6-a93f-1e4504905eee';   -- 서초장어타운
-update places set food_guide_key = 'suyuk-baekban' where id = 'bcf02565-45e3-42a2-b3a6-25a45f84b298';   -- 설눈
-update places set spice_level = '🌶️ Mild' where id = 'bcf02565-45e3-42a2-b3a6-25a45f84b298';   -- 설눈
-update places set spice_level = '🌶️ Mild' where id = '4559f28f-3a18-4527-b30d-a5c02c0f213e';   -- 설담재설렁탕
-update places set spice_level = '🌶️ Mild' where id = '19dc32ef-01d5-4d4c-955c-8711a76616b4';   -- 소선재
-update places set food_guide_key = 'suyuk-baekban' where id = '77e4454a-b3a9-44ed-94d2-cfa53d80cbec';   -- 소호정
-update places set spice_level = '🌶️ Mild' where id = '77e4454a-b3a9-44ed-94d2-cfa53d80cbec';   -- 소호정
-update places set spice_level = '🌶️ Mild' where id = 'b38766ae-36f9-421b-a766-3f78b20dfef2';   -- 함초간장게장
-update places set spice_level = '🌶️ Mild' where id = '167a1a1e-88f4-4cd2-b7e8-22d9890f3b8c';   -- 손가네곰국수
-update places set spice_level = '🌶️ Mild' where id = '654b23f3-40d8-48ca-b980-48acc1f3a0e7';   -- 강남교자
-update places set spice_level = '🌶️ Mild' where id = 'd3e493f7-ea4c-4dd1-82a6-8ef9bb5782b1';   -- 매화양꼬치 명동점
-update places set spice_level = '🌶️🌶️ Medium' where id = '4dbe9b5f-3016-49d0-b73c-1ca107b9837e';   -- 송옥
-update places set spice_level = '🌶️ Mild' where id = '44112508-5ebd-484f-900b-41a02c1dfcda';   -- 수담한정식
-update places set spice_level = '🌶️ Mild' where id = '7674ab45-41df-4733-a8d0-67c5ca7324b0';   -- 수빈떡갈비
-update places set solo_ok = true where id = '379ccb96-e814-4cb4-873c-4dad0d29174b';   -- 장수장 꼬리곰탕 (국밥·탕류)
-update places set solo_ok = true where id = '3b48f545-628b-4ed1-a31f-f55fcabd32f2';   -- 이태원숯불구이 (국밥·탕류)
-update places set solo_ok = true where id = '76684b1b-c8ed-4c6b-a6f4-55d3e94be36d';   -- 옻바다전복삼계탕 (국밥·탕류)
-update places set solo_ok = true where id = '3bf69a1a-76e0-4a84-8ec0-14e3312e6279';   -- 마포옥 (국밥·탕류)
-update places set solo_ok = true where id = '75579e4a-516c-4f0d-8bad-ecab6e17e5c2';   -- 깊픈(GIPPEN) (국밥·탕류)
-update places set solo_ok = true where id = '5b122f5f-195a-409b-9f39-01ae4b0f6180';   -- 배종관동래삼계탕 (국밥·탕류)
-update places set solo_ok = true where id = '1524c135-ee19-496d-ac52-c53b146c4781';   -- 은호식당 (국밥·탕류)
-update places set solo_ok = true where id = '7e7520d9-dc28-4351-bb96-bbe74adfc47c';   -- 전주설렁탕 (국밥·탕류)
-update places set solo_ok = true where id = 'e7a0cd56-93ca-4719-8425-437fe3797e40';   -- 초량돼지국밥 (국밥·탕류)
-update places set solo_ok = true where id = 'abce516e-3791-4aef-a1ae-f7d68f844bad';   -- 고래불 (국밥·탕류)
-update places set solo_ok = true where id = 'fc13e7cc-151a-4b64-bf30-ff66a53d0895';   -- 종로삼계탕 (국밥·탕류)
-update places set solo_ok = true where id = 'f5e3c898-4eb1-4b69-9854-86adf530d7b4';   -- [백년가게] 이문설렁탕 (국밥·탕류)
-update places set solo_ok = true where id = '7a6e7855-6f61-46d2-bcf8-20c320997f81';   -- 양지추어탕 (국밥·탕류)
-update places set solo_ok = true where id = '976fbf65-d1af-4684-9043-a0c8afeaed9e';   -- 내림손삼계탕 을지로점 (국밥·탕류)
-update places set solo_ok = true where id = '6a35f781-7090-4441-b5e4-faab9ddbc510';   -- 고려삼계탕 (국밥·탕류)
-update places set solo_ok = true where id = '43343602-5e59-47d9-9279-f42191689c19';   -- 강남따로국밥 (국밥·탕류)
-update places set solo_ok = true where id = '3e31bce4-491c-4e14-ba7a-100ed908677e';   -- 덕원꼬리곰탕방치탕 (국밥·탕류)
-update places set solo_ok = true where id = 'f20d690c-5f39-4124-862b-2adb2e83b18f';   -- 남문토방 (국밥·탕류)
-update places set solo_ok = true where id = '91984bb4-ef52-4706-9ccd-0024f1fedaca';   -- 마전터 (국밥·탕류)
-update places set solo_ok = true where id = '81cace36-3edf-44ad-abf3-6ae807ca9473';   -- 남포면옥(중구) (국밥·탕류)
-update places set solo_ok = true where id = '8deabd42-14da-4fd5-aa14-0fa89bb597e6';   -- 백암왕순대 (국밥·탕류)
-update places set solo_ok = true where id = 'dfc3f59f-fcd5-4156-bb4a-8f8c0ddd5020';   -- 벽제갈비 타워팰리스점 (국밥·탕류)
-update places set solo_ok = true where id = '5b23ee4e-3c99-4290-a072-4860f3c947d0';   -- 부민옥 (국밥·탕류)
-update places set solo_ok = true where id = '8949e0e4-e6ab-4cf3-aadb-f50be7b540e6';   -- 서초 남순남순대국 (국밥·탕류)
-update places set solo_ok = true where id = '5fdd992c-f842-471b-a26c-c2fbd0c4b409';   -- 두꺼비정육점식당 (국밥·탕류)
-update places set solo_ok = true where id = 'bcf02565-45e3-42a2-b3a6-25a45f84b298';   -- 설눈 (국밥·탕류)
-update places set solo_ok = true where id = '4559f28f-3a18-4527-b30d-a5c02c0f213e';   -- 설담재설렁탕 (국밥·탕류)
-update places set solo_ok = true where id = '77e4454a-b3a9-44ed-94d2-cfa53d80cbec';   -- 소호정 (국밥·탕류)
-update places set solo_ok = true where id = '167a1a1e-88f4-4cd2-b7e8-22d9890f3b8c';   -- 손가네곰국수 (국밥·탕류)
-update places set solo_ok = true where id = '8d94d9e6-11c6-4017-8b3f-bdafbde59976';   -- 구포촌국수 (면류)
-update places set solo_ok = true where id = 'd931bae4-a9e1-406d-afd2-184ed398d38b';   -- 얼크니손칼국수 (면류)
-update places set solo_ok = true where id = '9c6dc16c-d017-4b07-9d4d-81cc97aef028';   -- 골목 손칼국수 (면류)
-update places set solo_ok = true where id = 'ae8f43a5-4990-4e3c-a1ba-fb82335cae75';   -- 꽃마을지리산어탕 (면류)
-update places set solo_ok = true where id = '5ee186b3-6cc5-476f-bf15-d9d4b973b16f';   -- 왕밀면냉면 본점 (면류)
-update places set solo_ok = true where id = 'e36f075e-80bf-4d58-a063-daf0059d4805';   -- 유림면 (면류)
-update places set solo_ok = true where id = 'a6276c6f-ef47-4ba0-abd7-d6882c049493';   -- 포항가자미물회국수말이전문점 (면류)
-update places set solo_ok = true where id = '8c3faa4a-cddb-4930-80cb-1abc4fcd5bb3';   -- 양평칼국수 본점 (면류)
-update places set solo_ok = true where id = 'b2094060-1abc-45d6-bc36-9b6f760048ba';   -- 함양본가어탕국수 (면류)
-update places set solo_ok = true where id = 'c8a42a59-3812-4c94-a4ca-a32b1d777691';   -- 해물왕창칼국수 (면류)
-update places set solo_ok = true where id = '910cde14-8c13-4b76-9599-180299f22308';   -- 공항칼국수 (면류)
-update places set solo_ok = true where id = '38d5bf9a-d795-4bc2-a523-2e8759419153';   -- 등촌 최월선칼국수 (면류)
-update places set solo_ok = true where id = '7834984c-9b25-4a41-a0ee-9d0213f447c2';   -- 명동교자 (면류)
-update places set solo_ok = true where id = '6ce6daf8-cb6c-43a1-9113-f7cf328e4aea';   -- 능라도 광화문점 (면류)
-update places set solo_ok = true where id = '94f32d7c-a960-4157-acc6-0b5ae3fed0f8';   -- 능라도 여의도점 (면류)
-update places set solo_ok = true where id = 'bac70086-531b-4229-9113-6659b8f3c02c';   -- 영남냉면밀면 (면류)
-update places set solo_ok = true where id = '07c16d0f-1b04-4765-af43-c5eda4d8cdce';   -- 능라도 명동점 (면류)
-update places set solo_ok = true where id = 'f343e665-b132-436b-890c-e57dca46143a';   -- 을지다방 (면류)
-update places set solo_ok = true where id = 'd000b4ca-ec16-47d8-bafa-9deaec0a4a4c';   -- 팔도밀방 강남본점 (면류)
-update places set solo_ok = true where id = 'f7e10b32-bdeb-42c0-8722-35fbc5311603';   -- 산동교자 (면류)
-update places set solo_ok = true where id = '37506942-a573-413d-9d44-1f79750d3d61';   -- 아지겐 (면류)
-update places set solo_ok = true where id = '21f3705f-228d-462b-8737-15bdfd05dc3d';   -- 소바연구소 신촌본점 (면류)
-update places set solo_ok = true where id = 'b0a204c0-1c18-4193-ad88-d214ef101e1b';   -- 연백냉면 (면류)
-update places set solo_ok = true where id = 'a11be97e-af00-417b-95cb-181ac65f36fc';   -- 북촌막국수 (면류)
-update places set solo_ok = true where id = '774d4be2-8a0a-432b-beed-187505174602';   -- 멘야산다이메 (면류)
-update places set solo_ok = true where id = 'a730cb7f-0d31-4ffc-9a61-6f0a9bdecd5b';   -- 명동곰돌이 (면류)
-update places set solo_ok = true where id = '91f2cb7b-8c15-4d06-8df4-2f73850c6164';   -- 이가네칼국수 (면류)
-update places set solo_ok = true where id = '26dc2554-a7f7-471f-917a-daa4682a702e';   -- 보배반점 명동점 (면류)
-update places set solo_ok = true where id = '825ca5d9-5ee5-4e06-956f-6dd09dd89edf';   -- 제일제면소 여의도IFC몰점 (면류)
-update places set solo_ok = true where id = 'f20c0cd6-b024-4ab8-a36c-e2e712fc0c08';   -- 소바마에 (면류)
-update places set solo_ok = true where id = '2bd7ea5b-210d-47e9-8572-b8bad38c5688';   -- 가양칼국수버섯매운탕 (면류)
-update places set solo_ok = true where id = '9fe2f81d-1f3a-4f89-84d5-b062c7138244';   -- 가미우동 (면류)
-update places set solo_ok = true where id = '306adc53-e9a7-4ca8-ac7f-af9eade15940';   -- 광장동가온 (면류)
-update places set solo_ok = true where id = 'c3c575b9-36f1-4112-a2dc-7aa812c59fea';   -- 개화옥 (면류)
-update places set solo_ok = true where id = '368c6902-719c-4794-95eb-2f3f56f07707';   -- 능라밥상 (면류)
-update places set solo_ok = true where id = '654f8e53-4ea8-4fc4-97a5-ce2b48e7b3a8';   -- 곰국시집 (면류)
-update places set solo_ok = true where id = 'e63fbf72-6804-4d84-adc4-17482d63cc22';   -- 기소야 (면류)
-update places set solo_ok = true where id = '947e7822-80e0-429a-abff-77429e86288d';   -- 란주라미엔 (면류)
-update places set solo_ok = true where id = '3e35d0bd-09c4-4850-926e-c9d8f11f95a9';   -- 난향 (면류)
-update places set solo_ok = true where id = '2d71ab0b-7f29-4eeb-a75c-b23d61f1023d';   -- 명동함흥면옥 (면류)
-update places set solo_ok = true where id = '131a8541-1429-4b9a-ad4e-34789ace91de';   -- 명품잔치국수 (면류)
-update places set solo_ok = true where id = 'bf267367-29be-40a2-ba2d-d68a54efa3c7';   -- 백년옥 (면류)
-update places set solo_ok = true where id = 'ed8e083b-315c-4e54-8178-222ecf1c1c32';   -- 봉피양(방이점) (면류)
-update places set solo_ok = true where id = 'fef0f6b5-4af9-457b-9cb1-7ec3846192e3';   -- 대련집 (면류)
-update places set solo_ok = true where id = '0680ec5d-9b8e-4576-917f-7b5556ee8e71';   -- 도림 (면류)
-update places set solo_ok = true where id = '1fa8bd29-3b64-4b18-b145-b41220f89d7f';   -- 쯔꾸시 (면류)
-update places set solo_ok = true where id = 'fb6740b7-57f8-459c-89cf-14564c799e20';   -- 가미분식 (면류)
-update places set solo_ok = true where id = '0a5ea760-1217-484d-9390-8f1e250b857d';   -- 동경식당 (면류)
-update places set solo_ok = true where id = '6dc5f021-c8b3-4cd6-a93f-1e4504905eee';   -- 서초장어타운 (면류)
-update places set solo_ok = true where id = '654b23f3-40d8-48ca-b980-48acc1f3a0e7';   -- 강남교자 (면류)
-update places set solo_ok = true where id = '4dbe9b5f-3016-49d0-b73c-1ca107b9837e';   -- 송옥 (면류)
-update places set solo_ok = true where id = '2c7d3768-82a1-4595-9b8a-5304adc3f860';   -- 원조할머니떡볶이집 (분식)
-update places set solo_ok = true where id = 'bf9e110a-3ac6-4968-a212-35bfbf7f7dd7';   -- 금강만두 (분식)
-update places set solo_ok = true where id = '54f5950b-6519-4c62-9b7a-cb2386f2cf9c';   -- 뽀빠이분식 (분식)
-update places set solo_ok = true where id = 'dcd29315-9795-440c-9a5a-9ba3aa1ae788';   -- 다락 (분식)
-update places set solo_ok = true where id = '5578bb51-ec0c-4df5-a0a2-b4bbf709486c';   -- 금용만두 (분식)
-update places set solo_ok = true where id = 'c86e8ed9-52b4-4a24-a2b1-0402945b06ff';   -- 애플하우스 (분식)
-update places set solo_ok = true where id = 'e1cb77be-925d-4b10-b3bc-f1be3c2f4a73';   -- 코끼리분식 (분식)
-update places set solo_ok = true where id = '4349422c-e375-4111-a599-bbcfc10c32a3';   -- 북경만두 (분식)
-update places set solo_ok = true where id = '3394b37d-c0df-4192-96e9-a340cc56314c';   -- 모녀김밥 (분식)
-update places set solo_ok = true where id = 'ee066f52-5ee5-4489-aadf-6ac609cbd319';   -- 무샤 (분식)
-update places set solo_ok = true where id = '538911d1-701e-483f-b104-c56b0136c3ec';   -- 손맛김밥 (분식)
-update places set solo_ok = true where id = '93179e59-ed60-412d-97a2-e53de65bb24e';   -- 명동충무김밥 (분식)
-update places set solo_ok = true where id = '44d3f82c-bdc8-4cb7-b5c8-27a79a85c7d0';   -- 궁 (분식)
-update places set solo_ok = true where id = 'c01a7dfe-5cf0-4268-aeca-c4b4d334d073';   -- 르브런쉭 (분식)
-update places set solo_ok = true where id = '0ab25c3a-839e-4c34-bf09-edc126851212';   -- 갯마을 (분식)
-update places set solo_ok = true where id = '48864e56-2da9-431a-a7d3-139805536ea7';   -- 서궁 (분식)
-update places set solo_ok = true where id = '126ed0df-b261-4cfd-98ae-c0159ebdfd5c';   -- 일미장어 (덮밥·일식)
-update places set solo_ok = true where id = 'a387d1b1-fbf0-4841-97ff-b52b96881c7b';   -- 문스시 (덮밥·일식)
-update places set solo_ok = true where id = 'b5553669-2658-491b-98ee-e7fbe510628a';   -- 스시심 타카이 (덮밥·일식)
-update places set solo_ok = true where id = 'aaa69075-8e27-4a1d-a7d4-817835251163';   -- 유숙단부자낙지 (덮밥·일식)
-update places set solo_ok = true where id = 'fabe5860-c4d0-4f85-b4f8-7e0041d0dd29';   -- 꼬숑돈까스 (덮밥·일식)
-update places set solo_ok = true where id = '329716e6-aa08-4c69-9edc-b41ac0b3f969';   -- 팔미초밥 (덮밥·일식)
-update places set solo_ok = true where id = 'a4efe3ce-77b2-4b1b-8a44-2bb6758582a7';   -- 청화초밥 (덮밥·일식)
-update places set solo_ok = true where id = '643fbbed-ec3e-4dd2-83e0-cfb080b09d89';   -- 남서울민물장어 (덮밥·일식)
-update places set solo_ok = true where id = 'c0ef68c5-7dd3-40b7-b522-7103864d2ecf';   -- 명동채움 한정식 (백반·한정식)
-update places set solo_ok = true where id = 'fd653a6c-c9b4-47ac-9182-6a1f398c8fa1';   -- 이드 (백반·한정식)
-update places set solo_ok = true where id = '255506a0-5afc-4e99-8f4d-4efc2abe36a4';   -- 석화한정식 (백반·한정식)
-update places set solo_ok = true where id = '9957f33c-ffab-483b-968f-fd089c423fd8';   -- 신진도간장게장 (백반·한정식)
-update places set solo_ok = true where id = '705f89dc-24c0-4c44-9af0-90cc3382a8ef';   -- 다온 한정식 (백반·한정식)
-update places set solo_ok = true where id = '09731f4a-9ec8-409f-b0cb-1d3b7f988b5f';   -- 아마 홍대점 (백반·한정식)
-update places set solo_ok = true where id = 'a4870963-3332-4258-9706-c77abe784955';   -- 형제육회 본점 (백반·한정식)
-update places set solo_ok = true where id = 'e5480996-0338-41be-ad1c-fda0a4914fc3';   -- 씨제이더마켓 제일제당센터점 (백반·한정식)
-update places set solo_ok = true where id = '510bfabf-ab01-4f15-a95f-849c3dee8d76';   -- 진고개 동대문점 (백반·한정식)
-update places set solo_ok = true where id = '80c0a58c-10bf-49d9-983e-4936b3ad961a';   -- 명동정 (백반·한정식)
-update places set solo_ok = true where id = 'bf33a750-6a4b-4592-9164-ef0831fd79f3';   -- 강강술래(신림본동점) (백반·한정식)
-update places set solo_ok = true where id = '3882c35b-93ba-4dea-8e61-273908fb6042';   -- 국화정원 (백반·한정식)
-update places set solo_ok = true where id = 'a578d608-bff0-4d9c-807c-303cc397e6bd';   -- 꽃지 (백반·한정식)
-update places set solo_ok = true where id = '8e4f7f98-e043-4655-b5de-cc824c7318d7';   -- 마차횟집 (백반·한정식)
-update places set solo_ok = true where id = '5481c605-44fc-47cc-a126-05619bd05262';   -- 불이아 (백반·한정식)
-update places set solo_ok = true where id = '1e5c687b-666e-4d74-b410-bf492207299b';   -- 대문 (백반·한정식)
-update places set solo_ok = true where id = '4ca710e8-4c97-45fb-9221-6c22e64beab9';   -- 대방골 (백반·한정식)
-update places set solo_ok = true where id = '658e21f2-c873-48ba-a420-6471cf1db551';   -- 삼학도 (백반·한정식)
-update places set solo_ok = true where id = 'b6eb847f-b0d1-48fd-84a7-6388a96202da';   -- 상락원 (백반·한정식)
-update places set solo_ok = true where id = '6eb13d17-b734-4435-a5ed-eec0710fb9b3';   -- 된장예술과술 (백반·한정식)
-update places set solo_ok = true where id = 'aca56a8c-a65e-4a6a-92f4-f686f507fb9c';   -- 서석대 (백반·한정식)
-update places set solo_ok = true where id = 'b38766ae-36f9-421b-a766-3f78b20dfef2';   -- 함초간장게장 (백반·한정식)
-update places set solo_ok = true where id = '44112508-5ebd-484f-900b-41a02c1dfcda';   -- 수담한정식 (백반·한정식)
-update places set solo_ok = true where id = '7674ab45-41df-4733-a8d0-67c5ca7324b0';   -- 수빈떡갈비 (백반·한정식)
-update places set solo_ok = true where id = 'a95de624-a7e9-4ce3-b9d9-4d8ce14cc27e';   -- 카페 포레스트 (카페·빵)
-update places set solo_ok = true where id = 'c4f845c0-b28a-4eb9-adaa-183a0394f993';   -- 10꼬르소꼬모카페 (카페·빵)
-update places set solo_ok = true where id = '4bffc0b7-490a-40f2-b5d5-e756ad602cdf';   -- 함스브로트과자점 (카페·빵)
-update places set solo_ok = true where id = 'b72365a7-b311-4fca-a74b-a2e6e941537e';   -- 터방내 (카페·빵)
-update places set solo_ok = true where id = '602ecb9b-147c-43bc-9c90-70986933e3b5';   -- 스왈로 베이커리 카페 (카페·빵)
-update places set solo_ok = true where id = 'd940b9d8-8416-4abf-8e05-4fc87cb2e1fd';   -- 패션파이브 (카페·빵)
-update places set solo_ok = true where id = 'd0b64e33-cab2-40f2-9373-8fb96d5f915e';   -- 학림다방 (카페·빵)
-update places set solo_ok = true where id = '952e4abd-1032-4e2b-a277-366e7b1a3775';   -- 유어네이키드치즈 (카페·빵)
-update places set solo_ok = true where id = 'f087c27a-027b-49a5-8be5-c350745f3872';   -- MK2 (카페·빵)
-update places set solo_ok = true where id = '54f702a2-6fef-4ec2-96ca-2f56df7a2a59';   -- [백년가게] 프랑세즈과자점 (카페·빵)
-update places set solo_ok = true where id = '635688d8-e556-446e-86ee-11fcb103fc1c';   -- 베이커리 아궁 (카페·빵)
-update places set solo_ok = true where id = '6f023326-a45e-484f-af90-49bb669dbd85';   -- 케르반 베이커리&카페 (카페·빵)
-update places set solo_ok = true where id = '49926094-d7db-4d58-8156-6b6737ca2db1';   -- 더브레드블루 신촌본점 (카페·빵)
-update places set solo_ok = true where id = '325cc8b5-67a4-4507-a8ab-86a082cdaf1b';   -- 케르반 카페, 디저트&브런치 (카페·빵)
-update places set solo_ok = true where id = '2f8d129b-5b92-48e9-941a-c3df0ad6739a';   -- 이승남의꽃과빵 (카페·빵)
-update places set solo_ok = true where id = 'fcfb7253-a171-4774-8613-dbb0b7abf273';   -- 갤러리소연카페 (카페·빵)
-update places set solo_ok = true where id = 'bcdf85fb-2224-458a-b603-3a5d1f31adb1';   -- 파크 하얏트 서울 더라운지 (카페·빵)
-update places set solo_ok = true where id = '58c63345-50e3-4234-84cb-54e58ef1f12a';   -- 김영모과자점 (카페·빵)
-update places set solo_ok = true where id = 'b4d23429-a5a1-4d39-99e0-55e0f8f93f67';   -- 듀이커피 (카페·빵)
-update places set solo_ok = true where id = 'dba1feb3-b62f-4e31-a2c9-d116d16e8c9e';   -- 로야디 (카페·빵)
-update places set solo_ok = true where id = '4f3f3ecb-1b2e-4305-85b4-dc0ae743ddf1';   -- 더레스토랑 (카페·빵)
-update places set solo_ok = true where id = 'ef5b7977-5b39-46bb-89c7-5deff4c6c3d2';   -- 서울 커피 익선점 (카페·빵)
-update places set solo_ok = true where id = '29368141-9d0f-417c-b2c6-712c6492d412';   -- [백년가게] 베이크하우스 (카페·빵)
-update places set solo_ok = true where id = 'ed21a423-a9bd-4b18-bd1b-c7249e7da7c3';   -- 뉴오더클럽 한남 / NEW ORDER CLUB HANNAM (패스트푸드)
-update places set solo_ok = true where id = 'cf3a20b8-c8a5-40b5-8baa-84841a451966';   -- 델리인디아 (패스트푸드)
-update places set solo_ok = true where id = 'c4d77d66-8c1f-4787-a5fb-3e08a993dfd0';   -- 에베레스트 레스토랑 양재점 (패스트푸드)
-update places set solo_ok = true where id = 'bb9f6d8e-4c73-4803-985e-b5ec0b23ac38';   -- 뉴델리 (패스트푸드)
-update places set solo_ok = true where id = 'b2c96b49-aad2-4f0a-9dc1-7da868dcb82b';   -- 엘로치킨 (패스트푸드)
-update places set solo_ok = true where id = '1da4f57f-442c-4da2-934b-fe8c1043b069';   -- 옐로치킨 (패스트푸드)
-update places set solo_ok = true where id = '05f50b41-100f-479a-be67-5fac6d5700de';   -- 케르반 레스토랑 (패스트푸드)
-update places set solo_ok = true where id = '2352476f-1e85-4363-89dc-fcfc370e2f1c';   -- 6일 닭강정 (패스트푸드)
-update places set solo_ok = true where id = 'a01df2b5-cbd7-4e97-855e-fd19b6abcf0c';   -- 칙바이칙 선릉역점 (패스트푸드)
-update places set solo_ok = true where id = 'b1ad165b-9dca-4e74-bd18-ecf0a1994f77';   -- BHC 사당점 (패스트푸드)
-update places set solo_ok = true where id = 'fc66e114-1367-482e-82ca-03b24a0bb6e2';   -- 케르반 코엑스몰점 (패스트푸드)
-update places set solo_ok = true where id = 'f2fff31c-c611-4bac-8fed-11c2213f20df';   -- 바바인디아 강남점 (패스트푸드)
-update places set solo_ok = true where id = '1cf00e02-8de2-49a5-82fb-91ac47042498';   -- 룡룡버거하우스 (패스트푸드)
-update places set solo_ok = true where id = '5babca31-6576-4b45-9ae3-202ee54ce1af';   -- 강가 잠실점 (패스트푸드)
-update places set solo_ok = true where id = '8182639e-5d41-48b8-be86-cca5954a46c0';   -- 루나 아시아 (패스트푸드)
-update places set solo_ok = true where id = '8bd44930-3fc3-46f7-8f32-34c1b193bbc6';   -- 강가 역삼점 (패스트푸드)
-update places set solo_ok = true where id = '74fd6106-28dd-4ad7-8cdc-6712e8f1cc8c';   -- 1966정원 천성항점 (패스트푸드)
-update places set solo_ok = true where id = '9bd3ef15-9514-44a2-8cbb-c0ecd9749e32';   -- 남미플랜트랩 (패스트푸드)
-update places set solo_ok = true where id = '560c8ef8-de08-4a44-9472-bf5b8ac14be7';   -- 그랑씨엘 (패스트푸드)
-update places set solo_ok = true where id = 'ce825ce3-268b-4d24-b1c8-224057a34996';   -- 까발로비안코 (패스트푸드)
-update places set solo_ok = true where id = '8dd84a4b-cacb-4d6f-9fad-fe5a1fa81255';   -- 부산집 후라이드치킨 (패스트푸드)
-update places set solo_ok = true where id = '9bc1d906-9bcc-4226-9ffb-8ab50a5820e9';   -- 삼우치킨센타 (패스트푸드)
-update places set solo_ok = true where id = '9de9b28a-6a90-47e2-9289-2ededf896a99';   -- 그릴아지사이 (패스트푸드)
-update places set solo_ok = true where id = '80149948-15b6-4fdf-a4b9-43b909e88fba';   -- 금강바베큐치킨 (패스트푸드)
-update places set solo_ok = true where id = 'b9df3bbd-409b-45d5-ab5f-5a56beb5d9bf';   -- 커리인 (패스트푸드)
-update places set solo_ok = true where id = 'd3ce209f-39ed-4f7b-9662-21fc6f49b477';   -- 라그릴리아 (패스트푸드)
-update places set solo_ok = true where id = 'd6853c99-c883-48df-a506-1482e3f1e86e';   -- 나마스테 (패스트푸드)
-update places set solo_ok = true where id = 'f4a89fd9-dcdd-4577-af4b-537724e7c311';   -- 남미플랜트랩 (패스트푸드)
-update places set solo_ok = true where id = '5216d992-f2c4-4fe0-9909-f0c9077151bf';   -- 봄베그릴 이태원점 (패스트푸드)
-update places set solo_ok = true where id = 'f7befd63-ea37-4330-a84e-01c523cfe763';   -- 대장장이화덕피자집 (패스트푸드)
-update places set solo_ok = true where id = 'ef30b10d-0dfc-49ec-80b9-a121c2c95196';   -- 비스트로 멕시 (bistro MEXI) (패스트푸드)
-update places set solo_ok = true where id = '7179f6a9-106f-4a8d-bf09-79e697d038ac';   -- 뿌자 (패스트푸드)
-update places set solo_ok = true where id = 'c0e1171f-c9c1-4983-9494-48f44547e8cb';   -- 산띠 (패스트푸드)
-update places set solo_ok = true where id = 'a9253403-d38b-4fac-b181-cbbd144285d5';   -- 샘라이언스 (패스트푸드)
-update places set solo_ok = true where id = '4f297ce6-a085-48b5-b021-bb79e18ef536';   -- 룸비니 레스토랑 (패스트푸드)
-update places set solo_ok = true where id = 'eb0c66dd-63e5-4bb3-98a4-1cba45545d94';   -- 차니오뎅 (어묵·포장마차)
-update places set solo_ok = true where id = '51ce6acd-ad12-4f80-8d0d-b66a2c3cc302';   -- 우리포차 (어묵·포장마차)
-update places set solo_ok = true where id = 'baadf44b-e325-483f-8b35-897248a9db03';   -- 할매재첩국집 (생선탕·해장)
-update places set solo_ok = true where id = 'e4525ec0-a0e9-49e2-ab22-d6a24cdcee4d';   -- 맛나기사식당 (생선탕·해장)
-update places set solo_ok = true where id = 'e8800e5a-361d-41d7-b7d3-cb6e98b68a23';   -- 할매재첩국 (생선탕·해장)
-update places set solo_ok = true where id = 'ef203864-bebe-4178-999a-6394a10ce640';   -- 하동재첩국 (생선탕·해장)
-update places set solo_ok = true where id = '649ea44c-9a5d-4357-ac66-bfe32b1cdd72';   -- 금수복국 잠실소피텔점 (생선탕·해장)
-update places set solo_ok = true where id = '748ea87f-0987-4bd3-a672-886b121a764a';   -- 속초생태집 (생선탕·해장)
-update places set solo_ok = true where id = 'e12236e6-9b13-4882-a4ea-fcea544496ec';   -- 괘법쭈꾸미전문점 (볶음류)
-update places set solo_ok = true where id = 'f580116a-81ee-43d9-b95c-59dbcd5420a9';   -- 홍스쭈꾸미 홍대본점 (볶음류)
-update places set solo_ok = true where id = '4abe4945-0350-4a9b-a47b-0f3b604c4941';   -- 국이네낙지볶음 (볶음류)
-update places set solo_ok = true where id = 'c5af3f57-471b-4ad8-ac54-291026a0101d';   -- 까치네 (볶음류)
-update places set solo_ok = false where id = 'c8a86c3b-3494-4619-a060-bb45864af475';   -- 초필살돼지구이 (고기구이)
-update places set solo_ok = false where id = 'c4841b51-b93c-4c19-93c9-79fcbbca2578';   -- 마포숯불갈비 (고기구이)
-update places set solo_ok = false where id = '489e5ace-6eda-4540-98b8-68e4da9402e2';   -- 초량갈비 (고기구이)
-update places set solo_ok = false where id = '8776c27c-7348-4106-82af-a903515c8b05';   -- 동원숯불갈비 (고기구이)
-update places set solo_ok = false where id = 'adc1d716-5371-4c38-8a67-7300458d6679';   -- 본 고갈비 (고기구이)
-update places set solo_ok = false where id = '04de5fbe-2658-4181-81c9-cd9d4c5d560a';   -- 알라딘의 양고기 (고기구이)
-update places set solo_ok = false where id = 'ebd567bc-e7b9-484f-ad80-da797291ffbd';   -- 은주정 (고기구이)
-update places set solo_ok = false where id = 'b0faf93a-37a5-43af-962c-3c980cbc53dd';   -- 한우숯불양곱창 (고기구이)
-update places set solo_ok = false where id = 'b8286089-4362-4495-9cda-c7666bbf9fea';   -- 그램그램 압구정크루즈점 (고기구이)
-update places set solo_ok = false where id = '5623a8a2-8c01-4fa9-9353-60d084d67748';   -- 이노시시 (고기구이)
-update places set solo_ok = false where id = '92a165b7-a8a9-42d2-94ec-426811f47494';   -- 도산정육 청담본점 (고기구이)
-update places set solo_ok = false where id = '7cd48972-0b32-4d56-8df1-e55b784a6266';   -- 막둥이네 양곱창 (고기구이)
-update places set solo_ok = false where id = 'eac21007-ba94-4b19-a0ce-5dfaaccf0ad5';   -- 부광숯불갈비 (고기구이)
-update places set solo_ok = false where id = 'b798527f-0ffb-42a3-ac45-ba82acac2e94';   -- 대성갈치찌개구이 (고기구이)
-update places set solo_ok = false where id = '2c808abf-a62c-441e-8a02-2866c7f0086d';   -- 동북화과왕 (고기구이)
-update places set solo_ok = false where id = 'd22189d3-0ace-49f8-883a-1ae9fc2bc6b7';   -- [백년가게] 삼원가든 (고기구이)
-update places set solo_ok = false where id = 'bbdfc3f5-4b14-42f8-b802-edec9f21a488';   -- 고삼이 합정직영점 (고기구이)
-update places set solo_ok = false where id = '7c110712-ceab-41a2-ab50-6448f14ce383';   -- 관호 광화문점 (고기구이)
-update places set solo_ok = false where id = '979f3350-0e03-4959-81c5-c825ee2cf378';   -- 물레방아 즉석구이 (고기구이)
-update places set solo_ok = false where id = 'f91b88c4-7cd2-4e4f-a95d-bc495619c479';   -- 관호 여의도 본점 (고기구이)
-update places set solo_ok = false where id = '23a7b99c-077c-4f8a-9568-4b0b753b9988';   -- 한우오마카세 우모크 (고기구이)
-update places set solo_ok = false where id = '1854407b-0e22-4fbe-9f80-7c046a569a48';   -- 명인등심 마포공덕 직영점 (고기구이)
-update places set solo_ok = false where id = 'f9f1e8ed-193a-4485-a8f9-ffbf025b8d3a';   -- 선릉청와대소금구이 (고기구이)
-update places set solo_ok = false where id = 'e4ff33e6-c6d9-493f-a5ce-fc22a5ee085c';   -- 팔각도 성수역점 (고기구이)
-update places set solo_ok = false where id = '0c532dd8-a382-4e26-b192-e814ecb4f0c3';   -- 거대숯불구이 (고기구이)
-update places set solo_ok = false where id = '24338205-0a11-4aa9-b928-a2268862a12b';   -- 동대문 별난오리 (고기구이)
-update places set solo_ok = false where id = '901e95e1-24f5-4a6c-af61-f9dc27108d21';   -- 너마늘 안동갈비 (고기구이)
-update places set solo_ok = false where id = 'e3de220b-390a-426b-acf6-5a91f596c641';   -- 아르모니움 (고기구이)
-update places set solo_ok = false where id = '7de53b2a-3cb1-4794-9f11-a4a55e6522eb';   -- 희락갈치 (고기구이)
-update places set solo_ok = false where id = 'ccb7325c-9aab-491e-867d-a7f3ce128b2f';   -- 밀양갈비 (고기구이)
-update places set solo_ok = false where id = '0c9ea3f0-c378-4efc-ad9e-9b0d92209457';   -- 홍대닭갈비 (고기구이)
-update places set solo_ok = false where id = 'f45bd12e-e667-43b2-a096-226882671a52';   -- 바다식당 (고기구이)
-update places set solo_ok = false where id = 'afcedf51-7dfd-404e-984b-6de58144ebd9';   -- 관호 여의도점 (고기구이)
-update places set solo_ok = false where id = '035b382a-c6f1-40a4-b423-4d09d3a2807e';   -- 알천순대곱창전골전문점 (고기구이)
-update places set solo_ok = false where id = '9fdb99d8-4d8f-4a8a-a59f-de00e2fb1bbe';   -- 부야스곱창 홍대점 (고기구이)
-update places set solo_ok = false where id = 'd3eaac3b-2484-4982-a44a-b17507887a5f';   -- 갈비명가이상(길음신관) (고기구이)
-update places set solo_ok = false where id = 'bc3f6eb0-1e3d-434e-bd07-1141d510727d';   -- 대한곱창(장안점) (고기구이)
-update places set solo_ok = false where id = '76c1834f-e4fb-4cee-aae3-b6728fe4d302';   -- 강강술래(상계점) (고기구이)
-update places set solo_ok = false where id = '75bda2a2-0125-47f9-a96d-28c67cd41932';   -- 뀌쏭82 (고기구이)
-update places set solo_ok = false where id = 'b4cb6c81-8772-487f-9168-6f0e82c3ab3e';   -- 30년전통가마솥석쇠돼지갈비 (고기구이)
-update places set solo_ok = false where id = 'fcfd76a8-a260-40d5-a52a-ebe032ffc573';   -- 나리의집 (고기구이)
-update places set solo_ok = false where id = '0bd09f12-95a8-48f4-8e23-6f2e283ee8cf';   -- 나인스게이트그릴 (고기구이)
-update places set solo_ok = false where id = '13d26923-551d-490c-bff5-cba352f365ec';   -- 램랜드 (고기구이)
-update places set solo_ok = false where id = 'dd81fd8f-7837-4b37-bd1d-66be27c4bea6';   -- 램하우스 (고기구이)
-update places set solo_ok = false where id = 'f9e4c37d-7225-4b7a-9618-4a0eed0ece3e';   -- 낙원(메이필드호텔) (고기구이)
-update places set solo_ok = false where id = 'afd19a21-6ee4-48eb-af33-f996e7c0203f';   -- 남매집 (고기구이)
-update places set solo_ok = false where id = '055cfcae-c251-4baf-9baf-db0a54819467';   -- [백년가게] 삼천포식당 (고기구이)
-update places set solo_ok = false where id = '08828c13-04f3-421d-990d-fc6f2d09fedf';   -- 너비집 (고기구이)
-update places set solo_ok = false where id = '0ed1936c-fed6-402e-aa71-2b10fbbddb1b';   -- 놀부유황오리진흙구이(잠실점) (고기구이)
-update places set solo_ok = false where id = 'c7e253b5-a1f3-4567-8fca-5115ecee7d39';   -- 부산양곱창 (고기구이)
-update places set solo_ok = false where id = '38c3a0aa-62b2-4757-acec-dcd5ed866ae5';   -- 단풍나무집(이태원점) (고기구이)
-update places set solo_ok = false where id = '5e20f23f-780e-44ed-9737-cc8ae8ff21e0';   -- 삼오쭈꾸미 (고기구이)
-update places set solo_ok = false where id = 'c9c62a99-fc67-4a9b-b84c-245c8740a044';   -- [백년가게] 삼원가든 (고기구이)
-update places set solo_ok = false where id = '7d618f73-f349-4a64-841b-60fabf08d17b';   -- [백년가게] 싸리골 (고기구이)
-update places set solo_ok = false where id = 'aab378b2-09cc-4ea1-ac98-3a44d8cbc988';   -- 삼거리푸줏간 센트럴시티점 (고기구이)
-update places set solo_ok = false where id = 'cea8cfd8-7d90-4483-87e8-0a0363c53d5b';   -- 거대갈비 (고기구이)
-update places set solo_ok = false where id = '2184c4c7-0b75-4601-9488-346b365411d5';   -- 88돼지갈비 (고기구이)
-update places set solo_ok = false where id = '7c751689-b934-46c0-b2fb-c968af72b069';   -- 진미소곱창 상암직영점 (고기구이)
-update places set solo_ok = false where id = '2cd1ab3c-1904-4127-98f5-d4528e005d4f';   -- 새벽집 (고기구이)
-update places set solo_ok = false where id = '37b37aa9-9d40-4f9a-a808-26eade1d781d';   -- 은하갈비 (고기구이)
-update places set solo_ok = false where id = '19dc32ef-01d5-4d4c-955c-8711a76616b4';   -- 소선재 (고기구이)
-update places set solo_ok = false where id = 'd3e493f7-ea4c-4dd1-82a6-8ef9bb5782b1';   -- 매화양꼬치 명동점 (고기구이)
-update places set solo_ok = false where id = 'f6deba11-5e98-47a8-8c92-b27150c0433e';   -- 배비장보쌈구서본점 (보쌈·족발)
-update places set solo_ok = false where id = '2744aa40-1350-4df0-881c-bd680b9034d4';   -- 부산족발 (보쌈·족발)
-update places set solo_ok = false where id = 'c867242d-40f7-41a7-a663-d805f559cae0';   -- 동촌황정순수육전골 (전골·찜)
-update places set solo_ok = false where id = '2ccb647e-9cd0-419c-a8ef-8d16ff2276d9';   -- 샤브남바완 (전골·찜)
-update places set solo_ok = false where id = 'b552d5ad-cd8f-4720-91b3-cde340936638';   -- 전골그집 주례본점 (전골·찜)
-update places set solo_ok = false where id = 'cd721f4f-42fe-4f9d-a1d7-313d10f1e38b';   -- 봉추찜닭 압구정로데오점 (전골·찜)
-update places set solo_ok = false where id = 'ed9d8321-7942-49a0-a2b3-8715e52b0c39';   -- 영도미학 (전골·찜)
-update places set solo_ok = false where id = 'e4e40525-c545-44b8-93f1-7a3b78ba853e';   -- 만호갈미샤브샤브 (전골·찜)
-update places set solo_ok = false where id = '8a786acb-2cce-40ac-9dc9-670a2e5f82de';   -- 마파람해물찜해물탕 구서본점 (전골·찜)
-update places set solo_ok = false where id = 'b1e52c94-6ca7-4759-aefb-fc277eb66547';   -- 궁중해물탕 조씨집 대연본점 (전골·찜)
-update places set solo_ok = false where id = '24b4bf75-70f8-4aae-b8ee-fa7584331080';   -- 연산낙지해물탕 (전골·찜)
-update places set solo_ok = false where id = '837d950f-b6a0-4152-8f4b-508f860b26e5';   -- 일미아구찜 (전골·찜)
-update places set solo_ok = false where id = '74cb6ebe-b8ba-4fa1-a3b5-f8e0350312a5';   -- 사마리칸트 (전골·찜)
-update places set solo_ok = false where id = 'c25c2b35-895d-4102-8b5d-274680400a22';   -- 김유순대구뽈찜 (전골·찜)
-update places set solo_ok = false where id = '4ff860a6-835f-43af-9dc7-402979403a12';   -- 르포트13 (전골·찜)
-update places set solo_ok = false where id = '856a8f41-c4b2-483f-993e-81e019f1f46a';   -- 봉추찜닭 명동중앙우체국점 (전골·찜)
-update places set solo_ok = false where id = 'baf00806-a0fa-4aee-9043-d042c26f7bc6';   -- 대포찜닭 (전골·찜)
-update places set solo_ok = false where id = '9756f4da-8290-4c10-b245-cc2e17f6dcb2';   -- 오대양횟집 (횟집)
-update places set solo_ok = false where id = 'ef1a73f7-d3e3-497c-8434-22cf2f917af6';   -- 선창횟집 (횟집)
-update places set solo_ok = false where id = 'ad005ffb-e356-4741-a0f1-d8ee72490945';   -- 까치횟집 (횟집)
-update places set solo_ok = false where id = '7fad1628-91b0-4697-b43a-e0ac72d55a91';   -- 무진장횟집 (횟집)
-update places set solo_ok = false where id = '536b895c-ccaf-4392-80c5-d1f91986868f';   -- 광안리신라횟집 (횟집)
-update places set solo_ok = false where id = '98d13021-5760-4561-93dd-b3b4a43ee735';   -- 사랑도횟집 (횟집)
-update places set solo_ok = false where id = '36799c69-9bea-4345-a8f0-ac268910ce4f';   -- 우연횟집 (횟집)
-update places set solo_ok = false where id = 'd4a96761-3a27-47f4-a5d5-cffd45a91ab4';   -- 영변횟집 (횟집)
-update places set solo_ok = false where id = 'd7a8b1f3-0d05-4d9e-ae6d-4ee55a6eef05';   -- 부산명물횟집 (횟집)
-update places set solo_ok = false where id = '6afa3949-14ce-42c5-8664-a2f8ce6e9489';   -- 무진장횟집 기장점 (횟집)
-update places set solo_ok = false where id = 'b367d47a-9ee3-49fd-839b-5a49e7e9c76c';   -- 새총횟집 (횟집)
-update places set solo_ok = false where id = '64f9421d-453e-4f22-9555-ca9102fe737f';   -- 인생횟집 종각본점 (횟집)
-update places set solo_ok = false where id = 'bd1ca071-51bc-4bd9-8c74-fa6a3d0b4cf9';   -- 동백섬횟집 (횟집)
-update places set solo_ok = false where id = '2570512a-1d4d-4f96-94d0-93a176a04c72';   -- 두바이레스토랑 (코스요리)
-update places set solo_ok = false where id = '62449769-d4e4-4023-97f2-c7f002031744';   -- 구르카 인도레스토랑 (코스요리)
-update places set solo_ok = false where id = 'bb8e7fd2-3670-47f5-9ab3-6a0fd1f467e6';   -- 에베레스트 레스토랑  동대문역사문화공원점 (코스요리)
-update places set solo_ok = false where id = '287d5871-61d8-45b1-bc4f-48d76d786f0c';   -- NOR (코스요리)
-update places set solo_ok = false where id = '078ba4ce-3d3e-4605-9233-4268add360e5';   -- 르오뇽 (코스요리)
-update places set solo_ok = false where id = '944a11ad-a8df-4c76-81ac-646243df5551';   -- 타니넥스트도어 (코스요리)
-update places set solo_ok = false where id = '36998d9e-d2fd-4168-8aa1-5e01c72d0851';   -- 니로사 레스토랑 (코스요리)
-update places set solo_ok = false where id = '5c2e46ae-db9f-409d-8bb3-c7c2b791fe1a';   -- 코스모스상점 성수 (코스요리)
-update places set solo_ok = false where id = '3bd5b882-9cf5-447a-b1e9-c901496fa7cb';   -- 에베레스트 레스토랑 동대문점 (코스요리)
-update places set solo_ok = false where id = '3fa37df3-7da2-4d51-a6e0-614a5c6a9bc0';   -- 더 그린테이블 (코스요리)
-update places set solo_ok = false where id = '5b292b57-836e-4f91-80ac-997a96ae5e0e';   -- 로즈힐 (코스요리)
-update places set solo_ok = false where id = '8e39d161-233a-476e-99c6-96185d1407c3';   -- 비금도 (코스요리)
-update places set solo_ok = false where id = '6079f916-fea2-4231-83b1-7a7b94a602c7';   -- 따뚱 (코스요리)
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = '0d7d2994-6779-4f12-b699-b7d58e81ae32';   -- 부흥동태 · Medium x2
+update places set food_guide_key = 'samgyeopsal' where id = '92875ba8-d79b-45fe-9129-78e409cd51c3';   -- 삼일정육식당
+update places set food_guide_key = 'suyuk-baekban' where id = '75d641e7-f669-472c-a573-5612587af54a';   -- 하동관
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = '33fc482a-3b85-4f5a-918b-0ad73b977449';   -- 신당동 떡볶이 타운 · Hot x3
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = '3ab4ac2c-94e7-4cc4-9b4f-f307c3de5f20';   -- 일도씨닭갈비 광화문점 · Medium x2
+update places set food_guide_key = 'samgyeopsal' where id = '46567541-0f3f-44e6-b87f-e5cd3f045487';   -- 잠수교집 성수 직영점
+update places set food_guide_key = 'samgyeopsal' where id = '49c00ee0-c870-4ca1-a507-5e0011059bf5';   -- 삼미정
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = '51e5833e-e2af-4bb6-86a3-94391e2450ed';   -- 장원족발 · Medium x2
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = '71493f23-9980-4cef-9293-b63b25330c3a';   -- 더 키친 아시아 홍대점 · Hot x3
+update places set food_guide_key = 'samgyeopsal' where id = 'f91acb9e-3f8e-4316-9bce-0981bd1c0904';   -- 삼각정
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = '47be4d78-98c4-41c5-bfb2-3c17d51770cf';   -- 부산복집 · Hot x3
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = '0c8915fe-fdb2-427f-8c2c-2a57b82623f7';   -- 충무로 부산복집 (오금역) · Hot x3
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = 'a7bd14f9-c6b2-4928-bcac-f3374b7f9f7c';   -- 삼정복집 · Hot x3
+update places set food_guide_key = 'samgyeopsal' where id = '587f0352-2368-49ea-a54f-e28422a35c6b';   -- 전주집
+update places set food_guide_key = 'samgyeopsal' where id = 'cc8d72a0-7ed5-44cc-a98d-188f4ee8cc79';   -- 서글렁탕
+update places set food_guide_key = 'ssiat-hotteok' where id = '6230b035-7f12-40a4-abd8-7090bbb70242';   -- 아빠호떡
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = '72c444c6-bad4-4186-b8c1-3e2daf0ed72f';   -- 서린낙지 · Hot x3
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = 'f3798974-15d3-490a-b200-942c1f61292a';   -- 전주청국장집 · Medium x2
+update places set food_guide_key = 'samgyeopsal' where id = '70a515a6-6201-4633-90f3-a6edc58215c0';   -- 서촌 대하식당
+update places set food_guide_key = 'sundae-gukbap' where id = 'bda7f8e1-004f-4bc6-850c-04dd5369fade';   -- 서촌전통순대국
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = 'c2104abd-794c-4a19-9f02-069ca19dc69e';   -- 동아냉면 · Medium x2
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = '8807ee8d-b304-458a-9697-a98e89cce3e5';   -- 성천막국수 · Medium x2
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = 'd2f44526-1c8e-476c-a421-7f37e68a74dd';   -- 주 · Hot x3
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = 'bc51c1c2-c81f-4db3-878e-ca247c07f04f';   -- 넥타이맨갈치동태 · Medium x2
+update places set food_guide_key = 'suyuk-baekban' where id = '8f68e389-0a0e-4b42-a88e-125fb505c8e3';   -- 미성옥
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = 'ebfd7e3e-9e51-4b25-ada7-fbc8bb623378';   -- 송백식당 · Medium x2
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = 'b92612ce-0485-4012-8130-e29a6e14e4ab';   -- 송파나루 · Medium x2
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = '2e32e011-e704-4aa0-85e0-72f4426dcff4';   -- 수정생태 · Medium x2
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = '8e123d82-bb91-4565-80e6-aa520700ae25';   -- 진주집 여의도점 · Medium x2
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = 'bf4842fe-9779-4c59-9c8e-ad89fb885a9b';   -- 남한강 매운탕 · Hot x3
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = '842dc80b-325a-4505-bfad-efab1345ee94';   -- 체리가든 · Medium x2
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = 'eed71c10-eda7-4f29-9aab-d7c40b52ba9c';   -- 신흥정육식당 · Medium x2
+update places set food_guide_key = 'dwaeji-gukbap' where id = '6b5087d2-3cd0-4e22-a323-fa412a8ba30c';   -- 여의도따로국밥
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = '5ae8b3a4-3e0c-4a05-a575-e1e88a10028f';   -- 첨벙아구찜 · Hot x3
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = 'bb5032c3-b550-402a-9d4d-1ffa7b044a0f';   -- 청담복집 · Hot x3
+update places set food_guide_key = 'suyuk-baekban' where id = 'c5f2d98b-52e2-407f-84cc-0b5ec4885030';   -- 야래향
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = 'c5f2d98b-52e2-407f-84cc-0b5ec4885030';   -- 야래향 · Hot x3
+update places set food_guide_key = 'samgyeopsal' where id = '77b92fa0-bb88-4f7e-81a5-73ea52c8b3ef';   -- 양촌리 화로숯불구이
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = 'b8f57c01-bb19-4c38-a85f-05be9f4c666e';   -- 춘천집닭갈비막국수 · Medium x2
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = '24446c1f-846e-46eb-b66c-7a53a790b473';   -- 충무로쭈꾸미불고기 · Hot x3
+update places set food_guide_key = 'suyuk-baekban' where id = '24158135-5a77-44fa-82e4-b2c73afdd3ee';   -- 여의도양지탕
+update places set food_guide_key = 'suyuk-baekban' where id = '583b35d3-4202-43f3-b096-e5c5f256146c';   -- 연희동칼국수
+update places set food_guide_key = 'suyuk-baekban' where id = '1e9b43ca-2048-4d01-a947-3aa36697b48f';   -- 영동설렁탕
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = '122df56c-7ed6-4a2a-8901-4f06fcf7b00f';   -- 오구반점 · Hot x3
+update places set food_guide_key = 'suyuk-baekban' where id = 'ca65d2b0-c055-456e-98a6-c3347051b1f0';   -- 개화
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = 'ca65d2b0-c055-456e-98a6-c3347051b1f0';   -- 개화 · Hot x3
+update places set food_guide_key = 'suyuk-baekban' where id = '891d8ae4-cc89-4e97-aef9-5944d9b87c61';   -- 웨스턴차이나
+update places set spice_level = repeat(chr(127798) || chr(65039), 2) || ' Medium' where id = 'f6fbb3ee-638f-4ecc-884c-bf077611dee3';   -- 유진식당 · Medium x2
+update places set food_guide_key = 'hoe' where id = '0e6cb3df-069e-47ca-8a11-6d8d7c041d7a';   -- 이쯔모
+update places set food_guide_key = 'suyuk-baekban' where id = 'f9b6e0c8-b5fd-485a-b394-39edaf12fe0b';   -- 을밀대
+update places set food_guide_key = 'suyuk-baekban' where id = '6b857c0b-56d8-4cb7-b50d-1585619988bd';   -- 중국
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = '6b857c0b-56d8-4cb7-b50d-1585619988bd';   -- 중국 · Hot x3
+update places set spice_level = repeat(chr(127798) || chr(65039), 3) || ' Hot' where id = 'ef6ea3af-89c0-44a4-b962-f6d83128afcc';   -- 콰이19 · Hot x3
+update places set solo_ok = true where id = '75d641e7-f669-472c-a573-5612587af54a';   -- 하동관 (국밥·탕류)
+update places set solo_ok = true where id = 'c1240936-683b-4c14-a087-c8ffed96017e';   -- 정동추어탕 (국밥·탕류)
+update places set solo_ok = true where id = '593b2c99-8dd2-41ed-a97f-3173ff3ca61b';   -- 일등식당 (국밥·탕류)
+update places set solo_ok = true where id = '221cc46e-8ce7-4f18-889a-c98d3aa9ebd6';   -- 마포옥 (국밥·탕류)
+update places set solo_ok = true where id = '5571eefb-a462-40bf-bf6d-c7cc7ed9a3ff';   -- 능동미나리 (국밥·탕류)
+update places set solo_ok = true where id = 'bda7f8e1-004f-4bc6-850c-04dd5369fade';   -- 서촌전통순대국 (국밥·탕류)
+update places set solo_ok = true where id = '043c8f34-230b-41e7-befe-7fc64171a04e';   -- 토속촌삼계탕 (국밥·탕류)
+update places set solo_ok = true where id = '92d2b2b8-a325-4c09-a7fa-14737fb53333';   -- 3대삼계장인 (국밥·탕류)
+update places set solo_ok = true where id = 'a859defd-1382-4ca2-94e8-80ac9d8d76ed';   -- 조선옥 (국밥·탕류)
+update places set solo_ok = true where id = '7e722103-c734-42ef-94bb-f88f1deada72';   -- 소문난집추어탕(소문난 해장국) (국밥·탕류)
+update places set solo_ok = true where id = '0af88bbb-e3ac-4b91-af6c-4e5f0ba5205c';   -- 동경전통육개장 (국밥·탕류)
+update places set solo_ok = true where id = '8f68e389-0a0e-4b42-a88e-125fb505c8e3';   -- 미성옥 (국밥·탕류)
+update places set solo_ok = true where id = 'b92612ce-0485-4012-8130-e29a6e14e4ab';   -- 송파나루 (국밥·탕류)
+update places set solo_ok = true where id = '8e123d82-bb91-4565-80e6-aa520700ae25';   -- 진주집 여의도점 (국밥·탕류)
+update places set solo_ok = true where id = '090e5ae1-eefc-4bc6-9230-e637520fa612';   -- 장수한방삼계탕 (국밥·탕류)
+update places set solo_ok = true where id = 'cc3b2fb1-35a0-4fc8-8065-8be4dc7b7aa0';   -- 제주미향해장 (국밥·탕류)
+update places set solo_ok = true where id = 'aed9d19a-07d7-422c-930c-0986b3c35e37';   -- 백년토종삼계탕 본점 (국밥·탕류)
+update places set solo_ok = true where id = 'cbb9397b-15bc-45b5-9981-59781d5c00db';   -- 고봉삼계탕 (국밥·탕류)
+update places set solo_ok = true where id = '6b5087d2-3cd0-4e22-a323-fa412a8ba30c';   -- 여의도따로국밥 (국밥·탕류)
+update places set solo_ok = true where id = '245ee311-91e9-4773-92f9-14188b92fcc5';   -- 청송옥 (국밥·탕류)
+update places set solo_ok = true where id = '1e9b43ca-2048-4d01-a947-3aa36697b48f';   -- 영동설렁탕 (국밥·탕류)
+update places set solo_ok = true where id = 'f6fbb3ee-638f-4ecc-884c-bf077611dee3';   -- 유진식당 (국밥·탕류)
+update places set solo_ok = true where id = 'c5638558-a5f5-4171-bfa8-f5739af4183b';   -- 이남장(삼성동점) (국밥·탕류)
+update places set solo_ok = true where id = 'b23978ca-ea74-40bd-acb2-4e935a370f42';   -- 파낙스 (국밥·탕류)
+update places set solo_ok = true where id = 'e6ffd3de-afcc-4d6a-bbf2-a618220160a8';   -- 파주옥 (국밥·탕류)
+update places set solo_ok = true where id = '36a44ae2-a8c5-4ca2-8f4a-fcaf20bc7a5c';   -- 부원면옥 (면류)
+update places set solo_ok = true where id = 'f2edab33-a426-40ae-afb3-ec9dcaba7958';   -- 비원손칼국수 (면류)
+update places set solo_ok = true where id = '60109fc8-ab9d-45cf-9562-e75f544afb5f';   -- 팔선 (면류)
+update places set solo_ok = true where id = '342518f3-f35f-4c57-957d-809a3d0e0039';   -- 진주회관 (면류)
+update places set solo_ok = true where id = 'e83d64eb-7ee8-4cee-b7ab-1b08cedf2d75';   -- 원조 홍두깨 칼국수 (면류)
+update places set solo_ok = true where id = '24a00522-c89e-4dba-a9ae-2c029b7b71c1';   -- 깃대봉냉면 (면류)
+update places set solo_ok = true where id = 'abe027d5-a005-4635-bea2-52ea0c9ec3c5';   -- 정동국시 (면류)
+update places set solo_ok = true where id = '6b85fca9-e2dc-4870-ae59-1158b91b6102';   -- 안동집 손칼국시 (면류)
+update places set solo_ok = true where id = 'e9e082ed-3242-463d-9f03-8be797008047';   -- 무교주가 제일제면소 (면류)
+update places set solo_ok = true where id = '8b4b8b91-b3e7-4170-809d-5357774b1632';   -- 장가구 (면류)
+update places set solo_ok = true where id = 'c2104abd-794c-4a19-9f02-069ca19dc69e';   -- 동아냉면 (면류)
+update places set solo_ok = true where id = '99155219-e495-4649-9e66-958a597cd5d0';   -- 성민촌 (면류)
+update places set solo_ok = true where id = '90403a03-29e7-4e17-a003-d8ab565ff2e4';   -- 꽁시면관 (면류)
+update places set solo_ok = true where id = '8807ee8d-b304-458a-9697-a98e89cce3e5';   -- 성천막국수 (면류)
+update places set solo_ok = true where id = 'd2f44526-1c8e-476c-a421-7f37e68a74dd';   -- 주 (면류)
+update places set solo_ok = true where id = 'a64932f2-24dc-40bb-aa74-bee4abe00a04';   -- 손칼국수감자수제비 (면류)
+update places set solo_ok = true where id = 'af9971ac-a5ff-47d6-b082-0676d12cb86c';   -- 하니칼국수 (면류)
+update places set solo_ok = true where id = '37aacaaa-8ea0-4f99-850d-79239cfb8d6e';   -- 우래옥 (면류)
+update places set solo_ok = true where id = 'e7214781-b539-400b-a5a2-8e3df1f97233';   -- 벽제갈비 (면류)
+update places set solo_ok = true where id = 'bf2bb5ca-c7d0-4680-935b-f3f6589900bc';   -- 신계치 (면류)
+update places set solo_ok = true where id = '34fb49e9-d22c-4898-8d52-69460beaed99';   -- [백년가게] 청수장 (면류)
+update places set solo_ok = true where id = 'bacb15f3-d4ce-45bb-b1eb-7fa128fbfe83';   -- 평택 고여사집 냉면 (면류)
+update places set solo_ok = true where id = 'bde0e52a-52fa-429b-8baa-b586b642c694';   -- 청송본관함흥냉면 (면류)
+update places set solo_ok = true where id = 'cffdfb36-2c09-4ca3-95ff-fc3f1864bb69';   -- 백리향 (면류)
+update places set solo_ok = true where id = 'f8b50ce0-8f72-40a8-af71-ec1873609e14';   -- 부산집 홍대 (면류)
+update places set solo_ok = true where id = '440ad31a-a8be-40d1-be2f-8d6c60a7df1b';   -- 훼미리손칼국수보쌈 (면류)
+update places set solo_ok = true where id = 'bade4024-32fc-4213-9c2a-956696fd786c';   -- 샘밭막국수 (면류)
+update places set solo_ok = true where id = 'c5f2d98b-52e2-407f-84cc-0b5ec4885030';   -- 야래향 (면류)
+update places set solo_ok = true where id = 'b8f57c01-bb19-4c38-a85f-05be9f4c666e';   -- 춘천집닭갈비막국수 (면류)
+update places set solo_ok = true where id = '583b35d3-4202-43f3-b096-e5c5f256146c';   -- 연희동칼국수 (면류)
+update places set solo_ok = true where id = '122df56c-7ed6-4a2a-8901-4f06fcf7b00f';   -- 오구반점 (면류)
+update places set solo_ok = true where id = 'ca65d2b0-c055-456e-98a6-c3347051b1f0';   -- 개화 (면류)
+update places set solo_ok = true where id = 'f9b6e0c8-b5fd-485a-b394-39edaf12fe0b';   -- 을밀대 (면류)
+update places set solo_ok = true where id = '6b857c0b-56d8-4cb7-b50d-1585619988bd';   -- 중국 (면류)
+update places set solo_ok = true where id = '926ce1c8-11af-443a-b52a-0f878cf10c7a';   -- 진아춘 광화문점 (면류)
+update places set solo_ok = true where id = '89bb47d4-b4b1-42a6-a479-aa1d90a585d8';   -- 쯔루하시 후게츠 (면류)
+update places set solo_ok = true where id = 'ef6ea3af-89c0-44a4-b962-f6d83128afcc';   -- 콰이19 (면류)
+update places set solo_ok = true where id = '55d66cd5-9beb-45df-a8db-1c68429d95ee';   -- 타워차이 (면류)
+update places set solo_ok = true where id = 'ee6e24a7-f25b-4d3a-bc61-5c017cb57664';   -- 파파호 (면류)
+update places set solo_ok = true where id = '3ecae1f1-79a9-4b41-aef7-e2b1eddd993a';   -- 풀향기손칼국수 (면류)
+update places set solo_ok = true where id = '5aed0ab5-d912-4c01-b667-2f436ae40459';   -- 대동문 (분식)
+update places set solo_ok = true where id = '33fc482a-3b85-4f5a-918b-0ad73b977449';   -- 신당동 떡볶이 타운 (분식)
+update places set solo_ok = true where id = '4cff3835-0734-4088-8fb6-5d83e698ce67';   -- 코스모스 분식 (분식)
+update places set solo_ok = true where id = '51e5833e-e2af-4bb6-86a3-94391e2450ed';   -- 장원족발 (분식)
+update places set solo_ok = true where id = '7a9cce88-49be-4a02-82fd-9c86df816067';   -- 삼진어묵 본점 (분식)
+update places set solo_ok = true where id = 'b2c22698-e610-4d30-a198-175a5fcc4296';   -- 스페인클럽 (분식)
+update places set solo_ok = true where id = 'bf5c6ac9-69b3-4f76-bc62-0d34caab8562';   -- 진진만두 (분식)
+update places set solo_ok = true where id = '34695c14-58f4-458c-8591-483d338e0df2';   -- 현선이네 용산본점 (분식)
+update places set solo_ok = true where id = '2873d207-3f43-49b0-8fb8-b63e2efc27bf';   -- 남산기억 (덮밥·일식)
+update places set solo_ok = true where id = 'ad3ee018-c344-4b8c-bcc7-15183205b71f';   -- 케르반 파미에스테이션 (덮밥·일식)
+update places set solo_ok = true where id = '87e8eac9-4f3f-48a8-8d1b-dd72d670699c';   -- 미동식당 (덮밥·일식)
+update places set solo_ok = true where id = '0f5767bf-0a99-48bf-a307-950923f99883';   -- 기후 (덮밥·일식)
+update places set solo_ok = true where id = '39dc85fd-1d78-462c-ab69-50257f0ae074';   -- 스시히로바 삼성동본점 (덮밥·일식)
+update places set solo_ok = true where id = '41c9a254-bc99-4585-b626-3501889ffc31';   -- 아트스시 (덮밥·일식)
+update places set solo_ok = true where id = 'b776d4f5-8c3b-4903-b5c8-0dc216c53f54';   -- 아리아께 (덮밥·일식)
+update places set solo_ok = true where id = '415d6196-718f-4e7d-87e8-1374902dd614';   -- 야마모토스시 (덮밥·일식)
+update places set solo_ok = true where id = '6077017d-3992-4fac-8288-d42e4ec4027d';   -- 이즈미 (덮밥·일식)
+update places set solo_ok = true where id = 'd1278380-12c6-4ce8-9ed2-413e35d0c169';   -- 텀블러비어 (덮밥·일식)
+update places set solo_ok = true where id = '2a7da021-acf3-47f5-8dd8-358548d0c2be';   -- 페르시안궁전 (덮밥·일식)
+update places set solo_ok = true where id = '062210d9-d9b7-4e55-b04f-d31b5eb871c1';   -- 하나로회관 (백반·한정식)
+update places set solo_ok = true where id = '1e1458aa-9478-4301-87f4-157e5e592f21';   -- 품서울 (백반·한정식)
+update places set solo_ok = true where id = '27091b86-16bd-48c2-864a-8a5d3dd55de1';   -- 비채나 (백반·한정식)
+update places set solo_ok = true where id = '642af840-0d3b-4cbc-8ce3-357df0566923';   -- 불이아(강남점) (백반·한정식)
+update places set solo_ok = true where id = '35914666-039e-4b2f-a260-73f56999a768';   -- 컨퍼런스하우스달개비 (백반·한정식)
+update places set solo_ok = true where id = 'f92d3fb0-4d2b-4d0c-84f9-a27da36c0853';   -- 산들해 (백반·한정식)
+update places set solo_ok = true where id = '63c61df6-0614-4062-a5f2-398bf2bcb3e5';   -- gaga 가가 (백반·한정식)
+update places set solo_ok = true where id = 'f6eafdb4-92fd-4c53-865a-63e1eda2d8ab';   -- 정식당 (백반·한정식)
+update places set solo_ok = true where id = '3c3a42e1-9e99-4d16-bdda-17d82369da1b';   -- 석파랑 (백반·한정식)
+update places set solo_ok = true where id = 'c9e89c6b-c2f0-461d-96c9-26372738b470';   -- 소도 (백반·한정식)
+update places set solo_ok = true where id = '25e405c7-d0eb-406c-8790-05ffe0c61dfb';   -- 송림가 (백반·한정식)
+update places set solo_ok = true where id = 'd48c9c66-eb14-44c0-94c5-8db74fcd25bc';   -- 진사댁 (백반·한정식)
+update places set solo_ok = true where id = '2e32e011-e704-4aa0-85e0-72f4426dcff4';   -- 수정생태 (백반·한정식)
+update places set solo_ok = true where id = 'b9d04afb-100f-46ad-b2c9-3ea0cbbf5310';   -- 마포나루 (백반·한정식)
+update places set solo_ok = true where id = '7d4257a7-a3dc-4d7e-8cc6-47f7437ae1cb';   -- 순미네 행복게장 동대문점 (백반·한정식)
+update places set solo_ok = true where id = 'b416f236-11b1-4274-a2dd-0b8dc88dee71';   -- 카멜스 키친 (백반·한정식)
+update places set solo_ok = true where id = '080f9c03-09cf-4aa6-af8f-7e9338fbaffc';   -- 코리아하우스 (백반·한정식)
+update places set solo_ok = true where id = '991c4811-c440-41b8-ab83-25f8dacc9e08';   -- 여자만 (백반·한정식)
+update places set solo_ok = true where id = '46e5e258-996f-4713-b071-898dba6f6c35';   -- 최대감네 (백반·한정식)
+update places set solo_ok = true where id = '77b92fa0-bb88-4f7e-81a5-73ea52c8b3ef';   -- 양촌리 화로숯불구이 (백반·한정식)
+update places set solo_ok = true where id = 'c00cb1c3-cd8b-4b51-815b-72ab7b4c9ab9';   -- 진도울돌목가는길 (백반·한정식)
+update places set solo_ok = true where id = 'eacdaa62-18b0-45e3-b181-7a379ff1626f';   -- 태림산채정식 (백반·한정식)
+update places set solo_ok = true where id = '07bf6242-b638-4b88-a050-cb94e8c869bc';   -- 설빙 (카페·빵)
+update places set solo_ok = true where id = '10f7cddf-4a24-496a-b0ad-a1e16ae14ebb';   -- 우부래도 (카페·빵)
+update places set solo_ok = true where id = '13718827-2b43-4025-afeb-3569755e163e';   -- 카페 타자기 (카페·빵)
+update places set solo_ok = true where id = '13d65796-39b5-49f9-b038-855d6ab62fe5';   -- 알페도 (카페·빵)
+update places set solo_ok = true where id = '154e3a17-4353-477b-ade0-0f35a329af26';   -- 적당 (카페·빵)
+update places set solo_ok = true where id = '1f86f65d-820a-448a-8805-ca7b39358d1f';   -- 도토리 용산점 (카페·빵)
+update places set solo_ok = true where id = '200c69fd-0f1a-43c9-884d-f5dccf36d577';   -- 카몽(KAMONG) (카페·빵)
+update places set solo_ok = true where id = 'f1b73582-96d4-4404-a8a6-ea54cf925ad9';   -- 커피한약방 혜화점 (카페·빵)
+update places set solo_ok = true where id = '0a77af4d-c274-4a2d-9a58-ad207866c4e7';   -- 카페개뿔 (카페·빵)
+update places set solo_ok = true where id = '234f3e95-bcb3-484d-8cf5-43b23cd3136b';   -- 음악의 숲 (카페·빵)
+update places set solo_ok = true where id = '24bce2ac-b6bd-43cf-ac9f-369e0c222ce8';   -- 천년동안도 (카페·빵)
+update places set solo_ok = true where id = '277160d5-107d-42af-a740-14d4bc5f1d47';   -- 히트커피로스터스 이태원점 (카페·빵)
+update places set solo_ok = true where id = '27756041-81d1-4c4d-b3f3-4c22cb2e1b33';   -- 서촌 스코프 (카페·빵)
+update places set solo_ok = true where id = 'f38e0aa0-840a-4074-a5ba-dd46be736d3e';   -- 이오이 서울 (카페·빵)
+update places set solo_ok = true where id = '0e343870-3b5f-49ba-b97f-612a821cebc0';   -- 플로리안 (카페·빵)
+update places set solo_ok = true where id = '2c8b9668-018d-4b7e-830c-129e39a62146';   -- 로우키 (카페·빵)
+update places set solo_ok = true where id = '0f34ced7-ea1f-4944-bc2b-70c394ddcd6a';   -- 레레플레이 (카페·빵)
+update places set solo_ok = true where id = '3cdf1261-02ad-488e-b843-672b1d581e5b';   -- 무에 (카페·빵)
+update places set solo_ok = true where id = '3fe52496-2413-4dd9-929c-b7955fe4a010';   -- 카페 키이로 (카페·빵)
+update places set solo_ok = true where id = '302a1e57-f8d8-4ae1-9dfe-a210077cfdf2';   -- 조앤도슨 광화문점 (카페·빵)
+update places set solo_ok = true where id = '415a44c2-2b01-48a4-aa5c-c4937aeb1cbf';   -- 하츠하우스 (카페·빵)
+update places set solo_ok = true where id = '4408514e-57ea-4306-ae6f-eff2b50a007c';   -- 프레스카 29 (카페·빵)
+update places set solo_ok = true where id = 'e6e928d7-6488-487b-8185-89f3e50048a7';   -- 차마시는뜰 차뜰 (카페·빵)
+update places set solo_ok = true where id = '3efe680a-dc9b-4ae6-ac1d-7d6ede96e437';   -- 앤트러사이트 연희점 (카페·빵)
+update places set solo_ok = true where id = '45f309cb-12d1-428a-822f-395e25df388a';   -- 벨라프라하 (카페·빵)
+update places set solo_ok = true where id = '46a6eff4-7783-4462-9411-8a0671e1acf8';   -- 째즈스토리 (카페·빵)
+update places set solo_ok = true where id = '49f43be6-419f-4e8a-93d4-f1c21df169f6';   -- 밀스 (카페·빵)
+update places set solo_ok = true where id = '8c1b0ce3-92d8-4945-a6cf-1aee45df3f08';   -- 산모퉁이 (카페·빵)
+update places set solo_ok = true where id = '4d1ec3ff-f398-4706-ae4c-1570ef0b74d0';   -- 카페사사 (카페·빵)
+update places set solo_ok = true where id = '4d6a339a-703b-4726-ab91-e368e8a07cd2';   -- 성수동 대림창고 갤러리 (카페·빵)
+update places set solo_ok = true where id = '5068a2b8-dc01-4974-9c30-47db355454ba';   -- 카페 헤이븐 (카페·빵)
+update places set solo_ok = true where id = '511e70e5-d284-417c-826a-d4e468af88ee';   -- 퍼블릭가든 (카페·빵)
+update places set solo_ok = true where id = '83643c74-6c62-49a4-9dfd-a7667e7ecda5';   -- 이미 커피 (카페·빵)
+update places set solo_ok = true where id = '16af7663-47d5-40c6-855e-325cc496ce57';   -- 무심 (카페·빵)
+update places set solo_ok = true where id = '54b0993a-354a-4206-b4b4-4274a0ab5e05';   -- 허형만의압구정커피집 (카페·빵)
+update places set solo_ok = true where id = '56504c19-52e3-4cf6-be78-fc24b0209ffc';   -- 러스트 베이커리 (카페·빵)
+update places set solo_ok = true where id = '57af55f4-26fd-4db8-8099-fa94bcfcce29';   -- 쎈느 Scene (카페·빵)
+update places set solo_ok = true where id = '0c3415bd-9383-4f37-957f-f701b9e31af5';   -- 카페 카카리코 (카페·빵)
+update places set solo_ok = true where id = '5b231fd4-469b-47be-836b-1675df02c08b';   -- 카페 레이어드 연남 (카페·빵)
+update places set solo_ok = true where id = '5bf3ac7e-ab13-4193-a9d6-a8dadaa522bf';   -- 어나더사이드 (카페·빵)
+update places set solo_ok = true where id = '5f9214dd-1552-437a-adac-443c7baef82e';   -- 더닝 (카페·빵)
+update places set solo_ok = true where id = '61d79e7d-f80a-4ed9-8044-6cc7edb730d5';   -- 프로토콜 연희점 (카페·빵)
+update places set solo_ok = true where id = '6230b035-7f12-40a4-abd8-7090bbb70242';   -- 아빠호떡 (카페·빵)
+update places set solo_ok = true where id = '06cab917-b37d-44ad-97c5-b86d0cbbbfa7';   -- 피롤츠 커피하우스 용산점 (카페·빵)
+update places set solo_ok = true where id = '62d9662a-baa9-4d34-899f-8d26ef7e84c5';   -- 도넛정수 (카페·빵)
+update places set solo_ok = true where id = '6334fbc2-3e27-4f93-8fef-930de51b4567';   -- 환대커피워크 (카페·빵)
+update places set solo_ok = true where id = '66630aab-841b-4e8d-94ba-50c7c22aad5f';   -- 헤리티지 클럽 (Heritage Club) (카페·빵)
+update places set solo_ok = true where id = 'dc77e5d9-cc0b-4846-ab0f-61015fb83532';   -- 클럽 에스프레소 (카페·빵)
+update places set solo_ok = true where id = '692d5280-80a9-4d26-8e34-99b37c11a10e';   -- 메일룸 (카페·빵)
+update places set solo_ok = true where id = '6beb8d4a-c21f-4ff0-856b-d61c9f46bcd1';   -- 공간갑 (카페·빵)
+update places set solo_ok = true where id = '6fc55575-5bcf-499f-b786-288b07004ac4';   -- 히포 브런치하우스 (카페·빵)
+update places set solo_ok = true where id = '70765258-9126-4e20-9c9f-c0626ed6d0fc';   -- 한국의집 고호재 (카페·빵)
+update places set solo_ok = true where id = '7259d56d-d495-446a-8d23-7f17c9fade4e';   -- 로우루프 (카페·빵)
+update places set solo_ok = true where id = 'f6b84a81-6ad7-4c0e-a96c-defe0272d798';   -- 깅꼬서울 (카페·빵)
+update places set solo_ok = true where id = '45d084da-f5ec-4237-bd2b-b911c6bb4b2f';   -- OMOT 오므오트 (카페·빵)
+update places set solo_ok = true where id = '74c0293a-7850-44ed-a9e0-b0de531622a8';   -- 라프레플루트 (카페·빵)
+update places set solo_ok = true where id = '76b8376f-b519-487d-bc9a-95b629431de4';   -- 타이티 플래그십스토어 (카페·빵)
+update places set solo_ok = true where id = '788c55f0-67ba-4a5f-baf5-9758ec6a0682';   -- 커피휘엘 (Coffee Fiel) (카페·빵)
+update places set solo_ok = true where id = '7fb00b73-db98-4dcb-b815-615e2a915d44';   -- 도수향 (카페·빵)
+update places set solo_ok = true where id = '81652a95-eaee-4baf-a1be-24eb48539eac';   -- 코타티 해방촌 (카페·빵)
+update places set solo_ok = true where id = '860be124-e55a-4ac1-862e-9caaad839ebe';   -- 티비에이비 (카페·빵)
+update places set solo_ok = true where id = '86d62f8f-2406-4672-94be-39f40be33ad9';   -- 커피한약방 (카페·빵)
+update places set solo_ok = true where id = '86de4d48-37b4-4edf-8f1e-faadc99eeccf';   -- 제비다방 (카페·빵)
+update places set solo_ok = true where id = '87587490-b0f6-479e-9a9e-eccbe23fa1f7';   -- 녹기 전에 (카페·빵)
+update places set solo_ok = true where id = '77bd9554-cde9-41da-8dd8-66d113841e9b';   -- 파이키 (카페·빵)
+update places set solo_ok = true where id = '8a8cf257-29cc-4d5f-8aee-910ea60f1552';   -- 라운지 희움 (카페·빵)
+update places set solo_ok = true where id = 'e83c08fd-cd52-4111-8e4f-652221350043';   -- 파스텔커피웍스 (카페·빵)
+update places set solo_ok = true where id = 'fdc519e2-9cd1-47d9-b20e-c8964e7b7102';   -- 필담 (카페·빵)
+update places set solo_ok = true where id = '8f51352b-eb7c-4eee-908b-968acc693de4';   -- 거울한옥 미러룸 (카페·빵)
+update places set solo_ok = true where id = '914495df-a4f9-41e3-8472-af6e49cc8b8d';   -- 이도림블로트커피X베이크 (카페·빵)
+update places set solo_ok = true where id = '920b6926-ec37-469b-881f-8c13b9c370c4';   -- 주빈 (카페·빵)
+update places set solo_ok = true where id = '44703d47-fe05-4c6c-a10f-2b22704f2c1a';   -- 세시셀라(도산공원점) (카페·빵)
+update places set solo_ok = true where id = 'e5569bcb-4972-4062-a294-bfaa9c04efa1';   -- 스태픽스 (카페·빵)
+update places set solo_ok = true where id = '965387f6-4a96-4832-95be-c30961faf06e';   -- 에삐 EPI (카페·빵)
+update places set solo_ok = true where id = '97a50079-637a-4811-a3f7-bc995cea7f85';   -- 빈브라더스 커피하우스 (카페·빵)
+update places set solo_ok = true where id = '983c7595-3076-453a-b397-cd5c9834644d';   -- 오버딥 연남 (카페·빵)
+update places set solo_ok = true where id = '98d8def6-e008-4ccc-b2a0-dc5bca265b1a';   -- 테일러커피 서촌 경복궁점 (카페·빵)
+update places set solo_ok = true where id = '9c0f3287-8df1-4243-bba7-1a2d18befd98';   -- 파일드 (카페·빵)
+update places set solo_ok = true where id = '9fae21fe-2cc5-40e9-9adf-52eda092fd34';   -- 동작노을카페 (카페·빵)
+update places set solo_ok = true where id = 'a0891a3f-9e13-4734-bd94-f69c3b4d1a8f';   -- 수록곡 기록실 (카페·빵)
+update places set solo_ok = true where id = 'a2c54112-f48f-4117-a4e6-bd77cb97f4c7';   -- 커피투어 (카페·빵)
+update places set solo_ok = true where id = 'e26bae20-28a2-4076-a813-8932632d4e21';   -- 카페 아르무아 (카페·빵)
+update places set solo_ok = true where id = '75384504-994c-4ab1-8646-50ed85d80f0b';   -- 애프터테이스트 (카페·빵)
+update places set solo_ok = true where id = '98f44081-5f01-460a-b43a-d2888dae9995';   -- 라크루뜨 서울 본점 (카페·빵)
+update places set solo_ok = true where id = '0ece5c39-3478-49a6-a942-8ee2a68a1a47';   -- 카페 상국 (카페·빵)
+update places set solo_ok = true where id = 'b026478c-3c42-4467-8b26-27d27c4e694a';   -- 동부고려제과 (카페·빵)
+update places set solo_ok = true where id = '712c7936-78e2-4c6f-9a78-463e50ab6546';   -- 도토리오븐 (카페·빵)
+update places set solo_ok = true where id = 'b0bbe788-71e6-4fc0-aea8-6707cd31b9f6';   -- 북해빙수 (카페·빵)
+update places set solo_ok = true where id = '864df84b-496d-4f57-b816-a5a115451a19';   -- 앤티크커피 연남점 (카페·빵)
+update places set solo_ok = true where id = 'b8a4928e-65ec-4778-8125-ac2ec3286df9';   -- 스모어마켓 (카페·빵)
+update places set solo_ok = true where id = 'e7815cef-2352-4394-b9a5-8dda58b94025';   -- ium 1966 (카페·빵)
+update places set solo_ok = true where id = 'b957600d-13bb-4690-9242-eb2f1b115a93';   -- 하이브 플레이그라운드 (카페·빵)
+update places set solo_ok = true where id = '2c822915-f5f3-4c61-8f4c-01e93c25c072';   -- 비타민카페&펍 (카페·빵)
+update places set solo_ok = true where id = 'dedcb69e-1818-4189-9afa-db19c24c5e0a';   -- 카페 폭포 (카페·빵)
+update places set solo_ok = true where id = 'd211e08d-8403-4597-a792-9cef30746850';   -- 자연도소금빵in성수 (카페·빵)
+update places set solo_ok = true where id = '46f0f01a-b36e-4320-915b-bb9e731665b6';   -- 신이도가 (카페·빵)
+update places set solo_ok = true where id = '63bc78fa-64a7-46fa-9a01-41b12acb480e';   -- 스퀘어가든 (카페·빵)
+update places set solo_ok = true where id = 'f5d14a7a-ca98-4ecb-bb89-10f9c3c3146a';   -- 스탠딩커피 (카페·빵)
+update places set solo_ok = true where id = 'f138d9ce-ea88-459c-bfc8-20d68b2073f4';   -- 서울래빗 (카페·빵)
+update places set solo_ok = true where id = '061a9807-08e8-45ad-ad16-42a3bf39746b';   -- 카페 그레이랩 (카페·빵)
+update places set solo_ok = true where id = '3a6422e5-e5bb-43f4-821b-28ddede004a7';   -- 옥류헌릴렉스 (카페·빵)
+update places set solo_ok = true where id = '4c038aed-157f-4290-a9c0-2d9fc6391df4';   -- 에빠 (카페·빵)
+update places set solo_ok = true where id = 'b989fb02-2da6-4180-bb64-67707b0e7279';   -- 조셉의 커피나무 (카페·빵)
+update places set solo_ok = true where id = 'e91161c2-615f-470b-ac1b-d4d1795c63b9';   -- 북앤레스트 (카페·빵)
+update places set solo_ok = true where id = '0652240d-b370-424d-8e34-cced78d18852';   -- 강변서재 (카페·빵)
+update places set solo_ok = true where id = 'e215983e-aabb-43b4-a7b1-381fca8ead2c';   -- 하우스오브바이닐 망원점 (카페·빵)
+update places set solo_ok = true where id = '2289a5c3-dac0-4d1b-be56-0a5a82ddaad2';   -- 서촌다과방 (카페·빵)
+update places set solo_ok = true where id = '3aa08b79-2bfd-47bc-98fc-a11003db5db4';   -- 마를리 (카페·빵)
+update places set solo_ok = true where id = 'aad9ee94-3aef-4f7a-ac61-f01e745bf542';   -- 오설록 티하우스 북촌점 (카페·빵)
+update places set solo_ok = true where id = 'ae6370db-8a3a-4aeb-96e4-9bdb72e2dabe';   -- 아티제 삼성타운점 (카페·빵)
+update places set solo_ok = true where id = '9af72b20-8157-4f6c-978d-372f727baf2e';   -- 스타쉐프 (카페·빵)
+update places set solo_ok = true where id = 'bdca8869-1bbd-479d-8563-ae58a98c3f40';   -- 파롤앤랑그 (카페·빵)
+update places set solo_ok = true where id = 'bf428c9c-559f-430e-a11e-0cf99c3e977d';   -- 사하라 (카페·빵)
+update places set solo_ok = true where id = '1fcf697a-112b-4722-8a6b-a1ebe430ae9a';   -- 카페 거북이 (카페·빵)
+update places set solo_ok = true where id = 'c184c5ea-9477-4df8-8fb0-7ba5bc756126';   -- 고센인코퍼레이티드 (카페·빵)
+update places set solo_ok = true where id = 'c193c5a6-6a5e-4979-be7b-c73a3f97b296';   -- 카페진정성 한강편 커피하우스 (카페·빵)
+update places set solo_ok = true where id = 'c2d706de-26b5-4de2-958e-f47c7a299dc8';   -- 카페 공명 망원책빵 (카페·빵)
+update places set solo_ok = true where id = 'c47128ee-46b0-4f4f-81e2-f793a4f4062a';   -- 높은산 (카페·빵)
+update places set solo_ok = true where id = 'c700281b-b86f-4cb0-a22d-40b39509af86';   -- 피즈소셜클럽 (카페·빵)
+update places set solo_ok = true where id = 'c7ec309f-150e-4af0-b62d-d5ccf97f9ebb';   -- 예나떡방 (카페·빵)
+update places set solo_ok = true where id = 'ca037cc2-37ae-447f-b98a-db253c6a1f35';   -- 쓰윗 Thweet (카페·빵)
+update places set solo_ok = true where id = 'ca95cb55-bcea-4088-880c-d413c1f0e52d';   -- 나무사이로 (카페·빵)
+update places set solo_ok = true where id = 'cc3fe272-9f4c-4cac-951c-a7dc01596695';   -- 동양찻집 수락산점 (카페·빵)
+update places set solo_ok = true where id = 'cff8f6d3-dbf1-48d5-864b-e8fe07582a26';   -- 퍼스트바이쓰리 (카페·빵)
+update places set solo_ok = true where id = '10cc143a-201d-4549-bc79-a10e9e078ac3';   -- 연희동 국화빵 (카페·빵)
+update places set solo_ok = true where id = '77b0c670-8446-4bf8-aa02-72468d8adb00';   -- 차차이테 (카페·빵)
+update places set solo_ok = true where id = 'd196c82f-1bfd-47a5-bc5e-8bae8d946941';   -- 에이치커피로스터스 서촌 (카페·빵)
+update places set solo_ok = true where id = 'd5345a65-80d8-4ae7-85fd-e1e2c51257ed';   -- 소브 (카페·빵)
+update places set solo_ok = true where id = 'd5954fbe-09a6-4c6f-8410-9936d61cc644';   -- 카페 트마리 (카페·빵)
+update places set solo_ok = true where id = '798a3145-8cca-4392-8754-c9d9b72ed6ed';   -- 하우스 오브 신세계 디저트살롱 (카페·빵)
+update places set solo_ok = true where id = 'd4c55556-2134-4db0-9041-b9c2ed5dc41e';   -- 반카페 (카페·빵)
+update places set solo_ok = true where id = 'e799d30f-f82c-4367-b2d3-aa9b02e739fa';   -- 언뎁트 (Undebt) (카페·빵)
+update places set solo_ok = true where id = '3669c07e-aed9-438e-8d3c-72d9921c3c34';   -- 켄싱턴 호텔 더 뷰 라운지 (카페·빵)
+update places set solo_ok = true where id = 'ea0f6cbc-7077-4c0c-986a-b63a92347c13';   -- 필요의 방 (카페·빵)
+update places set solo_ok = true where id = 'f3db9f89-cb41-4652-aebf-2f2afd98f62b';   -- 피터팬1978 (카페·빵)
+update places set solo_ok = true where id = 'f504d457-dc7b-413b-9f91-d5ac5dd9ab1b';   -- 아쿠아가든카페 (카페·빵)
+update places set solo_ok = true where id = 'fb661f08-4787-4207-b3d6-67138620161f';   -- 1994 SEOUL (카페·빵)
+update places set solo_ok = true where id = '1ffb4844-b026-4a6e-a5ba-c393d09fe83b';   -- 스타벅스 이대점 (카페·빵)
+update places set solo_ok = true where id = '40f9f7e6-a814-4d13-8f2f-22ff4de373bf';   -- 편강 율 플래그십&티하우스 (카페·빵)
+update places set solo_ok = true where id = 'e5e5f670-dffd-4059-815d-636d563ec3c8';   -- 푸드떼 (카페·빵)
+update places set solo_ok = true where id = 'c0621c54-e8c7-4df5-810b-0d36b4059a8a';   -- 커피친구 (카페·빵)
+update places set solo_ok = true where id = '992e4a7a-72e1-4af4-ac4e-b06e33c5a755';   -- 케르반 베이커리 (카페·빵)
+update places set solo_ok = true where id = '10b42036-79aa-4b80-b528-97f69a560c80';   -- 케익하우스윈 (윈제과점) (카페·빵)
+update places set solo_ok = true where id = '0489bdf4-456a-40f3-9945-35336949c89f';   -- 카페 레이어드 더현대서울점 (카페·빵)
+update places set solo_ok = true where id = '23c02e9f-498d-4b2d-b949-56cc56bdaf5c';   -- 카페 무자비 (카페·빵)
+update places set solo_ok = true where id = '1cf285a6-0a70-4a21-84fe-5d4809ed2d66';   -- 카페 하이웨스트 익선점 (카페·빵)
+update places set solo_ok = true where id = '7be7a6c7-3e94-4136-afaf-d0f5048c41e1';   -- 카페먼데이투선데이 (카페·빵)
+update places set solo_ok = true where id = 'f2849a87-8d5c-45bc-b622-c544ea941002';   -- 콜린 (카페·빵)
+update places set solo_ok = true where id = 'fe73dfff-8594-4e72-a7ab-1e419893d1b2';   -- 카페 꼼마 합정점 (카페·빵)
+update places set solo_ok = true where id = '879d3958-048f-4e74-815f-b36d1a208721';   -- 팬케이크오리지널스토리 (카페·빵)
+update places set solo_ok = true where id = '131ac036-7b0c-4663-820a-88f1ff048c20';   -- 한강치킨 (패스트푸드)
+update places set solo_ok = true where id = '15f73952-bdec-4395-893a-2719213b7c43';   -- 리베르떼 (패스트푸드)
+update places set solo_ok = true where id = '536752db-f95c-4602-aeb2-c0b795301a14';   -- 플랜트 (패스트푸드)
+update places set solo_ok = true where id = '71493f23-9980-4cef-9293-b63b25330c3a';   -- 더 키친 아시아 홍대점 (패스트푸드)
+update places set solo_ok = true where id = '62251f41-52a4-4302-a0e6-75a16fb8a3da';   -- 줄라이 (패스트푸드)
+update places set solo_ok = true where id = '0ff52ac9-9726-4d33-a395-c5bf24fb23f0';   -- 로이정원 (패스트푸드)
+update places set solo_ok = true where id = 'fe35b908-e92a-400a-a5fa-5f20b055d06c';   -- 버뮤다삼각지 (패스트푸드)
+update places set solo_ok = true where id = '68bd0bfb-5fbb-493a-a6c1-796b511d4eaf';   -- 이태리이층집 (패스트푸드)
+update places set solo_ok = true where id = '6aee3269-c8dc-4689-ad51-6f26d10b101e';   -- 해방촌닭 (패스트푸드)
+update places set solo_ok = true where id = '701e64b0-b22e-462a-b3dd-f8295349e66a';   -- 마다밀 (패스트푸드)
+update places set solo_ok = true where id = '5aa13c44-2226-4572-929c-d6ba992d7cb5';   -- 술탄케밥 (패스트푸드)
+update places set solo_ok = true where id = '37b37a35-d082-4ee7-939b-5088eaee7c3d';   -- 음주양식당 오스테리아 어부 (패스트푸드)
+update places set solo_ok = true where id = 'a1080fca-c845-4dae-8b9b-2be764608fbb';   -- 리틀인디아서울 (패스트푸드)
+update places set solo_ok = true where id = '80169405-e89b-4724-bfd4-30cea74da725';   -- 라쿠치나 (패스트푸드)
+update places set solo_ok = true where id = '85e31aa4-84b0-46fb-8c15-365246bef0a8';   -- 마리니에르 (패스트푸드)
+update places set solo_ok = true where id = '91ccd74f-d796-4e30-acc9-a55709f7d2be';   -- 심퍼티쿠시 용산점 (패스트푸드)
+update places set solo_ok = true where id = '96d2eda6-a4d7-4c9c-81a3-11e41b7d06b6';   -- 꼭시넬 (패스트푸드)
+update places set solo_ok = true where id = '990c0137-2614-423f-a5da-233f851247cc';   -- 룸템퍼레이쳐 (패스트푸드)
+update places set solo_ok = true where id = '9efd6aa6-4256-4027-809a-f2bd99558310';   -- 앤더슨씨 (패스트푸드)
+update places set solo_ok = true where id = '2ad38ca6-1b66-4786-aef1-eb974b2999ba';   -- 레이지버거클럽 부암점 (패스트푸드)
+update places set solo_ok = true where id = 'aa08ff6f-4a0e-4f46-a70a-ac1c0f16c588';   -- 도어투도어 압구정점 (패스트푸드)
+update places set solo_ok = true where id = 'b8f2b821-4b4f-420f-8ac0-d9873aa38626';   -- 무위낙원 (패스트푸드)
+update places set solo_ok = true where id = 'eb47f872-ebf0-4e0d-a8b6-2dcede08f498';   -- 니르바나 (패스트푸드)
+update places set solo_ok = true where id = 'a6da46b8-c652-46b8-8f42-1224f1825100';   -- 플랫오 (패스트푸드)
+update places set solo_ok = true where id = '6ca5966c-814e-4292-9ea0-28b459a24d80';   -- 비틀스피자 연남점 (패스트푸드)
+update places set solo_ok = true where id = 'a662aeda-6549-40e8-9e3a-ac10b9038e1a';   -- 코키펍 홍대점 (패스트푸드)
+update places set solo_ok = true where id = '465de9f8-95d2-4b56-b2ed-1f491214004f';   -- 차크라 (패스트푸드)
+update places set solo_ok = true where id = 'f6928006-b400-4487-99a1-bf82f2ba4600';   -- 양키스 그릴 (패스트푸드)
+update places set solo_ok = true where id = '837ab5a6-ba1c-4d8f-8809-f5803503ad26';   -- 슬런치 팩토리 (패스트푸드)
+update places set solo_ok = true where id = 'b978b738-03bc-44ee-a890-046bf775d4ba';   -- 레스쁘아 뒤 이부 (패스트푸드)
+update places set solo_ok = true where id = 'c556a7cc-be9a-4ac8-88c9-55f2e4a77b8f';   -- 곤밥 (패스트푸드)
+update places set solo_ok = true where id = 'c56132e4-38a6-407d-a012-ced94f0fa520';   -- 워킹온더클라우드 (패스트푸드)
+update places set solo_ok = true where id = 'caee03d5-b359-4eec-bb72-9452b5d79860';   -- 성수다락 (패스트푸드)
+update places set solo_ok = true where id = 'ced1803c-941f-46f0-9951-40fa4c917f1c';   -- 이다 (IDA) (패스트푸드)
+update places set solo_ok = true where id = 'd2d0b817-f034-4916-9cbf-11822823c024';   -- 데케드 (패스트푸드)
+update places set solo_ok = true where id = '6c0fd428-1663-4959-a23e-7bb4683476f1';   -- 에베레스트 영등포점 (패스트푸드)
+update places set solo_ok = true where id = '6558cc1e-32c0-457b-a10c-ea5d98c2c96d';   -- 이프타르 (패스트푸드)
+update places set solo_ok = true where id = 'b9d9f808-0e54-4d65-9403-8881a8f1a91c';   -- 엔그릴 (패스트푸드)
+update places set solo_ok = true where id = 'd69a642d-f9f5-4ba2-b82b-bb2b8c9239f8';   -- 어필남산 (패스트푸드)
+update places set solo_ok = true where id = '5799f013-ee25-46d1-a48c-c374eee7b713';   -- 머노까머나 대학로점 (패스트푸드)
+update places set solo_ok = true where id = '1801cd39-9d81-497c-9906-015b6b36e945';   -- 지노스 뉴욕 피자 (패스트푸드)
+update places set solo_ok = true where id = '20df6eac-0cde-4c05-997c-ac73acab25b6';   -- 타셴 (패스트푸드)
+update places set solo_ok = true where id = '992b2e85-b33a-493f-b07f-f491b4a50ff7';   -- 타지 (패스트푸드)
+update places set solo_ok = true where id = '768fdb9f-3c31-4ccd-8db9-99b5b5b33433';   -- 트라토리아모로 (패스트푸드)
+update places set solo_ok = true where id = 'bd63fb2a-14d5-4fc3-ac17-77a90de98de1';   -- 펫사운즈 (패스트푸드)
+update places set solo_ok = true where id = '28f4938d-1cc5-4fcb-a8f2-86f85d1b179e';   -- 프리모바치오바치 (패스트푸드)
+update places set solo_ok = true where id = '1e08903d-30d6-4bc1-8e15-70740705dbdd';   -- 삼거리포차 (어묵·포장마차)
+update places set solo_ok = true where id = '0d7d2994-6779-4f12-b699-b7d58e81ae32';   -- 부흥동태 (생선탕·해장)
+update places set solo_ok = true where id = '87a737ad-9041-416f-9a0e-d5b6254e36f1';   -- 부산식당 (생선탕·해장)
+update places set solo_ok = true where id = 'bc51c1c2-c81f-4db3-878e-ca247c07f04f';   -- 넥타이맨갈치동태 (생선탕·해장)
+update places set solo_ok = true where id = '4994f561-a226-48f5-a2db-583196b55f34';   -- 원대구탕(삼각지역) (생선탕·해장)
+update places set solo_ok = true where id = 'f3798974-15d3-490a-b200-942c1f61292a';   -- 전주청국장집 (볶음류)
+update places set solo_ok = true where id = 'ebfd7e3e-9e51-4b25-ada7-fbc8bb623378';   -- 송백식당 (볶음류)
+update places set solo_ok = true where id = 'eed71c10-eda7-4f29-9aab-d7c40b52ba9c';   -- 신흥정육식당 (볶음류)
+update places set solo_ok = false where id = '00451646-ba65-462a-ab9c-8dcabd483c34';   -- 서강껍데기 (고기구이)
+update places set solo_ok = false where id = '04b1b946-8b0c-4f29-8613-889f6653ba60';   -- 하하&김종국의 401 정육식당 (고기구이)
+update places set solo_ok = false where id = '1f3c3257-fd10-4311-8edf-5c4e74bc5850';   -- 부일갈비 (고기구이)
+update places set solo_ok = false where id = '1f8ba6d1-9540-4c50-aa51-56251ea41068';   -- 아리수만찬 (고기구이)
+update places set solo_ok = false where id = '13bc4930-606e-4636-b170-7d53b9a65541';   -- 북악정(이상갈비) (고기구이)
+update places set solo_ok = false where id = '09aeb67e-8019-4772-bf5c-fb9f096fee75';   -- 우정까망촌돼지 (고기구이)
+update places set solo_ok = false where id = '92875ba8-d79b-45fe-9129-78e409cd51c3';   -- 삼일정육식당 (고기구이)
+update places set solo_ok = false where id = '2e1ca927-ca1c-493f-a5f1-18d8f0df04bb';   -- 아리계곡 종각점 (고기구이)
+update places set solo_ok = false where id = '3ab4ac2c-94e7-4cc4-9b4f-f307c3de5f20';   -- 일도씨닭갈비 광화문점 (고기구이)
+update places set solo_ok = false where id = '405ef89b-9387-4aae-af2b-823e2a520e28';   -- 훈육 (고기구이)
+update places set solo_ok = false where id = '65b9c070-f7da-42b7-95b7-1caab7c0495a';   -- 고기형 (고기구이)
+update places set solo_ok = false where id = '46567541-0f3f-44e6-b87f-e5cd3f045487';   -- 잠수교집 성수 직영점 (고기구이)
+update places set solo_ok = false where id = '481ef2d8-dced-4f4b-97d4-64f098a568a2';   -- 영동족발 (고기구이)
+update places set solo_ok = false where id = '48ee1a48-6f44-4af1-b1d4-4db38736cfcf';   -- 동대문 생선구이 골목 (고기구이)
+update places set solo_ok = false where id = '49c00ee0-c870-4ca1-a507-5e0011059bf5';   -- 삼미정 (고기구이)
+update places set solo_ok = false where id = '47b5c7c5-326a-4610-97b4-2affe04a63c3';   -- 정감어린 (고기구이)
+update places set solo_ok = false where id = 'f91acb9e-3f8e-4316-9bce-0981bd1c0904';   -- 삼각정 (고기구이)
+update places set solo_ok = false where id = '47be4d78-98c4-41c5-bfb2-3c17d51770cf';   -- 부산복집 (고기구이)
+update places set solo_ok = false where id = '0c8915fe-fdb2-427f-8c2c-2a57b82623f7';   -- 충무로 부산복집 (오금역) (고기구이)
+update places set solo_ok = false where id = '4d7b5f35-1852-454f-8134-cc367d580c83';   -- 무등산 (고기구이)
+update places set solo_ok = false where id = '5314de98-ac82-4b0e-a4db-32f499fd39fa';   -- 달맞이광장바베큐 (고기구이)
+update places set solo_ok = false where id = '587f0352-2368-49ea-a54f-e28422a35c6b';   -- 전주집 (고기구이)
+update places set solo_ok = false where id = 'cc8d72a0-7ed5-44cc-a98d-188f4ee8cc79';   -- 서글렁탕 (고기구이)
+update places set solo_ok = false where id = '2564b7c5-9ec3-4b67-bf3f-7e0c14e98842';   -- 서초갈비 (고기구이)
+update places set solo_ok = false where id = 'f23a4da7-4fd8-4e52-aa18-48d31d0fb94c';   -- 별미곱창 (고기구이)
+update places set solo_ok = false where id = '03b51ad0-18ae-485e-998b-d18d8c1dd1ed';   -- 풍요람 (고기구이)
+update places set solo_ok = false where id = '73ade8b3-cbd4-44ed-9e2e-1a897d8e6c73';   -- 원조조박집 (고기구이)
+update places set solo_ok = false where id = '79d93877-5599-4ee5-bd91-f6562c2d5f21';   -- 종로 선비옥 (고기구이)
+update places set solo_ok = false where id = '70a515a6-6201-4633-90f3-a6edc58215c0';   -- 서촌 대하식당 (고기구이)
+update places set solo_ok = false where id = 'f5c608d8-6231-4dba-be9f-44c76eb5c6c6';   -- 목노집 (고기구이)
+update places set solo_ok = false where id = '92743466-7aad-4f2d-8dad-689446690df7';   -- 성수동 갈비골목 (고기구이)
+update places set solo_ok = false where id = 'c900e7bd-4007-4892-8367-e2767b5c437a';   -- 창고43 (고기구이)
+update places set solo_ok = false where id = 'ce04574c-3e14-4f11-92bf-0452ab0b7db6';   -- 경성고기꾼 (고기구이)
+update places set solo_ok = false where id = 'a337a677-6e1e-43a6-a2ff-f7a3025b1ebd';   -- 목구멍 홍대입구역점 (고기구이)
+update places set solo_ok = false where id = 'a8a0aa13-443d-49b6-be6a-9c2c69f80a32';   -- 역전회관 (고기구이)
+update places set solo_ok = false where id = 'd6854283-9cc8-492a-a3fd-627e3cee7e87';   -- 고운돈 익선점 (고기구이)
+update places set solo_ok = false where id = '142ed094-c826-43d4-8294-3e746f98be4e';   -- 팔계집 (고기구이)
+update places set solo_ok = false where id = 'f661911b-2cea-4b6e-a1b1-e5e2922250d5';   -- 미우미우 (고기구이)
+update places set solo_ok = false where id = '102b50d5-0ddb-4dc8-b013-e845626138e6';   -- 탄두르 (고기구이)
+update places set solo_ok = false where id = '56811f4a-31ce-4b43-a384-54dc5bd299db';   -- 트로이케밥 (고기구이)
+update places set solo_ok = false where id = '10eb4be9-74b9-4918-ae91-cf13d4aa4c58';   -- 광안리 언양불고기 부산집 (고기구이)
+update places set solo_ok = false where id = 'cd619391-6290-4b0c-8895-3a210eb1ea3d';   -- 아리랑 (고기구이)
+update places set solo_ok = false where id = '7437f774-f871-4cc2-9d8b-5e918ecec3f9';   -- 삼오불고기 (고기구이)
+update places set solo_ok = false where id = '107d26c3-bee2-4b36-bf1a-6ce6079fbf02';   -- 문타로 (고기구이)
+update places set solo_ok = false where id = '59614929-a734-4d56-8899-5cdeb861009e';   -- 언양불고기부산집 (고기구이)
+update places set solo_ok = false where id = '90963e9c-3131-46dc-ae92-d8903a4e9d5a';   -- 대성칼치찌개구이 (고기구이)
+update places set solo_ok = false where id = 'b9584358-e306-4742-99cc-c387ea76f8ed';   -- 먹음직 온천천점 (고기구이)
+update places set solo_ok = false where id = '6c98ac20-c74e-494a-998c-899f2922fb10';   -- 해운대소문난암소갈비집 (고기구이)
+update places set solo_ok = false where id = '26654c12-406d-4065-8689-d37fcb4feadd';   -- 삼성원조양곱창 (고기구이)
+update places set solo_ok = false where id = 'c5395bd5-4a4b-4f91-bfdb-1fa9b51dfbdd';   -- 청돈옥 (Cheongdonok) (고기구이)
+update places set solo_ok = false where id = '531659a6-fdc4-41e1-8510-237f65991a17';   -- 발리홀리데이 (고기구이)
+update places set solo_ok = false where id = 'df837804-1216-4a1b-a048-7cf09f7aa20b';   -- 성산왕갈비 (고기구이)
+update places set solo_ok = false where id = 'ef0740df-4b7c-48f0-aeb1-79c2c11d64b3';   -- 청기와타운 홍대점 (고기구이)
+update places set solo_ok = false where id = 'f5cb8db3-617a-453c-8989-d98885b0ed35';   -- 부산갈비 (고기구이)
+update places set solo_ok = false where id = 'c2534f32-40cc-4fc8-a104-6ab929564bde';   -- 부산집 KBBQ (고기구이)
+update places set solo_ok = false where id = '186e8a92-2b99-47e9-8364-90c85a273554';   -- 별양집 (고기구이)
+update places set solo_ok = false where id = '64d48a6c-6611-4496-8ecd-bf5d5d4e091e';   -- 만족오향족발 (고기구이)
+update places set solo_ok = false where id = '842dc80b-325a-4505-bfad-efab1345ee94';   -- 체리가든 (고기구이)
+update places set solo_ok = false where id = '206bc2bc-5b88-4ebe-8c39-a349283ff5c7';   -- 만복림 (고기구이)
+update places set solo_ok = false where id = '23084abe-09f5-4616-bbe8-1efcb126eec3';   -- 육즙당 광화문점 (고기구이)
+update places set solo_ok = false where id = 'b33d04e8-cefa-40de-a1d0-bc458972668e';   -- 극락돈 회기점 (고기구이)
+update places set solo_ok = false where id = 'bc865c06-d9b4-4a58-ace0-b6196a5f0a7b';   -- 양마니 (고기구이)
+update places set solo_ok = false where id = '1bcd6c08-a2fc-464b-a19b-ccf74a62274a';   -- 양마니(청담점) (고기구이)
+update places set solo_ok = false where id = '2209299b-dd74-47ab-bc8f-ff18c770a732';   -- 언노운다이너 (고기구이)
+update places set solo_ok = false where id = 'd4fc4d0f-042f-4152-aee7-9ebef26e3d74';   -- 언양불고기 (고기구이)
+update places set solo_ok = false where id = '24446c1f-846e-46eb-b66c-7a53a790b473';   -- 충무로쭈꾸미불고기 (고기구이)
+update places set solo_ok = false where id = '24158135-5a77-44fa-82e4-b2c73afdd3ee';   -- 여의도양지탕 (고기구이)
+update places set solo_ok = false where id = '4bd23c6d-4374-4d78-830b-abe4b5e0684e';   -- 영양센터 (고기구이)
+update places set solo_ok = false where id = '3c6a1d2d-b667-4c07-af02-7c5ae50d7555';   -- 영천영화식육식당 (고기구이)
+update places set solo_ok = false where id = '8008ca69-9028-4ec0-a604-db437f510169';   -- 케르반 코엑스점 (고기구이)
+update places set solo_ok = false where id = '7b8e263e-94c5-49f1-9759-239c238d5622';   -- 채선당(신내점) (고기구이)
+update places set solo_ok = false where id = 'cad30ebd-6cb0-479c-87d6-d823ab9de0d0';   -- 족발골목 (보쌈·족발)
+update places set solo_ok = false where id = '84144fe3-a75b-473f-b607-a7cf4e0a3e3e';   -- 원할머니본가 본점 (보쌈·족발)
+update places set solo_ok = false where id = 'bf4842fe-9779-4c59-9c8e-ad89fb885a9b';   -- 남한강 매운탕 (전골·찜)
+update places set solo_ok = false where id = '5ae8b3a4-3e0c-4a05-a575-e1e88a10028f';   -- 첨벙아구찜 (전골·찜)
+update places set solo_ok = false where id = '1a4c4a6b-5372-450f-8d12-fe36a772fee2';   -- 여수동촌 (전골·찜)
+update places set solo_ok = false where id = '4b4cfe3b-af20-46b4-a44b-4b7f49cb5528';   -- 조개창고 (전골·찜)
+update places set solo_ok = false where id = '078786a1-e125-49da-bafc-70eb657147c4';   -- 통영굴밥 (횟집)
+update places set solo_ok = false where id = '4c2a58b3-4eab-4b9a-9096-350c746945ae';   -- 영덕회식당 (횟집)
+update places set solo_ok = false where id = 'a7bd14f9-c6b2-4928-bcac-f3374b7f9f7c';   -- 삼정복집 (횟집)
+update places set solo_ok = false where id = '56d09d5b-eba1-4a68-9357-e06ede957dca';   -- 막내회센타 (횟집)
+update places set solo_ok = false where id = '72c444c6-bad4-4186-b8c1-3e2daf0ed72f';   -- 서린낙지 (횟집)
+update places set solo_ok = false where id = '8bc20057-92b1-4fb2-a222-83ddf33ea1a7';   -- 오다리집 (횟집)
+update places set solo_ok = false where id = '961b3f3c-8997-4391-b7b5-77c525bf1d9d';   -- 고래불 (횟집)
+update places set solo_ok = false where id = '4d8dce7c-80bf-4e25-9d24-73822063f75c';   -- 방울과꼬막 (횟집)
+update places set solo_ok = false where id = 'a3e88383-5eed-4504-af11-0b9dc8bd1ea3';   -- 수락산풍천장어 (횟집)
+update places set solo_ok = false where id = 'c9697f00-d109-4e7a-a473-5abb4bd59196';   -- 진미식당 (횟집)
+update places set solo_ok = false where id = 'ff0ce309-817c-4b3b-b4d6-5929bcb0063b';   -- 맹여사육전육회 (횟집)
+update places set solo_ok = false where id = '0e6cb3df-069e-47ca-8a11-6d8d7c041d7a';   -- 이쯔모 (횟집)
+update places set solo_ok = false where id = '41966cbd-c0e5-40f3-953d-c7a97e50dc2e';   -- 구르카 인도레스토랑 (코스요리)
+update places set solo_ok = false where id = '6c6945ac-0dc4-45ba-9d7c-e38db03f1bab';   -- 애슐리퀸즈 홍대점 (코스요리)
+update places set solo_ok = false where id = '814cc04e-fc39-4480-babd-8f4b0e2ecb9f';   -- 애슐리퀸즈 던던 동대문점 (코스요리)
+update places set solo_ok = false where id = '001ccdc0-60c9-4f15-9b49-c26cd2ef40bf';   -- 라미띠에 (코스요리)
+update places set solo_ok = false where id = '30aebb17-4a90-41ea-8738-92e81d20220f';   -- 아카사카 (코스요리)
+update places set solo_ok = false where id = '876de4ed-df08-4b68-a01c-670e04faee02';   -- 어양 (코스요리)
+update places set solo_ok = false where id = '233520b3-07dc-4ac2-8a99-fc089ca209ba';   -- 콩지POT지 (코스요리)
+update places set solo_ok = false where id = 'bd0dd79a-7396-4468-a1a2-2ed3ff12a962';   -- 파올로데마리아 (코스요리)

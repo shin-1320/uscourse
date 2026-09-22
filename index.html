@@ -1499,12 +1499,51 @@ function shortName(raw){
 /* 대표메뉴 — 가격을 먼저 통째로 지운 뒤 쪼갠다.
    쉼표부터 나누면 "￦12,000"이 "000" 파편으로 남는다.
    카드에서는 괄호 안 설명까지 떼야 한 줄에 들어간다. */
+/* 카카오 업종 분류를 영어로 — 화면에서만 바꾼다.
+   DB 에는 한국어(해장국·냉면)로 두어야 auto-curate 가 묶음을 판단할 수 있다.
+   사전에 없는 한국어 말은 보여주지 않는다. 못 읽는 글자를 늘어놓는 것보다 낫다. */
+const MENU_EN = {
+  '한식':'Korean','중식':'Chinese','일식':'Japanese','양식':'Western','아시아음식':'Asian',
+  '중국요리':'Chinese','중화요리':'Chinese',
+  '해장국':'Hangover soup','국밥':'Rice soup','곰탕':'Beef bone soup','설렁탕':'Ox bone soup',
+  '냉면':'Cold noodles','국수':'Noodles','칼국수':'Noodle Soup','쌀국수':'Rice noodles',
+  '분식':'Korean snacks','떡볶이':'Tteokbokki','김밥':'Gimbap','만두':'Dumplings',
+  '초밥':'Sushi','롤':'Rolls','돈까스':'Tonkatsu','우동':'Udon','라멘':'Ramen','일본식주점':'Izakaya',
+  '육류':'Meat','고기':'Meat','삼겹살':'Pork belly','갈비':'Galbi (ribs)','곱창':'Gopchang',
+  '막창':'Makchang','닭요리':'Chicken dishes','닭갈비':'Dakgalbi','찜닭':'Braised chicken',
+  '족발':'Jokbal','보쌈':'Bossam','해물':'Seafood','생선':'Fish','회':'Raw fish','조개':'Shellfish',
+  '장어':'Eel','찌개':'Stew','전골':'Hot pot','두부전문점':'Tofu','샤브샤브':'Shabu-shabu',
+  '한정식':'Korean set meal','백반':'Home-style meal','비빔밥':'Bibimbap','죽':'Porridge',
+  '카페':'Café','커피전문점':'Coffee','디저트카페':'Dessert café','제과':'Bakery','베이커리':'Bakery',
+  '간식':'Snacks','아이스크림':'Ice cream','떡':'Rice cakes','한과':'Korean sweets',
+  '치킨':'Fried chicken','패스트푸드':'Fast food','햄버거':'Burgers','피자':'Pizza',
+  '샌드위치':'Sandwiches','이탈리안':'Italian','프랑스음식':'French','스테이크':'Steak',
+  '술집':'Bar','호프':'Pub','요리주점':'Pub','와인바':'Wine bar','칵테일바':'Cocktail bar',
+  '베트남음식':'Vietnamese','태국음식':'Thai','인도음식':'Indian','멕시칸':'Mexican',
+  '뷔페':'Buffet','도시락':'Lunch boxes','퓨전요리':'Fusion','기사식당':'Diner','채식':'Vegetarian',
+};
+const MENU_GENERIC = new Set(['Korean','Chinese','Japanese','Western','Asian','Meat','Café','Noodles','Seafood','Fish']);
+
 function menuOf(p, { short = false } = {}){
-  const items = (p.subcategory || '')
+  let items = (p.subcategory || '')
     .replace(/[￦₩][^\S\n]*[\d][\d,\-–~]*/g, '')
     .replace(/^(Korean|Chinese|Japanese|Western|Snack bar|Cafe)\s*·\s*/i, '')
     .split(/[\n,·]/).map(x => x.replace(/\s{2,}/g, ' ').trim())
-    .filter(x => x && x.length > 1 && /[a-zA-Z가-힣]/.test(x));
+    .filter(x => x && x.length > 0 && /[a-zA-Z가-힣]/.test(x));
+
+  // 한국어 말은 영어로, 사전에 없으면 뺀다
+  items = items.map(x => /[가-힣]/.test(x) ? (MENU_EN[x] || null) : x).filter(Boolean);
+
+  // "Korean · Hangover soup" → "Hangover soup" — 더 구체적인 말이 있으면 큰 분류는 뺀다
+  const specific = items.filter(x => !MENU_GENERIC.has(x));
+  if (specific.length) items = specific;
+  else {
+    // 넓은 말만 남았으면 "Korean" 같은 요리 국적보다 "Seafood" 쪽을 남긴다
+    const CUISINE = new Set(['Korean','Chinese','Japanese','Western','Asian']);
+    const rest = items.filter(x => !CUISINE.has(x));
+    if (rest.length) items = rest;
+  }
+  items = [...new Set(items)];
 
   if (short){
     return items.slice(0, 2)
