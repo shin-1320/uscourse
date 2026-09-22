@@ -503,6 +503,15 @@
   .ingr-v.yes{background:var(--ok-bg);color:var(--ok-fg)}
   .ingr-v.broth{background:var(--hot-bg);color:var(--hot-fg)}
   .ingr-v.no{background:var(--no-bg);color:var(--no-fg)}
+
+  /* 가이드 링크 — 하단에 작게. 화면을 어지럽히지 않되 누를 수 있게 */
+  .guides{border-top:1px solid var(--line);margin-top:26px;padding:20px 2px 4px}
+  .guides .g-t{font-size:11.5px;font-weight:700;color:var(--muted);
+    letter-spacing:.3px;margin:0 0 8px}
+  .guides .g-row{display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:16px}
+  .guides a{font-size:12.5px;color:var(--text);text-decoration:none;
+    border-bottom:1px solid var(--line);padding-bottom:1px}
+  .guides a:hover{color:var(--brand);border-color:var(--brand)}
 </style>
 </head>
 <body>
@@ -546,6 +555,32 @@
   <div class="list" id="list"></div>
   <div id="a2hs"></div>
   <div class="pickbar" id="pickbar"></div>
+  <!-- 가이드 링크.
+       구글은 이미 색인된 이 첫 화면에서 이어지는 링크를 따라 다음 페이지를 찾는다.
+       가이드가 사이트맵에만 있고 여기서 이어지지 않으면 우선순위가 낮게 잡힌다.
+       자바스크립트 없이도 읽히도록 HTML 에 직접 적어 둔다. -->
+  <nav class="guides" aria-label="Guides">
+    <div class="g-t">Guides</div>
+    <div class="g-row">
+      <a href="guide/solo-dining-busan.html">Eating alone in Busan</a>
+      <a href="guide/english-menu-busan.html">Restaurants with English menus</a>
+      <a href="guide/korean-food-spice.html">How spicy is Korean food?</a>
+    </div>
+    <div class="g-t">How to eat</div>
+    <div class="g-row">
+      <a href="guide/how-to-eat-dwaeji-gukbap.html">Dwaeji gukbap</a>
+      <a href="guide/how-to-eat-sundae-gukbap.html">Sundae gukbap</a>
+      <a href="guide/how-to-eat-milmyeon.html">Milmyeon</a>
+      <a href="guide/how-to-eat-suyuk-baekban.html">Suyuk baekban</a>
+      <a href="guide/how-to-eat-bibimbap.html">Bibimbap</a>
+      <a href="guide/how-to-eat-samgyeopsal.html">Samgyeopsal</a>
+      <a href="guide/how-to-eat-hoe.html">Hoe (raw fish)</a>
+      <a href="guide/how-to-eat-gomjangeo.html">Gomjangeo</a>
+      <a href="guide/how-to-eat-eomuk.html">Eomuk</a>
+      <a href="guide/how-to-eat-ssiat-hotteok.html">Ssiat hotteok</a>
+    </div>
+  </nav>
+
   <div class="foot">
     <span id="t-foot">Only checked details are shown. Blank means not confirmed yet.</span><br>
     <a href="legal.html" id="t-legal">Privacy, terms &amp; data sources</a><br>
