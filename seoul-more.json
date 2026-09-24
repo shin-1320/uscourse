@@ -1,0 +1,10162 @@
+[
+{
+"names": {
+"ja": "10 corso como cafe"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 79"
+],
+"cafe": true
+},
+{
+"names": {
+"en": "CUEREN"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 성수이로 71"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Le Brunchic",
+"ja": "Le Brunchic",
+"zh-CN": "Le Brunchic",
+"en": "Le Brunchic"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 압구정로10길 20",
+"서울 강남구 신사동 524-35",
+"서울 특별시강남구 신사동 524-35"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カフェシバ",
+"zh-TW": "CAFÉ SIVA",
+"en": "Café SIVA",
+"zh-CN": "CAFÉ SIVA"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강대로 276-1",
+"1F, 276-1, Hangang-daero, Yongsan-gu, Seoul  1층"
+],
+"cafe": true
+},
+{
+"names": {
+"ja": "Cakehouse Wien"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 31-14"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Sinrakwon",
+"ja": "新楽苑(シンラクウォン)",
+"zh-CN": "新乐苑",
+"zh-TW": "新樂苑"
+},
+"area": "동대문구",
+"cands": [
+"서울 동대문구 전농로20길 2"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Ceci Cela (Seorae Village branch)",
+"ja": "Ceci Cela(島山公園店)",
+"zh-CN": "Ceci Cela"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도산대로45길 10-4",
+"서울 강남구 신사동 651-4",
+"135-897 서울 강남구 신사동 651-4"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "The bell-ringing ceremony in celebration of the 78th Gwangbokjeol"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관철동 45-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Chai797"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 방배동 810-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "河南猪之家梨泰院餐吧"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원로 174",
+"서울 용산구 이태원동 128-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Chakraa",
+"zh-TW": "脈輪(Chakraa)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 28-9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Mamma KiKi",
+"zh-CN": "Mamma KiKi"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서애로10길 9",
+"서울 서초구 반포동 93-5",
+"서울 특별시서초구 반포동 93-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Huijeong食堂",
+"zh-TW": "Hee Jeong食堂",
+"ja": "ヒジョン食堂"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도구로 117",
+"서울 특별시영등포구 여의도동 21-3",
+"서울 영등포구 여의도동 21-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "現代刀切麵"
+},
+"area": "중구",
+"cands": [
+"서울 중구 세종대로 76",
+"서울 중구 태평로2길 69-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Bamboo House",
+"zh-CN": "Bamboo House"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 언주로107길 33",
+"서울 강남구 역삼동 658-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Chez Flo"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동 416-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "崔老爷(Choedaegamne)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동 8길 12-3",
+"110-310 서울 종로구 관훈동 29-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Banjjakbanjjak Binnaneun",
+"zh-TW": "Banjjakbanjjak binnaneun",
+"ja": "パンチャッパンチャッ・ビンナヌン"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 종로구 인사동가 28-1",
+"서울 특별시종로구 관훈동 6",
+"서울 종로구 관훈동 6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "科林（Colline）"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 해화광장로 45"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Colline"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 화해광장로 45"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "コレブル"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼동 828-53"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Basak",
+"en": "Basak"
+},
+"area": "특별시영등포구",
+"cands": [
+"서울 영등포구 여의대방로 383",
+"서울 특별시영등포구 여의도동 44-14"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "テジャンジャンイ・ファドク・ピザチブ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 가회동 202-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "鐵匠火爐披薩店"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 북촌로 42-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "大門",
+"zh-CN": "大门",
+"ja": "大門"
+},
+"area": "도봉구",
+"cands": [
+"서울 도봉구 증봉로 139-6",
+"서울 도봉구 방학동 436-9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Beber",
+"en": "Beberu"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 도산대로55길 16",
+"서울 특별시강남구 청담동 88-8",
+"서울 강남구 청담동 88-8"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Daeryeodo",
+"ja": "大麗嶋"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼로 120",
+"서울 강남구 역삼동 833-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Kwon Jinkyu永远的家",
+"en": "Kwon Jin Kyu's Forever Home",
+"ja": "クォン·ジンギュの永遠の家",
+"zh-TW": "Kwon Jinkyu 永遠的家"
+},
+"area": "관악구",
+"cands": [
+"서울 관악구 남부순환로 2076"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "大宇部队汤",
+"zh-TW": "大宇部隊湯"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 덕흑란로25길 34",
+"서울 특별시강남구 역삼일동 641-18",
+"서울 강남구 역삼일동 641-18"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Jony Dumpling",
+"zh-CN": "Jony Dumpling",
+"ja": "Jony Dumpling"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 보광로59길 5",
+"서울 용산구 이태원동 130-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Bella Praha"
+},
+"area": "특별시서대문구",
+"cands": [
+"서울 서대문구 이화녀자대학가 77",
+"서울 특별시서대문구 대현동 37-35"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Paris Hanoi"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로14길 30",
+"서울 특별시종로구 명륜사가 83-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Poom首尔",
+"zh-TW": "Poom首爾"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성로일이륙가 6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Di Matteo",
+"zh-TW": "Di Matteo"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 동숭가 29",
+"서울 특별시종로구 동숭동 1-141",
+"서울 종로구 동숭동 1-141"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Di Matteo"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 동숭동 1-141"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Dogahun640"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 언주로172길 23",
+"서울 특별시강남구 신사동 640-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Tani Nextdoor"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문로2길 130"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Donburi",
+"ja": "どんぶり"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 잔다리로6길 40-8",
+"서울 마포구 서교동 366-18"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Mami清曲酱汤(cheonggukjang)"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 동숭동 18-2"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Duru",
+"ja": "トゥル"
+},
+"area": "강남구",
+"cands": [
+"28, Seolleung-ro 148-gil, Gangnam-gu, Seoul, Korea",
+"서울 강남구 청담동 21-7"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Mugunghwa"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문로 81",
+"서울 중구 소공동 1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "明洞餃子",
+"zh-CN": "明洞饺子",
+"ja": "ミョンファダン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 10길 29",
+"서울 중구 명동 2길 25-2",
+"서울 중구 명동 2길 55-3",
+"서울 중구 명동 2길 26-1",
+"서울 중구 명동 2길 45",
+"서울 중구 충무로일가 22-13",
+"서울 중구 명동 2길 105 중정도서관",
+"서울 중구 명동 2길 107-1",
+"서울 중구 명동 10길 35-19"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Beunusual",
+"zh-TW": "BEUNUSUAL",
+"zh-CN": "BEUNUSUAL"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 112-20",
+"서울 강남구 선릉로108길 5 층"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Namdaemun Galchi-jorim(Hairtail) Alley"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남창동 34-155"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "荳蒌"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 특별시강남구 선릉로148길 28"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Nishiki"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원로 232"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Star China"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의대방로65길 24",
+"서울 영등포구 여의도동 44-22"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Florian"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 가악본동 80"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Starbucks Coffee (Ewha Store)",
+"ja": "スターバックス梨大店 (韓国1号店)"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 대현동 54-4"
+],
+"cafe": true
+},
+{
+"names": {
+"zh-CN": "长寿烤排骨本家(Jangsugalbijip Bonga)",
+"zh-TW": "長壽烤排骨本家",
+"ja": "チンサテク"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 명동 2길 54-1",
+"서울 특별시중구 충무로일가 25-45",
+"서울 중구 충무로일가 25-45",
+"서울 중구 명동 8길 21-5",
+"서울 중구 명동 2길 32-27",
+"서울 중구 명동 8길 8-10",
+"서울 중구 명동 2길 50-12",
+"서울 중구 명동 2길 105"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "白里香",
+"ja": "白里香",
+"zh-CN": "白里香(Paengnihyang)"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 육삼로 50",
+"서울 영등포구 여의도동 60",
+"서울 영등포구 여이도동 60",
+"서울 특별시영등포구 여의도동 60"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Pancake original story",
+"zh-TW": "Pancake original story"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 261-6"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Bistro de Yountville",
+"ja": "Bistro de Yountville"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 83-6"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Madam Ming",
+"ja": "Madam Ming"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 대치동 889-65"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Red Marble House"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼동 734"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "眞村牛骨汤"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 천호대로 438",
+"서울 성동구 용답동 235-4"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Manjok Ohyang Jokbal",
+"zh-CN": "满足五香猪蹄子(Manjok Ohyangjokbal)",
+"zh-TW": "滿足五香豬蹄子",
+"ja": "マンジョク・オヒャンチョッバル"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 서소문로 134-10",
+"서울 특별시중구 서소문동 102",
+"서울 중구 서소문동 102"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "The Spot Fabulous",
+"zh-CN": "The Spot Fabulous",
+"zh-TW": "The Spot Fabulous"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 2길 105",
+"首尔中区明洞2街22（明洞2街） 1,2층",
+"首爾中區明洞2街22（明洞2街） 1,2층"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "三一精肉食堂(Samil Jeongyuk sikdang)"
+},
+"area": "특별시서초구",
+"cands": [
+"서울 특별시서초구 운남17길 14",
+"서울 특별시서초구 양재동 278-11"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Samil Jeongyuk Sikdang",
+"zh-TW": "三一精肉食堂"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 양재동 278-11",
+"서울 서초구 운남17길 14"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Lisian"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초2동 1320-10"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "首爾第二",
+"zh-CN": "首尔第二"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청로 122-1",
+"서울 종로구 삼청동 28-21"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Gayang刀切麵香菇辣湯鍋",
+"ja": "カヤン・カルグクス・ボソンメウンタン",
+"zh-CN": "Gayang刀切面香菇辣汤锅"
+},
+"area": "특별시영등포구",
+"cands": [
+"서울 영등포구 국제금융로 78 일층",
+"서울 영등포구 여의도동 43-3",
+"서울 특별시영등포구 여의도동 43-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Gino's NY Pizza"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 녹사평대로 4046",
+"서울 강남구 이태원동 457-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Tumbler Beer"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 덕흑란로20길 15",
+"서울 특별시강남구 역삼동 736-22"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Mahina Vegan Table",
+"zh-TW": "Mahina Vegan Table",
+"zh-CN": "Mahina Vegan Table",
+"ja": "マヒナヴィーガンテーブル"
+},
+"area": "강남구",
+"cands": [
+"2F, 75, Nonhyeon-ro 175-gil, Gangnam-gu, Seoul  2층",
+"서울 강남구 논현로175로 75",
+"서울 강남구 논현로175길 75"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Vicolo",
+"zh-TW": "Vicolo",
+"ja": "Vicolo"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 명동 6길 8",
+"서울 특별시중구 명동 2길 54-6",
+"서울 중구 명동 2길 54-6"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Gitdaebong Naengmyeon"
+},
+"area": "중구",
+"cands": [
+"서울 중구 황학동 2545"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "石山亭"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로 149-5",
+"서울 중구 산림동 296-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "雙橋烤肉白飯"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북로23길 4",
+"서울 성북구 성북동 109-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Goshen",
+"en": "Goshen"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 88-23"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Gran Gusto"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 대치동 962-11"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Grand Ciel"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 650-22"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Grano"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 언주로168길 16",
+"서울 강남구 신사동 645-1",
+"서울 특별시강남구 신사동 645-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Grill Ajisai",
+"ja": "Grillあじ彩",
+"zh-TW": "Grill Ajisai"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 덕흑란로13길 8-10",
+"서울 강남구 역삼동 647-11"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "The Kings"
+},
+"area": "중구",
+"cands": [
+"서울 중구 장충동 2길 186-54"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "The Restaurant"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 소격동 48"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Yamamoto Sushi",
+"ja": "山本寿司"
+},
+"area": "강남구",
+"cands": [
+"26, Eonju-ro 30-gil, Gangnam-gu, Seoul, Korea",
+"서울 강남구 도곡동 467-29"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "The Lounge",
+"en": "The Lounge",
+"ja": "パークハイアットソウル The Lounge",
+"zh-TW": "The Lounge"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 덕흑란로 606",
+"서울 강남구 대치동 995-14",
+"서울 강남구 테헤란로 606"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Bongraeheon (Mayfield Hotel)",
+"ja": "ナグォン（メイフィールドホテル）"
+},
+"area": "강서구",
+"cands": [
+"94, Banghwa-daero, Gangseo-gu, Seoul, Korea",
+"서울 강서구 외발산동 426"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "舊胡同"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 봉은사로24길 12",
+"서울 강남구 역삼동 605-9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Top Cloud"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로 51"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Tour du Vin"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포동 96-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Trattoria moro"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 115-17"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Gukwa",
+"zh-CN": "菊花(Gukhwa)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌로 276-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "味源",
+"zh-TW": "味源"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌동 301-153",
+"서울 용산구 이촌로75길 22"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Budha's Belly"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원동 457-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "サムゴリ・プジュッカン セントラルシティ店"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포동 118-3 CENTRAL CITY"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "柳樹家",
+"zh-CN": "柳树家"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 효령로 434",
+"서울 서초구 서초동 1340-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "HAHA&金鍾國的401精肉餐廳"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 세교로 23"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Hakada Bunko",
+"zh-TW": "博多文庫"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 상수동 93-28",
+"서울 마포구 옹막로19길 43"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Hakoya",
+"ja": "はこや"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 논현로72길 16",
+"서울 강남구 역삼동 775-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カフェ‧ムジャビ(MUJABEE)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 남영동 11-18"
+],
+"cafe": true
+},
+{
+"names": {
+"en": "Hana Ilsik",
+"zh-TW": "花(Hana)日式料理"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌동 302-64"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "富民屋(Buminok)",
+"zh-TW": "富民屋"
+},
+"area": "중구",
+"cands": [
+"서울 중구 다동가 24-5",
+"서울 특별시중구 다동 134-4",
+"서울 중구 다동 134-4"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Buminok"
+},
+"area": "중구",
+"cands": [
+"서울 중구 다동길 24-5",
+"서울 중구 다동 134-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "いつも",
+"zh-TW": "總是(Itsumo)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 261-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Sam Ryan's",
+"zh-TW": "Sam Ryan’s 梨泰院店",
+"zh-CN": "Mi Casa",
+"en": "Sam Ryan's Sports Bar & Grill (Itaewon)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원동 116-15",
+"서울 용산구 이태원로27ga가 50",
+"서울 용산구 이태원로 27길 51",
+"서울 용산구 이태원동 119-21",
+"서울 용산구 이태원로27가길 50"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Hanuso(仁寺分店)",
+"zh-TW": "Hanuso(仁寺分店)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동 4길 18",
+"서울 종로구 낙원동 272"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "A Table"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 팔판가 36",
+"서울 특별시종로구 팔판동 20"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "La Lune Violette",
+"ja": "La Lune Violette",
+"zh-CN": "La Lune Violette"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 세계배북로4길 25",
+"서울 마포구 동교동 203-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ペクジェ・カルビ﻿"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 방이동 205-8"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Pan Honesta Itaewon Branch",
+"ja": "パンアニスタ イテウォン(梨泰院)店",
+"zh-CN": "PAN HONESTA梨泰院店",
+"zh-TW": "PAN HONESTA 素食甜點咖啡廳梨泰院店"
+},
+"area": "용산구",
+"cands": [
+"1F–2F, 3, Bogwang-ro 55-gil, Yongsan-gu, Seoul  1층, 2층",
+"서울 용산구 보광로55길 3",
+"서울 용산구 보광로55로 3 1"
+],
+"cafe": true
+},
+{
+"names": {
+"zh-CN": "Saffron"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문로 78",
+"서울 특별시중구 명동일가 59-5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "楽園(ナグォン)餅屋"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 악원동 9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "About Shabu"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 동숭동 1-88"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "All-day Brunch Cafe, B Meal"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원로55길 35",
+"140-893 서울 용산구 한남동 738-7"
+],
+"cafe": true
+},
+{
+"names": {
+"en": "AiF children 2nd Anniversary 𝙎𝙋𝙀𝘾𝙄𝘼𝙇 𝘼𝙍𝙏 𝙁𝙀𝙎𝙏𝘼"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 테헤란로 528",
+"서울 강남구 대치동 945-5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "プロカンジャンケジャン本店",
+"en": "Pro Soy Crab (Main Branch)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 잠원동 27-1",
+"서울 서초구 강남대로97길 9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "BHC サダン(舍堂)店"
+},
+"area": "동작구",
+"cands": [
+"서울 동작구 사당동 1029-45"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ROYAD"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1523-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソガン(西江)コプテギ",
+"zh-TW": "西江香烤豬皮",
+"en": "Seogang Kkeopdegi",
+"zh-CN": "西江香烤肉皮"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동 383-1",
+"서울 마포구 세계배로 36",
+"서울 특별시마포구 서교동 383-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソプチコジ"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 97-24"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "The Halal Guys 梨泰院店"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원동 123-32"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Shuchiku",
+"zh-TW": "Suchiku",
+"zh-CN": "Suchiku"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 60",
+"서울 영등포구 육삼로 50",
+"서울 특별시영등포구 여의도동 60"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Spain Club"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 524-30"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ポハン・シクタン"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 돈화문로5길31-"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "winenara",
+"zh-TW": "Winenara"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포동 92-12",
+"서울 서초구 서애로8길 1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Vitamin Cafe&Pub"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 153-13"
+],
+"cafe": true
+},
+{
+"names": {
+"ja": "Herzia"
+},
+"area": "중구",
+"cands": [
+"서울 중구 예장동 8-98"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "すし元"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동 392-32"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "アンコール・カルグクス"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1451-94"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "アンチブ",
+"zh-CN": "屋内(Anjip)",
+"zh-TW": "屋內"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 계동 104-4",
+"서울 종로구 계동가 33-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "イナムジャン 三成洞店"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 165-12"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ウォン・テグタン(サムガクチ駅)",
+"zh-CN": "凤山家(Bongsanjip)",
+"zh-TW": "圓鱈魚湯(三角地站)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강대로62통8",
+"서울 용산구 한강로1길 142-4",
+"서울 용산구 한강대로62na가 24",
+"서울 용산구 한강대로62길 8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ウルドルモクカヌンキル",
+"en": "Wooldolmok"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1543-1",
+"서울 서초구 반포대로28길 8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ウルフギャング・ステーキハウス",
+"zh-TW": "Wolfgang Steakhouse",
+"en": "Wolfgang's Steakhouse",
+"zh-CN": "Wolfgang Steakhouse"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 89-6",
+"서울 강남구 청담동 89-6호"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "オセゲヒャン",
+"zh-TW": "五世界香",
+"zh-CN": "Ohsaegyehyang"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관훈동 59",
+"서울 종로구 인사동 12길 14-5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "オソンチェ"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 양재동 1-23"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "眼鏡博士 總店"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 보국문로 10",
+"서울 성북구 정릉동 414-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カンガンスルレ 駅三店"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼동 797-19"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "クマサン"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 43"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カンソミョノク"
+},
+"area": "중구",
+"cands": [
+"서울 중구 서소문동 120-15"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "タンプムナムチブ(Maple Tree House)(鐘路店)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청동 31-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ダンゴチブ"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 합정동 356-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チォルチォル・ボッチブ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 다동 138"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チョソノク"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로3길 229-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チンジュチプ 汝矣島店"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 36-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チンジン・マンドゥ",
+"en": "Jinjin Mandu"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 36-4 36-4",
+"34, Gukjegeumyung-ro 8-gil, Yeongdeungpo-gu, Seoul, Korea  3F",
+"서울 영등포구 여의도동 36-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "トラク"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 130-13"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "嘉会轩(Gahoeheon)"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 종로구 북촌로5길 14",
+"서울 특별시종로구 재동 5-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チャンス・カルビチブ・ボンガ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로1길 25-45"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "geukrakdon"
+},
+"area": "동대문구",
+"cands": [
+"서울 동대문구 미경동 329"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "城山王排骨",
+"zh-CN": "圣山王排骨(Seongsan Wanggalbi)",
+"en": "Seongsan Wanggalbi",
+"ja": "ソンサン・ワンカルビ"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 세계배북로 233",
+"서울 마포구 성산동 446호",
+"서울 마포구 성산동 446"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "大汝"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 44-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヘドン・ボックク"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 44-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "マンネ・フェッチプ",
+"zh-TW": "老幺生魚片  (Mangnaehoetjip)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남창동 50-48"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヤンマニ 清潭店"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 1-14"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "串丸子店(Danggojip)",
+"zh-TW": "串丸子店"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 해화광장로3길 5",
+"서울 특별시마포구 합정동 356-9",
+"서울 마포구 합정동 356-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "クムソン・ステーキ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 언주로 17426 2호"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨングムオク(湧金屋)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 통인동 118-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "孔德市场煎饼街",
+"zh-TW": "孔德市場煎餅街"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 만리현로 19",
+"서울 마포구 공덕동 256-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ポンレホン(蓬莱軒)"
+},
+"area": "강서구",
+"cands": [
+"서울 강서구 외발산동 426"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "乙密台",
+"zh-TW": "乙密臺"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 염리동 147-6",
+"서울 마포구 숭문가 24"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "兄妹家"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문로1길 41",
+"서울 중구 북창동 19-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "弗ニ我"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 동교동 161-14"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "德源(Deogwon kkorigomtang bangchitang)",
+"zh-CN": "德源(Deogwon kkorigomtang bangchitang)"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 유도구로6길 6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "全州食堂清曲酱汤家(Jeonjusikdang Chunggukjangjip)",
+"zh-TW": "全州食堂清麴醬湯家",
+"ja": "チョンジュ・チョングクチャンジプ"
+},
+"area": "특별시서초구",
+"cands": [
+"서울 서초구 도구로 70",
+"서울 특별시서초구 잠원동 19-6",
+"서울 서초구 잠원동 19-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "八仙"
+},
+"area": "중구",
+"cands": [
+"서울 중구 장충동 2길 202"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "兴进屋(Heungjinok)",
+"zh-TW": "興進屋(Heungjinok)",
+"ja": "フンジンオク"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로5길 23",
+"서울 특별시종로구 청진동 138",
+"서울 종로구 청진동 138"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "午后红茶(Afternoon Tea)",
+"zh-TW": "午後紅茶 (Afternoon Tea)"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 이화녀자대학로 34"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Anthracite ハプチョン(合井)店"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 합정동 357-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "又来屋(ウレオク)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 주교동 118-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "味成屋"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동일가 54-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "CINE de CHEF",
+"ja": "シネ・ド・シェフ (Cine de Chef)",
+"en": "Cine de Chef"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정로30길 45",
+"서울 강남구 신사동 602"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "和楽",
+"zh-TW": "和樂"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 525-16",
+"서울 강남구 압구정로4길 13-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "咸平麵屋",
+"zh-CN": "咸平面屋(Hampyeongmyeonok)",
+"en": "Hampyeong Myeonok"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 성산로 533",
+"서울 서대문구 대신동 85-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Le Port 13"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 525-13"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "プフン・トンテ"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 36-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "圣水洞排骨街",
+"ja": "Motongi ワッフル＆ピクニック",
+"zh-TW": "Motoongi鬆餅&野餐"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 임4길 27",
+"서울 성동구 성수동 1길 668-21",
+"서울 성동구 성수동 1길 661-4",
+"서울 성동구 왕십리로 94 천공식품"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "坡州屋 (Pajuok)",
+"ja": "パジュオク",
+"zh-CN": "坡州屋(Pajuok)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 건천로2길 23",
+"서울 중구 초동 53-2",
+"서울 특별시중구 초동 53-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "サランバン・カルグクス"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로3길 23-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "外百"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 도화동 343-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "夜来香"
+},
+"area": "중구",
+"cands": [
+"서울 중구 회현동 1길 92-16"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "夢舍",
+"zh-CN": "梦舍(Musha)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서애로 33"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "大董"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 잠원동 6-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "天海",
+"zh-TW": "天海"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 322"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Azit Anam"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 안암동 5길 102-37"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "奶奶刀切麵(Halmeoni Kalguksu)",
+"ja": "ハルモニ・カルクグス",
+"zh-CN": "奶奶刀切面(Halmeoni Kalguksu)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 돈화문로11da가 14-2",
+"서울 종로구 돈의동 49-1",
+"서울 특별시종로구 돈의동 49-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "姑母元祖豆湯蒸乾明太魚",
+"ja": "コモネ元祖コンタンブゴタン",
+"zh-CN": "姑母元祖豆汤蒸干明太鱼"
+},
+"area": "강동구",
+"cands": [
+"서울 강동구 풍성로57길 13",
+"서울 강동구 성내동 413-13"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "嫘祖",
+"zh-TW": "嫘祖"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관훈동 84-13",
+"서울 종로구 인사동 14길 27"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "タルギゴ粉食",
+"zh-TW": "草莓村小吃店(Ttalgigolbunsik)",
+"zh-CN": "草莓村小吃店(Ttalgigolbunsik)"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 대신동 84-8",
+"서울 서대문구 연대동문가 29"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "安城都順伊(Anseong Ttosuni)",
+"ja": "アンソントスニ",
+"zh-CN": "安城都顺伊(Anseong Ttosuni)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 경희궁가 18",
+"서울 종로구 신문로2길 1-161"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "宋叔叔绿豆煎饼(Songajeossi Bindaetteok)"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연세로7내가 29",
+"서울 특별시서대문구 창천동 52-75"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "宣川之家",
+"zh-CN": "嫘祖(Nwijo)",
+"ja": "宣川家"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동 14길 5",
+"서울 종로구 관훈동 100-4",
+"서울 종로구 인사동 14길 27",
+"서울 종로구 관훈동 84-13",
+"서울 특별시종로구 관훈동 100-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Park Ruan 駅三店"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼2동 726"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "寿司朝"
+},
+"area": "중구",
+"cands": [
+"서울 중구 소공동 87-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "寿研山房"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 248"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "小公粥店(Sogongjukjip)"
+},
+"area": "특별시중구",
+"cands": [
+"서울 특별시중구 서소문동 14-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "小岛(Sodo)"
+},
+"area": "특별시영등포구",
+"cands": [
+"서울 영등포구 여의대방로65길 17",
+"서울 특별시영등포구 여의도동 45-15"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Jangchu",
+"zh-CN": "长鳅(Jangchu)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 수표로 16",
+"서울 중구 충무로3가 58-8",
+"서울 중구 종무로3길 58-8"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "山脊咖啡厅(Sanmotungi)",
+"zh-TW": "山脊咖啡廳",
+"ja": "サンモトゥンイ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 백석동가 153",
+"서울 종로구 부암동 97-5"
+],
+"cafe": true
+},
+{
+"names": {
+"zh-CN": "新沙面屋(Sinsamyeonok)",
+"en": "Sinsa Myeonok"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도산대로 311",
+"서울 특별시강남구 신사동 630-30",
+"서울 강남구 신사동 630-30"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "平來屋 (Pyeongnaeok)",
+"zh-CN": "平来屋(Pyeongnaeok)"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 건천로 21-1",
+"서울 중구 영동이가 18-1",
+"서울 특별시중구 저동이가 18-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "庭",
+"zh-TW": "庭(Niwa)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌동 301-153",
+"서울 용산구 이촌동 301-153 301-153"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "BAD FARMERS"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 특별시강남구 압구정로4길 31"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "BAD FARMERS"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정로4로 31"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "庭(Niwa)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌로75길 16-5 1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "灣仔",
+"ja": "湾仔",
+"zh-CN": "湾菜(Wan Chai)"
+},
+"area": "특별시서대문구",
+"cands": [
+"서울 서대문구 명물가 50-7",
+"서울 서대문구 창천동 5-35",
+"서울 특별시서대문구 창천동 5-35"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Jeonwon",
+"zh-CN": "田园(Jeonwon)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 동호로 284",
+"서울 중구 장충동2가 191-11"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "CJザ・マーケット第一製糖センター店"
+},
+"area": "중구",
+"cands": [
+"서울 중구 쌍림동 292"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ジャハ・ソンマンドゥ",
+"zh-CN": "紫霞手工饺子(Jaha Sonmandu)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 부암동 245-2",
+"서울 종로구 백석동가 12"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "シンサ・ミョノク"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 논현동 96"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "延禧洞刀切面(Yeonhuidong Kalguksu)",
+"zh-TW": "延禧洞刀切麵"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연희미식로 37",
+"서울 특별시서대문구 연희동 132-29",
+"서울 서대문구 연희동 132-29"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "COCKY PUB ホンデ(弘大)店"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동 364-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "心醉情感 (정감어린)",
+"ja": "チョンガモリン"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 후암동 255-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "牛郎(Urang)",
+"en": "Urang"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도산대로94길 20",
+"서울 강남구 청담동 57-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "牛骨面条家",
+"zh-TW": "牛骨麵條家"
+},
+"area": "중구",
+"cands": [
+"서울 중구 무교로 24",
+"서울 중구 무교동 12-1 금융대하후방"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "スダム韓定食"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 113"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "手艺紫菜包饭"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 자하문로15길 18",
+"서울 특별시종로구 통인동 10-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "挑林",
+"zh-TW": "挑林",
+"zh-CN": "挑林(Dorim)",
+"en": "Dorim"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 잠실동 40-1",
+"서울 송파구 오림필극로 240"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "BHC舍堂店"
+},
+"area": "동작구",
+"cands": [
+"서울 동작구 동작대로7길"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "スニネ・ピンデトック"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로5길 138-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "スビントッカルビ"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연희동 81-13"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "文太郎"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 미로17-49지층1호"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "セビョク・チブ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 129-10"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "渔村"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 서빙고로 56"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Jinjinbara (Seocho Branch)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초대로 254"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "BONO BONO",
+"zh-TW": "BONO BONO",
+"ja": "BONO BONO"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 덕흑란로 508",
+"서울 강남구 대치동 942-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "早稲田屋",
+"zh-TW": "早稻田屋"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌동 300-10"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "早稻田屋(Wasedaya)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌로88길 3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "柿花堂",
+"zh-TW": "柿花堂"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 돈화문로11da가 38 시화당",
+"서울 종로구 익선동 166-17 시화당",
+"서울 종로구 돈화문로11da가 38",
+"서울 종로구 익선동 166-17"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "明洞コムドリ"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1696-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "母女紫菜包饭",
+"ja": "モニョキムバプ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 창경궁로 88",
+"서울 종로구 예지동 6-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "明洞炸猪排(Myeongdong Tonkatsu)",
+"zh-TW": "明洞炸豬排 (Myeongdong Tonkatsu)"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 명동 3길 8",
+"서울 특별시중구 명동일가 59-13",
+"서울 중구 명동일가 59-13"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "春川家 辣炒鸡排 荞麦面(Chuncheonjipdakgalbimakguksu)",
+"zh-TW": "春川家辣炒雞排蕎麥麵(Chuncheonjipdakgalbimakguksu)",
+"ja": "チュンチョンチブ・ダッカルビ・マッククス"
+},
+"area": "특별시서대문구",
+"cands": [
+"서울 서대문구 연세로5ga가 1",
+"서울 특별시서대문구 창천동 57-8",
+"서울 서대문구 창천동 57-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソチョ・ジャンオタウン"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1571-30"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "有明"
+},
+"area": "중구",
+"cands": [
+"서울 중구 장충동 2길 202"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "木曽屋",
+"zh-TW": "木曾屋",
+"zh-CN": "木曾屋(Gisoya)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 157-19",
+"서울 강남구 삼성로92길 13",
+"서울 특별시강남구 삼성동 157-19"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "木觅山房(Mongmyeok Sanbang)",
+"zh-TW": "木覓山房"
+},
+"area": "중구",
+"cands": [
+"서울 중구 퇴계로이령가 71",
+"산 5-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソチョ・ナムスンナムスンデグク"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동 945-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "東京食堂"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 28-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "松柏食堂(Songbaek sikdang)",
+"zh-TW": "松柏食堂"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 신문내로5길 37",
+"서울 특별시종로구 도염동 60",
+"서울 종로구 도염동 60"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "松江拉面(Mazueramen)",
+"zh-TW": "松江拉麵"
+},
+"area": "특별시마포구",
+"cands": [
+"서울 마포구 동교로 126",
+"서울 특별시마포구 서교동 465-1",
+"서울 마포구 서교동 465-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "松粥"
+},
+"area": "중구",
+"cands": [
+"서울 중구 소절로 631",
+"서울 중구 충무로3길 25-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "松粥(Songjuk)"
+},
+"area": "특별시중구",
+"cands": [
+"서울 특별시중구 수표로6길 31",
+"서울 특별시중구 충무로3길 25-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "枫树家(梨泰院分店)(Maple Tree House(Itaewon branch))"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로27ga가 26"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ドゥルガー(Durga) 光化門店"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로1길 24"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "瑞草カルビ"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1451-77"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソンアジョッシ・ビンデトク"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 창천동 52-75"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "桃園"
+},
+"area": "중구",
+"cands": [
+"서울 중구 태평로2길 23"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "PaPaho"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 영동대로 1373"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Just Steak",
+"zh-TW": "Just Steak",
+"zh-CN": "Just Steak",
+"en": "Just Steak"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 657-3",
+"서울 강남구 선릉로157길 29"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソンガネ・コムグクス"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 128-16"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "汝自湾(Yeojaman)",
+"zh-TW": "汝自灣(Yeojaman)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동일사가 24-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソンブクトン・テジガルビチブ",
+"en": "Seongbukdong Dwaejigalbijip"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 114-2",
+"115, Seongbuk-ro, Seongbuk-gu, Seoul, Korea"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "沙里院"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동 411-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "泉田蕎麵"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초중앙로24길27호중앙광장 G5",
+"서울 서초구 서초동 1685-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ファミエステーション(Famille Station)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포동 19-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "海洋食堂(Badasikdang)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로49길 18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チャインムンティギ"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1363-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "满寿司(Michiru Sushi)"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 의사당대로 127 203"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "漢江炸雞(Hangang Chicken)",
+"ja": "ハンガン・チキン"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌동 301-139"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "漢江酒造",
+"zh-CN": "汉江酒造",
+"ja": "ハンガン(漢江)酒造"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 만보15길 12 학원2~",
+"서울 성동구 성수동 2길 648-17",
+"서울 성동구 만보15길 12 2 한강주양",
+"서울 성동구 성수동 2길 277-135"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "瑞士衣舍(Alt Swiss Chalet)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로27길 38",
+"서울 용산구 이태원1동 104-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "無窮花"
+},
+"area": "중구",
+"cands": [
+"서울 중구 소공동 1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "無等山",
+"en": "Moodeungsan"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 1-15"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ケンマウル"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강로3길 65-550"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ノドゥルガン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 논현동 184-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨス・オドンド"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 대치동 913-7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "熱海",
+"zh-TW": "熱海"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌동 300-26"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "[百年老店] BOULANGERIE",
+"zh-TW": "[百年老店] BOULANGERIE"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 방배로268102호",
+"서울 서초구 방패로 268 102호"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Cacao Boom"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 와우산로27길 6",
+"서울 마포구 서교동 337-16"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チャンウォン・プゴグク"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 44-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ポンピヤン 芳荑店"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 방이동 205-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ミョンニュン・ソンカルクグス"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 명륜1길 31-23"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チャンサラン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 624-47"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "加味小吃"
+},
+"area": "특별시서대문구",
+"cands": [
+"서울 특별시서대문구 대현동 54-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "瑞宮"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 43-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "イェビンダン"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 성수동 2길 315-7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Ganga 武橋店",
+"zh-CN": "Ganga武桥店",
+"zh-TW": "Ganga 武橋店"
+},
+"area": "중구",
+"cands": [
+"서울 중구 태평로1길 84"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チョンジュ・ソルロンタン"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 잠실본동 182-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハハ＆キムジョングクの401精肉食堂"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동 395-17"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "学林(ハクリム)茶房"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 명륜4길 94-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "和(Hwa)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서애로6길 15",
+"서울 특별시서초구 반포동 72-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハムチョ・カンジャンケジャン",
+"zh-CN": "咸草酱蟹",
+"zh-TW": "咸草醬蟹"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로2길 11-1",
+"서울 중구 명동 8ga가 27"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨクサムドン・ブゴチブ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼동 738-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハナロ会館",
+"zh-TW": "Hanaro會館"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동 194-4 계",
+"서울 종로구 인사동 5길 25",
+"서울 종로구 인사동 194-4 Hanaro대하 누"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "仁寺洞ハンアリスジェビ",
+"zh-TW": "仁寺洞麵疙瘩"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관훈동 29-2",
+"서울 종로구 인사동 8길 14-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "[百年の店] トゥントゥンイおばあさんの家"
+},
+"area": "중구",
+"cands": [
+"서울 중구 장충동 1길 62-10"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "BREAGHETTI Itaewon"
+},
+"area": "용산구",
+"cands": [
+"124 Bogwang-ro, Yongsan-gu, Seoul, Republic of Korea  2F",
+"서울 용산구 이태원동 131-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "南山姐姐(Namsan Nunane)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 괴수로41길 43",
+"서울 용산구 소월로44길로 24-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "百年屋"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1450-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Paul & Paulina"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연희동 125-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "山本壽司"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 언주로30길26호"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハニルグァン (韓一館)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 619-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ナムハンガン(南漢江)メウンタン"
+},
+"area": "강동구",
+"cands": [
+"서울 강동구 명일동 345-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Unknown diner"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동 423-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "大象小吃",
+"zh-CN": "大象小吃"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 도화2길 3",
+"서울 마포구 도화동 345-4",
+"서울 특별시마포구 도화동 345-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "大酱艺术檐廊(Doenjangyesul Toenmaru)"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 인사동 4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "トンスベク"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 홍익로 674"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヌンナムチブ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청동 20-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "テチ・ジョンユク・シクタン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 대치4동 911-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "テバンゴル"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 13"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ホンヌン・カルビチプ"
+},
+"area": "동대문구",
+"cands": [
+"서울 동대문구 청량리동 520-14"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "テリム山菜定食"
+},
+"area": "도봉구",
+"cands": [
+"서울 도봉구 쌍문3동 141-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "テンジャン・イェスルグァ・スル"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관철동 12-7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "トゥムセラミョン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 2길 4-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "瑞草豬血腸湯飯"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡로4길 12",
+"서울 강남구 도곡동 945-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "寺洞麵屋 (Sadongmyeonok)",
+"zh-CN": "寺洞面屋(Sadongmyeonok)"
+},
+"area": "재종로구",
+"cands": [
+"서울 재종로구 인사동적8로 9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "キョンイン(耕仁)美術館伝統茶院",
+"zh-TW": "耕仁美術館傳統茶園",
+"zh-CN": "宫(Gung)"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 종로구 관훈동 30-1",
+"서울 종로구 인사동 10길 11-4",
+"서울 종로구 인사동 10길 11-3",
+"서울 특별시종로구 관훈동 30-11",
+"서울 종로구 관훈동 30-11"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "聖民村"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 25-5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チョンソンオク"
+},
+"area": "중구",
+"cands": [
+"서울 중구 서소문동 52-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "コッチ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성1동 160-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ウォンテグタン"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 서린동 127"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "大瓦房"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 북촌로 22"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "トンピョ・ゴルベンイ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로2길 199-18"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "[百年老店] 葡萄樹",
+"zh-CN": "[百年老店] 葡萄树"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 사직로 108-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チョンダム・ボッチブ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 68-7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヘチョロッ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 대치동 1006-18"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "[百年老店]砂理谷",
+"zh-TW": "[百年老店] 砂理谷"
+},
+"area": "은평구",
+"cands": [
+"서울 은평구 서무릉로 195 202호"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ピウォン・ソンカルクグス"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 원서동 160"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "プウォン・ミョンノク"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남창동 47-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨンドン・ソルロンタン",
+"zh-TW": "榮洞雪濃湯"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 잠원동 10-53",
+"서울 서초구 강남대로101내가 24"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ペガム・ワンスンデ"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연희동 122-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ペッコドン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 663"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "イビススタイルズアンバサダーソウルミョンドン(明洞) ル・スタイル・レストラン＆バー"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로2길 53-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Beber"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 88-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ボンサンオク"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1451-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ポドゥナムチブ"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1340-5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "マポナル"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 도화동 201-39"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "マミ・チョングクチャン",
+"zh-TW": "Mami清麴醬湯(cheonggukjang)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 동숭동 18-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "光化门家(Gwanghwamunjip)",
+"zh-TW": "光化門家 (Gwanghwamunjip)",
+"ja": "光化門チプ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 신문내로5길 12",
+"서울 특별시종로구 당주동 43",
+"서울 종로구 당주동 43"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ムギョドン・ブゴグクチブ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 다동 173"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ムンファオク"
+},
+"area": "중구",
+"cands": [
+"서울 중구 주교동 118-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "モクポ・チプ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼일대로 3255-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "石坡廊"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 홍지동 125"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Korea House"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 125-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヤンチョンリ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동 411-10"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "箱屋(HACOYA)",
+"zh-TW": "箱屋(HACOYA)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 논현로72길 16",
+"서울 강남구 역삼동 775-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "紅縁"
+},
+"area": "중구",
+"cands": [
+"서울 중구 소공동 87"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "紫(Murasaki)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 소공로 119",
+"서울 특별시중구 태평로이가 23"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "紫露草"
+},
+"area": "중구",
+"cands": [
+"서울 중구 세종대로19길 16",
+"서울 중구 정동미술관로 3-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "縫隙辣麵",
+"zh-CN": "缝隙辣面(Teumsaeramyeon)"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 명동 10길 19-10",
+"서울 중구 명동이가 4-1",
+"서울 특별시중구 명동이가 4-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "美進"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로1길 24"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チファジャソウル"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 청운동 48 HUB Plaza102동"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Bad Farmers"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정로4길 31"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "老爷之家(Nariuijip)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로 245"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "荣洞牛杂碎汤(Yeongdongseolleongtang)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 강남대로101내가 24",
+"서울 특별시서초구 잠원동 10-53"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Bada Sikdang",
+"ja": "パダ・シクタン (海食堂)",
+"zh-TW": "海洋食堂"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 743-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "萬樹庭園",
+"ja": "マンスエ・ジョンウォン",
+"zh-CN": "万树庭园(Mansuui Jeongwon)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 북촌로5ga가 35-2",
+"서울 종로구 소격동 24-1",
+"서울 특별시종로구 소격동 24-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "萬福臨"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문로5길 631"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "イスンナメ・コッ・グァ・パン",
+"en": "Iseungnamui Kkotgwa Ppang"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정동 455",
+"68, Apgujeong-ro 29-gil, Gangnam-gu, Seoul, Korea  B1F"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Kuai 19",
+"zh-TW": "Kuai 19"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 강남대로162길 41-20",
+"서울 강남구 신사동 524-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "蘭香"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 창천동 72-21"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Ca'del Lupo"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 효자동 39-1"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "L'Amitie",
+"ja": "L'Amitie",
+"zh-TW": "L'Amitie",
+"zh-CN": "L'Amitie"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 628-16",
+"서울 강남구 언주로153길 7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Kervan 盤浦店"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포동 19-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Liberte"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동 422-6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "L'Espoir du Hibou",
+"ja": "L'Espoir du Hibou",
+"zh-CN": "L'Espoir"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도산달로56길10호",
+"서울 강남구 청담동 1-10",
+"서울 강남구 도산대로 5610"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Murree Muslim Food",
+"en": "Murree Muslim Food",
+"zh-CN": "Murree Muslim Food"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원동 140-6",
+"서울 용산구 우사단로10길 20"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "菜鮮堂 新内店"
+},
+"area": "중랑구",
+"cands": [
+"서울 중랑구 신내동 387-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "オミガ(新沙店)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 585-13"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "赤坂"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 747-7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "La Callas"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초2동 1451-79"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "迎春屋(Yeongchunok)",
+"ja": "ヨンチュンオク",
+"zh-TW": "迎春屋"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 돈화문로5ga가 13",
+"서울 종로구 돈의동 131-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "常乐园"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 봉은사로44길 77"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "街角华夫饼&野餐"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 왕십리로 94 천공식품",
+"서울 성동구 성수1길 661-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "La Cucina"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 괴수로44길 10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Sabal"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 내수동 72번지 경희궁조 3단지 142호"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "西村传统米肠汤"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 사직로9ga가 8"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "郭景灿的老乡饭桌(Gwak Gyeong Chan Sigol bapsang)",
+"ja": "クァク・ギョンチャンのシゴルバプサン(田舎の定食)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로 235",
+"서울 용산구 한남동 738-17"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ウリミル・グクシ"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 124-11"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソクチョ・センテチプ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 북창동 94-20"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "谈笑园(Damsowon)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 퇴계로50길 28",
+"서울 특별시중구 묵정동 29-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "釜山カルメギ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 북창동 94-42"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "アヤジン・センテチゲ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 150-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "貞洞麵條",
+"ja": "チョンドン・グクシ",
+"zh-CN": "贞洞面条(Jeongdong Guksi)"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 정동가 5",
+"서울 중구 정동 22-2",
+"서울 특별시중구 정동 22-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "赤坂(Akasaka)",
+"en": "Akasaka"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 소월로 322",
+"서울 용산구 한남동 747-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "釜山排骨(Busan Galbi)"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 간천로 107-1",
+"서울 특별시중구 오장동 69-6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "釜山河豚家",
+"zh-TW": "釜山河豚家"
+},
+"area": "특별시송파구",
+"cands": [
+"서울 송파구 중대로27길 9-1",
+"서울 특별시송파구 오금동 48-16",
+"서울 송파구 오금동 48-16"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Shanti"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동 347-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "La Seine",
+"zh-TW": "La Seine",
+"zh-CN": "La Seine"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 소공동 1",
+"서울 중구 남대문로 81",
+"서울 특별시중구 소공동 1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "学林茶馆"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 대학로 119",
+"서울 특별시종로구 명륜4길 94-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "避马街"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 종로3길 17",
+"서울 특별시종로구 청진동 246"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソンカルグクス"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 혜화동 74-37"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "金紅"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강로3길 98"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "金英模西點烘焙坊(Patisserie Kim Youngmo)",
+"ja": "Patisserie Kim Youngmo"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 언주로30길 10",
+"서울 강남구 도곡동 467-19"
+],
+"cafe": true
+},
+{
+"names": {
+"zh-TW": "釜山排骨(Busan Galbi)",
+"ja": "釜山カルビ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 건천로 107-1",
+"서울 중구 오장동 69-6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Calvin Klein 弘大店"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동세교로 21",
+"서울 마포구 서교동 405-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "忠武路・釜山ポクチプ"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 오금동 48-16"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "釜山ヤンゴプチャン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼동 700-15"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "飛禽島"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 95-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "La Bonne Tarte"
+},
+"area": "특별시서대문구",
+"cands": [
+"서울 특별시서대문구 연대동문가 29"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Phoenix(鳳凰)",
+"zh-CN": "Phoenix(凤凰)"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 덕흑란로 440",
+"서울 강남구 대치사동 892",
+"서울 특별시강남구 대치사동 892"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "靑",
+"ja": "青"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 31-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "韩国文化精品馆"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 돈화문로11ga로 99",
+"서울 특별시종로구 와룡동 1 151-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "音樂之林",
+"zh-CN": "音乐之林"
+},
+"area": "중구",
+"cands": [
+"서울 중구 동호로 192"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "银座(Ginza)"
+},
+"area": "특별시서초구",
+"cands": [
+"서울 서초구 서초중앙로28길 16",
+"서울 특별시서초구 서초사동 1697-11"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Lamb House"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1713-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "開花"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 2길 107-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "恭喜面館"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로1길 22-13"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "木浦家(Mokpojip)",
+"zh-TW": "木浦家(Mokpojip)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼일대로삼이가 55-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Lee's Flower & Bread",
+"zh-CN": "Lee's Flower & Bread"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정로29길 68",
+"서울 강남구 압구정로29길 68 일층"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "餃子家",
+"zh-CN": "包子家"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정로 338",
+"서울 강남구 신사동 661-1",
+"서울 특별시강남구 신사동 661-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "乙支(ウルチ)茶房"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로3길 315-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "黄色的韩服短上衣(Norangjeogori)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초대로73길 9",
+"서울 서초구 서초동 1316-29"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "開花屋"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 661-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "高麗参鶏湯"
+},
+"area": "중구",
+"cands": [
+"서울 중구 서소문동 55-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Leonidas"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 2길 2-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "雪花韩牛(Seolhwahanu)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 주흥1길 17",
+"서울 특별시서초구 반포동 745-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "青受亭"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청동 88-23"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "韓國金融史博物館"
+},
+"area": "중구",
+"cands": [
+"서울 중구 세종대로 135-5",
+"서울 중구 태평로1길 62-12"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "MUNEI cafe",
+"zh-TW": "MUNEI cafe"
+},
+"area": "중구",
+"cands": [
+"서울 중구 간천로4길 11",
+"서울 중구 인현동 1길 114-2",
+"서울 중구 건천로4길 11"
+],
+"cafe": true
+},
+{
+"names": {
+"en": "Mongnan",
+"ja": "木蘭"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연희로15길 21",
+"서울 서대문구 연희동 132-28"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Queens Park (清潭店)",
+"zh-CN": "Queens Park清潭店",
+"en": "Queens Park",
+"ja": "Queens Park 清潭店"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정로60길 22",
+"서울 강남구 청담동 83-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Cafe Monday To Sunday"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 93-13"
+],
+"cafe": true
+},
+{
+"names": {
+"ja": "Fresca 29"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동 517-11"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "曬布場"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 혜화로 82-2",
+"서울 성북구 성북동 124-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "麵屋三代目",
+"ja": "麺屋三代目",
+"zh-CN": "Menya Sandaime"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 홍익로5내가 24",
+"서울 마포구 서교동 355-25"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "プガクチョン（イサンカルビ）"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 평창동 114-12 114-12"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "明洞部队火锅(Myeongdong Budae Jjigae)",
+"zh-TW": "明洞部隊鍋"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동가 25-7",
+"서울 특별시중구 명동일가 54-7",
+"서울 중구 명동일가 54-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "秘苑糕铺"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 북촌로 33-1",
+"서울 특별시종로구 가회동 163"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "总是(Itsumo)",
+"en": "Itsumo"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 독서당로 80",
+"서울 용산구 한남동 273-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "栄養センター"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로1길 25-32"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハヌリ（本店）"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 논현동 91-18"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "東冰庫"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌일동 301-162"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "トンビンゴ"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌1동 301-162"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "満発"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 방배4동 878-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "鳥金",
+"zh-TW": "鳥金"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관훈동 118-36",
+"서울 종로구 인사동가 60"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "鶴橋風月"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 2길 32-27"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Tokyo Panya"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 학동로38길 23"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "鷄湯泡飯(Dakgomtang)",
+"zh-CN": "鸡汤泡饭(Dakgomtang)",
+"ja": "タッコムタン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문시장가 22-20",
+"서울 중구 남창동 34-139"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "鸟金(Jogeum)"
+},
+"area": "종로구",
+"cands": [
+"서울 특별시종로구 인사동가 60",
+"서울 종로구 관훈동 118-36"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "鹤桥风月(Tsuruhashi Fugetsu)"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 해화광장로 44-1",
+"서울 마포구 서교동 408-27"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "麵條家"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 창경궁로43길 9",
+"서울 성북구 성북동일가 9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Shunmi"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 봉은사로 130",
+"서울 특별시강남구 역삼동 603"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Panax"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 45-19"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Slunch Factory"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 상수동 336-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ユンリムミョン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 서소문동 16"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "[百年の店]  龍山ヨクジョンフェグァン(1962)"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 염리동 173-21"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨルチャチブ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 공평동 130-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Pomodoro",
+"zh-TW": "Pomodoro",
+"zh-CN": "Pomodoro"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 당주동 22-1",
+"서울 종로구 신문내로9길 19-1",
+"서울 특별시종로구 당주동 22-1"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Gomone Restaurant"
+},
+"area": "강동구",
+"cands": [
+"서울 강동구 풍성로57길 13",
+"서울 강동구 성내동 413-13"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "乙支路海螺(Euljirogolbaengi)",
+"zh-TW": "乙支路海螺"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 명동 9길 43",
+"서울 특별시중구 을지로이가 199-18",
+"서울 중구 을지로이가 199-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "博多文庫"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 상수동 93-28"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "清晨家"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도산대로101길 6",
+"서울 강남구 청담동 129-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "初穂"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 61"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "毬藻",
+"zh-TW": "毬藻"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 653-14",
+"서울 강남구 도산대로49길 10-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Guillaume",
+"en": "Guillaume"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 88-37"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "[百年老店] 乡村土豆排骨汤"
+},
+"area": "은평구",
+"cands": [
+"서울 은평구 응암로 174"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Bums"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도산대로55길 16",
+"서울 강남구 청담동 88-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "サンホ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 525-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "UNCLES 乐天世界店"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 오림필극로 240",
+"서울 송파구 잠실동 40-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "[百年老店] 文艺复兴面包店"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 대정로 39"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "元祖老奶奶章鱼中心"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문로1길 38",
+"서울 중구 북창동 60"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "[百年老店] 羅州牛骨友情店"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 강남로94길 57"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "[百年の店] エリーゼ菓子店"
+},
+"area": "노원구",
+"cands": [
+"ソウル市ノウォン区ドンイルロ1538 、12団地、総合商店街) 12단지 종합상가",
+"서울 노원구 상부동 649"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Butter Finger Pancakes(江南站店)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 강남대로61길 13",
+"서울 특별시서초구 서초동 1317"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Butcher's Cut"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로 243"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Charmandre首尔林店",
+"zh-TW": "Charmandre首爾林店"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 임2길28-12호",
+"서울 성동구 성수동 1길 685-480",
+"서울 성동구 임2길 28-12"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Cheongdamdaegyo Bridge",
+"zh-TW": "清潭大橋",
+"ja": "チョンダムデギョ(清潭大橋)"
+},
+"area": "광진구",
+"cands": [
+"서울 광진구 강변북로 68",
+"서울 광진구 자양동 97-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Cuisson82",
+"ja": "Cuisson82"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동량재천로 167",
+"서울 강남구 도곡동 453-16"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "The Dining Hosoo"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 잠실로 148",
+"서울 송파구 잠실동 47-"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チェデカムネ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 경운동 64-47"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "クルビ・マウル"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 652-8"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Camapkahd(Samarkand)",
+"ja": "Camapkahd(Samarkand)",
+"zh-TW": "Camapkahd(Samarkand)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 건천로 159-10",
+"서울 중구 광희동 1길 162",
+"서울 중구 관훈동 1길 162"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "B-hind",
+"zh-TW": "B-hind",
+"zh-CN": "B-hind"
+},
+"area": "특별시마포구",
+"cands": [
+"서울 마포구 서교동 404-26",
+"서울 마포구 해화광장로5길 18",
+"서울 특별시마포구 서교동 404-26"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Chai Lyn"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 71-24"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "BLUE SQUARE"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원로 294"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Changgo43"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 36-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Sushi tatsu"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도산대로28길 18"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Eonnyang Bulgogi",
+"zh-CN": "彦阳烤肉(Eonnyang bulgogi)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 강남대로 518"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "[Faint Memories, Deep Longing]"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 신문로2가 2-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "豚寿百"
+},
+"area": "특별시중구",
+"cands": [
+"서울 특별시마포구 홍익로6길 74",
+"서울 특별시중구 명동 2길 105 164-24"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソルメネ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 609-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ピョンヤン・ミョノク"
+},
+"area": "중구",
+"cands": [
+"서울 중구 장충동 1길 26-14",
+"서울 중구 장충동 1길 62-16"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チェンベオク"
+},
+"area": "중구",
+"cands": [
+"서울 중구 서소문동 64-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Danme Greenbee",
+"zh-CN": "Danme Greenbee",
+"ja": "タンミグリンビ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 율현로14길 13-50",
+"서울 강남구 자곡동 286",
+"서울 특별시강남구 자곡동 286"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "楓樹家"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청로 130",
+"서울 종로구 삼청동 31-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Dessertree"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도산대로51길 17",
+"135-897 서울 강남구 신사동 653-7"
+],
+"cafe": true
+},
+{
+"names": {
+"ja": "Dessertree"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 653-7"
+],
+"cafe": true
+},
+{
+"names": {
+"ja": "Goo STK 528"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 528-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "The NiNth Gate Grille"
+},
+"area": "중구",
+"cands": [
+"서울 중구 소공동 87-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "蓋飯",
+"zh-CN": "盖饭(Donburi)"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 세교로6길 40-8",
+"서울 마포구 서교동 366-18",
+"서울 특별시마포구 서교동 366-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "クァンソン流通",
+"zh-TW": "光成流通"
+},
+"area": "동대문구",
+"cands": [
+"서울 동대문구 이화동 996 유통",
+"서울 동대문구 고산로36길 30 광성류통",
+"서울 동대문구 이화동 996 광성류통"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "耕仁美术馆传统茶园(Gyeongin-misulgwan Jeontong-dawon)"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 종로구 인사동 10길 11-4",
+"서울 특별시종로구 관훈동 30-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Dublin Terrace"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼동 635-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Dublin"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼동 814-5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "The Green Table"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 655-4"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Forest of Music"
+},
+"area": "중구",
+"cands": [
+"서울 중구 동호로 192",
+"서울 중구 신당동 374-22"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Waffle House",
+"zh-TW": "華夫餅之家(Waffle House)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 청파동 2길 71-75"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Hotel Poco Seongsu",
+"ja": "HOTEL POCO ソンス(聖水)",
+"zh-CN": "Hotel Poco 圣水",
+"zh-TW": "Hotel Poco"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 성수이로 96"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "大宇部隊チゲ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼1동 641-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "プリムジョン･スッブルカルビ",
+"zh-TW": "富臨亭炭烤排骨 (부림정 숯불갈비)"
+},
+"area": "광진구",
+"cands": [
+"서울 광진구 자양4동 52-2",
+"서울 광진구 독도로 476-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "[百年老店] 高丽亭"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 국제금융로6길30116호"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Gurkha Indian Restaurant",
+"zh-TW": "Gurkha Indian Restaurant",
+"ja": "Gurkha Indian Restaurant"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 10길 16-1",
+"100-809 首尔市中区明洞2街32-14 4층",
+"서울 중구 명동 2길 32-14"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Gusto Taco"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 상수동 146-6"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "InterCHARM Korea 2023",
+"ja": "InterCHARM Korea 2023"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 영동대로 513"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "西村傳統血腸湯"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 사직로9ga가 8"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "多味(Dami)"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 국제금융로8길 34",
+"서울 영등포구 여의도동 36-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Hanaro会馆 (하나로회관)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동 5길 25",
+"서울 종로구 인사동 194-4 Hanaro대하 누"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Hana日式料理"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌로64길 61"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "迪拜(Dubai)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로 192",
+"서울 용산구 여태원동 127-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "釜山シクタン"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관훈동 180"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Home sukki"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 방이동 183-6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "黃生家刀削麵(原北村刀削麵)",
+"ja": "ファンセンガきしめん"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 북촌로5길 78",
+"서울 종로구 소격동 84"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "釜山食堂(Busan sikdang)",
+"zh-TW": "釜山食堂 (Busan sikdang)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동 11길 12",
+"서울 특별시종로구 관훈동 180",
+"서울 종로구 관훈동 180"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "乙密台(Eulmildae)"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 숭문가 24",
+"서울 마포구 염리동 147-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Coffee Friend"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 수송동 58"
+],
+"cafe": true
+},
+{
+"names": {
+"zh-CN": "JACQUELYN DINING LOUNGE"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서래로5길 33",
+"서울 서초구 반포동 107-65"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "博多文库(Hakadabunko)"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 옹막로19길 43",
+"서울 특별시마포구 상수동 93-28"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Jeon Alley"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 공덕동 256-10"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Jungsik Seoul",
+"ja": "チョンシクタン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 83-24"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "双门洞咖啡馆"
+},
+"area": "도봉구",
+"cands": [
+"서울 도봉구 도봉로 116길 5"
+],
+"cafe": true
+},
+{
+"names": {
+"zh-TW": "永樂田螺",
+"en": "Yeongnak Golbaengi",
+"zh-CN": "永乐田螺(Yeongnak Golbaengi)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 수표로 51-1",
+"서울 중구 영동이가 80-1",
+"서울 중구 저동2가 80-1",
+"서울 특별시중구 저동이가 80-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "韓日慶典饗宴 2023 in Seoul"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 영동대로 513 COEX Hall D"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "禅房里屋"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 인사동가 33",
+"서울 특별시종로구 관훈동 196-6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "God Eat"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼로 409",
+"서울 강남구 대치동 907-12"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Gomguksijip"
+},
+"area": "중구",
+"cands": [
+"24, Mugyo-ro, Jung-gu, Seoul, Korea",
+"서울 중구 무교동 12-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カムチョン"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로1길 24"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カンガンスルレ（上渓店）"
+},
+"area": "노원구",
+"cands": [
+"서울 노원구 상부1동 1025-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "LUKA 511"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정로73길 22",
+"서울 특별시강남구 청담동 115-14"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "La Cantina"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로1길 50"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Miel"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 94-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "La Saveur",
+"zh-TW": "La Saveur",
+"ja": "La Saveur"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서애로 24",
+"서울 서초구 반포동 90-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "キッテボン・ネンミョン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 청부천로 2038호"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "petsounds",
+"zh-TW": "Petsounds"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 괴수로 21"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "LameihKiado"
+},
+"area": "특별시영등포구",
+"cands": [
+"서울 특별시영등포구 선유로17길 24",
+"서울 특별시영등포구 문래동 6길 29"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "シンフン・ジョンユク・シクタン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 대치동 908-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Little Saigon"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 640-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Bad Farmers"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 523-21"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "シンソンガク"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 신공덕동 2-463"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "MUNEI cafe"
+},
+"area": "중구",
+"cands": [
+"서울 중구 인현동 1114-2"
+],
+"cafe": true
+},
+{
+"names": {
+"zh-TW": "Macha生魚片店",
+"zh-CN": "Macha生鱼片店",
+"ja": "マチャ・フェッチブ"
+},
+"area": "특별시마포구",
+"cands": [
+"서울 마포구 토정로 155",
+"서울 마포구 하중동 23-1",
+"서울 특별시마포구 하중동 23-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "コンドク(孔徳)市場チヂミ通り"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 공덕동 256-10"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "飞扬岛(Biyangdo)"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북로 160",
+"서울 특별시성북구 성북동 271-1"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Making a Better Place"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 선유로 248-13",
+"서울 영등포구 양평동4가 32-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Mano di Chef",
+"zh-TW": "Mano di Chef",
+"zh-CN": "Mano di Chef"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 삼성동 158-24",
+"서울 강남구 덕흑란로87길 21",
+"서울 특별시강남구 삼성동 158-24"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "蘆原兩水廊檐 咖啡休憩站 (Dumulmaru咖啡厅)",
+"zh-CN": "芦原两水咖啡厅(Dumulmaru咖啡厅)"
+},
+"area": "노원구",
+"cands": [
+"서울 노원구 중랑천동자행차로 1402"
+],
+"cafe": true
+},
+{
+"names": {
+"ja": "カーリー(Kali)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 명륜4길 171"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Mouse Rabbit"
+},
+"area": "특별시광진구",
+"cands": [
+"서울 특별시광진구 영동로11길 10",
+"서울 특별시광진구 화양동 5-14 Mouse Rabbit"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Mouse Rabbit",
+"ja": "Mouse Rabbit (マウスラビット)"
+},
+"area": "광진구",
+"cands": [
+"서울 광진구 영동로11길 10",
+"서울 광진구 화양동 5-14"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ミョンプム・チャンチグクス"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동 479-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "sicily",
+"zh-TW": "Sicily",
+"zh-CN": "Sicily"
+},
+"area": "특별시서초구",
+"cands": [
+"서울 서초구 반포동 90-11",
+"서울 서초구 서애로 26",
+"서울 특별시서초구 반포동 90-11"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "シンリムドン(新林洞)スンデタウン"
+},
+"area": "관악구",
+"cands": [
+"서울 관악구 신림동 1640-31"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ナムメチプ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 북창동 19-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "老幺生鱼片(Mangnaehoetjip)"
+},
+"area": "특별시중구",
+"cands": [
+"서울 특별시중구 남창동 50-48"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Artise サムスンタウン店"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1320-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カンナム・ギョジャ"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1308"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヌンラバプサン"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 사직로 214"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "汝矣渡口站跑者站",
+"zh-CN": "汝矣渡口站跑者驿站"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의동로 343 층"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Parmi Italiano"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연세로 24",
+"서울 서대문구 창천동 31-36"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "モンノ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 577-12"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "河东馆(Hadonggwan(Daechi branch))"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 9길 12",
+"서울 중구 명동 1길 10-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Persian Palace"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 명륜2길 121-1"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Nolboo Sulfur Duck Restaurant"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 오금로 131"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "サムハクド (三鶴島)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1603-67"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "サンドルヘ"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 방이동 44-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソチョン(西村)伝統スンデグク"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 필운동 148-1"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Oriental Roast Chicken"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 대사관로34길 38",
+"서울 용산구 한남동 618-6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Ouga",
+"zh-TW": "Ouga",
+"ja": "オウガ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 8ga가 39",
+"서울 중구 충무로2길 12-13"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "三角亭",
+"ja": "サムガクジョン"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강로2길 258-6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "南道食堂",
+"zh-CN": "南道食堂(Namdosikdang)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼봉로 80-12 42",
+"서울 종로구 삼봉로 80-12 204-1",
+"서울 종로구 삼봉로 80-12"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソウル市立交響楽団光復78周年記念音楽会",
+"zh-TW": "首爾市立交響樂團 光復78週年 紀念音樂會"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로 281 DDP 예술청 1호출구"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "首尔YMCA，青年创造的市民历史",
+"zh-TW": "首爾YMCA，青年創造的時代歷史",
+"en": "YMCA Seoul : A Civic History Shaped by Youth"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 우징국로 26 중성대하 층",
+"서울 종로구 우징국로 26 Centro Polis Building"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "MK2"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 창성동 122-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "モダンガール1930"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포동 118-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "SMT首尔"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 언주로148길 5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "SOLBIN DOG 热狗"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 특별시강남구 도산대로51길 40",
+"서울 특별시강남구 신사동 657-32"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヘラン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 봉은사로 139"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "長寿園"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 방배본동 778-27"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "松竹軒"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 운니동 37-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "長寿食堂"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 잠실동 252-11"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "ON River Station",
+"en": "ON River Station"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 압구정로11길 37-30",
+"서울 특별시강남구 압구정동 380-2",
+"서울 강남구 압구정동 380-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "ON River Station",
+"ja": "ON River Station"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정로511길 37-30",
+"서울 강남구 압구정동 380-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "With雞蛋糕"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 청파로47ga가 5",
+"서울 용산구 청파동 3길 111-58"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "With鸡蛋面包"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 청파로47길 37",
+"서울 용산구 청파동 2길 71-57 With계단면포"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Oasis"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 88-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "TAJ",
+"zh-TW": "TAJ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동가 73",
+"서울 특별시중구 명동일가 1-3",
+"서울 중구 명동일가 1-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ブイルカルビ"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1427-6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "河東館",
+"ja": "河東館"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 9길 12",
+"서울 중구 명동 1길 10-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Romanee Conti",
+"zh-TW": "Romanee Conti"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 안국동 72-1",
+"서울 종로구 북촌로1길 30-20"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Singyechi",
+"zh-TW": "Singyechi",
+"ja": "シンゲチ"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 명물가 47",
+"서울 특별시서대문구 창천동 2-24",
+"서울 서대문구 창천동 2-24"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Odarizip"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로1길 22-17 2～"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "トンイドン(通義洞)路地",
+"zh-TW": "深具歷史價值的 通義洞巷弄",
+"en": "Tongui-dong Alley"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 통의동 35-15"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Hanmiri(总店)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 영동대로 333",
+"서울 강남구 대치동 968-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "兄弟烤排骨",
+"zh-CN": "兄弟烤排骨(Hyeongje Galbi)"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연세로 24",
+"서울 서대문구 창천동 31-36"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "[百年老店] 罗州牛骨友情店"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 강남대로94길"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "松林園"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 동소문동일가 123"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Square Garden",
+"zh-CN": "Square Garden",
+"ja": "Square Garden"
+},
+"area": "특별시서초구",
+"cands": [
+"서울 서초구 서애로5길 26",
+"서울 서초구 반포동 107-30",
+"서울 특별시서초구 반포동 107-30"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "黃金魚"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정로48길 35",
+"서울 강남구 신사동 657-5"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Slow Brew Pub (Gangnam Branch)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초대로73길 7",
+"서울 서초구 서초동 1316-28"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Haeju冷面(naengmyeon)"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 오림필극로12길 5-22",
+"138-861 서울 송파구 잠실동 183-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "金氏菜板(Kimssidoma)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 사직로8길 42",
+"서울 종로구 내수동 74"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Trian"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 도산대로67길 30",
+"서울 특별시강남구 청담동 81-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "牛味閣",
+"zh-CN": "牛味阁(Umigak)",
+"ja": "ウミガク",
+"en": "Umigak"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 남부순환로 2743",
+"서울 강남구 도곡동 180-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ピルギョンジェ(必敬斎)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 수서동 739-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "SIROO Cake",
+"zh-CN": "SIROO Cake"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 유락광장로일가 18"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "泉(Izumi)",
+"en": "Izumi",
+"zh-TW": "泉"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 언주로 843"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "往鳴梁海峽之路(三成分店)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포대로28길 8",
+"서울 서초구 서초동 1543-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "漢南乾明太魚湯",
+"ja": "ハンナム・プゴグク"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 73-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Ogawa",
+"ja": "おがわ",
+"zh-CN": "Ogawa"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 신문내로5길 19",
+"서울 종로구 당주동 5",
+"서울 특별시종로구 당주동 5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソルヌン"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1551-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "リブクソン・マンドゥ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 무교동 27"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "All That Jazz"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원동 112-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "鮨海信(Sushi Kaisin)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 57-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Haruyeonga"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로6길률곡로286호",
+"110-126 서울 종로구 종로6가 62-2"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Woosalon"
+},
+"area": "강남구",
+"cands": [
+"24 Apgujeong-ro 32-gil, Gangnam-gu, Seoul, Republic of Korea  B1",
+"서울 강남구 신사동 609-6",
+"24, Apgujeong-ro 32-gil, Gangnam-gu, Seoul, Korea  B1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "大醬藝術檐廊(Doenjangyesul Toenmaru)",
+"ja": "テンジャン・イェスル・テッマル"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동 4",
+"서울 종로구 인사동 45-26중원"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "平壤老奶奶(Piyanghalmeoni)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡로7길 17",
+"서울 강남구 역삼동 836-72"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Jamuna"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로 321-2",
+"서울 종로구 창신동 174-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "長鰍"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로3길 58-5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Ju Bean"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 36"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Jubilee Chocolatier"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 23-10"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Jubilee Chocolatier"
+},
+"area": "재영등포구",
+"cands": [
+"서울 재영등포구 여의도동 23-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨンジ・オルクン・トンテクク"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로5길 120-7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "東江",
+"zh-TW": "東江"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌동 302-68"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "我的故乡食堂(Naegohyangsikdang)",
+"zh-TW": "我的故鄉食堂"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문시장가 18-3",
+"서울 특별시중구 남창동 34-41",
+"서울 중구 남창동 34-41"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "시간을 들이다（悠閒時光）",
+"zh-CN": "시간을 들이다（悠闲时光）"
+},
+"area": "동작구",
+"cands": [
+"서울 동작구 엽응로 80"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "獒树豆腐(Osuosuheugdubu)",
+"zh-TW": "獒樹豆腐"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 종로구 인사동 8길 12-2",
+"서울 특별시종로구 관훈동 29-9",
+"서울 종로구 관훈동 29-9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "明洞母親家(Myeongdong Eomeonijip)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 8길 11-6",
+"서울 중구 명동이가 32-8"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "boogiewoogie"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 괴수로 21"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "へファ・カルクグス"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 혜화동 84-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Retrooven"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 35-22"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チュンムロ・チュクミプルゴギ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 필동 1길 3-20"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "三鶴島",
+"en": "SamhakdoA",
+"zh-CN": "三鹤岛(Samhakdo)"
+},
+"area": "특별시서초구",
+"cands": [
+"서울 서초구 효령로 303",
+"서울 서초구 서초일동 1603-67",
+"서울 특별시서초구 서초일동 1603-67"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "进雅春",
+"zh-TW": "進雅春"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 종로구 신문내로 92",
+"서울 특별시종로구 신문로1길 163",
+"서울 종로구 신문로1길 163"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "進雅春"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 신문로1길 163"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "クァンヤンプルコギ"
+},
+"area": "양천구",
+"cands": [
+"서울 양천구 신월4동 438-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "猪(Inosisi)"
+},
+"area": "특별시마포구",
+"cands": [
+"서울 마포구 성만산로 197",
+"서울 특별시마포구 연남동 226-16"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "シンミ・シクタン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 615"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "東北火鍋王"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 창신1동 463-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "松坡渡口(Songpanaru)",
+"zh-TW": "松坡渡口"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 송파대로49길 65",
+"서울 송파구 석촌동 2-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "松江ラーメン"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동 465-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "梦中轩(Mongjungheon)"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 도산대로81길 49",
+"서울 특별시강남구 청담동 100-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "白園"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 12"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "泉田荞面(Saemban makguksu)"
+},
+"area": "특별시서초구",
+"cands": [
+"서울 특별시서초구 서초중앙로24길27호중앙광장 G5",
+"서울 특별시서초구 서초동 1685-8"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "五味家"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 남부순환로 2634-8",
+"서울 서초구 양재동 1-23 단성대하"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "五味家(良才分店)",
+"en": "Omiga (Yangjae Branch)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 남부순환로 2634-8",
+"서울 서초구 양재동 1-23 단성대하",
+"서울 서초구 양재동 1-23"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "満すし",
+"zh-TW": "滿壽司"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 수송동 146-1",
+"서울 종로구 종로1길 42 종로구 종로1길 42"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "漁陽"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 방이동 45"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "传说中的解酲汤 (Somunnanjip Chueotang)",
+"zh-TW": "傳說中的解酲湯(Somunnanjip Chueotang)"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 종로구 수표로 131",
+"서울 특별시종로구 낙원동 241"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "TEXAS de BRAZIL"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포동 118-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハルモニ・ヒョンデ・ナッチチブ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 550-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "春川手工刀切面(Chuncheon Sonkalguksu)",
+"zh-TW": "春川手工刀切麵"
+},
+"area": "중구",
+"cands": [
+"서울 중구 건천로 23",
+"서울 특별시중구 저동이가 20-1",
+"서울 중구 영동이가 20-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "トンイン(通仁)市場"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 통인동 10-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハンバントンタックイ"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 618-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨンドン・チョッパル"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 양재동 1-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨンヒドン・カルグクス"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연희동 132-29"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "朱"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 방배동 795-5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "アリラン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 소공동 72-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "モンミョクサンバン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 퇴부로 2071",
+"산 5-6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "松屋(Songok)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문로1길"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "松柏食堂"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 도염동 60"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ウォンジョ・ハルモニ・トッポッキ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 통인동 94"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "三号福家(Samho Bokjip)",
+"zh-TW": "三號福家(Samho Bokjip)",
+"ja": "サムホ・ポッチプ"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연세로5da가 10",
+"서울 특별시서대문구 창천동 62-11",
+"서울 서대문구 창천동 62-11"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "オグバンチョム(五九飯店)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로삼가 5-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "オジャンドン・フンナムチプ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 오장동 101-7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハヌソ(仁寺店)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 악원동 272"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヤンマニ"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 13-21"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨイド・タロクッパブ"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 43-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "平壤家 (Pyeongyangjip)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강로일가 137-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ククシチプ"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 1길 9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "コーヒーツアー"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 내수동 110-34"
+],
+"cafe": true
+},
+{
+"names": {
+"ja": "サドン・ミョノク"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관훈동 29-18"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Studio Cosmos"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1557-19"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "平安道餃子(Pyeongando Mandujip)",
+"zh-CN": "平安道饺子(Pyeongando Mandujip)",
+"ja": "ピョンアンド・マンドゥチプ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 신문내로3길 30",
+"서울 종로구 내수동 167",
+"서울 특별시종로구 내수동 167"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "サンダリ・ドゥェチ・ブルベク"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 109-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "宮"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관훈동 30-11"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "山村(Sanchon)"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 종로구 인사동가 30-13",
+"서울 특별시종로구 관훈동 14"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "蘭州拉面"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로1길 25-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "プンヨラム"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 미근동 31-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "タルゲビ（齋洞）"
+},
+"area": "중구",
+"cands": [
+"서울 중구 정동 3-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "乙支茶馆"
+},
+"area": "특별시중구",
+"cands": [
+"서울 특별시중구 을지로 124-1",
+"서울 특별시중구 을지로3길 315-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "[百年老店]Elysee饼干店"
+},
+"area": "노원구",
+"cands": [
+"서울 노원구 동일로153812원구종합상가 109호"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "元祖奶奶辣炒年糕",
+"zh-TW": "元祖奶奶辣炒年糕"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 자하문로15길 13",
+"서울 종로구 통인동 94"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チョンダムゴル"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 19-17"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨンチョンヨンファ・シクユク・シクタン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 50-13"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨンドク・フェ・シクタン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로4길 56-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カモン(KAMONG)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1678-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "一品堂"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 당주동 16-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Jeongaematdam",
+"ja": "チョンエマッダム",
+"zh-CN": "Jeongaematdam"
+},
+"area": "동작구",
+"cands": [
+"서울 동작구 동작대로29na가 10",
+"서울 동작구 사당동 91-177"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "三代参鸡匠人"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포대로 28길 56-3",
+"서울 특별시서초구 서초동 1557-17"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "南浦面屋"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로 3길 24",
+"서울 특별시중구 대동 121-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "オモクジプ"
+},
+"area": "양천구",
+"cands": [
+"서울 양천구 목동 917 상점가"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ホス参鶏湯"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 신길동 342-108"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "安東荘"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로3길 315-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "アラジネ・ヤンゴギ"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 잠실본동 187-15"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "イルミジャンオ",
+"zh-CN": "一味(Ilmi)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 동자동 35-44",
+"서울 용산구 후암로57길 35-15"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "富临亭木炭烤肉"
+},
+"area": "광진구",
+"cands": [
+"서울 광진구 독도로 476-7",
+"서울 광진구 자양4동 52-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チャンウォンチプ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로1길 24"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ピョンヤン・チプ"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강로1길 137-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "マダン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 630-26"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "マンドゥジプ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 661-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "マンネ・フェセンター"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 신길동 194-44"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソンリムガ"
+},
+"area": "구로구",
+"cands": [
+"서울 구로구 고척동 69-34"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チュンチョン・ソンカルクグス"
+},
+"area": "중구",
+"cands": [
+"서울 중구 영동 2길 20-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "イニン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 22-12"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "[百年の店] イムン・ソルロンタン"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 견지동 88"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チンドン・フェッチブ"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 잠원동 36-32"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カチネ",
+"zh-TW": "喜鵲家(Kkachine)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 남영동 40-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Om",
+"en": "Om"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 신문내로 103"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "クムガン・バーベキューチキン"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포1동 746-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Kervan Bakery"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원동 126-2"
+],
+"cafe": true
+},
+{
+"names": {
+"zh-TW": "Om",
+"ja": "Om"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 신문내로 103",
+"서울 종로구 신문로1길 2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ファントッギル"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 공덕동 270-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソソクデ"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1678-1 Ａ동"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "漫步云端"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 육삼로 50"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "釜山河豚家(Busanbokjip)",
+"zh-TW": "釜山河豚家(Busanbokjip)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 수표로이가 25"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "オバルタン"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 오금동 4-13"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "日常"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 100-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チンジュ・フェグァン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 서소문동 120-35"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カオン"
+},
+"area": "광진구",
+"cands": [
+"서울 광진구 광장동 102102"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Tower Chai"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동 467-29"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "高岩食堂(Goam sikdang)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로27ga가 5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヌル・プルン・モッチャン"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 잠실동 203-7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハンガンジプ(漢江屋)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강로1길 257-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨンウォル"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 연희동 193-17"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "老幺生魚片中心(Mangnae Hoe-center)",
+"zh-CN": "老幺生鱼片中心(Mangnae Hoe-center)"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 도신로53길 7",
+"서울 영등포구 신길동 194-44",
+"서울 특별시영등포구 신길동 194-44"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Zelen"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로27ga가 52"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソゴンチュクチプ",
+"zh-TW": "小公粥店"
+},
+"area": "중구",
+"cands": [
+"서울 중구 서소문동 14-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カンガンスルレ（新林本洞店）"
+},
+"area": "관악구",
+"cands": [
+"서울 관악구 신림5동 10-518"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "楼安(Ruan)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 논현로 430",
+"서울 특별시강남구 역삼이동 726"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "コーヒーパンアッカン",
+"zh-TW": "咖啡磨坊",
+"zh-CN": "咖啡磨坊"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 화동 102-1",
+"서울 종로구 북촌로5ga가 8-11"
+],
+"cafe": true
+},
+{
+"names": {
+"zh-CN": "Table 34"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 덕흑란로 521",
+"서울 강남구 삼청동 159-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ナビチブ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로2길 199-73"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "圣民村(Seongminchon)"
+},
+"area": "특별시영등포구",
+"cands": [
+"서울 영등포구 여의도구로 71",
+"서울 특별시영등포구 여의도동 25-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "[百年老店] 松竹庄"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 문래로2031~"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ナム・サイロ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 내자동 196"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "プルヒャンギ・ソンカルクグス",
+"zh-CN": "草香气手工刀切面(Pulhyanggisonkalguksu)"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 35-5",
+"서울 영등포구 여의도구로 42"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "明花堂(Myeonghwadang)",
+"zh-CN": "明花堂(Myeonghwadang)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 4길 30",
+"서울 중구 명동이가 55-3",
+"서울 특별시중구 명동이가 55-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Rosehill",
+"zh-TW": "Rosehill",
+"zh-CN": "Rosehill"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼동 737",
+"서울 강남구 덕흑란로 152 일층",
+"서울 특별시강남구 역삼동 737"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "家温"
+},
+"area": "광진구",
+"cands": [
+"서울 광진구 아차산로78길 75",
+"서울 광진구 광장동 102 현대Goldentel 106호"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Dep trai"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 명륜4길 170-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ウォンハルモニ本家"
+},
+"area": "중구",
+"cands": [
+"서울 중구 황학동 1685"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "綠樹之間(Namusairo)",
+"zh-CN": "绿树之间(Namusairo)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 사직로8길 24",
+"서울 종로구 내수동 71",
+"서울 특별시종로구 내수동 71"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "全村"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청로 127",
+"서울 종로구 삼청동 123"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "草香氣手工刀切麵"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도구로 42",
+"서울 영등포구 여의도동 35-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Rafre fruit"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 임2길 8-8"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "泰国兰花(Thai Orchid)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로 214-1",
+"서울 용산구 한남동 736-9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Viniwini"
+},
+"area": "특별시서초구",
+"cands": [
+"서울 서초구 서애로8길 1",
+"서울 특별시서초구 반포동 92-12"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "圣托里尼(Santorini)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로27ga가 43"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "神烏龍麵",
+"ja": "神うどん"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 홍익로2길 23",
+"서울 마포구 서교동 346-31"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "釜山ボクチブ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 수표로 225"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "イェッコル"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼동 605-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ナムド・ミラク"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포4동 65-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "手工海苔飯捲"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 자하문로15길 18",
+"서울 종로구 통인동 10-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "笑豪亭"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 양재동 392-11"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハンチュ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 549-9"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Ouga"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동8가길 39",
+"서울 중구 충무로2가 12-13"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カルビ･ミョンガ･イサン",
+"en": "Galbi Myeongga Yisang"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 돈암동 12-8"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "安(An)"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 도산대로81길 13",
+"서울 특별시강남구 청담동 118-19"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "韩拿之家(Hallaui jip)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 신문내로9길 29-1",
+"서울 특별시종로구 당주동 20-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Passion 5"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 729-74"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Passion 5"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로 272"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Mi Madre",
+"zh-CN": "Mi Madre"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 녹사평대로 224-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Mi Piace"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 특별시강남구 도산대로70길 34",
+"서울 특별시강남구 청담동 17-29"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Morak"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 신문내로3길 15",
+"서울 특별시종로구 당주동 128-27"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "海浪"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 봉은사로1길"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Namaste"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 숭인동 316-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソンオク"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문로4길 17-35"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Tsuruhashi Fugetsu"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동8길 21-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "庭院"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 영동대로142길 13-3",
+"서울 강남구 청담동 130-13"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "五壮洞兴南家(Ojangdong Heungnamjip)",
+"zh-TW": "五壯洞興南家"
+},
+"area": "중구",
+"cands": [
+"서울 중구 건천로 114",
+"100-310 서울 중구 오장동 101-7",
+"서울 중구 오상동 101-7"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "山谷面屋(Sangolmyeonok)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 종로56길 5-7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "マ・ボンリムハルモニ・マンネ・アドゥルネ・トッポッキ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 신당동 292-175"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハムピョン・ミョノク"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 대신동 85"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チョンイルチブ"
+},
+"area": "은평구",
+"cands": [
+"서울 은평구 불광동 310-11"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "[Baeknyeon-gage] Samwon Garden"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 언주로165길 7-20",
+"서울 강남구 신사동 624-22"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "The Bread Blue（新村總店）",
+"zh-CN": "The Bread Blue（新村总店）"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 신촌로12da가 3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "孙家面条(Songane)"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북로15길 8",
+"서울 성북구 성북동 128-16"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Gold fish"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 657-5"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Sushi U",
+"zh-CN": "Sushi U",
+"zh-TW": "Sushi U"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 영동대로 407",
+"서울 강남구 대치동 949-1",
+"서울 특별시강남구 대치동 949-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "鮨雄"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 대치동 949-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "TAJ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 1길 1-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Sushi shi-ro"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 해화광장로 34"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "サムソン・ウォンジョ・ヤンコプチャン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 133-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "窓"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 45-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "紫霞手工餃子"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 백석동가 12",
+"서울 종로구 부암동 245-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソガン(西江)八景"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 상수동 356-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "[百年の店] チャムヌロンソ"
+},
+"area": "노원구",
+"cands": [
+"서울 노원구 하부동 276-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヨンラク・コルベンイ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 영동 2길 80-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Jubilee Chocolatier"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 국제금융로이가 24"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "Western China",
+"ja": "Western China"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 263-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "デドンムン(大同門)"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 35-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "オス(osuheugdubu)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관훈동 29-9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Lamb Land"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 용강동 494-32"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "箸(Hashi)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 봉은사로49길 7"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "築紫"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강대로 763"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "シナンチョン"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 내자동 152"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "女掌櫃 明"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 선릉로86길 5-4",
+"서울 강남구 대치동 889-65"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Odarizip",
+"zh-TW": "Odarizip"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 8na가 28",
+"서울 특별시중구 충무로일가 22-17 2～",
+"서울 중구 충무로일가 22-17 2～"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "美味季节"
+},
+"area": "동대문구",
+"cands": [
+"서울 동대문구 답십리로51길 38",
+"서울 동대문구 답십리동 93-8"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "沙里院道谷洞店"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 남부순환로 2712",
+"서울 강남구 도곡동 411-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "秀(Syo-u)"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 강남대로156길 45",
+"서울 특별시강남구 신사동 535-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ナポレオン菓子店"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 1길 35-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "金雪文日式(Kimseolmun Ilsik)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문로1길 26-10",
+"서울 특별시중구 북창동 104"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "仁寺洞面片汤"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동 8길 14-1",
+"서울 종로구 관훈동 29-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ファンソチブ"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로3길 36-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "雪木軒"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청로 136-1",
+"서울 종로구 삼청동 20-8"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Rossini"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 재동 55"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Potala"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관철동 35-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "土房(Tobang)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동가 36 일층"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "All That Jazz"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로27ga가 12"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Seogung"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 국제금융로 78",
+"서울 영등포구 여의도동 43-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Star Chef"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동 417-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チャムソルロンタン"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1340"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "手工面食(Songuksi)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 언주로150길 9"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "コンジPOTジ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 재동 34-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソルダムジェソルロンタン"
+},
+"area": "도봉구",
+"cands": [
+"서울 도봉구 창동 715-32"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ヒョンデ・カルクグス"
+},
+"area": "중구",
+"cands": [
+"서울 중구 태평로이가 69-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "斗佳軒"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 사동동 80"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "阿里巴巴(Alibaba)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로 203"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Tabldout"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 논현로28길 35 101호",
+"135-854 서울 강남구 도곡동 517-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "绫罗饭桌",
+"zh-TW": "綾羅飯桌"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 사직로이가 14"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "TABLE-A動物咖啡館"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 원산로 146",
+"서울 마포구 창동 6"
+],
+"cafe": true
+},
+{
+"names": {
+"ja": "花"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이촌동 302-64"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Xingkai"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 논현로 508 이층"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "DUOMO BOOKS & COOKS",
+"zh-TW": "DUOMO BOOKS & COOKS"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 효자동 40-2",
+"서울 종로구 자하문로16길 5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "コキリ粉食"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 동화동 345-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "トゥッコビ・ジョンユクジョム・シクタン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 대치4동 906-21"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Evans"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동 407-3 407-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Eid"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한남동 756-10"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "首尔LG艺术中心"
+},
+"area": "강서구",
+"cands": [
+"서울 강서구 마곡중앙로 136 LG예술중심"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チョウン・セサン・マンドゥルギ(良い世界をつくる)"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 양평동 4길 32-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "美友味牛"
+},
+"area": "송파구",
+"cands": [
+"서울 송파구 방이동 185"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "HANS"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 570"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "赤坂"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서초동 1327"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "コバウ"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 창천동 31-17"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "セリム"
+},
+"area": "중구",
+"cands": [
+"서울 중구 다동 140"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "オンマウル"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청동 123"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "笑(Warai)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로5길 26 이층"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "黒豚家"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 147-15"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カンナム・ウォンジュ・チュオタン"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 역삼동 809-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "麻浦老字号崔大布(Mapo Jinjjawonjo Choedaepo)"
+},
+"area": "특별시마포구",
+"cands": [
+"서울 특별시마포구 만리재로1길 1-2",
+"서울 특별시마포구 공덕동 255-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ピョクチェ・カルビ タワーパレス店"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 도곡동 467-29"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "クンナラネンミョン・ムッパプ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 숭인1동 56-38"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ダラックジョン"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청동 127-2"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Jinsadaek"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동8길 8-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "マジョント"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 124-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ティアンパン・オフエ・ホンチャ"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 이화녀자대로 34"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ネ・コヒャン・シクタン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남창동 34-41"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハヌソ"
+},
+"area": "도봉구",
+"cands": [
+"서울 도봉구 창동 337-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ピョンネオク"
+},
+"area": "중구",
+"cands": [
+"서울 중구 영동 2길 18-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハンソン・カルクグス"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 언주로14814길동"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "プム・ソウル"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성로 1266"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Leonidas"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 명동가 62",
+"서울 특별시중구 명동이가 2-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "金容安(キム・ヨンアン)菓子店"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강로2길 259-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "乐园糕铺"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 삼일대로 438",
+"서울 특별시종로구 낙원동 9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "My noodle"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로27ga가 37"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "喜乐(Huirak)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 남대문시장가 22-6",
+"서울 특별시중구 남창동 34-34"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "汝自湾"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동 1424-2"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "漢江家"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 한강로일가 257-9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "明洞咸兴冷面(Myeongdong Hamheungmyeonok)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 명동 10길 35-19",
+"서울 중구 명동 2길 26-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "[百年の店] 3代目サムゲ職人"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 주포대로 2856-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "樂園年糕店"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼일대로 438",
+"서울 종로구 낙원동 9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "新 老茶館",
+"zh-CN": "新老茶馆"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동가 47-8",
+"서울 종로구 관훈동 164"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "cafe aA",
+"en": "Cafe aA",
+"zh-TW": "cafe AA"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동 408-11",
+"서울 마포구 와우산로17길 19-18"
+],
+"cafe": true
+},
+{
+"names": {
+"ja": "菊花ジョンウォン"
+},
+"area": "성북구",
+"cands": [
+"서울 성북구 성북동 264"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "昴(Subaru)"
+},
+"area": "특별시서초구",
+"cands": [
+"서울 서초구 방배로42길 7",
+"서울 특별시서초구 방이동 18-23"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "昴"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 방배동 790-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "道峰山排骨"
+},
+"area": "도봉구",
+"cands": [
+"서울 도봉구 도봉로 915",
+"서울 도봉구 도봉동 559-23"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Thunder Burger（梨泰院分店）"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 녹사평대로 218"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "cafe aA"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 와우산로17길 19-18"
+],
+"cafe": true
+},
+{
+"names": {
+"ja": "Urban Garden",
+"zh-TW": "Urban Garden"
+},
+"area": "중구",
+"cands": [
+"서울 중구 정동 28-2",
+"서울 중구 정동가 12-15"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Urban Garden"
+},
+"area": "중구",
+"cands": [
+"서울 중구 정동가 12-15",
+"서울 특별시중구 정동 28-2"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "カフェロッソ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 팔판동 40-1"
+],
+"cafe": true
+},
+{
+"names": {
+"en": "[Baeknyeon-gage] Goryeojeong"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 국제금융로6길 116"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Cavallo Bianco"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 삼성동 150-25"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Couscous Tunisian Home Kitchen",
+"zh-TW": "Couscous Tunisian Home Kitchen"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 체부동 95-1",
+"서울 종로구 자하문로5길 16-2"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "[Baeknyeon-gage] Naju Beef Bone Soup Friendship House"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 강남대로94길 57"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ウジョン・ナッチ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 대로 1746"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "テハンコプチャン (チャンアン(長安)店)"
+},
+"area": "동대문구",
+"cands": [
+"서울 동대문구 장안동 433-20"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソデムン・コプチャン"
+},
+"area": "중구",
+"cands": [
+"서울 중구 충무로4길 24-6"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "五感(오감)"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 종로구 윤보선가 27",
+"서울 특별시종로구 안국동 175-61"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Lanna Thai"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 43-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "素饍斎"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청동 113-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "麗水東村"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 대치동 903-18"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "梨泰院スップルグイ"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원동 44-13"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ウルチロ(乙支路)ノガリ横丁",
+"zh-TW": "乙支路小明太魚乾街",
+"en": "Euljiro Nogari Alley"
+},
+"area": "중구",
+"cands": [
+"서울 중구 을지로3가 95-4",
+"서울 중구 충무로9로 12"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "マイフェイバリット(my favorite)"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 서교동 380-6"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "コボンサムゲタン"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 13-16"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Salam Food"
+},
+"area": "중구",
+"cands": [
+"12, Eulji-ro 42-gil, Jung-gu, Seoul, Korea",
+"서울 중구 을지로6가 34-2"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "USMANIA"
+},
+"area": "용산구",
+"cands": [
+"34, Usadan-ro, Yongsan-gu, Seoul, Korea",
+"서울 용산구 이태원동 137-56"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "MaeHwa Lamb Skewers  Myeongdong"
+},
+"area": "중구",
+"cands": [
+"19, Toegye-ro 20-gil, Jung-gu, Seoul, Korea  1F",
+"서울 중구 남산동2가 15-10"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Kkochsaljib Hongdae Branch"
+},
+"area": "마포구",
+"cands": [
+"212-2, Donggyo-ro, Mapo-gu, Seoul, Korea",
+"서울 마포구 동교동 153-11"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Freshwater Eel Market"
+},
+"area": "마포구",
+"cands": [
+"25, World Cup buk-ro 2-gil, Mapo-gu, Seoul, Korea",
+"서울 마포구 동교동 161-15"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Hattori Kitchen"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 회나무로 9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "昴(Subaru)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 방배중앙로21길 7",
+"서울 서초구 방배동 790-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソウルソ・ドルチェロ・チャルハヌンチブ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 삼청동 28-21"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "年糕里脊烤肉店"
+},
+"area": "강서구",
+"cands": [
+"서울 강서구 희작산로 172",
+"157-928 서울 강서구 화곡동 1131-20"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Mari韩定食"
+},
+"area": "서대문구",
+"cands": [
+"서울 서대문구 성산로 529",
+"서울 특별시서대문구 대신동 85-3"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Motongi Waffle & Motongi Picnic"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 성수동1가 661-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Blooming Garden"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 강남대로 358 일층"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "靑岛(Cheongdo)"
+},
+"area": "특별시영등포구",
+"cands": [
+"서울 영등포구 국제금융로8길 27-9",
+"서울 특별시영등포구 여의도동 45-20"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "圆鳕鱼汤(Wondaegutang)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 청계천로 17",
+"서울 한성종로구 서린동 127"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Phoenix"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 테헤란로 440"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "天下(Cheonha)"
+},
+"area": "특별시마포구",
+"cands": [
+"서울 마포구 와우산로14길 4",
+"서울 특별시마포구 상수동 86-35"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Tutto Bene"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 압구정로77길",
+"서울 강남구 청담동 118-9"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "锦(Nishiki)"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로 232"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "La Stella"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 도화동 169-1"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Goam Sikdang"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원로27가길 5"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ナンポミョノッ(南浦麺屋)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 다동 121-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "孝子西饼店"
+},
+"area": "특별시종로구",
+"cands": [
+"서울 특별시종로구 필운대로 54",
+"서울 특별시종로구 통인동 43-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "孝子麵包店"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 필운대로 54",
+"서울 종로구 통인동 43-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "旺盛食堂"
+},
+"area": "특별시중구",
+"cands": [
+"서울 특별시중구 남창동 34-50"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Oga"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 언주로164길 13",
+"서울 특별시강남구 신사동 645-8"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "五壮洞咸兴冷面(Ojangdong Hamheungnaengmyeon)"
+},
+"area": "특별시중구",
+"cands": [
+"서울 중구 간천로 108",
+"서울 특별시중구 오장동 90-10"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "延南5701"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 동교로 23길 64"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Kadoya"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 성만산로2길 18",
+"서울 마포구 서교동 5-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Isaem Cupcake"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 반포동 537-4"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "神户源平(Kobe Genpei)"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 대학로14길 12",
+"서울 종로구 혜화동 203-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "万豪(Manho)"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 신반포로 176",
+"서울 서초구 신반포동 19-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Dido jazz lounge"
+},
+"area": "광진구",
+"cands": [
+"서울 광진구 자양로 18길 56"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ピルドン・ミョンノク"
+},
+"area": "중구",
+"cands": [
+"서울 중구 필동 3길 1-5"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "忠记面家(Cheongki myeonga)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 선릉로152로 15"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "韩村(驿三Star分店)"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 논현로85길 23",
+"서울 강남구 역삼1동 739-5 영원대하"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "成川荞面(Seongcheon Makguksu)"
+},
+"area": "동대문구",
+"cands": [
+"서울 동대문구 전농로 48",
+"서울 동대문구 답십리동 265-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "M Comme Macaron"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강남구 논현로24길 18",
+"서울 특별시강남구 도곡동 453"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "アプクジョン・ソソガルビ"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 신사동 658-1"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "オジャンドン咸興冷麺"
+},
+"area": "중구",
+"cands": [
+"서울 중구 오장동 90-10"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "五壯洞咸興冷麵 (Ojangdong Hamheungnaengmyeon)"
+},
+"area": "중구",
+"cands": [
+"서울 중구 건천로 108",
+"서울 중구 오장동 90-10"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "チャンチュンドン(奨忠洞)豚足通り"
+},
+"area": "중구",
+"cands": [
+"서울 중구 장충동 1길 56-17"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Nubim Kim Group来韩演出",
+"en": "Nubim Kim Group Korea Tour"
+},
+"area": "마포구",
+"cands": [
+"서울 마포구 창전로 14"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "[百年老店] 宗家店"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동가 15-13"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "[百年の店]サリコル"
+},
+"area": "은평구",
+"cands": [
+"서울 은평구 구산동 468-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "シン・イェッチャッチブ"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 관훈동 164"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ラメフキャドー"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 문래동 6길 29"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Pinot"
+},
+"area": "서초구",
+"cands": [
+"서울 서초구 서애로6길 15 F",
+"137-804 서울 서초구 반포동 72-9 B1F"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "Malta Tuna"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 대치동 891-46"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ハヌチブウィ"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 43-4"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "ソグルロンタン"
+},
+"area": "영등포구",
+"cands": [
+"서울 영등포구 여의도동 53"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Al Parco"
+},
+"area": "특별시강남구",
+"cands": [
+"서울 강동구 강동대로 187",
+"서울 특별시강남구 성내일동 468-3"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Richard Copycat 24H"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 여태원로 214-1"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-CN": "Bombay Grill梨泰院店"
+},
+"area": "용산구",
+"cands": [
+"서울 용산구 이태원동운사단로10길 11"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "首爾之美觀光週"
+},
+"area": "성동구",
+"cands": [
+"서울 성동구 독도로 273",
+"서울 성동구 성수동1가 685-20"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "MAO"
+},
+"area": "강남구",
+"cands": [
+"서울 강남구 청담동 22-20"
+],
+"cafe": false
+},
+{
+"names": {
+"en": "Deogwon Kkorigomtang Bangchitang"
+},
+"area": "영등포구",
+"cands": [
+"6, Beodeunaru-ro 6-gil, Yeongdeungpo-gu, Seoul, Korea",
+"서울 영등포구 영등포동2가 94-28"
+],
+"cafe": false
+},
+{
+"names": {
+"zh-TW": "崔老爺"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 인사동 8길 12-3",
+"서울 종로구 관훈동 29-3"
+],
+"cafe": false
+},
+{
+"names": {
+"ja": "中国"
+},
+"area": "종로구",
+"cands": [
+"서울 종로구 청운동 59-4"
+],
+"cafe": false
+}
+]
